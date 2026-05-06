@@ -663,7 +663,7 @@ section{padding:78px 0}
     <button id="hamburger" class="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav">
       <span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span>
     </button>
-    <nav class="nav" aria-label="Primary">
+    <nav class="nav" aria-label="Main navigation">
       <a href="/pest-control-las-vegas/">Residential</a>
       <a href="/commercial-pest-control-las-vegas/">Commercial</a>
       <a href="/emergency-pest-control-las-vegas/">Emergency</a>
@@ -677,14 +677,13 @@ section{padding:78px 0}
 <div id="mobile-nav" class="mobile-nav-overlay" aria-hidden="true" aria-label="Mobile navigation" aria-modal="true">
   <div class="mobile-nav-inner">
     <button id="nav-close" class="mobile-nav-close" aria-label="Close navigation menu">✕</button>
-    <div class="mobile-nav-links">
-      <a href="/">Home</a>
+    <nav class="mobile-nav-links" aria-label="Mobile navigation">
       <a href="/pest-control-las-vegas/">Residential</a>
       <a href="/commercial-pest-control-las-vegas/">Commercial</a>
       <a href="/emergency-pest-control-las-vegas/">Emergency</a>
       <a href="/about/">About</a>
       <a href="/contact/">Contact</a>
-    </div>
+    </nav>
     <a href="/free-estimate/?type=ant" class="mobile-nav-cta">Free Ant Inspection →</a>
     <a href="tel:+17022284394" class="mobile-nav-phone">📞 (702) 228-4394</a>
   </div>
@@ -1412,59 +1411,84 @@ section{padding:78px 0}
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-col" itemscope itemtype="https://schema.org/LocalBusiness">
-        <div class="footer-logo">PCI Logo</div>
-        <div class="footer-nap">
-          <p class="footer-name" itemprop="name">Pest Control Inc</p>
-          <p itemprop="address" itemscope itemtype="https://schema.org/PostalAddress"><span itemprop="streetAddress">3642 N Rancho Dr Suite #102</span><br><span itemprop="addressLocality">Las Vegas</span>, <span itemprop="addressRegion">NV</span> <span itemprop="postalCode">89130</span></p>
+
+      <div class="footer-col">
+        <div class="footer-logo" role="img" aria-label="Pest Control Inc Logo">PCI LOGO</div>
+        <div class="footer-nap" itemscope itemtype="https://schema.org/LocalBusiness">
+          <p itemprop="name" style="font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;margin-bottom:10px;">Pest Control Inc</p>
+          <p itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+            <span itemprop="streetAddress">3642 N Rancho Dr Suite #102</span><br>
+            <span itemprop="addressLocality">Las Vegas</span>, <span itemprop="addressRegion">NV</span> <span itemprop="postalCode">89130</span>
+          </p>
           <p><a href="tel:+17022284394" class="footer-phone" itemprop="telephone">(702) 228-4394</a></p>
           <p><a href="mailto:info@pestcontrolinc.net" itemprop="email">info@pestcontrolinc.net</a></p>
+          <p>Mon–Fri 8am–4pm · Sat 8am–2pm<br>Sun Closed · Emergency: 24/7</p>
           <p class="footer-license">NV License #4632 · NPMA Member · 3-Generation Family-Owned</p>
         </div>
       </div>
+
       <div class="footer-col">
-        <h4>Ant &amp; Pest Services</h4>
+        <h4>Pest Control Services</h4>
         <ul>
+          <li><a href="/scorpion-exterminator-las-vegas/">Scorpion Control Las Vegas</a></li>
           <li><a href="/ant-exterminator-las-vegas/" aria-current="page">Ant Exterminator Las Vegas</a></li>
-          <li><a href="#" class="pending">Scorpion Exterminator (pending)</a></li>
-          <li><a href="#" class="pending">Cockroach Exterminator (pending)</a></li>
-          <li><a href="#" class="pending">Rodent Control (pending)</a></li>
-          <li><a href="/emergency-pest-control-las-vegas/">Emergency Pest Control</a></li>
-          <li><a href="/pest-control-las-vegas/eco-friendly/">Eco-Friendly Pest Control</a></li>
+          <li><a href="/cockroach-exterminator-las-vegas/">Cockroach Exterminator Las Vegas</a></li>
+          <li><a href="/rodent-exterminator-las-vegas/">Rodent Control Las Vegas</a></li>
+          <li><a href="/termite-exterminator-las-vegas/">Termite Control Las Vegas</a></li>
+          <li><a href="/spider-exterminator-las-vegas/">Spider Exterminator Las Vegas</a></li>
+          <li><a href="/bed-bug-exterminator-las-vegas/">Bed Bug Exterminator Las Vegas</a></li>
+          <li><a href="/pest-identification/">Pest Identification Library</a></li>
         </ul>
       </div>
+
       <div class="footer-col">
-        <h4>Residential</h4>
+        <h4>Service Areas</h4>
         <ul>
-          <li><a href="/pest-control-las-vegas/">Residential Hub</a></li>
-          <li><a href="/pest-control-las-vegas/single-family-homes/">Single-Family Homes</a></li>
-          <li><a href="/pest-control-las-vegas/apartments/">Apartments</a></li>
-          <li><a href="/pest-control-las-vegas/condos/">Condos</a></li>
-          <li><a href="/pest-control-las-vegas/eco-friendly/">Eco-Friendly</a></li>
+          <li><a href="/pest-control-las-vegas/">Pest Control Las Vegas</a></li>
+          <li><a href="/pest-control-henderson-nv/">Pest Control Henderson NV</a></li>
+          <li><a href="/pest-control-north-las-vegas/">Pest Control North Las Vegas</a></li>
+          <li><a href="/pest-control-las-vegas/summerlin/">Pest Control Summerlin</a></li>
+          <li><a href="/pest-control-spring-valley-nv/">Pest Control Spring Valley</a></li>
+          <li><a href="/pest-control-boulder-city-nv/">Pest Control Boulder City</a></li>
+          <li><a href="/pest-control-paradise-nv/">Pest Control Paradise NV</a></li>
+          <li><a href="/las-vegas-valley/">All Service Areas</a></li>
         </ul>
       </div>
+
       <div class="footer-col">
-        <h4>Commercial</h4>
+        <h4>Company</h4>
         <ul>
-          <li><a href="/commercial-pest-control-las-vegas/">Commercial Hub</a></li>
-          <li><a href="/commercial-pest-control-las-vegas/hoa/">HOA Communities</a></li>
-          <li><a href="/commercial-pest-control-las-vegas/property-managers/">Property Managers</a></li>
-          <li><a href="/commercial-pest-control-las-vegas/pest-impact-on-business/">Pest Impact on Business</a></li>
-          <li><a href="/commercial-pest-control-las-vegas/landlord-pest-control-responsibilities/">Landlord Responsibilities</a></li>
+          <li><a href="/about/">About Pest Control Inc</a></li>
+          <li><a href="/about/mission/">Our Mission</a></li>
+          <li><a href="/about/health-conscious-service-program/">Health Conscious Program</a></li>
+          <li><a href="/about/guarantee/">Our Guarantee</a></li>
+          <li><a href="/pest-control-las-vegas/plans-and-pricing/">Plans &amp; Pricing</a></li>
+          <li><a href="/pest-control-faq/">FAQ Hub</a></li>
+          <li><a href="/reviews/">Customer Reviews</a></li>
+          <li><a href="/blog/">Pest Control Blog</a></li>
+          <li><a href="/contact/">Contact Us</a></li>
+          <li><a href="/free-estimate/">Free Estimate</a></li>
         </ul>
       </div>
+
     </div>
     <div class="footer-bottom">
-      <div class="footer-bottom-text">© 2026 Pest Control Inc · 3642 N Rancho Dr Suite #102, Las Vegas, NV 89130 · <a href="tel:+17022284394">(702) 228-4394</a> · <a href="/privacy-policy/">Privacy Policy</a> · <a href="/sitemap/">Sitemap</a></div>
-      <div class="footer-trust-marks">
-        <span class="trust-mark">NV License #4632</span>
-        <span class="trust-mark">NPMA Member</span>
-        <span class="trust-mark">BBB Accredited</span>
+      <div class="footer-bottom-text">
+        © <span id="yr"></span> Pest Control Inc · Las Vegas, NV · License #4632 ·
+        <a href="/privacy-policy/">Privacy Policy</a> · <a href="/terms-of-use/">Terms of Use</a>
       </div>
-      <div class="footer-stamp"><em>Pest Control Inc — 3-generation family-owned · Licensed ant exterminator serving Las Vegas, Henderson, North Las Vegas, Summerlin &amp; all of Clark County, Nevada · Not a franchise</em></div>
+      <div class="footer-trust-marks">
+        <div class="trust-mark">NPMA Member</div>
+        <div class="trust-mark">Nevada Licensed #4632</div>
+        <div class="trust-mark">3-Generation Family Business</div>
+      </div>
     </div>
   </div>
 </footer>
+<script>
+  var yrEl = document.getElementById('yr');
+  if (yrEl) yrEl.textContent = new Date().getFullYear();
+</script>
 
 <!-- MOBILE STICKY CTA -->
 <div class="mobile-cta">
