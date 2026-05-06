@@ -1,3 +1,0 @@
-Move 5 hub pages into folder/index.html format
-
-Residential, Commercial, Emergency, About, and Ant Exterminator hubs now serve from their canonical-slug folders. All 17 pages are now in Cloudflare Pages directory format; only the homepage index.html remains at the repo root.
