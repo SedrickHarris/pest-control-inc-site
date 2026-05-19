@@ -1,0 +1,12 @@
+# Cloudflare Pages — _redirects
+# Catch-all: return true 404 for any path not matching a deployed file.
+# This fixes the soft-404 issue documented in docs/site-os/qa/2026-05-18-soft-404-catch-all.md
+# where Cloudflare Pages was serving the homepage (200 OK) for every unmatched URL.
+#
+# IMPORTANT: This file must live in the repo root (or the Cloudflare Pages publish directory).
+# Cloudflare Pages evaluates _redirects AFTER static file matching, so built pages
+# are served normally — only truly unmatched paths hit this rule.
+#
+# Rule format: [source] [destination] [status]
+
+/* /404.html 404
