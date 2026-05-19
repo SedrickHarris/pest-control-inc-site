@@ -76,3 +76,56 @@ Open items:
 - /specials/ — Offer Level 3 — no blockers
 - /free-estimate/ — Conversion Level 4 — LAUNCH BLOCKER: awaiting form handler endpoint
 - /contact/ — Conversion Level 4 — LAUNCH BLOCKER: awaiting form handler endpoint
+
+---
+
+### 2026-05-19 — Batch 3 Routing Finalized — All Species Pages Level 4 Minimum
+
+- Trigger: operator direction — "do it right the first time instead of coming back later"
+- SERP audit confirmed active competitor pages on cockroach, rodent, termite, spider,
+  bed bug from Terminix, Orkin, Alta, Fischer's, Red Rock, Fortified, Axis, Burns,
+  and Progressive Pest Control
+- Claude Code audit of /ant-exterminator-las-vegas/ confirmed the existing ant page
+  passes the 9-section / 4-schema spec floor with one gap (no dedicated Why PCI section)
+  and one schema flag (AggregateRating reviewCount 65 should be 30 — Google only)
+- Decision: all 15 unbuilt species pages elevated to Level 4 minimum — no Level 3 pages
+  in Batch 3
+- Scorpion remains Level 5 (unchanged)
+- Ant page retrofit (Why PCI section, extended FAQs, reviewCount fix) scheduled as
+  separate task after Batch 3 is complete
+- File updated: docs/site-os/prompts/build/batch-3-service-pages-prompt.md
+
+#### Final Batch 3 routing table
+
+| Page | Final Depth | Change from original |
+|---|---|---|
+| /scorpion-exterminator-las-vegas/ | Level 5 | Unchanged |
+| /cockroach-exterminator-las-vegas/ | Level 4 | Elevated from Level 3 |
+| /rodent-exterminator-las-vegas/ | Level 4 | Elevated from Level 3 |
+| /termite-exterminator-las-vegas/ | Level 4 | Elevated from Level 3 |
+| /spider-exterminator-las-vegas/ | Level 4 | Elevated from Level 3 |
+| /bed-bug-exterminator-las-vegas/ | Level 4 | Elevated from Level 3 |
+| /wasp-exterminator-las-vegas/ | Level 4 | Elevated from Level 3 |
+| /bee-removal-las-vegas/ | Level 4 | Elevated from Level 3 |
+| /bird-removal-las-vegas/ | Level 4 | Elevated from Level 3 |
+| /earwig-exterminator-las-vegas/ | Level 4 | Elevated from Level 3 |
+| /hornet-exterminator-las-vegas/ | Level 4 | Elevated from Level 3 |
+| /miller-moth-exterminator-las-vegas/ | Level 4 | Elevated from Level 3 |
+| /crane-fly-exterminator-las-vegas/ | Level 4 | Elevated from Level 3 |
+| /false-chinch-bug-exterminator-las-vegas/ | Level 4 | Elevated from Level 3 |
+| /springtail-exterminator-las-vegas/ | Level 4 | Elevated from Level 3 |
+
+#### Level 4 standard applied to all pages
+- 10 required sections (up from 9-section floor)
+- Dedicated Why PCI section (new requirement)
+- Competitor differentiation section (new requirement)
+- Minimum 8 FAQs (up from 5)
+- Full pass/fail gate before every commit
+- AggregateRating: Google 5.0 / reviewCount 30 only
+
+#### Ant page open items (retrofit — separate task)
+- Add dedicated Why PCI section
+- Add competitor differentiation section
+- Extend FAQs to 8+ minimum
+- Fix AggregateRating reviewCount: 65 → 30 (Google only)
+- Schedule after Batch 3 complete
