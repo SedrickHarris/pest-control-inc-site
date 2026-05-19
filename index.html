@@ -373,6 +373,9 @@ section{padding:78px 0}
   body{padding-bottom:72px}
   .hero-scorpion{display:none}
 }
+.skip-link{position:absolute;top:-40px;left:0;background:#2F5EA3;color:#fff;padding:8px 16px;font-family:'Barlow Condensed',Arial,sans-serif;font-size:14px;font-weight:700;text-decoration:none;z-index:999;border-radius:0 0 8px 0;transition:top .2s}
+.skip-link:focus{top:0}
+.last-reviewed{position:absolute;top:24px;right:24px;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;letter-spacing:.06em;color:var(--gray-mid);text-transform:uppercase}
 </style>
 
 <script type="application/ld+json">
@@ -471,6 +474,7 @@ section{padding:78px 0}
 </script>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
 
 <!-- TOP BAR -->
 <div class="top-bar">
@@ -501,13 +505,13 @@ section{padding:78px 0}
             <a href="/about/" onclick="closeMobileNav()">About</a>
             <a href="/contact/" onclick="closeMobileNav()">Contact</a>
           </nav>
-          <a href="/free-estimate/" class="mobile-nav-cta">Get Free Estimate →</a>
+          <a href="/free-estimate/" class="mobile-nav-cta">Free Estimate →</a>
           <a href="tel:+17022284394" class="mobile-nav-phone">📞 (702) 228-4394</a>
         </div>
       </div>
 
       <a href="/" class="logo" aria-label="Pest Control Inc Las Vegas">
-        <div class="logo-placeholder">[ PCI Logo ]</div>
+        <a href="/" class="logo-placeholder" aria-label="Pest Control Inc — Home">PCI Logo</a>
       </a>
       <nav class="nav" aria-label="Main navigation">
         <a href="/pest-control-las-vegas/">Residential</a>
@@ -601,6 +605,7 @@ section{padding:78px 0}
 <!-- ══ SECTION 03: SERVICES INTRO ══ -->
 <section class="services-section" aria-labelledby="services-h2">
   <div class="container">
+    <p class="last-reviewed">Last reviewed: May 18, 2026 · Updated as needed</p>
     <div class="services-intro">
       <div>
         <div class="section-eyebrow">Pest Control Services Las Vegas NV</div>
