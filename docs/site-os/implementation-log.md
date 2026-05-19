@@ -177,3 +177,52 @@ Open items:
 
 #### Next page per build order
 - /spider-exterminator-las-vegas/ — Level 4
+
+---
+
+### 2026-05-19 — Batch 3 Build: /spider-exterminator-las-vegas/
+
+- Route: /spider-exterminator-las-vegas/
+- AI Depth: Level 4
+- Commit: a5bcd7d
+- File: spider-exterminator-las-vegas/index.html (965 lines)
+
+#### Keyword map (top primary)
+1. spider exterminator las vegas
+2. black widow exterminator las vegas / black widow control
+3. brown recluse las vegas (accuracy-corrective informational intent)
+
+#### Pass/fail gate — ALL PASS
+- Sections: 12 `<section>` blocks present (exceeds 10-section minimum)
+- FAQ visible count: 9
+- FAQ schema Question count: 9 (matches exactly)
+- Schema types: LocalBusiness, Service, FAQPage, BreadcrumbList, HowTo (5 entities — all 4 required + HowTo)
+- AggregateRating reviewCount: "30" (Google only — single match)
+- Canonical: https://pestcontrolinc.net/spider-exterminator-las-vegas/
+- Phone `(702) 228-4394`: 20 instances
+- `tel:+17022284394`: 16 instances
+- robots: index, follow
+- aria-current="page": 2 locations (related-pages chip + footer Spider Control link)
+- TODO-LAUNCH-BLOCKER: 1 (form placeholder)
+- Raw em-dashes: 0 (all `&mdash;`)
+- Raw en-dashes: 0
+- No-fake-data: founding year CLEAN, EPA registration CLEAN, pricing CLEAN
+- No named individuals
+- **ACCURACY CHECK PASS:** "brown recluse not established in Las Vegas" stated explicitly in 4 locations — AEO opening paragraph, AEO callout card 2, species card 2, and FAQ Q2 schema + visible body
+
+#### Spider-specific page additions vs scorpion template
+- AEO section adds two-card callout grid below the answer block: medical-risk callout (black widow) and myth-correction callout (brown recluse not established) — supports both safety intent and misinformation correction in one viewport
+- New Section 5 ("Spiders as indicator species") with custom `.indicator-feature` callout block including a visual food chain (`Outdoor Lighting / Irrigation → Crickets / Cockroaches / Silverfish → Spiders`) — content angle competitors do not address
+- Black widow handling warning in form-card-alt and signs-note ("Do not handle even if dead — venom remains potent")
+- Trust bar item 5: "24/7 Black Widow Emergency" — emergency framing specific to spider page
+- Section 4 (Species) uses 3-card layout matching scorpion pattern; card 3 ("neutral" variant) introduced for harmless indicator-species spiders
+
+#### Open TODOs
+- Form endpoint not wired (disabled fields + TODO-LAUNCH-BLOCKER comment) — site-wide launch blocker
+- /termite-exterminator-las-vegas/ now built but appears as pending chip per content brief — verify intentionally or update next build
+- /bed-bug-exterminator-las-vegas/ linked as pending chip (next-up per build order)
+- OG image asset: /assets/images/og-spider-exterminator-las-vegas.jpg — placeholder URL, asset not yet produced
+- /about/health-conscious-service-program/ linked from program section — destination page not yet built
+
+#### Next page per build order
+- /bed-bug-exterminator-las-vegas/ — Level 4
