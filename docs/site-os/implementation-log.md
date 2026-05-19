@@ -43,3 +43,36 @@ One entry per batch or major session.
 Open items:
 - TODO-VERIFY: effective date + legal review on both legal pages before launch
 - LAUNCH BLOCKER: /free-estimate/ and /contact/ — awaiting form handler endpoint
+
+---
+
+### 2026-05-19 — Batch 2 Phase 1 — Post-Deploy Verification
+
+- Staging verification: all 8 routes confirmed live on pestcontrolinc-site.pages.dev
+- HEAD at verification: 6b840ea
+
+| Route | Status | Notes |
+|---|---|---|
+| /this-page-cannot-exist-zzzqqq/ | 404 ✅ | catch-all working |
+| /scorpion-exterminator-las-vegas/ | 404 ✅ | unbuilt page returns real 404 |
+| /ant-exterminator-las-vegas/ | 200 ✅ | built page serves normally |
+| /404.html | 308 → 200 ✅ | Cloudflare strips .html — expected |
+| /thank-you/ | 200 ✅ | |
+| /privacy-policy/ | 200 ✅ | |
+| /terms-of-use/ | 200 ✅ | |
+| /sitemap/ | 200 ✅ | |
+
+- Production (www.pestcontrolinc.net): still on WP Engine — platform migration required
+  before any repo pages are live to real users. Tracked in
+  docs/site-os/qa/2026-05-18-soft-404-catch-all.md.
+
+#### Batch 2 session commit log
+- b31ac61 feat(batch-2): add 404, _redirects catch-all, thank-you, privacy-policy, terms-of-use, sitemap pages
+- e2eb4ba docs(site-os): update implementation log and soft-404 QA note with production platform finding
+- 6b840ea fix(batch-2): normalize en-dash and middot entities to literal Unicode in Batch 2 pages
+
+#### Remaining Batch 2 pages (next session)
+- /reviews/ — Trust Level 3 — no blockers
+- /specials/ — Offer Level 3 — no blockers
+- /free-estimate/ — Conversion Level 4 — LAUNCH BLOCKER: awaiting form handler endpoint
+- /contact/ — Conversion Level 4 — LAUNCH BLOCKER: awaiting form handler endpoint
