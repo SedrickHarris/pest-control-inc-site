@@ -168,3 +168,51 @@ curl -s https://pestcontrolinc-site.pages.dev/scorpion-exterminator-las-vegas/ |
 # Expected after fix: hashes differ (real 404 page served for second URL).
 # Currently: hashes identical (both serve homepage).
 ```
+
+---
+
+## 2026-05-19 Update — Soft-404 Fix Verified on Staging / Production Platform Finding
+
+### Staging verification (pestcontrolinc-site.pages.dev) — RESOLVED
+All three tests passed after commit b31ac61 deployed:
+
+| Test | URL | Expected | Actual | Status |
+|---|---|---|---|---|
+| 1 | /this-page-cannot-exist-zzzqqq/ | 404 | 404 | PASS |
+| 2 | /scorpion-exterminator-las-vegas/ | 404 | 404 | PASS |
+| 3 | /ant-exterminator-las-vegas/ | 200 | 200 | PASS |
+
+Soft-404 catch-all is resolved on the Cloudflare Pages staging deploy.
+
+---
+
+### Production verification (pestcontrolinc.net) — BLOCKED — NEW FINDING
+
+Production is NOT served by this Cloudflare Pages repo.
+
+| Host | Serving | Built pages visible? |
+|---|---|---|
+| pestcontrolinc.net (apex) | 301 redirect to www. | n/a |
+| www.pestcontrolinc.net | WP Engine — WordPress | No — 404 for all repo pages |
+| pestcontrolinc-site.pages.dev | Cloudflare Pages — this repo | Yes — all 17+ built pages |
+
+Confirmed via response headers: `x-powered-by: WP Engine` on www.pestcontrolinc.net.
+
+### Implication
+None of the pages built in this repo are visible to end users on the production domain.
+Production is a separate WordPress site on WP Engine. The Cloudflare Pages deploy
+(pestcontrolinc-site.pages.dev) is effectively a staging environment only.
+
+### Launch blocker added
+BLOCKER: Production domain (www.pestcontrolinc.net) must be migrated to Cloudflare Pages
+before any of this repo's pages are live to real users. Options:
+
+1. Point www.pestcontrolinc.net DNS at the Cloudflare Pages project — replaces WP Engine
+2. Rebuild on WP Engine — significant rework, not recommended
+3. Dual-stack routing — complex, not recommended for a small service business site
+
+Owner decision required before production launch.
+
+### QA status
+- Staging: CLOSED — soft-404 fix confirmed live
+- Production: BLOCKED — platform migration required first

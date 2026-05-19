@@ -24,3 +24,22 @@ One entry per batch or major session.
   implementation-log.md
 - No app code or constants changed
 - Ready for review before commit
+
+---
+
+### 2026-05-19 — Batch 2 Phase 1 — Soft-404 Fix + Utility Pages
+
+- Pages built: 6
+  - _redirects (repo root) — Cloudflare Pages catch-all, true 404 for unmatched paths
+  - 404.html — branded 404 page, noindex
+  - thank-you/index.html — post-submission confirmation, noindex
+  - privacy-policy/index.html — legal Level 1, TODO-VERIFY: effective date + legal review
+  - terms-of-use/index.html — legal Level 1, TODO-VERIFY: effective date + legal review
+  - sitemap/index.html — HTML sitemap with coming-soon states
+- Workflow: Fast Build Batch — Light Utility Gate PASS
+- Cloudflare Pages publish directory: / (repo root — confirmed in dashboard)
+- Commit: b31ac61 — pushed ✅
+
+Open items:
+- TODO-VERIFY: effective date + legal review on both legal pages before launch
+- LAUNCH BLOCKER: /free-estimate/ and /contact/ — awaiting form handler endpoint
