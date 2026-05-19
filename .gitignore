@@ -10,7 +10,7 @@ node_modules/
 *.swo
 .cache/
 dist/
-build/
+/build/
 
 # Local Claude settings
 .claude/
