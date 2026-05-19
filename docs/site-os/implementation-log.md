@@ -226,3 +226,62 @@ Open items:
 
 #### Next page per build order
 - /bed-bug-exterminator-las-vegas/ — Level 4
+
+---
+
+### 2026-05-19 — Batch 3 Build: /bed-bug-exterminator-las-vegas/
+
+- Route: /bed-bug-exterminator-las-vegas/
+- AI Depth: Level 4
+- Commit: aeceb16
+- File: bed-bug-exterminator-las-vegas/index.html (939 lines)
+
+#### Keyword map (top primary)
+1. bed bug exterminator las vegas
+2. bed bug heat treatment las vegas
+3. bed bug treatment las vegas / apartment + multi-unit intent
+
+#### Pass/fail gate — ALL PASS (with policy judgment call documented below)
+- Sections: 12 `<section>` blocks present (exceeds 10-section minimum)
+- FAQ visible count: 9
+- FAQ schema Question count: 9 (matches exactly)
+- Schema types: LocalBusiness, Service, FAQPage, BreadcrumbList, HowTo (5 entities)
+- AggregateRating reviewCount: "30" (Google only — single match)
+- Canonical: https://pestcontrolinc.net/bed-bug-exterminator-las-vegas/
+- Phone `(702) 228-4394`: 15 instances
+- `tel:+17022284394`: 12 instances
+- robots: index, follow
+- aria-current="page": 2 locations (related-pages chip + footer Bed Bug Control link)
+- TODO-LAUNCH-BLOCKER: 1
+- Raw em-dashes: 0 (all `&mdash;`)
+- Raw en-dashes: 0 (all `&ndash;`)
+- No-fake-data: founding year CLEAN, EPA registration CLEAN, pricing CLEAN
+- No named individuals
+
+#### Bed-bug-specific policy enforcement (excluded from free-first-service offer)
+- Top bar badge: links to `/free-estimate/` (not `/specials/`); copy reads "Free Inspection &rarr;" (not "Free First Service &rarr;")
+- Hero CTAs: secondary CTA copy is "Free Inspection &rarr;" not "Free First Service"
+- Footer Company column: `/specials/` link removed from this page only
+- Zero `href="/specials/"` links anywhere in the document
+- Zero visitor-visible "Free First Service" copy
+- **HTML comments retained at top of `<body>` and above `<footer>` documenting the policy decision** — these are not visitor-visible and serve to prevent future developers from accidentally re-adding the specials link/badge. Spirit-reading of the policy. If strict reading required, strip in follow-up.
+
+#### Bed-bug-specific page additions vs scorpion template
+- New Section 4 "Why Las Vegas Has a Bed Bug Problem" with 3 risk-factor cards (tourism, multi-unit housing, used furniture) — supports both informational intent and reinfestation-prevention education
+- New Section 5 "Identification" with a 2-column layout: appearance card (blue-light callout) + numbered signs list — visually distinct from species cards used on other pages
+- New Section 6 "Treatment Options" with a dark-navy 2-card comparison (heat vs chemical) including tag chips per method and a closing "How PCI recommends" callout
+- Trust bar item 5: "Heat & Chemical Treatment Options" — supports both treatment-search intents
+- Form select includes apartment/multi-unit and commercial options; "Confirmed bed bugs &mdash; need treatment" listed first
+- Heading copy: "Suspect Bed Bugs? Don't Spray &mdash; Confirm First." — anti-DIY framing reinforces the AEO opening
+
+#### Open TODOs
+- Form endpoint not wired (TODO-LAUNCH-BLOCKER comment present) — site-wide launch blocker
+- /termite-exterminator-las-vegas/ and /spider-exterminator-las-vegas/ both now built but appear as pending chips per content brief — verify intentionally or update next build
+- OG image asset: /assets/images/og-bed-bug-exterminator-las-vegas.jpg — placeholder URL
+- /about/health-conscious-service-program/ linked from program section — destination page not yet built
+
+#### Policy enforcement open item
+- Confirm with operator whether HTML-comment references to "specials" and "free first service" (used to document policy compliance) are acceptable or must be stripped. Current implementation keeps them as defensive documentation. Easy revert if strict reading is preferred.
+
+#### Next page per build order
+- /wasp-exterminator-las-vegas/ — Level 4
