@@ -129,3 +129,51 @@ Open items:
 - Extend FAQs to 8+ minimum
 - Fix AggregateRating reviewCount: 65 → 30 (Google only)
 - Schedule after Batch 3 complete
+
+---
+
+### 2026-05-19 — Batch 3 Build: /termite-exterminator-las-vegas/
+
+- Route: /termite-exterminator-las-vegas/
+- AI Depth: Level 4
+- Commit: 18705e4
+- File: termite-exterminator-las-vegas/index.html (947 lines)
+
+#### Keyword map (top primary)
+1. termite exterminator las vegas
+2. subterranean termite treatment las vegas
+3. drywood termite las vegas / WDI inspection las vegas
+
+#### Pass/fail gate — ALL PASS
+- Sections: 12 `<section>` blocks present (exceeds 10-section minimum)
+- FAQ visible count: 9
+- FAQ schema Question count: 9 (matches exactly)
+- Schema types: LocalBusiness, Service, FAQPage, BreadcrumbList, HowTo (5 entities — all 4 required + HowTo)
+- AggregateRating reviewCount: "30" (Google only — single match)
+- Canonical: https://pestcontrolinc.net/termite-exterminator-las-vegas/
+- Phone `(702) 228-4394`: 18 instances (hero, trust bar, form card, signs callout, why-CTA, final CTA, footer)
+- `tel:+17022284394`: 15 instances
+- robots: index, follow
+- aria-current="page": 2 locations (related-pages chip + footer Termite Control link)
+- TODO-LAUNCH-BLOCKER: 1 (form placeholder)
+- Raw em-dashes: 0 (all `&mdash;`)
+- Raw en-dashes: 0 (all `&ndash;`)
+- No-fake-data: founding year CLEAN, EPA registration CLEAN, pricing CLEAN
+- No named individuals
+
+#### Termite-specific page additions vs scorpion template
+- Section 5 (Damage + Warning): 3-card damage grid + critical "do not disturb" warning callout
+- Section 6 (Signs): navy-background signs section with numbered list + Las Vegas year-round activity callout
+- Trust bar item 5: "WDI Reports" (VA / FHA / Conventional) — replaces scorpion's generic 24/7 line
+- Hero trust chip: "WDI Reports Available" — supports lender-driven search intent
+- HowTo schema step 3 specifically calls out WDI report availability for VA/FHA/conventional
+- Form select includes "WDI report needed for home sale or refinance" option
+
+#### Open TODOs
+- Form endpoint not wired (disabled fields + TODO-LAUNCH-BLOCKER comment) — site-wide launch blocker
+- /spider-exterminator-las-vegas/ linked as pending chip (next-up after termite per build order)
+- OG image asset: /assets/images/og-termite-exterminator-las-vegas.jpg — placeholder URL, asset not yet produced
+- /about/health-conscious-service-program/ linked from program section — destination page not yet built
+
+#### Next page per build order
+- /spider-exterminator-las-vegas/ — Level 4
