@@ -1503,4 +1503,65 @@ Neither original wording implied a PCI founding year; both described neighborhoo
 - Diff: 1 new file (721 lines) + 1 sitemap line modified
 - Sitemap `coming-soon` count after activation: 4 (2 CSS class definitions + Southern Highlands + Mountain's Edge &mdash; both legitimately unbuilt neighborhoods)
 
+---
+
+### 2026-05-20 &mdash; Batch 5.5 Task 11: /pest-control-las-vegas/plans-and-pricing/
+
+- File: `pest-control-las-vegas/plans-and-pricing/index.html`
+- AI Depth: Level 3
+- Pre-build state: page existed (1,476 lines, scaffolded earlier in commit `c989891`) and **violated the spec's central no-dollar-amounts rule** by publishing `$40 to $75 per month` in the FAQ schema. Also: 11 sections vs. spec's 7, 14 FAQs vs. spec's 3, 68 raw em-dashes, missing `www.` in canonical, no TODO-LAUNCH-BLOCKER, longer H1. User approved overwrite via in-conversation clarification.
+
+#### Build details
+- Total `<section>` blocks: **7** (Hero with form placeholder, Pricing Factors, Frequency Options, What Every Plan Includes, FAQ, Internal Links, Final CTA)
+- Schema: **3 blocks** &mdash; LocalBusiness (copied verbatim from service-areas sibling with `areaServed` array + `—` description escape) + BreadcrumbList (3-position: Home &rarr; Las Vegas Pest Control &rarr; Plans and Pricing) + FAQPage (3 Q&As)
+- LocalBusiness `reviewCount`: "30"
+- LocalBusiness `areaServed`: 5 entries (4 City + 1 AdministrativeArea)
+- FAQ visible count: 3 &mdash; FAQPage schema Question count: 3 (matches)
+- H1: `Pest Control Plans and Pricing in Las Vegas`
+- Canonical: `https://www.pestcontrolinc.net/pest-control-las-vegas/plans-and-pricing/` (with `www.`)
+- Nav, mobile nav, header, footer, mobile-cta, inline JS copied verbatim from the Las Vegas parent hub (`pest-control-las-vegas/index.html`); `aria-current="page"` set on the matching nav item
+
+#### Pricing rule compliance &mdash; CRITICAL
+- **Zero dollar amounts** anywhere on the page (no `$XX`, no `$XX-$YY`, no `from $`, no `starting at $`)
+- **Zero per-unit pricing phrases**: 0 matches for `per visit`, `per month`, `/month`, `/visit`, `from $`, `starting at $`
+- Single tolerated phrase: "four times per year" in the Quarterly Service card &mdash; this is a frequency cadence descriptor (taken verbatim from the spec text), not a pricing reference. The intent of the rule (block dollar-amount pricing) is satisfied.
+- Only `$` characters in the file are the Schema.org-convention `"priceRange": "$$"` enumerable in LocalBusiness (a price-tier indicator, not a price)
+
+#### Form placeholder + TODO-LAUNCH-BLOCKER
+- Hero contains a styled form placeholder with 4 disabled radio inputs (One-Time Treatment, Monthly Plan, Quarterly Plan, Commercial Service) + disabled submit button
+- Preceded by literal HTML comment: `<!-- TODO-LAUNCH-BLOCKER: wire form endpoint before production deploy -->`
+- `aria-disabled="true"` on all form controls; `cursor:not-allowed` styling; form is functionally inert until endpoint is wired
+
+#### Em-dash encoding (zero raw em-dash bytes in source)
+- HTML body: `&mdash;` entity everywhere
+- JSON-LD: `—` 6-byte Unicode escape (subagent used `___EMDASH___` placeholder + node post-fix per memorialized workaround)
+- LocalBusiness description and FAQ Q1 answer both decoded em-dashes via `JSON.parse()` &mdash; verified via node spot-check
+
+#### Verification (15/15 pass after re-grep with correct schema-style pattern)
+| Check | Expected | Actual |
+|---|---|---|
+| `<section>` count | 7 | 7 |
+| Raw em-dash bytes | 0 | 0 |
+| `&#8212;` entities | 0 | 0 |
+| `$[0-9]` price chars | 0 | 0 |
+| Pricing terms (per visit/month, from $) | 0 | 0 |
+| `TODO-LAUNCH-BLOCKER` | &ge; 1 | 1 |
+| `tel:+17022284394` | &ge; 3 | 7 |
+| `(702) 228-4394` visible | &ge; 3 | 10 |
+| `"@type": *"Question"` schema count | 3 | 3 |
+| `class="faq-q"` visible count | 3 | 3 |
+| Founding-year / "1998" / "established" refs | 0 | 0 |
+| `"reviewCount": *"30"` | 1 | 1 |
+| `"areaServed"` field | 1 | 1 |
+| JSON-LD blocks parse | 3 | 3 OK |
+| FAQ Q1 schema decodes to em-dash matching visible | yes | yes |
+
+#### Pass/fail: **PASS**
+
+- Commit: `91ebb6a` &mdash; feat(batch-5.5): add /pest-control-las-vegas/plans-and-pricing/ Level 3 page
+- Diff: 1 file changed, 369 insertions(+), 1076 deletions(-) (net 707-line reduction; cleaner spec-compliant rebuild over the 1,476-line draft that violated the no-dollar-amounts rule)
+
+#### Verification regex gotcha note
+Initial verification grep for `"@type":"Question"` (no space after colon) returned 0, suggesting a schema/visible mismatch. The schema actually uses `"@type": "Question"` (with space) &mdash; verified by node JSON.parse spot-check showing FAQPage mainEntity contains exactly 3 valid Question entries. Both whitespace conventions are valid JSON; the takeaway is to use `"@type": *"Question"` (with optional whitespace) when grepping schema across builds whose formatting may vary.
+
 
