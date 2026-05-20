@@ -707,3 +707,75 @@ Open items:
 
 #### Next page per build order
 - /hornet-exterminator-las-vegas/ &mdash; final Level 4 page in Batch 3
+
+---
+
+### 2026-05-19 &mdash; Batch 3 Build: /hornet-exterminator-las-vegas/ (FINAL BATCH 3 PAGE)
+
+- Route: /hornet-exterminator-las-vegas/
+- AI Depth: Level 4
+- Commit: 523671a
+- File: hornet-exterminator-las-vegas/index.html
+
+#### Batch 3 closeout
+- **This is the final Level 4 page in Batch 3.** With this commit, the batch is substantively complete: 13 of 15 original pages built directly, plus springtail content consolidated into the false-chinch-bug page. Only the originally-planned standalone springtail URL is unbuilt &mdash; consolidated by operator direction in an earlier turn this session.
+
+#### Scope note
+- Page covers bald-faced hornets and European hornets only. Wasps have a dedicated page (/wasp-exterminator-las-vegas/). Bees have a dedicated page (/bee-removal-las-vegas/). Both species are referenced in comparison context (e.g., "more aggressive than yellow jackets or paper wasps", "unlike honey bees, hornets do not lose their stinger") and in FAQ Q7 (hornet vs wasp nest distinguishing) plus link chips, but receive no substantive coverage.
+
+#### Keyword map (top primary)
+1. hornet exterminator las vegas / hornet nest removal las vegas
+2. bald-faced hornet nest removal las vegas (species-specific, highest-volume)
+3. european hornet nest removal las vegas / "what hornet is this"
+
+#### Pass/fail gate &mdash; ALL PASS
+- Sections: 12 `<section>` blocks present (exceeds 10-section minimum)
+- FAQ visible count: 8
+- FAQ schema Question count: 8 (matches exactly)
+- Schema types: LocalBusiness, Service, FAQPage, BreadcrumbList, HowTo (5 entities)
+- AggregateRating reviewCount: "30" (Google only &mdash; single match)
+- Canonical: https://pestcontrolinc.net/hornet-exterminator-las-vegas/
+- Phone `(702) 228-4394`: 18 instances (highest count in Batch 3 &mdash; reflects emergency-CTA framing)
+- `tel:+17022284394`: 14 instances
+- robots: index, follow
+- aria-current="page": 2 locations (related-pages chip + footer Hornet Control link)
+- TODO-LAUNCH-BLOCKER: 1 (form placeholder)
+- Raw em-dashes: 0 (CSS comments use `--` ASCII pattern from the start &mdash; lesson applied from earlier builds)
+- Raw en-dashes: 0
+- No 4-digit-year matches; no founding year, EPA registration, pricing, or named individuals
+- **SCOPE CHECK PASS:** All bee/wasp references are non-substantive &mdash; comparison context (3) + FAQ Q7 nest distinguishing (2) + pending link chips (2) + comparative "more dangerous than" phrasing (3). No paragraphs, sections, or treatment content covering bee or wasp species.
+- **OFFER ELIGIBILITY:** Hornets are NOT in the new-customer offer exclusion list (excluded: pigeons, bed bugs, bees, rodents) &mdash; standard `/specials/` references used: top bar badge links to /specials/, footer Company column includes Specials link.
+
+#### Hornet-specific page additions vs prior batch templates
+- Top bar text adds "24/7 Emergency" qualifier on this page only &mdash; reflects the page's emergency-response positioning (no other Batch 3 page uses this top bar variant)
+- Hero CTA primary button reads "Emergency (702) 228-4394" instead of the standard "(702) 228-4394" &mdash; reinforces 24/7 emergency framing in the highest-conversion CTA on the page
+- Hero trust signals include a custom `.hero-trust-item.urgent` orange-tinted pill ("24/7 Hornet Emergency") as the first item &mdash; designed to draw the eye on a stinging-insect emergency page where time-to-call matters
+- AEO answer block uses an orange left-border accent (instead of the standard blue) &mdash; signals the page is high-risk content rather than informational
+- New Section 4 species cards use orange-accent (bald-faced hornet, most aggressive) and tan-accent (European hornet, void-nester) with warning-triangle bullets (`\26A0`) instead of checkmark bullets &mdash; visually reinforces danger
+- New Section 5 "Danger + Do-Not" is the unique high-risk safety layout on this page: 1.05fr / .95fr 2-column grid pairing 5 orange-left-border danger cards (repeat stinging, alarm pheromones, bald-faced aggression, dozens-of-stings, anaphylaxis) on the left with a single navy DO-NOT card on the right. The DO-NOT card uses an X-marker list (`\2715`) and embeds an `.emergency-subcard` orange-bordered call-to-action block with allergic-individual emergency-medical guidance and a direct emergency phone button. Layout-wise, this is the most distinctive section on any Batch 3 page besides the scorpion Level 5 page.
+- New Section 6 "Where Hornets Nest" uses 3-column 6-card grid with species-color coding: 3 orange-accent bald-faced hornet locations (trees, eaves, utility poles) + 3 tan-accent European hornet locations (attic voids, wall voids, hollow trees) &mdash; reinforces the visual species distinction established in Section 4
+- Trust bar item 4 changed to "24/7 Hornet Emergency &mdash; Active Nest? Call Anytime" and item 5 to "Night Treatment &mdash; Safest Time for Hornet Nests" &mdash; both reinforce the page's emergency-response and night-treatment positioning
+- Why-PCI section adds a 24/7 emergency point in place of the standard 30-minute callback point &mdash; emergency framing carried through to every section
+- Why-PCI section also adds a "Night-Timed Treatment" point &mdash; reinforces the page's most-distinctive treatment differentiator (no Batch 3 page besides this one emphasizes night-specific treatment timing)
+- Final CTA H2 reads "Active Hornet Nest on Your Las Vegas Property?" &mdash; opens with the emergency question rather than the standard "Ready to..." framing used on other Batch 3 pages
+- Form select 4th option includes "Hornet sting occurred &mdash; need urgent removal" &mdash; captures emergency-occurred conversion intent
+
+#### Internal link map note
+- Brief specified live chips: scorpion, ant, free-estimate, contact (4 live chips, not 5 &mdash; this brief omits /pest-control-las-vegas/ that other Batch 3 briefs include). Followed brief literally.
+- Brief specified pending chips for `/wasp-exterminator-las-vegas/` AND `/bee-removal-las-vegas/`. Both pages are built and live earlier in this session/batch. Followed brief literal pattern: chips remain pending. Retrofit eligible.
+
+#### Open TODOs
+- Form endpoint not wired (TODO-LAUNCH-BLOCKER comment present) &mdash; site-wide launch blocker (applies to entire Batch 3, every page in the batch)
+- /wasp-exterminator-las-vegas/ and /bee-removal-las-vegas/ are built but appear as pending chips on this page per content brief &mdash; retrofit eligible
+- /springtail-exterminator-las-vegas/ is not built (consolidated into /false-chinch-bug-exterminator-las-vegas/ per operator decision earlier in this session) &mdash; sitemap and any links elsewhere referencing the standalone springtail URL should be redirected or updated
+- OG image asset: /assets/images/og-hornet-exterminator-las-vegas.jpg &mdash; placeholder URL, asset not yet produced (applies to most Batch 3 pages &mdash; site-wide asset production TODO)
+- /about/health-conscious-service-program/ linked from program section &mdash; destination page not yet built (applies to every Batch 3 page)
+
+#### Batch 3 final status
+- **Built:** ant (Level 4, pre-existing), cockroach, rodent, termite, spider, bed bug, wasp, bee, bird, miller moth, crane fly, false-chinch-bug-+-springtail (combined), earwig, hornet = 14 pages
+- **Not built:** /springtail-exterminator-las-vegas/ standalone URL only (intentional, consolidated)
+- **Scorpion:** Level 5 build pre-existing; not in this session's scope
+- **Outstanding cross-batch TODOs:** form endpoint, OG images, /about/health-conscious-service-program/ destination, sitemap update for springtail consolidation, optional retrofit of pending-chip references on bee/bird/miller-moth/crane-fly/false-chinch-bug/earwig/hornet pages to point at newly-built sibling pages
+
+#### Next batch
+- Operator decision &mdash; Batch 3 is substantively complete pending operator approval of the springtail consolidation. Next priority per launch readiness list is the about-cluster (Health Conscious Program, Guarantee) or the commercial hub.
