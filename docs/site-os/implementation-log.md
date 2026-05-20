@@ -1324,4 +1324,54 @@ The LocalBusiness schema's `description` field contains a raw em-dash in the par
 - Commit: `d506579` &mdash; feat(batch-5.5): add /about/mission/ Level 3 page
 - Diff: 1 file changed, 236 insertions(+), 907 deletions(-) (net 671-line reduction; cleaner spec-compliant rebuild over the previous 1,252-line draft)
 
+---
+
+### 2026-05-20 &mdash; Batch 5.5 Task 8: /about/guarantee/
+
+- File: `about/guarantee/index.html`
+- AI Depth: Level 3
+- Pre-build state: directory missing &mdash; clean new-file build
+- Sibling reference: `about/mission/index.html` (Task 7 build &mdash; nav/header/footer/JS/CSS copied verbatim)
+
+#### Build details
+- Total `<section>` blocks: **6** (Hero, How It Works, Why PCI, FAQ, Internal Links, Final CTA)
+- Schema: **3 blocks** &mdash; LocalBusiness (copied verbatim from mission sibling) + BreadcrumbList (3-position: Home &rarr; About &rarr; Money-Back Guarantee) + FAQPage (exactly 3 Q&As)
+- LocalBusiness `reviewCount`: "30"
+- FAQ visible count: **3** &mdash; FAQPage schema Question count: **3** (matches)
+- H1: `The Pest Control Inc Money-Back Guarantee`
+- Canonical: `https://www.pestcontrolinc.net/about/guarantee/` (with `www.` subdomain)
+- `/about/health-conscious-service-program/` linked as live href in Section 4 (page builds in Task 9 of this session)
+- `/about/mission/` linked as live href (built in Task 7)
+- Nav, mobile nav, header, footer, mobile-cta, inline JS copied verbatim from `about/mission/index.html`; FAQ accordion toggle JS added on top
+- `aria-current="page"` on `/about/` link in both desktop nav and mobile nav
+
+#### Em-dash encoding (zero raw em-dash bytes in file)
+- HTML body: all em-dashes use `&mdash;` entity (renders as em-dash character)
+- JSON-LD strings: all em-dashes use `—` JSON Unicode escape (parses to em-dash character)
+- LocalBusiness description: preserved `—` encoding from the mission sibling
+- FAQPage Q2 + Q3 answers: post-build fix applied &mdash; subagent initially encoded these em-dashes as `&#8212;` (HTML decimal entity), which JSON parsers do NOT auto-decode (they would surface as literal 7-char strings in rich-results). Converted both to `—` via a node script using `String.fromCharCode(0x5C)+'u2014'` to construct the 6-byte literal sequence on disk. Re-validated all 3 JSON-LD blocks parse cleanly and that FAQ schema answer text now decodes to em-dash character matching visible HTML.
+
+#### Verification (post-build, post-fix)
+| Check | Expected | Actual |
+|---|---|---|
+| `<section>` count | 6 | 6 |
+| Raw em-dashes (`—` bytes) | 0 | 0 |
+| `tel:+17022284394` count | &ge; 3 | 6 |
+| `(702) 228-4394` visible count | &ge; 3 | 12 |
+| `"@type":"Question"` schema count | 3 | 3 |
+| `class="faq-q"` visible count | 3 | 3 |
+| Founding-year / "1998" / "established" refs | 0 | 0 |
+| `reviewCount: "30"` | 1 | 1 |
+| Canonical | `https://www.pestcontrolinc.net/about/guarantee/` | matches |
+| JSON-LD blocks parse | all 3 | all 3 OK |
+| FAQ schema text decodes to em-dash (matches visible) | yes | yes |
+
+#### Pass/fail: **PASS**
+
+- Commit: `2ad0291` &mdash; feat(batch-5.5): add /about/guarantee/ Level 3 page
+- Diff: 1 file created, 725 insertions(+)
+
+#### Note on Edit tool em-dash transport quirk
+The Edit tool's tool-call JSON transport collapses any `—` escape sequence in `new_string` into the actual em-dash codepoint (U+2014) before applying. For specs that require literal `—` bytes inside JSON-LD strings, this transport quirk means the Edit tool cannot be used directly &mdash; the workaround is to write the file via the Bash tool with a node or PowerShell script that constructs the 6-byte sequence from `String.fromCharCode(0x5C)+'u2014'` (or equivalent). Recommend memorializing this workaround in a memory or build-context note for future Claude sessions building schema-heavy pages.
+
 
