@@ -1018,3 +1018,50 @@ The earlier 2026-05-19 entry ("Mesquite NV removed from service area") covered t
 
 #### FAQPage schema integrity check
 The FAQ on both contact and free-estimate has the covered-cities list duplicated between visible HTML and FAQPage JSON-LD. Edit used `replace_all` on the exact substring "Boulder City, Mesquite, Paradise" → "Boulder City, Paradise" so both occurrences moved together. Schema and visible text still match exactly per FAQPage requirements.
+
+---
+
+### 2026-05-20 &mdash; Batch 5.5 Task 1: Restaurant/Food Handling Audit + Removal
+
+- Policy source: business owner decision 2026-05-20 &mdash; confirmed, do not re-litigate
+- Files audited and modified (per-file passes + final site-wide sweep):
+  - `commercial-pest-control-las-vegas/index.html` &mdash; commit `d71468b`
+  - `commercial-pest-control-las-vegas/pest-impact-on-business/index.html` &mdash; commit `676a6fc`
+  - `commercial-pest-control-las-vegas/hotels/index.html` &mdash; commit `ea56a4a`
+  - `cockroach-exterminator-las-vegas/index.html` &mdash; commit `e0ad591`
+  - `pest-control-las-vegas/eco-friendly/index.html` &mdash; commit `a58759f` (initial) + `71b3370` (residual cleanup)
+  - `emergency-pest-control-las-vegas/index.html` &mdash; commit `43136b3` (initial) + `71b3370` (residual cleanup)
+  - `docs/site-os/inputs/pci-build-context.md` &mdash; commit `9959b29`
+  - `docs/site-os/inputs/pci-brand-style-reference.md` &mdash; audited, zero matches found
+  - Final site-wide sweep (commit `71b3370`) cleaned residual matches in 14 additional files: `index.html` (homepage), `about/index.html`, `ant-exterminator-las-vegas/index.html`, `rodent-exterminator-las-vegas/index.html`, `pest-control-north-las-vegas/index.html`, `pest-control-paradise-nv/index.html`, `pest-control-las-vegas/apartments/index.html`, `commercial-pest-control-las-vegas/hoa/index.html`, `commercial-pest-control-las-vegas/landlord-pest-control-responsibilities/index.html`, `commercial-pest-control-las-vegas/offices/index.html`, `commercial-pest-control-las-vegas/retail/index.html`, plus `docs/site-os/inputs/pci-launch-readiness-site-build-list.md`.
+- Post-removal grep: **0 matches** site-wide for `restaurant|food service|food handling|haccp|snhd food|commercial kitchen|food-safe|food area|food handler|food storage|food processing|AIB|SQF|BRC|FDA audit|USDA audit` across all `*.html` and `*.md` files.
+- JSON-LD validation: all 79 JSON-LD blocks across modified HTML files parse cleanly (zero failures).
+- Rodent and FAQ hub pages: rodent page had 3 residual matches (`restaurant districts`, `food storage`) cleaned in the final sweep; no other FAQ hub pages contained banned terms.
+- Pass/fail: **PASS**
+- Commits (chronological):
+  - `d71468b` &mdash; fix(commercial-hub): remove restaurant and food handling references per business owner decision
+  - `676a6fc` &mdash; fix(pest-impact): remove restaurant and food handling references per business owner decision
+  - `ea56a4a` &mdash; fix(hotels): remove restaurant and food handling references per business owner decision
+  - `e0ad591` &mdash; fix(cockroach): remove restaurant and food handling references per business owner decision
+  - `a58759f` &mdash; fix(eco-friendly): remove restaurant and food handling references per business owner decision
+  - `43136b3` &mdash; fix(emergency): remove restaurant and food handling references per business owner decision
+  - `9959b29` &mdash; fix(build-context): remove restaurant references per business owner decision
+  - `71b3370` &mdash; fix(site-wide): final restaurant/food-handling reference cleanup
+
+#### Scope removal
+The `/commercial-pest-control-las-vegas/restaurants/` URL (previously in the launch-readiness build list at row 18, and the `/restaurant-pest-control-{location}/` slug template at row 404) is **permanently removed from scope** per business owner decision 2026-05-20. Both rows in `docs/site-os/inputs/pci-launch-readiness-site-build-list.md` are now marked `_(slot removed)_` with the note `REMOVED &mdash; business owner decision 2026-05-20`.
+
+#### Approved replacement verticals (use these going forward)
+Offices, retail, hotels, HOA communities, property management, warehouses, schools, daycares, healthcare, dispensaries, medical facilities, multi-unit residential. Do NOT use: restaurants, food service, cafes, diners, commercial kitchens. Do NOT reintroduce SNHD, HACCP, AIB, SQF, BRC, FDA food audit, or USDA food audit framing in any page copy, schema, JS, or form selects.
+
+#### Approved phrasing substitutions (memorialized for future builds)
+- "restaurants and food service" &rarr; "offices, retail, and multi-unit residential"
+- "SNHD-compliant documentation" &rarr; "service documentation" or "property management records"
+- "HACCP-aligned IPM" &rarr; just "IPM" (drop audit-framework qualifier)
+- "restaurant kitchen" / "commercial kitchen" &rarr; "commercial property" or "multi-unit building"
+- "health department documentation" / "health department file" &rarr; "written service documentation" or "property management documentation"
+- "food storage" / "food area" / "food handler" &rarr; "pantry/supply storage" / "work zone" / "staff member"
+
+#### Pre-commit gate (run on every commercial page edit going forward)
+`grep -i "restaurant|food service|haccp|snhd|commercial kitchen|food handling"` must return 0 matches before commit. The broader site-wide gate adds: `food-safe|food area|food handler|food storage|food processing|AIB|SQF|BRC|FDA audit|USDA audit`.
+
