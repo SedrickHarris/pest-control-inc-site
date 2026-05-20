@@ -642,3 +642,68 @@ Open items:
 
 #### Next page per build order (sequence recovery options)
 - Operator choice &mdash; remaining canonical Batch 3 items are earwig and hornet only. Alternative: declare batch substantively complete pending operator approval of the springtail consolidation.
+
+---
+
+### 2026-05-19 &mdash; Batch 3 Build: /earwig-exterminator-las-vegas/
+
+- Route: /earwig-exterminator-las-vegas/
+- AI Depth: Level 4
+- Commit: 50f4589
+- File: earwig-exterminator-las-vegas/index.html
+
+#### Build order note
+- Operator dispatched earwig immediately after false-chinch-bug, partially recovering canonical sequence (earwig was item #10 in original Batch 3 order; built after #11-15). Hornet (item #11) remains as the only unbuilt page in Batch 3 if the springtail consolidation is accepted.
+
+#### Keyword map (top primary)
+1. earwig exterminator las vegas / earwig control las vegas
+2. "are earwigs dangerous" / "do earwigs bite" (myth-correction AEO target)
+3. earwig garden damage / earwigs eating plants (garden-pest secondary intent)
+
+#### Pass/fail gate &mdash; ALL PASS
+- Sections: 12 `<section>` blocks present (exceeds 10-section minimum)
+- FAQ visible count: 8
+- FAQ schema Question count: 8 (matches exactly)
+- Schema types: LocalBusiness, Service, FAQPage, BreadcrumbList, HowTo (5 entities)
+- AggregateRating reviewCount: "30" (Google only &mdash; single match)
+- Canonical: https://pestcontrolinc.net/earwig-exterminator-las-vegas/
+- Phone `(702) 228-4394`: 17 instances
+- `tel:+17022284394`: 13 instances
+- robots: index, follow
+- aria-current="page": 2 locations (related-pages chip + footer Earwig Control link)
+- TODO-LAUNCH-BLOCKER: 1 (form placeholder)
+- Raw em-dashes: 0 (CSS comments use ASCII hyphens from the start &mdash; lesson applied from prior false-chinch-bug build where CSS comments tripped the gate)
+- Raw en-dashes: 0
+- No-fake-data: founding year CLEAN (zero 4-digit-year matches; CSS bullet escape uses `\2713` checkmark in program-points, no `\2022` regex collision), EPA registration CLEAN, pricing CLEAN
+- No named individuals
+- **ACCURACY CHECK PASS:** Ear-crawling myth and "lay eggs in brains" myth explicitly stated as false in AEO opening, AEO callout 1, and FAQ Q1. Pinch rarely breaks skin stated in AEO callout 1 and FAQ Q1. "Rarely bite humans" appears in hero, AEO opening, AEO callout, and FAQ Q1 &mdash; myth-correction saturates the page's primary informational AEO target.
+- **OFFER ELIGIBILITY:** Earwigs are NOT in the new-customer offer exclusion list (excluded: pigeons, bed bugs, bees, rodents) &mdash; standard `/specials/` references used: top bar badge "Free First Service &rarr;" links to /specials/, footer Company column includes Specials link.
+
+#### Earwig-specific page additions vs prior batch templates
+- AEO callouts pair the ear-crawling myth correction (callout 1, navy/blue cool tone) with the heat-driven moisture-seeking behavior (callout 2, warm orange) &mdash; establishes both the myth correction and the "why they get inside" context above the fold
+- New Section 4 "Where Earwigs Hide" uses the `.harborage-grid` 3-column 6-card layout with a custom `.harborage-card.indoor` variant: indoor harborage cards (bathrooms/kitchens, garages/utility, foundation-gap-entry) get an orange top-border accent while outdoor harborage cards (mulch/rock, irrigation valve boxes, patio furniture) get the standard blue accent &mdash; gives the homeowner a quick at-a-glance separation of where to look for indoor vs outdoor problems
+- New Section 5 "Damage and Nuisance" uses a 3-card problem grid with three distinct framings: garden-damage card (tan accent, plant icon), indoor-nuisance card (orange accent, mouse-pest icon for secondary pests), and underlying-signal card (blue accent, droplet icon) &mdash; reframes earwig presence as a moisture-and-entry-point signal rather than a pest in isolation
+- New Section 6 "Signs of Infestation" uses a 3-column 6-card `.signs-grid` with numbered round badges and left-border accents &mdash; 6 diagnostic markers per content brief
+- Trust bar item 4 changed to "Exterior-First IPM &mdash; Outdoor Harborage Targeted" &mdash; positions the differentiating treatment angle (most franchises spray inside, PCI treats outdoor harborage) in the highest-visibility location
+- Competitor diff table row 1 attacks the franchise-default "generic interior spray" approach with PCI's exterior-first-IPM-targeting-harborage value
+- Form select includes 6 options spanning bathroom/kitchen, garage/utility, garden damage, landscape rock/mulch, pool/irrigation, and commercial recurring scenarios &mdash; captures both nuisance-indoor and garden-damage search intent
+- Hero subhead and final CTA both lead with "bathrooms, kitchens, garages, and around irrigation systems" &mdash; the four most common Las Vegas earwig locations repeated at top and bottom of page
+
+#### Internal link map note
+- Brief specified live chips for scorpion, ant, pest-control-las-vegas, free-estimate, contact &mdash; all routed correctly
+- Brief specified pending chip for `/springtail-exterminator-las-vegas/`. Per the false-chinch-bug consolidation decision in the previous turn, the springtail standalone URL is no longer planned &mdash; springtail content is now folded into /false-chinch-bug-exterminator-las-vegas/. **Decision:** chip remains pending per brief literal pattern (consistent with how prior builds handled "brief said pending but page exists" cases). Operator may opt to retrofit this chip to link to the combined false-chinch-bug page if that consolidation is finalized.
+
+#### Open TODOs
+- Form endpoint not wired (TODO-LAUNCH-BLOCKER comment present) &mdash; site-wide launch blocker
+- /hornet-exterminator-las-vegas/ &mdash; remaining unbuilt page in canonical Batch 3 sequence
+- /springtail-exterminator-las-vegas/ &mdash; consolidation pending operator approval; chip on this page is pending per brief; retrofit-eligible to repoint to the combined false-chinch-bug page
+- OG image asset: /assets/images/og-earwig-exterminator-las-vegas.jpg &mdash; placeholder URL, asset not yet produced
+- /about/health-conscious-service-program/ linked from program section &mdash; destination page not yet built
+
+#### Batch 3 status after this build
+- Built: cockroach, rodent, termite, spider, bed bug, wasp, bee, bird, miller moth, crane fly, false-chinch-bug-+-springtail (combined), earwig = 12 pages
+- Unbuilt: hornet only (springtail consolidated)
+- Sequence recovery: substantially complete &mdash; only hornet remains before Batch 3 can be declared finished
+
+#### Next page per build order
+- /hornet-exterminator-las-vegas/ &mdash; final Level 4 page in Batch 3
