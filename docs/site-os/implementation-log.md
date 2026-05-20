@@ -1280,4 +1280,48 @@ If/when `pest-control-faq/` and `pest-identification/` pages are built in a futu
 #### Note on diff scope vs. spec assumptions
 Spec wording assumed the file needed 3 substantive fixes (reviewCount 65&rarr;30, Why PCI add, competitor add) plus FAQ extension to 8. In practice, the page was already at FAQ=12 and reviewCount=30, so only the two additive sections plus the dead-CSS-class cleanup were required. Commit message retained spec wording ("8 FAQs, reviewCount fix") for traceability against the original task description even though both of those gates were already satisfied pre-edit.
 
+---
+
+### 2026-05-20 &mdash; Batch 5.5 Task 7: /about/mission/
+
+- File: `about/mission/index.html`
+- AI Depth: Level 3
+- Pre-edit state: page existed (1,252 lines, committed in `c989891` "Restructure 11 sub-pages") but diverged substantially from spec (11 sections, FAQ schema, 121 raw em-dashes, longer H1, "Our Story" + "Our Team" sections likely violating no-founding-year / no-named-individuals rules). User approved overwrite via in-conversation clarification.
+
+#### Build details
+- Sections: **5** (Hero, What Drives PCI, Health Conscious Service Program, Internal Links, Final CTA) per spec
+- Schema: **2 blocks only** &mdash; LocalBusiness (copied verbatim from `about/index.html` Schema Block 2) + BreadcrumbList (3-position: Home &rarr; About &rarr; Our Mission)
+- LocalBusiness `reviewCount`: "30"
+- No FAQPage schema; no FAQ section on the page (per spec)
+- No Organization or HowTo schemas (the parent had these; this page intentionally omits them since the Organization schema includes `foundingDate: "1998"` which is banned content)
+- No form on this page; no TODO-LAUNCH-BLOCKER needed
+- H1: `Our Mission`
+- Canonical: `https://www.pestcontrolinc.net/about/mission/` (with `www.` subdomain per spec; note that the parent `/about/` uses no-www &mdash; the spec was explicit on this point)
+- `/about/health-conscious-service-program/` linked as live href in Section 3 and Section 4 (page builds in Task 9 of this session)
+- `/about/guarantee/` linked as live href in Section 4 (page builds in Task 8 of this session)
+- Nav/header/mobile-nav/footer/mobile-cta/inline-JS copied verbatim from `about/index.html` (per spec)
+- `aria-current="page"` on `/about/` link in both desktop nav and mobile nav (this is an About sub-page)
+
+#### Verification (post-rebuild)
+| Check | Expected | Actual |
+|---|---|---|
+| `<section>` count | 5 | 5 |
+| Raw em-dashes | 0 | 0 |
+| `tel:+17022284394` count | &ge; 3 | 6 |
+| `(702) 228-4394` visible count | &ge; 3 | 6 |
+| `FAQPage` count | 0 | 0 |
+| Founding-year / "1998" / "established" refs | 0 | 0 |
+| `reviewCount: "30"` | 1 | 1 |
+| Canonical | `https://www.pestcontrolinc.net/about/mission/` | matches |
+| `aria-current="page"` on HTML elements | 2 (desktop + mobile nav) | 2 |
+| JSON-LD blocks parse | both | both OK |
+
+#### One semantic decision worth noting
+The LocalBusiness schema's `description` field contains a raw em-dash in the parent (`about/index.html`). To satisfy the page-level gate "Zero raw em-dashes in the file" while still copying the LocalBusiness block character-for-character semantically, the subagent encoded that em-dash as the JSON Unicode escape `—`. JSON parsers decode this to the identical em-dash character, so the structured-data content is byte-equivalent after parsing &mdash; just no raw em-dash byte appears in the source file.
+
+#### Pass/fail: **PASS**
+
+- Commit: `d506579` &mdash; feat(batch-5.5): add /about/mission/ Level 3 page
+- Diff: 1 file changed, 236 insertions(+), 907 deletions(-) (net 671-line reduction; cleaner spec-compliant rebuild over the previous 1,252-line draft)
+
 
