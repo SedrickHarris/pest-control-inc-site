@@ -1123,4 +1123,53 @@ The Task 2 spec expected `git diff --cached --name-only` to list exactly 17 file
 #### Note on rule ordering vs. literal spec wording
 The Task 3 spec said "Append the two new lines after the last existing entry." Strict literal compliance would have placed the 301s AFTER the `/* /404.html 404` catch-all &mdash; but Cloudflare Pages evaluates `_redirects` top-to-bottom with first-match-wins semantics, so a wildcard `/*` above the 301s intercepts ALL unmatched paths and returns 404 before the 301 ever fires. To make the redirects functional, they MUST sit ABOVE the catch-all wildcard. User confirmed this placement choice via in-conversation clarification before edit. Final order: comments &rarr; blank line &rarr; specific 301s (springtail, sunrise-manor) &rarr; catch-all `/* /404.html 404`.
 
+---
+
+### 2026-05-20 &mdash; Batch 5.5 Task 4: Sitemap Full Refresh
+
+- Previous sitemap state: Batch 3 baseline (commit `b62a9df`) &mdash; 17 coming-soon entries
+- Disk audit run pre-edit; all activations driven by directory presence on disk
+
+#### Activated (coming-soon &rarr; live href) per disk audit
+- **Tier 1 Service Areas** (3 cities): Henderson, North Las Vegas, Boulder City
+- **Tier 2 Service Areas** (4 areas): Paradise, Spring Valley, Enterprise, Sunrise Manor
+- **Las Vegas Neighborhoods** (8 Batch 5 pages): Summerlin, Summerlin West, Centennial Hills, Providence, Skye Canyon, The Lakes, Desert Shores, Queensridge
+- **Henderson Neighborhoods** (expanded 3 &rarr; 7 entries, all live): Anthem, Green Valley, Green Valley Ranch, Seven Hills, Inspirada, Cadence, Lake Las Vegas
+- **North Las Vegas Neighborhoods** (expanded 1 &rarr; 2 entries, all live): Aliante, Tule Springs
+
+#### Newly added entries
+- `/service-areas/` &mdash; added as coming-soon at the top of Tier 1 Service Areas section (builds in Task 10)
+
+#### Marked coming-soon (live href pointing to MISSING page on disk &mdash; pre-existing bug fixed)
+- `/about/health-conscious-service-program/` &mdash; in Main Pages section AND About &amp; Company section (both places)
+- `/about/guarantee/` &mdash; in Main Pages section AND About &amp; Company section (both places)
+
+#### Confirmed already-correct (no changes needed)
+- Commercial sub-pages: all 7 already live, all 7 confirmed on disk (offices, retail, hotels, hoa, property-managers, landlord-pest-control-responsibilities, pest-impact-on-business). Zero restaurant entries present.
+- Residential sub-pages: all 3 live, all 3 confirmed on disk (plans-and-pricing, eco-friendly, apartments)
+- Emergency page: already live, confirmed on disk
+- `/about/mission/`: already live, confirmed on disk
+- Pest species pages: 15 entries, none banned
+
+#### Remaining coming-soon entries (7 total, all confirmed unbuilt)
+| URL | Reason |
+|---|---|
+| `/about/health-conscious-service-program/` | builds Task 9 |
+| `/about/guarantee/` | builds Task 8 |
+| `/service-areas/` | builds Task 10 |
+| `/pest-control-las-vegas/southern-highlands/` | future neighborhood, not in current scope |
+| `/pest-control-las-vegas/mountains-edge/` | future neighborhood, not in current scope |
+| Plus the two `/about/*` entries appear twice (Main Pages + About &amp; Company sections) | duplicated cross-link, intentional |
+
+#### Verification
+- `grep -c "coming-soon" sitemap/index.html`: **17 &rarr; 9** (9 = 2 CSS class definitions + 7 valid coming-soon entries above)
+- `grep -i "restaurant" sitemap/index.html`: **0 matches** (no restaurant entries anywhere)
+- Raw em-dash count: **0** (zero introduced)
+- All activated hrefs verified against disk audit before marking live
+
+#### Pass/fail: **PASS**
+
+- Commit: `acf4509` &mdash; fix(sitemap): refresh all coming-soon entries to live links, add Batch 4 city hubs, Batch 5 neighborhood pages, commercial sub-pages
+- Diff: 1 file changed, 30 insertions(+), 18 deletions(-)
+
 
