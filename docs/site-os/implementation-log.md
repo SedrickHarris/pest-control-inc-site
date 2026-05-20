@@ -779,3 +779,52 @@ Open items:
 
 #### Next batch
 - Operator decision &mdash; Batch 3 is substantively complete pending operator approval of the springtail consolidation. Next priority per launch readiness list is the about-cluster (Health Conscious Program, Guarantee) or the commercial hub.
+
+---
+
+### 2026-05-19 &mdash; Batch 3 cleanup: pending-chip retrofit pass
+
+- Commit: b15cd3e
+- Scope: 14 species pages modified, 25 stale pending chips converted to live links
+
+#### What changed
+Each Batch 3 page was built following its content brief literally, leaving sibling-page chips as `pending` (`aria-disabled="true"`) even after the sibling was built later in the batch. With Batch 3 now substantively complete (hornet was the last page), this single pass resolves all stale pending chips across the species hub pages.
+
+#### Retrofit table
+| Page | Pending chips converted |
+|------|-------------------------|
+| /bed-bug-exterminator-las-vegas/ | Termite, Spider |
+| /bird-removal-las-vegas/ | Rodent |
+| /bee-removal-las-vegas/ | Wasp, Hornet |
+| /cockroach-exterminator-las-vegas/ | Rodent, Bed Bug |
+| /crane-fly-exterminator-las-vegas/ | Miller Moth, Earwig |
+| /earwig-exterminator-las-vegas/ | **Springtail → repointed to /false-chinch-bug-exterminator-las-vegas/ with relabel "False Chinch Bug & Springtail Control"** (per consolidation decision) |
+| /false-chinch-bug-exterminator-las-vegas/ | Earwig, Crane Fly |
+| /hornet-exterminator-las-vegas/ | Wasp, Bee Removal |
+| /miller-moth-exterminator-las-vegas/ | Crane Fly |
+| /rodent-exterminator-las-vegas/ | Termite |
+| /scorpion-exterminator-las-vegas/ (Level 5) | Spider, Cockroach |
+| /spider-exterminator-las-vegas/ | Termite, Bed Bug |
+| /termite-exterminator-las-vegas/ | Spider |
+| /wasp-exterminator-las-vegas/ | Bee Removal, Hornet |
+
+#### Edit pattern
+Each retrofit replaced:
+```html
+<span class="internal-link-chip pending" aria-disabled="true" title="Coming soon">LABEL</span>
+```
+with:
+```html
+<a href="/SLUG/" class="internal-link-chip">LABEL</a>
+```
+
+The earwig page's Springtail chip is a special case: the standalone springtail URL was consolidated into /false-chinch-bug-exterminator-las-vegas/ per operator direction earlier in this session. The chip was repointed to the combined page and relabeled "False Chinch Bug &amp; Springtail Control" to reflect the consolidation.
+
+#### Verification
+- Grep for `internal-link-chip pending` across the project returned zero matches after the commit
+- Each live href targets a page that exists in the file system (confirmed via build history this session)
+- No CSS or schema changes were required &mdash; only chip element swaps in Section 10 (Internal Links Row) of each page
+
+#### Open TODOs not addressed by this pass
+- /about/health-conscious-service-program/ chips on cockroach, rodent, termite, spider, bed bug remain live but point to an unbuilt destination &mdash; those are not "pending" chips, they are normal links to a TBD page; not in scope of this retrofit
+- Sitemap and any cross-cluster references that may still mention /springtail-exterminator-las-vegas/ as a standalone URL &mdash; not audited in this pass; springtail consolidation cleanup is a separate sitemap-update task
