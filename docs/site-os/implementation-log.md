@@ -1172,4 +1172,65 @@ The Task 3 spec said "Append the two new lines after the last existing entry." S
 - Commit: `acf4509` &mdash; fix(sitemap): refresh all coming-soon entries to live links, add Batch 4 city hubs, Batch 5 neighborhood pages, commercial sub-pages
 - Diff: 1 file changed, 30 insertions(+), 18 deletions(-)
 
+---
+
+### 2026-05-20 &mdash; Batch 5.5 Task 5: FAQ Hub + Pest ID Audit (scope-pivoted)
+
+#### Pre-audit finding: both target files do not exist
+- `pest-control-faq/index.html` &mdash; directory not in repo
+- `pest-identification/index.html` &mdash; directory not in repo
+
+Original spec assumed both pages were built. Neither is. Cannot run the six-section audit checklist (restaurant refs / reviewCount / FAQ schema vs. visible / internal links / content quality / schema integrity) against files that don't exist.
+
+#### Scope pivot per user direction
+User chose **Option 2: audit references to these URLs site-wide instead of auditing the pages themselves**. 17 files contained 38 broken-href occurrences pointing to `/pest-control-faq/` or `/pest-identification/`. Production was resolving these as 404s via the Cloudflare catch-all rule. Same class of pre-existing broken-link bug previously caught for `/about/guarantee/` and `/about/health-conscious-service-program/` during the Task 4 sitemap refresh.
+
+#### Cleanup performed (38 broken-href removals across 17 files)
+
+| Pattern | Action | Occurrences |
+|---|---|---|
+| Footer Company-column `<li><a href="/pest-identification/">Pest Identification Library</a></li>` | removed entire `<li>` | 17 (one per file) |
+| Footer Company-column `<li><a href="/pest-control-faq/">FAQ Hub</a></li>` | removed entire `<li>` | 17 (one per file) |
+| Homepage Section 04 body CTA `Pest ID Library &rarr;` (line ~655) | removed entire `<a>` element | 1 |
+| Homepage Section 04 body CTA `View All 16 Pests &amp; Pest ID Guide &rarr;` (line ~674) | removed entire `<a>` element | 1 |
+| Homepage Section 10 FAQ-block `<div>...Full FAQ Hub &rarr;</div>` (line ~866) | removed entire `<div>` wrapper | 1 |
+| Residential hub pests-note inline link `<a href="/pest-identification/">View full pest library &rarr;</a>` (line ~920) | removed inline `<a>` only, retained surrounding `<p>` | 1 |
+
+#### Files modified (17)
+- `index.html` (homepage &mdash; 5 removals: 2 footer + 3 body CTAs)
+- `pest-control-las-vegas/index.html` (3 removals: 2 footer + 1 body inline link)
+- `about/index.html` (2 footer)
+- `about/mission/index.html` (2 footer)
+- `ant-exterminator-las-vegas/index.html` (2 footer)
+- `emergency-pest-control-las-vegas/index.html` (2 footer)
+- `commercial-pest-control-las-vegas/index.html` (2 footer)
+- `commercial-pest-control-las-vegas/hotels/index.html` (2 footer)
+- `commercial-pest-control-las-vegas/offices/index.html` (2 footer)
+- `commercial-pest-control-las-vegas/hoa/index.html` (2 footer)
+- `commercial-pest-control-las-vegas/retail/index.html` (2 footer)
+- `commercial-pest-control-las-vegas/property-managers/index.html` (2 footer)
+- `commercial-pest-control-las-vegas/pest-impact-on-business/index.html` (2 footer)
+- `commercial-pest-control-las-vegas/landlord-pest-control-responsibilities/index.html` (2 footer)
+- `pest-control-las-vegas/apartments/index.html` (2 footer)
+- `pest-control-las-vegas/plans-and-pricing/index.html` (2 footer)
+- `pest-control-las-vegas/eco-friendly/index.html` (2 footer)
+
+#### Verification
+- Post-cleanup grep for `href="/pest-control-faq/"|href="/pest-identification/"` site-wide: **0 matches**
+- Post-cleanup grep for bare strings `pest-control-faq` or `pest-identification` in `*.html`: **0 matches** (no lurking text references)
+- All footer `<ul>` lists remain well-formed (Services list dropped 8&rarr;7 items; Company list dropped 10&rarr;9 items)
+- Homepage Section 04 button rows still valid containers (now with one button each instead of two)
+- Homepage Section 10 FAQ-block clean &mdash; no orphaned tags
+- Residential hub pests-note `<p>` ends cleanly with "springtails."
+- Zero raw em-dashes introduced
+- No JSON-LD blocks touched (all edits in footer/body, none near `<head>` schema blocks)
+
+#### Pass/fail: **PASS** (scope-pivoted from page-level audit to reference-cleanup audit)
+
+- Commit: `8715019` &mdash; fix(content): remove broken references to unbuilt /pest-control-faq/ and /pest-identification/ pages
+- Diff: 17 files changed, 1 insertion(+), 38 deletions(-)
+
+#### Note on future-state handling
+If/when `pest-control-faq/` and `pest-identification/` pages are built in a future batch, the cleanup performed in this task will need to be re-reverted &mdash; specifically, the footer Company-column `<li>` entries should be re-added across all 17 affected files, and homepage CTAs / residential-hub inline links should be restored. Recommend adding a follow-up task entry to the build list for that batch.
+
 
