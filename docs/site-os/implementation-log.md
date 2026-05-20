@@ -946,3 +946,38 @@ For future site-wide cross-file mechanical edits on Windows, prefer:
 
 #### Followup
 When geo pages get built (Henderson, North Las Vegas, etc.), the relevant `<li>LABEL</li>` items should be re-wrapped in `<a href="/SLUG/">LABEL</a>`. This is now a per-page pass rather than a search-and-replace, since each footer's exact label varies.
+
+---
+
+### 2026-05-19 — Batch 4 scope decision: Mesquite city hub omitted
+
+#### What changed
+The `/pest-control-mesquite-nv/` city hub page and the dependent Mesquite Tier 1 Matrix (10 service+city pages in Phase 7 / batch-6) have been **omitted** from the build plan. Tracking docs and one site artifact were updated to reflect this.
+
+#### Why
+Decision was made to narrow Tier 1 city scope to Las Vegas, Henderson, North Las Vegas, and Boulder City. Mesquite is geographically the most distant Tier 1 location (~80 mi NE of Las Vegas) and a lower priority than the four valley-core cities for the launch build. Removing it now prevents 11 thin pages from entering the build queue without a clear business reason.
+
+#### Files touched
+1. `docs/site-os/inputs/pci-launch-readiness-site-build-list.md`
+   - Removed Phase 4 priority 37 row (Pest Control Mesquite NV). Gap left intentionally; replaced with an inline note.
+   - Removed "Mesquite" from Phase 7 Tier 1 Locations bullet list.
+   - Removed the full "Mesquite Tier 1 Matrix" section (header + 10-row table); replaced with an inline note.
+2. `docs/site-os/prompts/build/batch-4-city-location-pages-prompt.md`
+   - Removed `/pest-control-mesquite-nv/` row from the Tier 1 Cities table.
+3. `docs/site-os/prompts/build/batch-6-service-city-matrix-prompt.md`
+   - Removed "Mesquite NV" from priority locations line.
+4. `sitemap/index.html`
+   - Removed the `<li class="coming-soon"><a href="/pest-control-mesquite-nv/">Mesquite</a></li>` entry from Tier 1 Service Areas, eliminating a future 404 link.
+
+#### Scope boundary (intentionally NOT touched)
+- `docs/site-os/inputs/pci-build-context.md` — still lists Mesquite as a Tier 1 service area city. Reason: Mesquite remains in PCI's stated service-area coverage; this decision concerns the dedicated city hub URL and its downstream matrix, not whether PCI services the city.
+- `contact/index.html` and `free-estimate/index.html` — both pages list Mesquite among the cities PCI serves in their FAQ answers and area chips. Same reason: those are service-coverage facts, not page-build commitments.
+- `docs/site-os/inputs/page-list.md` — Mesquite was not listed under Location Pages, so no edit needed.
+
+#### Followup
+If Mesquite hub is reinstated in the future:
+1. Add row to Phase 4 of the launch-readiness build list (gap is at priority 37).
+2. Re-add Mesquite to Phase 7 Tier 1 Locations list and re-add the Mesquite Tier 1 Matrix section.
+3. Add `/pest-control-mesquite-nv/` row back to batch-4 prompt.
+4. Add "Mesquite NV" back to batch-6 priority locations.
+5. Re-add the `<li>` to `sitemap/index.html` (and either build the page or leave it `coming-soon` with intent to build).

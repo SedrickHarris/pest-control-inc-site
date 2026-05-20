@@ -21,7 +21,9 @@ Example: /scorpion-exterminator-henderson-nv/
 Priority services: Scorpion, Ant, Cockroach, Rodent, Termite, Spider,
 Bed Bug, Emergency, Residential, Commercial
 
-Priority locations: Henderson NV, North Las Vegas, Boulder City NV, Mesquite NV
+Priority locations: Henderson NV, North Las Vegas, Boulder City NV
+
+> Note: Mesquite NV was previously listed as a priority location in this batch and has been **omitted** as of 2026-05-19 (the Mesquite city hub is out of scope, so its dependent matrix is out of scope). See implementation-log.md.
 
 ## Required Page Structure (per build list Phase 7 template)
 1. H1 with service + location

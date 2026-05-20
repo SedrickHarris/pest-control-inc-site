@@ -20,7 +20,8 @@ authority pages for neighborhood and service+location matrix pages.
 | /pest-control-henderson-nv/ | Level 3 |
 | /pest-control-north-las-vegas/ | Level 3 |
 | /pest-control-boulder-city-nv/ | Level 3 |
-| /pest-control-mesquite-nv/ | Level 3 |
+
+> Note: `/pest-control-mesquite-nv/` was previously listed in this batch and has been **omitted** as of 2026-05-19. See implementation-log.md.
 
 ### Tier 2 Areas
 | Route | AI Depth |
