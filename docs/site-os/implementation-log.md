@@ -575,3 +575,70 @@ Open items:
 
 #### Next page per build order (sequence recovery options)
 - Operator choice — canonical Batch 3 order would now resume with earwig → hornet → false chinch bug → springtail. Alternative: continue opportunistic ordering at operator dispatch.
+
+---
+
+### 2026-05-19 — Batch 3 Build: /false-chinch-bug-exterminator-las-vegas/ (combined false chinch bug + springtail)
+
+- Route: /false-chinch-bug-exterminator-las-vegas/
+- AI Depth: Level 4
+- Commit: 3ba7179
+- File: false-chinch-bug-exterminator-las-vegas/index.html
+
+#### Scope / consolidation note
+- **Two species consolidated onto one page per content brief.** Original Batch 3 list had 14 (false chinch bug) and 15 (springtail) as separate pages. Operator-direct content brief consolidated them onto the false-chinch-bug slug under H1 "False Chinch Bug & Springtail Control Las Vegas." Reason: both are minor nuisance pests with no medical significance; one combined page produces a more useful resource than two thin pages. Springtail-only URL (/springtail-exterminator-las-vegas/) is now unused per this consolidation; no separate page is planned.
+- **Build order:** Continued opportunistic ordering (operator dispatched false chinch bug after crane fly, again ahead of canonical sequence — earwig and hornet remain unbuilt).
+
+#### Keyword map (top primary)
+1. false chinch bug exterminator las vegas / "tiny bugs on house las vegas" (mass-migration AEO target)
+2. springtails las vegas / "tiny jumping bugs in bathroom" (flea-misidentification AEO target)
+3. nuisance pest control las vegas (combined positioning keyword)
+
+#### Pass/fail gate — ALL PASS
+- Sections: 12 `<section>` blocks present (exceeds 10-section minimum)
+- FAQ visible count: 8
+- FAQ schema Question count: 8 (matches exactly)
+- FAQ categories: 4 (False Chinch Bugs · Springtails · Treatment · Getting Started) — brief specified 4 categories; this is the only Batch 3 page so far with 4 FAQ categories instead of 3
+- Schema types: LocalBusiness, Service, FAQPage, BreadcrumbList, HowTo (5 entities)
+- AggregateRating reviewCount: "30" (Google only — single match)
+- Canonical: https://pestcontrolinc.net/false-chinch-bug-exterminator-las-vegas/
+- Phone `(702) 228-4394`: 15 instances
+- `tel:+17022284394`: 12 instances
+- robots: index, follow
+- aria-current="page": 2 locations (related-pages chip + footer "False Chinch Bug & Springtail" link)
+- TODO-LAUNCH-BLOCKER: 1 (form placeholder)
+- Raw em-dashes: 0 (initial pass found 2 in CSS comments — fixed to ASCII hyphens; all visitor-visible em-dashes use `&mdash;`)
+- Raw en-dashes: 0
+- 4-digit-year regex flagged "2022" but this is a CSS unicode escape sequence `\2022` for the bullet character (•), not a year reference. No actual founding year, EPA registration, pricing, or named individuals appear anywhere on the page. CLEAN.
+- **ACCURACY CHECK PASS:** "harmless to humans" appears in hero, AEO opening, and FAQ Q1 (both species described as harmless). "do not bite" appears 10× across page — false chinch bug card, springtail card, AEO callouts, FAQ Q1, Q3, Q4, Q7. Springtail-vs-flea misidentification correction (springtails do not bite) hit in FAQ Q3, Q4 and species card. Both species explicitly stated as harmless multiple times.
+- **OFFER ELIGIBILITY:** Neither false chinch bugs nor springtails appear in the new-customer offer exclusion list (excluded: pigeons, bed bugs, bees, rodents) — standard `/specials/` references used: top bar badge links to /specials/, footer Company column includes Specials link.
+
+#### Combined-page specific design decisions
+- Hero subhead positions the page around the misidentification angle ("two of Las Vegas's most commonly misidentified nuisance pests") &mdash; reframes the page as a diagnostic resource rather than a single-species service page
+- AEO callouts use a paired-species pattern: callout 1 covers false chinch bug mass migration; callout 2 covers springtail moisture-indicator behavior. Both callouts hit the page's primary AEO query at the same time.
+- New Section 4 "Species Identification" uses a custom `.species-grid` 2-column layout — false chinch bug card (tan top accent, checkmark bullets) paired with springtail card (blue top accent, checkmark bullets). Scientific names italicized below each species title. Color coding (tan vs blue) is reused consistently in Sections 5 and 6.
+- New Section 5 "Signs & Identification" uses a 2-column `.signs-grid` &mdash; tan/blue left borders match the species color coding. Bulleted sign-checklists give homeowners the diagnostic markers for self-identification before calling.
+- New Section 6 "Control Approach" uses a 2-column `.control-grid` with numbered control-steps lists per species. Springtail card has an additional `.control-card-emphasis` highlighted note: "Eliminating the moisture source is the most important step. Treatment without moisture reduction reliably allows springtails to return." &mdash; reinforces the page's most-differentiating control insight
+- Trust bar item 4 changed to "Free Pest ID &mdash; Species Confirmation Included" &mdash; explicitly positions species confirmation as a free service (relevant on a combined-species page where misidentification is the operative homeowner pain point)
+- Competitor diff table row 1 attacks "generic perimeter spray on both species; no moisture-source assessment or species confirmation" &mdash; surfaces the species-matched-strategy differentiator at the top of the comparison
+- Form select has 6 options including a "Not sure which species &mdash; need ID inspection" option, capturing visitors who arrive at the page without a confirmed pest ID
+
+#### Internal link map note
+- Brief specified live chips for scorpion, ant, pest-control-las-vegas, free-estimate, contact &mdash; all routed correctly
+- Brief specified pending chips for `/earwig-exterminator-las-vegas/` AND `/crane-fly-exterminator-las-vegas/`. Crane fly was built in the previous turn this session and is live; earwig is still unbuilt. Followed brief literally per established pattern (wasp/bee/bird/miller-moth/crane-fly pages followed same convention &mdash; brief-pending chips kept pending even when page is now built; retrofit eligible)
+
+#### Open TODOs
+- Form endpoint not wired (TODO-LAUNCH-BLOCKER comment present) &mdash; site-wide launch blocker
+- /earwig-exterminator-las-vegas/ and /hornet-exterminator-las-vegas/ &mdash; still unbuilt from canonical Batch 3 sequence
+- /crane-fly-exterminator-las-vegas/ now built but appears as pending chip per content brief &mdash; retrofit eligible
+- /springtail-exterminator-las-vegas/ is no longer planned as a separate page per consolidation decision &mdash; any references in routing or sitemap docs should redirect to this combined page
+- OG image asset: /assets/images/og-false-chinch-bug-exterminator-las-vegas.jpg &mdash; placeholder URL, asset not yet produced
+- /about/health-conscious-service-program/ linked from program section &mdash; destination page not yet built
+
+#### Batch 3 status after this build
+- Built: cockroach, rodent, termite, spider, bed bug, wasp, bee, bird, miller moth, crane fly, false-chinch-bug-+-springtail (combined) = 11 pages
+- Unbuilt: earwig, hornet (springtail folded into combined page)
+- Pending operator decision: continue with earwig + hornet, or close out batch with the consolidation accepted as final
+
+#### Next page per build order (sequence recovery options)
+- Operator choice &mdash; remaining canonical Batch 3 items are earwig and hornet only. Alternative: declare batch substantively complete pending operator approval of the springtail consolidation.
