@@ -515,3 +515,63 @@ Open items:
 
 #### Next page per build order (sequence recovery options)
 - Operator choice — canonical Batch 3 order skips back to earwig → hornet, then crane fly. Alternative: continue opportunistic ordering at operator dispatch.
+
+---
+
+### 2026-05-19 — Batch 3 Build: /crane-fly-exterminator-las-vegas/
+
+- Route: /crane-fly-exterminator-las-vegas/
+- AI Depth: Level 4
+- Commit: f8bf0e7
+- File: crane-fly-exterminator-las-vegas/index.html
+
+#### Build order note
+- Operator dispatched crane fly immediately after miller moth, again out of strict batch-3 sequence (canonical order: earwig → hornet → miller moth → crane fly; earwig and hornet are still unbuilt). Continues the opportunistic-ordering pattern established in the previous turn.
+
+#### Keyword map (top primary)
+1. crane fly exterminator las vegas / crane fly control las vegas
+2. leatherjacket lawn damage / leatherjacket turf treatment las vegas (the actual damaging-stage keyword cluster)
+3. mosquito hawk myth / "do crane flies bite" (high-volume informational AEO target with myth-correction angle)
+
+#### Pass/fail gate — ALL PASS
+- Sections: 12 `<section>` blocks present (exceeds 10-section minimum)
+- FAQ visible count: 8
+- FAQ schema Question count: 8 (matches exactly)
+- Schema types: LocalBusiness, Service, FAQPage, BreadcrumbList, HowTo (5 entities)
+- AggregateRating reviewCount: "30" (Google only — single match)
+- Canonical: https://pestcontrolinc.net/crane-fly-exterminator-las-vegas/
+- Phone `(702) 228-4394`: 15 instances
+- `tel:+17022284394`: 12 instances
+- robots: index, follow
+- aria-current="page": 2 locations (related-pages chip + footer Crane Fly Control link)
+- TODO-LAUNCH-BLOCKER: 1 (form placeholder)
+- Raw em-dashes: 0 (all `&mdash;`)
+- Raw en-dashes: 0
+- No-fake-data: founding year CLEAN (no 4-digit years on page), EPA registration CLEAN, pricing CLEAN
+- No named individuals
+- **ACCURACY CHECK PASS:** "do not bite" appears 8× across page (hero, AEO body, AEO callout, two-stage adult card body + bullet, FAQ Q1, Q2, Q3 — every section that mentions crane fly behavior); "eat mosquitoes" / "mosquito hawk" myth-correction appears 8× (AEO callout 1 leads with this as the page's primary AEO correction, adult-stage card subtitle and bullet repeat it, FAQ Q1 and Q2 reinforce it). Both required accuracy facts saturate the page.
+- **OFFER ELIGIBILITY:** Crane flies are NOT in the new-customer offer exclusion list (excluded: pigeons, bed bugs, bees, rodents) — standard `/specials/` references used: top bar badge "Free First Service →" links to /specials/, footer Company column includes Specials link. Follows wasp/miller-moth/scorpion pattern.
+
+#### Crane-fly-specific page additions vs prior batch templates
+- AEO callouts pair the "mosquito hawk myth" correction (does not bite, does not eat mosquitoes) with the "real damage is leatherjackets" callout — establishes the page's two highest-priority AEO messages as a myth/reality contrast above the fold
+- New Section 4 "Two-Stage Pest" uses a unique `.stage-grid` 2-column layout pairing an adult-stage card (blue top accent, checkmark bullets — harmless attributes) against a larva-stage card (orange top accent, warning bullets — damaging attributes). Reframes the page around the biological reality that the conspicuous adult and the damaging stage are completely different. Visual contrast reinforces the page's core educational message.
+- New Section 5 "Signs of Larvae Damage" uses 5-card numbered `.signs-grid` 5-column layout — diagnostic checklist framing (homeowner identifies leatherjacket vs other turf issues themselves) rather than abstract risk-factor framing
+- New Section 6 "Where Crane Flies Are Found" uses 5-card `.locations-grid` 5-column layout; the indoor-locations card uses an orange left-border variant to visually distinguish it from the four turf/outdoor locations
+- Trust bar item 4 changed to "Turf Treatment Included — Targeted Leatherjacket Control" — explicitly positions PCI as the turf-treating specialist; competitor diff row 1 attacks the franchise default of "adult perimeter spray only; no turf inspection or leatherjacket treatment"
+- Form select includes 6 options spanning lawn-damage-suspected, bird-following-turf, indoor adults, pool/irrigation-proximity, spongy-turf, and commercial scenarios — captures both lawn-damage and indoor-adult search intent
+- Final CTA headline reframed to "Ready to Protect Your Las Vegas Lawn From Leatherjackets?" — leading with the damaging-stage keyword rather than the adult-stage keyword (consistent with the page's positioning that the lawn-damage angle is the highest-value conversion driver)
+
+#### Internal link map note
+- Brief specified live chips for scorpion, ant, pest-control-las-vegas, free-estimate, contact — all routed correctly
+- Brief specified pending chips for `/miller-moth-exterminator-las-vegas/` AND `/earwig-exterminator-las-vegas/`. Miller moth was built earlier in this session and is live; earwig is still unbuilt. Followed brief literally per established pattern (wasp/bee/bird/miller-moth pages followed same convention — live page chips left as `pending` when brief specified, retrofit eligible)
+- Operator should be aware that earwig + hornet are both still unbuilt from canonical Batch 3 order; if returning to sequence the next pages would be earwig → hornet → false chinch bug → springtail
+
+#### Open TODOs
+- Form endpoint not wired (TODO-LAUNCH-BLOCKER comment present) — site-wide launch blocker
+- /earwig-exterminator-las-vegas/ and /hornet-exterminator-las-vegas/ — still unbuilt; canonical Batch 3 sequence not yet recovered
+- /miller-moth-exterminator-las-vegas/ now built but appears as pending chip per content brief — retrofit eligible
+- OG image asset: /assets/images/og-crane-fly-exterminator-las-vegas.jpg — placeholder URL, asset not yet produced
+- /about/health-conscious-service-program/ linked from program section — destination page not yet built
+
+#### Next page per build order (sequence recovery options)
+- Operator choice — canonical Batch 3 order would now resume with earwig → hornet → false chinch bug → springtail. Alternative: continue opportunistic ordering at operator dispatch.
