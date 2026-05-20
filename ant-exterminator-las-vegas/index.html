@@ -497,9 +497,9 @@ section{padding:78px 0}
 .rescomm-col p{font-size:14.5px;color:var(--gray-dark);line-height:1.75;margin-bottom:14px}
 .rescomm-col .types{font-family:var(--font-ui);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);line-height:1.6;margin:14px 0}
 .rescomm-col a.text-link{color:var(--blue);font-weight:700;text-decoration:underline;font-family:var(--font-ui);font-size:13px;letter-spacing:.04em;text-transform:uppercase}
-.snhd-callout{background:var(--pure);border-left:4px solid var(--blue);border-radius:0 12px 12px 0;padding:18px 22px;margin:18px 0}
-.snhd-callout p{font-size:14px;color:var(--navy);line-height:1.7;font-style:italic;margin-bottom:8px}
-.snhd-callout a{color:var(--blue);font-weight:700;text-decoration:underline}
+.callout-box{background:var(--pure);border-left:4px solid var(--blue);border-radius:0 12px 12px 0;padding:18px 22px;margin:18px 0}
+.callout-box p{font-size:14px;color:var(--navy);line-height:1.7;font-style:italic;margin-bottom:8px}
+.callout-box a{color:var(--blue);font-weight:700;text-decoration:underline}
 
 /* ZONE GRID */
 .zone-section{background:var(--blue-light)}
@@ -551,6 +551,32 @@ section{padding:78px 0}
 .area-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
 .area-chip{background:var(--pure);border:1px solid var(--blue);color:var(--blue);font-family:var(--font-ui);font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:8px 16px;border-radius:999px}
 .geo-callout{background:var(--pure);border-left:4px solid var(--blue);border-radius:0 12px 12px 0;padding:18px 22px;margin-top:24px;font-size:14px;color:var(--navy);font-style:italic;line-height:1.7}
+
+/* WHY PCI */
+.why-section{background:var(--tan-light)}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:32px}
+.why-card{background:var(--pure);border:1px solid var(--gray);border-top:3px solid var(--orange);border-radius:14px;padding:24px 22px;transition:box-shadow .25s,transform .25s}
+.why-card:hover{box-shadow:0 10px 32px rgba(29,36,48,.1);transform:translateY(-3px)}
+.why-card-icon{font-size:32px;margin-bottom:12px;line-height:1}
+.why-card h3{font-family:var(--font-ui);font-size:16px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--navy);margin-bottom:10px;line-height:1.3}
+.why-card p{font-size:14px;color:var(--gray-dark);line-height:1.7}
+@media(max-width:900px){.why-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.why-grid{grid-template-columns:1fr}}
+
+/* COMPETITOR COMPARISON */
+.competitor-section{background:var(--pure)}
+.comparison-table{width:100%;border-collapse:collapse;margin-top:32px;border:1px solid var(--gray);border-radius:14px;overflow:hidden;font-size:14px}
+.comparison-table thead{background:var(--blue);color:#fff}
+.comparison-table th{font-family:var(--font-ui);font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:14px 18px;text-align:left;border:none}
+.comparison-table th:first-child{width:22%}
+.comparison-table th.pci-col{background:var(--blue-dark);color:#fff}
+.comparison-table tbody tr{border-top:1px solid var(--gray)}
+.comparison-table tbody tr:nth-child(even){background:var(--blue-light)}
+.comparison-table td{padding:14px 18px;color:var(--navy);line-height:1.6;vertical-align:top;border:none}
+.comparison-table td.feature{font-family:var(--font-ui);font-size:13px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--navy);background:var(--white)}
+.comparison-table td.pci-cell{color:var(--blue-dark);font-weight:600}
+.comparison-table td.chain-cell{color:var(--gray-dark)}
+@media(max-width:700px){.comparison-table th,.comparison-table td{padding:10px 12px;font-size:13px}.comparison-table th:first-child{width:auto}}
 
 /* FINAL CTA */
 .final-cta{background:var(--navy);color:#fff;position:relative;overflow:hidden}
@@ -1136,7 +1162,7 @@ section{padding:78px 0}
       <div class="rescomm-col">
         <h3>Ant Exterminator for Las Vegas Businesses</h3>
         <p>Ant control for offices, retail stores, hotels, multi-unit residential, warehouses, and HOA communities. Pharaoh ants in multi-unit housing and healthcare facilities are a critical commercial pest risk &mdash; their control requires non-repellent bait exclusively, and a spray-based misapplication can trigger a building-wide infestation. Argentine ant supercolonies in multi-tenant buildings require portfolio-wide treatment coordination. All commercial ant treatments produce written service documentation.</p>
-        <div class="snhd-callout">
+        <div class="callout-box">
           <p><em>Pharaoh ant activity in a Las Vegas multi-unit property or healthcare facility is a critical commercial risk requiring documented remediation. If your business faces a pest-related compliance notice or upcoming inspection, call <a href="tel:+17022284394">(702) 228-4394</a> &mdash; same-day commercial ant assessment available.</em></p>
         </div>
         <p class="types">Offices &middot; Retail Stores &middot; Hotels &middot; Multi-Unit Residential &middot; Warehouses &middot; HOA Communities</p>
@@ -1348,7 +1374,93 @@ section{padding:78px 0}
   </div>
 </section>
 
-<!-- SECTION 14 — FINAL CTA -->
+<!-- SECTION 14 &mdash; WHY PEST CONTROL INC -->
+<section class="why-section">
+  <div class="container">
+    <p class="section-eyebrow">Why Pest Control Inc</p>
+    <h2 class="section-title">Why Las Vegas Homeowners Choose Pest Control Inc for Ant Control</h2>
+    <p class="section-desc">Five reasons Las Vegas Valley families and property managers have trusted Pest Control Inc for three generations of ant extermination work.</p>
+    <div class="why-grid">
+      <article class="why-card">
+        <div class="why-card-icon" aria-hidden="true">&#128106;</div>
+        <h3>3-Generation Family-Owned</h3>
+        <p>Pest Control Inc is a 3-generation family-owned company &mdash; not a national franchise. Every technician serves the same communities they live in.</p>
+      </article>
+      <article class="why-card">
+        <div class="why-card-icon" aria-hidden="true">&#127807;</div>
+        <h3>Health Conscious Service Program</h3>
+        <p>IPM-based, exterior-first treatment using EPA-registered low-impact baits and gels. Family safe. Pet safe. The same approach PCI uses on their own homes.</p>
+      </article>
+      <article class="why-card">
+        <div class="why-card-icon" aria-hidden="true">&#128176;</div>
+        <h3>Money-Back Guarantee</h3>
+        <p>Every service is backed by a money-back guarantee. If ants return between visits, PCI returns at no charge. If the problem isn't resolved, you receive a refund.</p>
+      </article>
+      <article class="why-card">
+        <div class="why-card-icon" aria-hidden="true">&#9201;</div>
+        <h3>30 Minutes or Less Callback</h3>
+        <p>Call or submit a request during business hours and Pest Control Inc calls back in 30 minutes or less. Same-day service available.</p>
+      </article>
+      <article class="why-card">
+        <div class="why-card-icon" aria-hidden="true">&#128737;</div>
+        <h3>Licensed, Insured &amp; Background Checked</h3>
+        <p>Every PCI technician is licensed, insured, drug tested, and background checked. Nevada Department of Agriculture Pest Control License #4632. National Pest Management Association (NPMA) member.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 15 &mdash; HOW WE COMPARE -->
+<section class="competitor-section">
+  <div class="container">
+    <p class="section-eyebrow">How We Compare</p>
+    <h2 class="section-title">Pest Control Inc vs. National Pest Control Chains</h2>
+    <p class="section-desc">Not all pest control companies operate the same way. Here is how Pest Control Inc compares to the national chains serving Las Vegas Valley.</p>
+    <table class="comparison-table" aria-label="Pest Control Inc compared to national pest control chains">
+      <thead>
+        <tr>
+          <th scope="col">Feature</th>
+          <th scope="col" class="pci-col">Pest Control Inc</th>
+          <th scope="col">National Chains</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="feature">Ownership</td>
+          <td class="pci-cell">3-generation family-owned</td>
+          <td class="chain-cell">Publicly traded or private-equity owned</td>
+        </tr>
+        <tr>
+          <td class="feature">Program</td>
+          <td class="pci-cell">Health Conscious Service Program (IPM, low-impact)</td>
+          <td class="chain-cell">Standard chemical rotation</td>
+        </tr>
+        <tr>
+          <td class="feature">Guarantee</td>
+          <td class="pci-cell">Money-back guarantee</td>
+          <td class="chain-cell">Service re-treat only</td>
+        </tr>
+        <tr>
+          <td class="feature">Callback</td>
+          <td class="pci-cell">30 minutes or less (business hours)</td>
+          <td class="chain-cell">Next available window</td>
+        </tr>
+        <tr>
+          <td class="feature">Credentials</td>
+          <td class="pci-cell">Licensed NV #4632 &middot; NPMA member</td>
+          <td class="chain-cell">Licensed (varies by technician)</td>
+        </tr>
+        <tr>
+          <td class="feature">Technicians</td>
+          <td class="pci-cell">Drug tested, background checked, state-licensed</td>
+          <td class="chain-cell">Varies by company</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 16 — FINAL CTA -->
 <section class="final-cta" id="ant-final">
   <div class="container final-inner">
     <div>
