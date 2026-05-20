@@ -47,7 +47,7 @@ Canonical URL base: https://pestcontrolinc.net
 - Miller moth seasonal control
 - Crane flies, false chinch bugs, hornets, springtails
 - Residential pest control (single-family, apartments, condos, multi-family, HOA, eco-friendly)
-- Commercial pest control (restaurants, hotels, property managers, offices, warehouses, retail, HOA)
+- Commercial pest control (offices, retail, hotels, HOA communities, property management, warehouses)
 - Lawn spraying / fertilizing
 - 24/7 emergency pest control
 
