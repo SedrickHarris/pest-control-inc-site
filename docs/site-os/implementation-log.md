@@ -395,3 +395,63 @@ Open items:
 
 #### Next page per build order
 - /bird-removal-las-vegas/ — Level 4
+
+---
+
+### 2026-05-19 — Batch 3 Build: /bird-removal-las-vegas/
+
+- Route: /bird-removal-las-vegas/
+- AI Depth: Level 4
+- Commit: e5fdb3e
+- File: bird-removal-las-vegas/index.html
+
+#### Keyword map (top primary)
+1. bird removal las vegas / pigeon removal las vegas
+2. solar panel bird protection las vegas (Las-Vegas-specific differentiator)
+3. pigeon droppings cleanup las vegas
+
+#### Pass/fail gate — ALL PASS
+- Sections: 12 `<section>` blocks present (exceeds 10-section minimum)
+- FAQ visible count: 8
+- FAQ schema Question count: 8 (matches exactly)
+- Schema types: LocalBusiness, Service, FAQPage, BreadcrumbList, HowTo (5 entities)
+- AggregateRating reviewCount: "30" (Google only — single match)
+- Canonical: https://pestcontrolinc.net/bird-removal-las-vegas/
+- Phone `(702) 228-4394`: 15 instances
+- `tel:+17022284394`: 12 instances
+- robots: index, follow
+- aria-current="page": 2 locations (related-pages chip + footer Bird & Pigeon Removal link)
+- TODO-LAUNCH-BLOCKER: 1 (form placeholder)
+- Raw em-dashes: 0 (all `&mdash;`)
+- Raw en-dashes: 0
+- No-fake-data: founding year CLEAN (only year on page is "2018" — refers to Las Vegas pigeon-feeding ordinance per content brief, never about PCI founding), EPA registration CLEAN, pricing CLEAN
+- No named individuals
+- **POLICY CHECK PASS:** zero `/specials/` links; zero "Free First Service" copy anywhere (visitor-visible and comments both clean — defensive policy comments use "new-customer promotional offer" phrasing). Per-page elements:
+  - Top bar badge: links to `/free-estimate/`; copy "Free Bird Inspection &rarr;"
+  - Hero CTAs: secondary CTA copy "Free Bird Inspection &rarr;"
+  - Footer Company column: `/specials/` link removed; closing comment notes intentional omission
+- **CONTENT CHECK PASS:** Section 4 Card 3 + Section 5 Method 3 + Section 9 row 1 + multiple AEO and FAQ mentions establish solar panel exclusion as the page's primary differentiator (41 instances of "solar panel"); Las Vegas pigeon-feeding ordinance documented in AEO opening, AEO callout 2, and FAQ Q3 with verbatim "$1,000 fine and up to 6 months"
+
+#### Bird-specific page additions vs prior batch templates
+- AEO callouts pair the public-health risk (droppings + airborne disease vector) with the Las Vegas legal/regulatory differentiator (City of Las Vegas feeding ordinance, $1,000 fine) — establishes both the medical and legal urgency in one viewport
+- New Section 4 uses 3-card problem framing (health / property damage / solar panel) — replaces species-card layout used on stinging-pest pages since pigeon is the single relevant species
+- New Section 5 introduces `.methods-section` with 4 methods on a 2-column grid; method 4 (Droppings Cleanup) styled as `.method-card.critical` with orange left-border and gradient to visually flag it as the prerequisite to any deterrent install
+- Trust bar items 4-5 changed from generic callback metrics to "Cleanup Included Before Every Exclusion Install" + "Solar Panel Exclusion Mesh Specialists" — reinforces the two strongest local differentiators in the highest-visibility location
+- Competitor diff table leads with Solar panel exclusion (row 1) and Droppings cleanup included (row 2) — strongest competitor-failure-pattern attacks at top of comparison
+- Form select includes 6 options spanning residential solar-panel, rooftop/HVAC, droppings-only, commercial, attic/vent, and exclusion-install scenarios
+- Section 1 hero subhead and final CTA both lead with "exclusion, deterrents, droppings cleanup, and solar panel protection" — keyword cluster repeated at top and bottom of the page
+
+#### Internal link map note
+- Brief specified pending chip for `/rodent-exterminator-las-vegas/`; that page is built (Batch 3 earlier passes). Followed brief literally per established pattern (wasp/bee/spider/bed-bug pages followed same convention) &mdash; chip remains pending. Operator may opt to retrofit this set when next reviewing the batch.
+
+#### Open TODOs
+- Form endpoint not wired (TODO-LAUNCH-BLOCKER comment present) — site-wide launch blocker
+- /rodent-exterminator-las-vegas/ now built but appears as pending chip per content brief — retrofit eligible
+- OG image asset: /assets/images/og-bird-removal-las-vegas.jpg — placeholder URL, asset not yet produced
+- /about/health-conscious-service-program/ linked from program section — destination page not yet built
+
+#### Policy enforcement open item
+- Following bed-bug-page and bee-page precedent, kept HTML-comment references to the policy decision (using "new-customer promotional offer" wording so the strict "no free first service language anywhere" reading passes). Comments are not visitor-visible. Easy revert if even-stricter reading required.
+
+#### Next page per build order
+- /earwig-exterminator-las-vegas/ — Level 4
