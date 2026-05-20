@@ -981,3 +981,14 @@ If Mesquite hub is reinstated in the future:
 3. Add `/pest-control-mesquite-nv/` row back to batch-4 prompt.
 4. Add "Mesquite NV" back to batch-6 priority locations.
 5. Re-add the `<li>` to `sitemap/index.html` (and either build the page or leave it `coming-soon` with intent to build).
+
+---
+
+### 2026-05-19 — Mesquite NV removed from service area
+
+- Decision: business owner confirmed Mesquite, NV is not a service area
+- /pest-control-mesquite-nv/ page was never built — no file to delete
+- Mesquite was not present in footer — no footer changes required
+- /pest-control-henderson-nv/ not yet built — no chip to remove there
+- Scope of changes: sitemap, North Las Vegas and Boulder City pending chips (if present), launch readiness build list
+- Operator instruction: remove all site references; do not build this page in any future batch

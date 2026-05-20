@@ -143,8 +143,6 @@ These should be built before the full matrix because they are the highest-value 
 | 35 | Pest Control North Las Vegas | `/pest-control-north-las-vegas/` | High-value city market |
 | 36 | Pest Control Boulder City NV | `/pest-control-boulder-city-nv/` | Local service area expansion |
 
-> Note: Priority 37 (Pest Control Mesquite NV — `/pest-control-mesquite-nv/`) was previously listed here and has been **omitted** from the build plan as of 2026-05-19. The Mesquite Tier 1 Matrix in Phase 7 has been removed for the same reason. Mesquite remains in the documented service-area coverage for other live pages; it is the dedicated city hub and its downstream matrix that are out of scope. See implementation-log.md for rationale.
-
 ## Phase 5: Top Pest Pillar Pages
 
 These should launch before the full pest matrix because they become the parent authority pages for localized exterminator pages and supporting pest content.
@@ -184,8 +182,6 @@ Build Tier 1 service + location pages first because they combine the highest-val
 - Henderson
 - North Las Vegas
 - Boulder City
-
-> Note: Mesquite was previously listed as a Tier 1 location here and has been **omitted** from the matrix build plan as of 2026-05-19. See implementation-log.md.
 
 ### Tier 1 Priority Services
 
@@ -259,8 +255,6 @@ Build Tier 1 service + location pages first because they combine the highest-val
 | Emergency Pest Control Boulder City NV | `/emergency-pest-control-boulder-city-nv/` |
 | Residential Pest Control Boulder City NV | `/residential-pest-control-boulder-city-nv/` |
 | Commercial Pest Control Boulder City NV | `/commercial-pest-control-boulder-city-nv/` |
-
-> Note: A Mesquite Tier 1 Matrix (10 service+city pages anchored to `/pest-control-mesquite-nv/`) was previously listed here and has been **omitted** from the build plan as of 2026-05-19. The dependent matrix is out of scope because the parent city hub is out of scope. See implementation-log.md for rationale.
 
 ## Phase 8: Tier 2 Location Hubs
 
