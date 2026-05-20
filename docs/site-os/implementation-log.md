@@ -1233,4 +1233,51 @@ User chose **Option 2: audit references to these URLs site-wide instead of audit
 #### Note on future-state handling
 If/when `pest-control-faq/` and `pest-identification/` pages are built in a future batch, the cleanup performed in this task will need to be re-reverted &mdash; specifically, the footer Company-column `<li>` entries should be re-added across all 17 affected files, and homepage CTAs / residential-hub inline links should be restored. Recommend adding a follow-up task entry to the build list for that batch.
 
+---
+
+### 2026-05-20 &mdash; Batch 5.5 Task 6: Ant Page Level 4 Retrofit
+
+- File: `ant-exterminator-las-vegas/index.html`
+
+#### Pre-edit findings (Step 1 audit)
+| Check | Finding | Action |
+|---|---|---|
+| Section count | 14 | (final-CTA was Section 14; renumbered to 16 after inserting 2 new) |
+| FAQ visible count | **12** (already &ge; 8) | CHANGE D **SKIPPED** &mdash; FAQ minimum already exceeded |
+| FAQPage schema Question count | **12** (matched visible) | No reconciliation needed |
+| AggregateRating `reviewCount` | **already "30"** at lines 99 &amp; 202 | CHANGE A **SKIPPED** &mdash; spec assumed "65" but value was already correct |
+| Why PCI section | absent | CHANGE B **APPLIED** |
+| Competitor table | absent | CHANGE C **APPLIED** |
+| Restaurant/SNHD/HACCP refs | **4** matches &mdash; all instances of dead `.snhd-callout` CSS class (legacy from earlier food cleanup, body content already reframed) | BONUS cleanup &mdash; renamed CSS class to `.callout-box` (3 CSS rules + 1 HTML usage, via `replace_all`) |
+| Raw em-dashes | 156 (pre-existing) | preserved baseline; introduced 0 new (used `&mdash;` in new section comments) |
+| `tel:+17022284394` count | 23 | &ge; 3 ✓ |
+
+#### Changes applied
+- **CSS class rename**: `.snhd-callout` &rarr; `.callout-box` (4 places) &mdash; eliminates last banned-term leftover.
+- **New CSS**: `.why-section` + `.why-grid` + `.why-card` styles; `.competitor-section` + `.comparison-table` styles. Both inserted just before `/* FINAL CTA */` block in existing stylesheet.
+- **New HTML Section 14 (Why Pest Control Inc)**: 5-card grid with the spec's exact heading + body text for each card (3-Generation Family-Owned, Health Conscious Service Program, Money-Back Guarantee, 30 Minutes or Less Callback, Licensed/Insured/Background Checked). Uses existing `.section-eyebrow` / `.section-title` / `.section-desc` typography classes for visual consistency.
+- **New HTML Section 15 (How We Compare)**: 6-row competitor comparison table with the spec's exact rows (Ownership, Program, Guarantee, Callback, Credentials, Technicians). PCI column visually highlighted via `.pci-col` / `.pci-cell` classes; even-row striping for readability.
+- **Renumbered**: original Section 14 (Final CTA) renumbered to Section 16 in the source comment.
+
+#### Post-edit verification
+- FAQ visible count: 12 (unchanged, already &ge; 8)
+- FAQPage schema Question count: 12 (matches visible)
+- `reviewCount`: "30" only (both schema blocks)
+- Restaurant/food/SNHD/HACCP refs: **0** (was 4 due to dead CSS class &mdash; now cleaned)
+- Why PCI section markers (`why-section`/`why-card`/`why-grid` mentions): 21 (CSS + HTML)
+- Competitor section markers (`comparison-table`/`competitor-section` mentions): 15 (CSS + HTML)
+- Raw em-dashes: 156 (unchanged from pre-edit; **0 new introduced** &mdash; the 2 new section comments use `&mdash;` entity)
+- `tel:+17022284394` count: 23 (unchanged, well above the 3 minimum)
+- Canonical: `https://pestcontrolinc.net/ant-exterminator-las-vegas/` (correct)
+- All 8 JSON-LD blocks parse cleanly
+- No founding year added, no named individuals added
+
+#### Pass/fail: **PASS**
+
+- Commit: `70f5d60` &mdash; feat(retrofit): ant page Level 4 upgrade &mdash; Why PCI, competitor diff, 8 FAQs, reviewCount fix
+- Diff: 1 file changed, 117 insertions(+), 5 deletions(-)
+
+#### Note on diff scope vs. spec assumptions
+Spec wording assumed the file needed 3 substantive fixes (reviewCount 65&rarr;30, Why PCI add, competitor add) plus FAQ extension to 8. In practice, the page was already at FAQ=12 and reviewCount=30, so only the two additive sections plus the dead-CSS-class cleanup were required. Commit message retained spec wording ("8 FAQs, reviewCount fix") for traceability against the original task description even though both of those gates were already satisfied pre-edit.
+
 
