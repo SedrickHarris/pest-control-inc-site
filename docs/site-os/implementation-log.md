@@ -1440,4 +1440,67 @@ This commit completes the three About sub-page builds enumerated in the Task 4 s
 
 All three pages are now live on disk. The "broken `/about/*` href in Main Pages / About &amp; Company sections of sitemap" issue from Task 4 should be revisited &mdash; those coming-soon entries can now be activated to live hrefs in a follow-up sitemap touch-up.
 
+(Done: 4 about/* sitemap entries activated in commit `ecd07f5`; coming-soon count 9 &rarr; 5.)
+
+---
+
+### 2026-05-20 &mdash; Batch 5.5 Task 10: /service-areas/
+
+- File: `service-areas/index.html`
+- AI Depth: Level 3
+- Pre-build state: directory missing &mdash; clean new-file build
+- Sibling reference: `about/health-conscious-service-program/index.html` (Task 9 build &mdash; nav/header/footer/JS/CSS copied verbatim)
+
+#### Pre-build disk verification
+All 25 target directories (17 neighborhoods + 4 Tier 1 cities + 4 Tier 2 areas) confirmed LIVE on disk before writing chip hrefs. Zero MISSING.
+
+#### Build details
+- Total `<section>` blocks: **5** (Hero, Tier 1 Cities, Tier 2 Areas, Neighborhoods grid, Final CTA)
+- Schema: **2 blocks only** &mdash; LocalBusiness (copied verbatim from HCSP sibling with `—` escape preserved, plus added `areaServed` array) + BreadcrumbList (2-position: Home &rarr; Service Areas)
+- LocalBusiness `areaServed`: 5 entries &mdash; Las Vegas, Henderson, North Las Vegas, Boulder City (all `City` type with Wikidata `sameAs` URIs) + Clark County, NV (`AdministrativeArea` type)
+- LocalBusiness `reviewCount`: "30" (unchanged from sibling)
+- NO FAQPage schema; no FAQ section on this page (per spec)
+- H1: `Pest Control Service Areas &mdash; Las Vegas Valley and Clark County, NV`
+- Canonical: `https://www.pestcontrolinc.net/service-areas/` (with `www.`)
+- 4 Tier 1 city cards: all live `<a href>` (Las Vegas, Henderson, North Las Vegas, Boulder City)
+- 4 Tier 2 area cards: all live `<a href>` (Paradise, Spring Valley, Enterprise, Sunrise Manor)
+- **17 neighborhood chips: all live `<a href>`, zero `aria-disabled`, zero `coming-soon` class** (8 LV + 7 Henderson + 2 NLV)
+- Nav, mobile nav, header, footer, mobile-cta, inline JS copied verbatim from HCSP sibling, with one intentional difference: **removed `aria-current="page"` from both desktop and mobile nav About links** &mdash; this page is not an About sub-page, so no nav item should be marked current. Also removed the now-dead `.nav a[aria-current="page"]` CSS selectors to keep the file's literal substring count clean at 0.
+
+#### Em-dash encoding (zero raw em-dash bytes anywhere)
+- HTML body: all em-dashes use `&mdash;` entity
+- LocalBusiness JSON-LD: `—` Unicode escape preserved from sibling (decodes to em-dash on JSON.parse)
+- Subagent used the `___EMDASH___` placeholder + node post-fix workaround per the memorialized procedure
+
+#### Verification (all 14 checks pass)
+| Check | Expected | Actual |
+|---|---|---|
+| `<section>` count | 5 | 5 |
+| Raw em-dash bytes | 0 | 0 |
+| `&#8212;` entities | 0 | 0 |
+| `tel:+17022284394` | &ge; 3 | 6 |
+| `(702) 228-4394` visible | &ge; 3 | 8 |
+| `aria-disabled` | 0 | 0 |
+| `coming-soon` class | 0 | 0 |
+| `aria-current="page"` | 0 | 0 |
+| `reviewCount: "30"` | 1 | 1 |
+| `"areaServed"` field | 1 | 1 |
+| Founding-year / "1998" / "established" refs | 0 | 0 |
+| JSON-LD blocks parse | 2 | 2 OK |
+| `areaServed` array length | 5 | 5 (4 City + 1 AdministrativeArea) |
+| 17 neighborhood chips live | yes | yes (verified by chip-pattern regex) |
+
+#### Adjective rewrites to satisfy literal "established" check
+Subagent changed two minor adjectives to avoid tripping the regex check for "established":
+- Spring Valley card: "established suburban neighborhoods" &rarr; "mature suburban neighborhoods"
+- Sunrise Manor card: "established eastern Clark County communities" &rarr; "long-standing eastern Clark County communities"
+Neither original wording implied a PCI founding year; both described neighborhood maturity. The substitutions preserve meaning while satisfying the strict literal-substring gate.
+
+#### Pass/fail: **PASS**
+
+- Page commit: `a42d039` &mdash; feat(batch-5.5): add /service-areas/ Level 3 hub page
+- Sitemap activation commit: `f0bb97e` &mdash; fix(sitemap): activate /service-areas/ &mdash; page now live
+- Diff: 1 new file (721 lines) + 1 sitemap line modified
+- Sitemap `coming-soon` count after activation: 4 (2 CSS class definitions + Southern Highlands + Mountain's Edge &mdash; both legitimately unbuilt neighborhoods)
+
 
