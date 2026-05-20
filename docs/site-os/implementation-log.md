@@ -285,3 +285,52 @@ Open items:
 
 #### Next page per build order
 - /wasp-exterminator-las-vegas/ — Level 4
+
+---
+
+### 2026-05-19 — Batch 3 Build: /wasp-exterminator-las-vegas/
+
+- Route: /wasp-exterminator-las-vegas/
+- AI Depth: Level 4
+- Commit: ba99350
+- File: wasp-exterminator-las-vegas/index.html
+
+#### Keyword map (top primary)
+1. wasp exterminator las vegas
+2. yellow jacket nest removal las vegas
+3. paper wasp removal las vegas
+
+#### Pass/fail gate — ALL PASS
+- Sections: 12 `<section>` blocks present (exceeds 10-section minimum)
+- FAQ visible count: 8
+- FAQ schema Question count: 8 (matches exactly)
+- Schema types: LocalBusiness, Service, FAQPage, BreadcrumbList, HowTo (5 entities)
+- AggregateRating reviewCount: "30" (Google only — single match)
+- Canonical: https://pestcontrolinc.net/wasp-exterminator-las-vegas/
+- Phone `(702) 228-4394`: 18 instances
+- `tel:+17022284394`: 14 instances
+- robots: index, follow
+- aria-current="page": 2 locations (related-pages chip + footer Wasp Control link)
+- TODO-LAUNCH-BLOCKER: 1 (form placeholder)
+- Raw em-dashes: 0 (all `&mdash;`)
+- Raw en-dashes: 0
+- No-fake-data: founding year CLEAN, EPA registration CLEAN, pricing CLEAN
+- No named individuals
+- **SCOPE CHECK PASS:** no substantive bee or hornet content — only quick differentiators ("Wasps are not bees", "Unlike honey bees, wasps do not lose their stinger") and explicit cross-page links: Section 4 intro paragraph routes to `/bee-removal-las-vegas/` and `/hornet-exterminator-las-vegas/`; both also appear as pending chips in Section 10
+
+#### Wasp-specific page additions vs scorpion template
+- AEO section adds two-card callout grid below the answer block: high-risk yellow-jacket alarm-pheromone callout and allergic-reaction (anaphylaxis) callout — supports stinger-safety AEO intent
+- New Section 4 uses 2-card species layout (not 3-card) — wasp brief explicitly limits to yellow jacket and paper wasp
+- New Section 5 "Danger + Do Not" with two-column layout: left column is a 4-item danger-points list with orange left-border cards; right column is a navy "Do Not" card with X-marker list + active-nest emergency call-to-action subcard — combines two-distinct-but-related safety blocks in one section
+- New Section 6 "Where Wasps Nest in Las Vegas" with 8 numbered location cards on a 4-column grid — replaces the scorpion page's 6 "risk factor" cards; content is more actionable (inspection-checklist framing) than abstract risk-factor framing
+- Trust bar item 5: "24/7 Wasp Emergency" — emergency framing specific to wasp page
+- Form select includes both species-specific options ("Yellow jackets in ground or wall void", "Paper wasps under eaves or patio cover") and a sting-occurred option
+
+#### Open TODOs
+- Form endpoint not wired (TODO-LAUNCH-BLOCKER comment present) — site-wide launch blocker
+- /bee-removal-las-vegas/ and /hornet-exterminator-las-vegas/ linked as pending chips (next-up per build order — bee is next per Batch 3 sequence)
+- OG image asset: /assets/images/og-wasp-exterminator-las-vegas.jpg — placeholder URL, asset not yet produced
+- /about/health-conscious-service-program/ linked from program section — destination page not yet built
+
+#### Next page per build order
+- /bee-removal-las-vegas/ — Level 4
