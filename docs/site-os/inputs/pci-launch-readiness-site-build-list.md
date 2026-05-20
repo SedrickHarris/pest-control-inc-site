@@ -109,7 +109,7 @@ These pages should be built before most service + location pages because they be
 | Priority | Page | URL Slug | Launch Reason |
 |---:|---|---|---|
 | 17 | Commercial Pest Control Las Vegas | `/commercial-pest-control-las-vegas/` | Main commercial service hub |
-| 18 | Restaurant Pest Control | `/commercial-pest-control-las-vegas/restaurants/` | Food service and compliance intent |
+| 18 | _(slot removed)_ | _(slot removed)_ | REMOVED &mdash; business owner decision 2026-05-20 |
 | 19 | Hotel Pest Control | `/commercial-pest-control-las-vegas/hotels/` | Hospitality and guest protection intent |
 | 20 | Property Manager Pest Control | `/commercial-pest-control-las-vegas/property-managers/` | Property management recurring service intent |
 | 21 | Office Pest Control | `/commercial-pest-control-las-vegas/offices/` | Office and professional building intent |
@@ -401,7 +401,7 @@ After the highest-value matrix is complete, expand the remaining services across
 
 | Service | URL Pattern |
 |---|---|
-| Restaurant Pest Control | `/restaurant-pest-control-{location}/` |
+| _(service removed)_ | _(slug removed)_ &mdash; REMOVED 2026-05-20 |
 | Hotel Pest Control | `/hotel-pest-control-{location}/` |
 | Property Manager Pest Control | `/property-manager-pest-control-{location}/` |
 | Office Pest Control | `/office-pest-control-{location}/` |
