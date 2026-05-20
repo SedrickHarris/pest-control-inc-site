@@ -883,7 +883,66 @@ Result: sitemap is now at parity with the Batch 3 quality standard (zero raw em-
 - Remaining 16 `coming-soon` items are all service-area pages confirmed missing on disk (Tier 1 areas except Las Vegas, all Tier 2 areas, neighborhood pages)
 
 #### Out of scope for this pass (still open)
-- Footer "Service Areas" column lists Henderson, North Las Vegas, Boulder City, Spring Valley, Paradise, Enterprise without coming-soon styling &mdash; clicking these will 404. Pre-existing issue; should be addressed when those geo pages are built or when the footer's service-area list is reviewed for accuracy.
+- ~~Footer "Service Areas" column lists Henderson, North Las Vegas, Boulder City, Spring Valley, Paradise, Enterprise without coming-soon styling &mdash; clicking these will 404.~~ **Resolved in commit `6f5ac79` (site-wide footer fix across 40 pages).**
 - "Commercial Services" section lists 7 sub-pages (offices, retail, hotels, hoa, property-managers, landlord-pest-control-responsibilities, pest-impact-on-business) &mdash; not verified in this pass; out of Batch 3 scope.
 - `/pest-control-las-vegas/plans-and-pricing/`, `/eco-friendly/`, `/apartments/` listed in the "Pest Control Services" section without coming-soon &mdash; not verified.
 - An XML sitemap.xml at the project root would also be useful for search engine submission; the project currently relies on the HTML sitemap only.
+
+---
+
+### 2026-05-19 — Footer Service Areas fix: site-wide, encoding incident + redo
+
+- Commits: 8c0855f (corrupt — reverted in 4be040f), 6f5ac79 (clean redo)
+- Files: 40 (every page with a footer Service Areas column)
+- Operator choice: convert unbuilt area links to plain-text `<li>` items (Option 1 from the question prompt)
+
+#### What changed
+Every page's footer Service Areas column had 6-7 area links that 404 (Henderson, North Las Vegas, Boulder City, Mesquite, Paradise, Spring Valley, Enterprise, Sunrise Manor, plus an `All Service Areas` link to `/las-vegas-valley/`). The fix removes the broken `<a href>` wrappers, leaving plain `<li>` text items. The single working `/pest-control-las-vegas/` link is preserved as the only live link in the column.
+
+Both label conventions preserved verbatim:
+- Short labels ("Henderson") on Batch 3 species pages, sitemap, free-estimate
+- Long labels ("Pest Control Henderson NV") on homepage, about, ant, etc.
+
+#### Encoding incident and recovery
+The first attempt (commit `8c0855f`) was made by a dispatched subagent using a PowerShell script that called `Get-Content -Raw` without an explicit `-Encoding utf8` flag. On PS 5.1 this defaults to the system codepage (Windows-1252 / Latin-1), which decoded UTF-8 multi-byte sequences as Latin-1 single bytes. Writing back as UTF-8 then produced classic mojibake:
+
+| Original UTF-8 | Mojibake after round-trip |
+|---|---|
+| `—` (em-dash) | `â€"` |
+| `–` (en-dash) | `â€"` |
+| `→` (right arrow) | `â†'` |
+| `✓` (checkmark) | `âœ"` |
+
+The git diff stat made the corruption visible: small-content files (scorpion = 12 lines, sitemap = 20 lines) had reasonable diff sizes, but content-heavy files showed inflated diffs (ant = 578 lines, homepage = 296 lines). Inspecting the homepage diff revealed mojibake in the meta description, OG/Twitter tags, hero CSS comments, and content rule pseudo-elements.
+
+Recovery: `git revert HEAD --no-edit` produced commit `4be040f` restoring original UTF-8 across all 40 files.
+
+#### Redo with encoding-safe approach
+Commit `6f5ac79` uses a PowerShell script with explicit UTF-8 read/write:
+
+```
+$utf8NoBom = New-Object System.Text.UTF8Encoding $false
+$content = [System.IO.File]::ReadAllText($path, $utf8NoBom)
+# ... regex transformation scoped to <h4>Service Areas</h4>...<ul>...</ul> block ...
+[System.IO.File]::WriteAllText($path, $newContent, $utf8NoBom)
+```
+
+The key change: `[System.IO.File]::ReadAllText` with an explicit `UTF8Encoding(false)` argument forces UTF-8 decoding regardless of system codepage. `Get-Content` should be avoided on Windows when round-tripping content with non-ASCII characters unless `-Encoding utf8` is passed.
+
+#### Verification (post-redo)
+- 40/40 footer Service Areas `<h4>...<ul>...</ul>` blocks scanned via PowerShell regex
+- 0 broken-URL `<a href>` elements remain inside any block
+- 40/40 footers retain `/pest-control-las-vegas/` as a live link
+- 262 insertions, 262 deletions total (~12-14 lines per file = ~7 targeted items × delete+insert)
+- 0 mojibake characters in spot-checked files
+- Em-dashes, en-dashes, arrows, checkmarks in body content preserved byte-faithfully
+
+#### Lesson captured
+For future site-wide cross-file mechanical edits on Windows, prefer:
+1. `[System.IO.File]::ReadAllText($path, [System.Text.UTF8Encoding]::new($false))` over `Get-Content`
+2. `[System.IO.File]::WriteAllText($path, $content, [System.Text.UTF8Encoding]::new($false))` over `Set-Content` or `Out-File`
+3. After bulk write, sanity-check the git diff stat against expected line counts — large per-file diffs on small content changes signal an encoding issue
+4. Spot-check at least one large content-heavy file in addition to small ones
+
+#### Followup
+When geo pages get built (Henderson, North Las Vegas, etc.), the relevant `<li>LABEL</li>` items should be re-wrapped in `<a href="/SLUG/">LABEL</a>`. This is now a per-page pass rather than a search-and-replace, since each footer's exact label varies.
