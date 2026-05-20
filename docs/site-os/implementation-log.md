@@ -455,3 +455,63 @@ Open items:
 
 #### Next page per build order
 - /earwig-exterminator-las-vegas/ — Level 4
+
+---
+
+### 2026-05-19 — Batch 3 Build: /miller-moth-exterminator-las-vegas/
+
+- Route: /miller-moth-exterminator-las-vegas/
+- AI Depth: Level 4
+- Commit: (pending)
+- File: miller-moth-exterminator-las-vegas/index.html
+
+#### Build order note
+- Operator dispatched miller moth out of strict batch-3 sequence (canonical order: earwig → hornet → miller moth). Earwig and hornet are still unbuilt; this page jumps ahead per direct operator instruction in the build prompt. Sequence-recovery options remain open (earwig + hornet build next, or operator continues opportunistic ordering).
+
+#### Keyword map (top primary)
+1. miller moth exterminator las vegas / miller moth control las vegas
+2. seasonal miller moth migration las vegas (spring + fall)
+3. army cutworm moth las vegas (Euxoa auxiliaris — adult-stage entity/biological term)
+
+#### Pass/fail gate — ALL PASS
+- Sections: 12 `<section>` blocks present (exceeds 10-section minimum)
+- FAQ visible count: 8
+- FAQ schema Question count: 8 (matches exactly)
+- Schema types: LocalBusiness, Service, FAQPage, BreadcrumbList, HowTo (5 entities)
+- AggregateRating reviewCount: "30" (Google only — single match)
+- Canonical: https://pestcontrolinc.net/miller-moth-exterminator-las-vegas/
+- Phone `(702) 228-4394`: 15 instances
+- `tel:+17022284394`: 12 instances
+- robots: index, follow
+- aria-current="page": 2 locations (related-pages chip + footer Miller Moth Control link)
+- TODO-LAUNCH-BLOCKER: 1 (form placeholder)
+- Raw em-dashes: 0 (all `&mdash;`)
+- Raw en-dashes: 0
+- No-fake-data: founding year CLEAN (no 4-digit years anywhere on page), EPA registration CLEAN, pricing CLEAN
+- No named individuals
+- **OFFER ELIGIBILITY:** Miller moths are NOT in the new-customer offer exclusion list (excluded: pigeons, bed bugs, bees, rodents) — page restores standard `/specials/` references following the wasp/scorpion pattern: top bar badge "Free First Service →" links to /specials/, footer Company column includes Specials link. No policy-omission comment block needed for this page.
+
+#### Miller-moth-specific page additions vs prior batch templates
+- AEO callouts pair the seasonal-pattern timing (spring peak + fall secondary) with the entry-mechanism callout (attracted to light, enters through gaps) — establishes the two highest-priority AEO messages above the fold
+- New Section 4 "Why They Invade" uses 6-card 3-column entry-grid layout — top-of-fold answers the highest-volume informational query ("why are miller moths in my house") with concrete entry-point reasons rather than abstract risk factors
+- New Section 5 "Problems" uses 5-card 3-column problem grid (2 rows of 3 with bottom row of 2) — surfaces meconium staining, die-off odor, and secondary spider attraction as the three operative consequences (not health/disease which do not apply to miller moths)
+- New Section 6 "Control & Prevention" uses 6-method methods-grid 2-column layout; Method 1 (Seal Exterior Gaps) styled as `.method-card.critical` with orange left-border and gradient to visually flag it as the most important long-term step — matches established critical-method visual treatment from bird page's droppings-cleanup card
+- Trust bar item 4 changed to "Seasonal Specialty — Spring & Fall Migration Control" — explicitly positions PCI as the seasonal-pest specialist on a page where seasonality is the operative property
+- Competitor diff table row 1 attacks the franchise-default "interior fog" treatment; the PCI value is exterior-first perimeter + sealing recommendations — strongest competitor-failure-pattern surfaced at top of comparison
+- Form select includes 6 options spanning exterior-doorway, indoor-lights, meconium-staining, wall-void-odor, garage-seal, and commercial scenarios — captures both pre-migration prevention and post-migration cleanup search intent
+- Final CTA copy explicitly mentions "Entry point sealing recommendations included on every inspection" — reinforces the page's most-differentiating service step
+
+#### Internal link map note
+- Brief specified live chips for scorpion, ant, pest-control-las-vegas, free-estimate, contact — all routed correctly
+- Brief specified pending chip for `/crane-fly-exterminator-las-vegas/` — page is not yet built (Batch 3 item #13, follows miller moth in canonical order); chip is correctly marked pending per brief
+- Operator should be aware that next-after-miller-moth in the SEQUENCE is crane fly per Batch 3 build order, even though earwig + hornet are still unbuilt from earlier in the sequence
+
+#### Open TODOs
+- Form endpoint not wired (TODO-LAUNCH-BLOCKER comment present) — site-wide launch blocker
+- /earwig-exterminator-las-vegas/ and /hornet-exterminator-las-vegas/ — still unbuilt (skipped in sequence to reach miller moth)
+- /crane-fly-exterminator-las-vegas/ — referenced as pending chip per brief; not yet built (next in canonical sequence after miller moth)
+- OG image asset: /assets/images/og-miller-moth-exterminator-las-vegas.jpg — placeholder URL, asset not yet produced
+- /about/health-conscious-service-program/ linked from program section — destination page not yet built
+
+#### Next page per build order (sequence recovery options)
+- Operator choice — canonical Batch 3 order skips back to earwig → hornet, then crane fly. Alternative: continue opportunistic ordering at operator dispatch.
