@@ -52,7 +52,7 @@ Canonical URL base: https://pestcontrolinc.net
 - 24/7 emergency pest control
 
 ## Service Areas
-Tier 1 cities: Las Vegas, Henderson, North Las Vegas, Boulder City, Mesquite
+Tier 1 cities: Las Vegas, Henderson, North Las Vegas, Boulder City
 Tier 2 areas: Paradise, Spring Valley, Enterprise, Sunrise Manor, Winchester, Whitney, Summerlin South
 Tier 3 neighborhoods: Summerlin, Centennial Hills, Southern Highlands, Mountain's Edge,
   Anthem, Green Valley, Inspirada, Aliante, and 60+ others

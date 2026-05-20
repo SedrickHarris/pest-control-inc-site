@@ -992,3 +992,29 @@ If Mesquite hub is reinstated in the future:
 - /pest-control-henderson-nv/ not yet built — no chip to remove there
 - Scope of changes: sitemap, North Las Vegas and Boulder City pending chips (if present), launch readiness build list
 - Operator instruction: remove all site references; do not build this page in any future batch
+
+---
+
+### 2026-05-19 — Mesquite NV cleanup follow-up: live page service-coverage mentions
+
+#### What changed
+Three remaining files that still claimed Mesquite as a service area were cleaned up to align with the business owner's decision that Mesquite is not a service area.
+
+#### Files touched
+1. `contact/index.html`
+   - Removed `<span class="area-chip tier1">Mesquite</span>` from the Service Area chip row.
+   - Removed ", Mesquite" from the FAQ answer listing covered cities (both in the FAQPage JSON-LD schema and in the visible HTML; verified text still matches between the two).
+2. `free-estimate/index.html`
+   - Same two edits as contact/index.html (chip + FAQ schema + visible).
+3. `docs/site-os/inputs/pci-build-context.md`
+   - Removed "Mesquite" from the Tier 1 cities service-area line (line 55).
+
+#### Why this is a separate entry
+The earlier 2026-05-19 entry ("Mesquite NV removed from service area") covered the narrowly scoped 5-file pass (sitemap, NLV, Boulder City, launch readiness, log). It intentionally did not touch contact, free-estimate, or pci-build-context because the earlier framing was "city hub omitted but still serviced." The business owner clarification ("not a service area at all") makes those preserved mentions factually wrong and required this follow-up pass.
+
+#### Not touched
+- Historical entries earlier in this log that mention Mesquite (audit trail; do not retroactively rewrite history).
+- `pest-control-paradise-nv`, `pest-control-spring-valley-nv`, `pest-control-sunrise-manor-nv`, `pest-control-enterprise-nv` &mdash; spot-checked, none reference Mesquite.
+
+#### FAQPage schema integrity check
+The FAQ on both contact and free-estimate has the covered-cities list duplicated between visible HTML and FAQPage JSON-LD. Edit used `replace_all` on the exact substring "Boulder City, Mesquite, Paradise" → "Boulder City, Paradise" so both occurrences moved together. Schema and visible text still match exactly per FAQPage requirements.
