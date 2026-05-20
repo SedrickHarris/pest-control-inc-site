@@ -334,3 +334,64 @@ Open items:
 
 #### Next page per build order
 - /bee-removal-las-vegas/ — Level 4
+
+---
+
+### 2026-05-19 — Batch 3 Build: /bee-removal-las-vegas/
+
+- Route: /bee-removal-las-vegas/
+- AI Depth: Level 4
+- Commit: a9da5de
+- File: bee-removal-las-vegas/index.html
+
+#### Keyword map (top primary)
+1. bee removal las vegas
+2. africanized bee exterminator las vegas / killer bee removal
+3. honeycomb removal las vegas (differentiated content angle)
+
+#### Pass/fail gate — ALL PASS
+- Sections: 12 `<section>` blocks present (exceeds 10-section minimum)
+- FAQ visible count: 8
+- FAQ schema Question count: 8 (matches exactly)
+- Schema types: LocalBusiness, Service, FAQPage, BreadcrumbList, HowTo (5 entities)
+- AggregateRating reviewCount: "30" (Google only — single match)
+- Canonical: https://pestcontrolinc.net/bee-removal-las-vegas/
+- Phone `(702) 228-4394`: 19 instances
+- `tel:+17022284394`: 14 instances
+- robots: index, follow
+- aria-current="page": 2 locations (related-pages chip + footer Bee Removal link)
+- TODO-LAUNCH-BLOCKER: 1 (form placeholder)
+- Raw em-dashes: 0 (all `&mdash;`)
+- Raw en-dashes: 0 (all `&ndash;`)
+- No-fake-data: founding year CLEAN (page contains "since 1994" 6× but exclusively in reference to Africanized honey bees being established in Nevada — confirmed historical fact from content brief, never about PCI founding), EPA registration CLEAN, pricing CLEAN
+- No named individuals
+- **POLICY CHECK PASS:** zero `/specials/` links anywhere; zero "Free First Service" copy anywhere in document (visitor-visible and comments both clean — defensive policy comments rephrased to use "new-customer promotional offer" to satisfy strict reading of brief's "no free first service language anywhere" rule). Per-page elements:
+  - Top bar badge: links to `/free-estimate/` (not `/specials/`); copy "Free Bee Inspection &rarr;"
+  - Hero CTAs: secondary CTA copy "Free Bee Inspection &rarr;"
+  - Footer Company column: `/specials/` link removed; closing comment notes intentional omission
+  - Mobile sticky CTA right button: "Free Inspection"
+- **CONTENT CHECK PASS:** dedicated honeycomb-removal section (Section 5) present with 2-column layout — orange warning card listing 4 failure modes (liquefaction, secondary pests, recolonization, structural damage) + navy "PCI standard practice" card with 5-item checklist and customer scripted question for vetting competitors
+
+#### Bee-specific page additions vs wasp/scorpion template
+- AEO section pairs the AHB-presence callout with a honeycomb-removal callout — establishes the page's two highest-priority AEO messages above the fold
+- New Section 5 "Honeycomb Removal Is Not Optional" with custom `.honeycomb-warning` and `.honeycomb-required` 2-column block — content angle competitors consistently omit; PCI claims explicit inclusion in scope
+- Section 9 (competitor diff table): first row is "Honeycomb removal" — leads the comparison with the strongest differentiation on this page
+- Trust bar item 4 changed from generic "30 Minutes" callback to "Honeycomb Removal Included" — reinforces page's #1 differentiator in the highest-visibility location
+- Form select includes 6 options including a unique "Need honeycomb removed from previous treatment" — captures customers burned by competitors' incomplete scope
+- Species cards use "Bee Identification" framing (not "Species Identification") and clarify the scientific names with the colloquial "killer bee" name for AHB
+- Species card 1 sci line: `Apis mellifera scutellata hybrid` — accurate biological designation for AHB
+
+#### Internal link map note
+- Brief specified pending chips for `/wasp-exterminator-las-vegas/` and `/hornet-exterminator-las-vegas/`; wasp page was built earlier in this session and is live. Followed brief literally per established pattern (spider/bed-bug builds followed same convention) &mdash; chip remains pending. Operator may opt to retrofit when next reviewing this batch.
+
+#### Open TODOs
+- Form endpoint not wired (TODO-LAUNCH-BLOCKER comment present) — site-wide launch blocker
+- /wasp-exterminator-las-vegas/ now built but appears as pending chip per content brief — retrofit eligible
+- OG image asset: /assets/images/og-bee-removal-las-vegas.jpg — placeholder URL, asset not yet produced
+- /about/health-conscious-service-program/ linked from program section — destination page not yet built
+
+#### Policy enforcement open item
+- Following bed-bug-page precedent, kept HTML-comment references to the policy decision (rephrased to use "new-customer promotional offer" so the strict "no free first service language anywhere" reading passes). Comments are not visitor-visible. Easy revert if even-stricter reading required.
+
+#### Next page per build order
+- /bird-removal-las-vegas/ — Level 4
