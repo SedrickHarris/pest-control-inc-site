@@ -1374,4 +1374,70 @@ The LocalBusiness schema's `description` field contains a raw em-dash in the par
 #### Note on Edit tool em-dash transport quirk
 The Edit tool's tool-call JSON transport collapses any `—` escape sequence in `new_string` into the actual em-dash codepoint (U+2014) before applying. For specs that require literal `—` bytes inside JSON-LD strings, this transport quirk means the Edit tool cannot be used directly &mdash; the workaround is to write the file via the Bash tool with a node or PowerShell script that constructs the 6-byte sequence from `String.fromCharCode(0x5C)+'u2014'` (or equivalent). Recommend memorializing this workaround in a memory or build-context note for future Claude sessions building schema-heavy pages.
 
+(Memorialized: `feedback_jsonld_unicode_escape.md` in this project's memory directory; indexed in `MEMORY.md`.)
+
+---
+
+### 2026-05-20 &mdash; Batch 5.5 Task 9: /about/health-conscious-service-program/
+
+- File: `about/health-conscious-service-program/index.html`
+- AI Depth: Level 3
+- Pre-build state: directory missing &mdash; clean new-file build
+- Sibling reference: `about/guarantee/index.html` (Task 8 build &mdash; nav/header/footer/JS/CSS copied verbatim)
+
+#### Build details
+- Total `<section>` blocks: **7** (Hero, What IPM Means, Program Coverage, Audience, FAQ, Internal Links, Final CTA)
+- Schema: **3 blocks** &mdash; LocalBusiness (copied verbatim from guarantee sibling with preserved `—` escape) + BreadcrumbList (3-position) + FAQPage (3 Q&As)
+- LocalBusiness `reviewCount`: "30"
+- FAQ visible count: **3** &mdash; FAQPage schema Question count: **3** (matches)
+- H1: `The Health Conscious Service Program`
+- Canonical: `https://www.pestcontrolinc.net/about/health-conscious-service-program/` (with `www.`)
+- 7 internal-link chips in Section 6, all live hrefs (no aria-disabled, no pending class)
+- Nav, mobile nav, header, footer, mobile-cta, inline JS copied verbatim from `about/guarantee/index.html`; FAQ accordion JS reused
+- `aria-current="page"` on `/about/` link in both desktop nav and mobile nav
+
+#### No-fake-data compliance
+- Zero invented product names
+- Zero invented EPA registration numbers
+- Zero invented treatment success rates or statistics
+- Zero founding year references
+- Zero named individuals
+- All claims use existing approved entity phrases ("EPA-registered low-impact baits and gels", "exterior-first", "IPM", "family safe / pet safe", "Health Conscious Service Program")
+
+#### Em-dash encoding (zero raw em-dash bytes anywhere)
+- HTML body: all em-dashes use `&mdash;` entity (renders as em-dash character)
+- JSON-LD strings: all em-dashes use `—` JSON Unicode escape (6 literal ASCII bytes on disk, decodes to em-dash character on JSON.parse)
+- Em-dashes inside JSON-LD strings (LocalBusiness description, FAQ Q1 answer, FAQ Q2 answer): subagent used the `___EMDASH___` placeholder + node post-fix workaround per the memorialized procedure. Q3 answer had no em-dash.
+- Verified: zero `—` bytes, zero `&#8212;` entities, zero literal `&mdash;` strings inside JSON-LD (all decode to actual em-dash character)
+
+#### Verification (post-build)
+| Check | Expected | Actual |
+|---|---|---|
+| `<section>` count | 7 | 7 |
+| Raw em-dash bytes (`—`) | 0 | 0 |
+| `&#8212;` HTML decimal entities | 0 | 0 |
+| `tel:+17022284394` count | &ge; 3 | 6 |
+| `(702) 228-4394` visible count | &ge; 3 | 8 |
+| `"@type":"Question"` schema count | 3 | 3 |
+| `class="faq-q"` visible count | 3 | 3 |
+| Founding-year / "1998" / "established" refs | 0 | 0 |
+| `reviewCount: "30"` | 1 | 1 |
+| Canonical | `https://www.pestcontrolinc.net/about/health-conscious-service-program/` | matches |
+| JSON-LD blocks parse | all 3 | all 3 OK |
+| Schema FAQ Q1 + Q2 decode to em-dash character | yes | yes (verified via node JSON.parse + .includes) |
+| Schema FAQ Q3 has no em-dash (none in source spec) | confirmed | confirmed |
+
+#### Pass/fail: **PASS**
+
+- Commit: `c0d7595` &mdash; feat(batch-5.5): add /about/health-conscious-service-program/ Level 3 page
+- Diff: 1 file created, 766 insertions(+)
+
+#### Tasks 7-9 completion note
+This commit completes the three About sub-page builds enumerated in the Task 4 sitemap-refresh remaining-pending list:
+- Task 7 (commit `d506579`): `/about/mission/` &mdash; was previously a 1,252-line scaffolded draft; rebuilt to spec
+- Task 8 (commit `2ad0291`): `/about/guarantee/` &mdash; new clean build
+- Task 9 (commit `c0d7595`): `/about/health-conscious-service-program/` &mdash; new clean build
+
+All three pages are now live on disk. The "broken `/about/*` href in Main Pages / About &amp; Company sections of sitemap" issue from Task 4 should be revisited &mdash; those coming-soon entries can now be activated to live hrefs in a follow-up sitemap touch-up.
+
 
