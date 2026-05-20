@@ -828,3 +828,62 @@ The earwig page's Springtail chip is a special case: the standalone springtail U
 #### Open TODOs not addressed by this pass
 - /about/health-conscious-service-program/ chips on cockroach, rodent, termite, spider, bed bug remain live but point to an unbuilt destination &mdash; those are not "pending" chips, they are normal links to a TBD page; not in scope of this retrofit
 - Sitemap and any cross-cluster references that may still mention /springtail-exterminator-las-vegas/ as a standalone URL &mdash; not audited in this pass; springtail consolidation cleanup is a separate sitemap-update task
+
+---
+
+### 2026-05-19 &mdash; Sitemap update: Batch 3 reflections + springtail consolidation
+
+- Commit: b62a9df
+- File: sitemap/index.html
+- Type: HTML sitemap at /sitemap/ (the project does not have an XML sitemap.xml &mdash; this is the comprehensive on-site navigation map)
+
+#### Pest Species Pages section (main grid, column 1)
+**Before:** 9 entries, 8 of them marked `coming-soon` (only Ant was live). Wasp and Bee bundled together as one entry pointing only to wasp page. No entries for Batch 3 nuisance pests.
+
+**After:** 15 entries, all live, ordered by regional importance:
+1. Scorpion Control (moved to top &mdash; most important regional pest)
+2. Ant Control
+3. Cockroach Control
+4. Rodent Control
+5. Termite Control
+6. Spider Control
+7. Bed Bug Control
+8. Bee Removal (split from wasp bundle, dedicated page)
+9. Wasp Removal (split from bee bundle)
+10. Hornet Removal (new)
+11. Bird & Pigeon Removal
+12. Earwig Control (new)
+13. Miller Moth Control (new)
+14. Crane Fly Control (new)
+15. False Chinch Bug & Springtail Control (new, single entry for consolidated page)
+
+The standalone /springtail-exterminator-las-vegas/ URL is deliberately omitted &mdash; the springtail content lives on the false-chinch-bug page per the consolidation decision made earlier in this session.
+
+#### Footer "Pest Control Services" column
+**Before:** 8 entries with single "Wasp & Bee Removal" bundle.
+**After:** 11 entries &mdash; split Wasp/Bee into separate entries, added Hornet Removal and Bird & Pigeon Removal. Top 7 species kept in the same order; the four stinging/flying-pest entries added in the same priority block.
+
+#### Pre-existing inconsistency fixed
+The Tier 1 Service Areas section had `/pest-control-las-vegas/` (the residential hub, which is built) still marked `coming-soon`. Fixed in this pass. Other Tier 1/2/neighborhood entries correctly remain `coming-soon` &mdash; verified via `if [ -d ... ]` checks that none of them exist on disk yet.
+
+#### Dash normalization
+The sitemap was built before the Batch 3 "zero raw em-dashes" quality standard was applied. This pass also normalized:
+- 6 raw em-dashes (`&mdash;`) in title tag, OG meta, JSON-LD `name`, top bar text, header aria-label
+- 1 raw en-dash (`&ndash;`) in hours line ("Mon&ndash;Fri 8am&ndash;4pm &middot; Sat 8am&ndash;2pm")
+- 1 raw middle-dot (·) normalized to `&middot;` in the same hours line for consistency
+
+Result: sitemap is now at parity with the Batch 3 quality standard (zero raw em-dashes / en-dashes).
+
+#### Verification
+- `grep "—"` on sitemap returns 0
+- `grep "–"` on sitemap returns 0
+- All 15 unique species page hrefs present in the sitemap (verified via `grep -oE 'href="/[a-z-]+(-exterminator|-removal)-las-vegas/"' | sort -u`)
+- Zero references to `/springtail-exterminator-las-vegas/` anywhere in the file
+- One reference to `/false-chinch-bug-exterminator-las-vegas/` (the combined page)
+- Remaining 16 `coming-soon` items are all service-area pages confirmed missing on disk (Tier 1 areas except Las Vegas, all Tier 2 areas, neighborhood pages)
+
+#### Out of scope for this pass (still open)
+- Footer "Service Areas" column lists Henderson, North Las Vegas, Boulder City, Spring Valley, Paradise, Enterprise without coming-soon styling &mdash; clicking these will 404. Pre-existing issue; should be addressed when those geo pages are built or when the footer's service-area list is reviewed for accuracy.
+- "Commercial Services" section lists 7 sub-pages (offices, retail, hotels, hoa, property-managers, landlord-pest-control-responsibilities, pest-impact-on-business) &mdash; not verified in this pass; out of Batch 3 scope.
+- `/pest-control-las-vegas/plans-and-pricing/`, `/eco-friendly/`, `/apartments/` listed in the "Pest Control Services" section without coming-soon &mdash; not verified.
+- An XML sitemap.xml at the project root would also be useful for search engine submission; the project currently relies on the HTML sitemap only.
