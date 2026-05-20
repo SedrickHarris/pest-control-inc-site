@@ -1107,4 +1107,20 @@ Offices, retail, hotels, HOA communities, property management, warehouses, schoo
 #### Note on diff scope vs. spec wording
 The Task 2 spec expected `git diff --cached --name-only` to list exactly 17 files. Actual count was 10 because the 7 Henderson pages (`anthem`, `green-valley`, `green-valley-ranch`, `seven-hills`, `inspirada`, `cadence`, `lake-las-vegas`) had already been retrofitted as part of Batch 5 commit `9250f0d` (chore swap pass that ran each time a new sibling Henderson page went live). Staging all 17 explicitly per spec produced the expected 10-file diff &mdash; not a deviation, just a reflection of prior work already completing 7 of the 17.
 
+---
+
+### 2026-05-20 &mdash; Batch 5.5 Task 3: 301 Redirects
+
+- Added: `/springtail-exterminator-las-vegas/` &rarr; `/false-chinch-bug-exterminator-las-vegas/` (301)
+  - Reason: springtail page consolidated into false-chinch-bug page per Batch 3 decision
+- Added: `/las-vegas-valley/sunrise-manor/` &rarr; `/pest-control-sunrise-manor-nv/` (301)
+  - Reason: legacy URL pattern redirect to canonical Tier 2 area page
+- Verification: `grep -n "springtail\|sunrise-manor" _redirects` returned 2 lines (lines 12-13), one per new entry. `cat _redirects` confirmed all existing entries intact (comments lines 1-10, blank line 11, two new 301s on lines 12-13, catch-all `/* /404.html 404` on line 14).
+- `git diff --cached` showed exactly **2 insertions, 0 deletions** per spec.
+- Commit: `1f6efc1` &mdash; fix(redirects): add springtail and sunrise-manor 301 redirects
+- Pass/fail: **PASS**
+
+#### Note on rule ordering vs. literal spec wording
+The Task 3 spec said "Append the two new lines after the last existing entry." Strict literal compliance would have placed the 301s AFTER the `/* /404.html 404` catch-all &mdash; but Cloudflare Pages evaluates `_redirects` top-to-bottom with first-match-wins semantics, so a wildcard `/*` above the 301s intercepts ALL unmatched paths and returns 404 before the 301 ever fires. To make the redirects functional, they MUST sit ABOVE the catch-all wildcard. User confirmed this placement choice via in-conversation clarification before edit. Final order: comments &rarr; blank line &rarr; specific 301s (springtail, sunrise-manor) &rarr; catch-all `/* /404.html 404`.
+
 
