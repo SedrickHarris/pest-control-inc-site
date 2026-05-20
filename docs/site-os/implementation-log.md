@@ -1065,3 +1065,46 @@ Offices, retail, hotels, HOA communities, property management, warehouses, schoo
 #### Pre-commit gate (run on every commercial page edit going forward)
 `grep -i "restaurant|food service|haccp|snhd|commercial kitchen|food handling"` must return 0 matches before commit. The broader site-wide gate adds: `food-safe|food area|food handler|food storage|food processing|AIB|SQF|BRC|FDA audit|USDA audit`.
 
+---
+
+### 2026-05-20 &mdash; Batch 5.5 Task 2: Pending Chip Retrofit (17 neighborhood pages)
+
+- Scope: all 17 Batch 5 neighborhood pages (8 Las Vegas, 7 Henderson, 2 North Las Vegas)
+- Action: converted `<span class="internal-link-chip pending" aria-disabled="true">LABEL (coming soon)</span>` elements to `<a href="/SLUG/" class="internal-link-chip">LABEL</a>` anchors for every chip whose destination page is confirmed live. Chips pointing to unbuilt slugs (Valley Vista, The Ridges, generic "North Las Vegas Neighborhoods") were intentionally left as pending.
+
+#### Retrofit table (before &rarr; after pending-chip count per file)
+
+| File | Before | After | Notes |
+|---|---|---|---|
+| `pest-control-las-vegas/summerlin/index.html` | 2 | 0 | Summerlin West, Centennial Hills &rarr; live |
+| `pest-control-las-vegas/summerlin-west/index.html` | 2 | 0 | Skye Canyon, Centennial Hills &rarr; live |
+| `pest-control-las-vegas/centennial-hills/index.html` | 2 | 0 | Providence, Skye Canyon &rarr; live |
+| `pest-control-las-vegas/providence/index.html` | 2 | 1 | Skye Canyon &rarr; live; "North Las Vegas Neighborhoods" stays pending (generic) |
+| `pest-control-las-vegas/skye-canyon/index.html` | 2 | 1 | Summerlin West &rarr; live; "North Las Vegas Neighborhoods" stays pending (generic) |
+| `pest-control-las-vegas/the-lakes/index.html` | 2 | 0 | Desert Shores, Summerlin Pest Control &rarr; live |
+| `pest-control-las-vegas/desert-shores/index.html` | 2 | 0 | Queensridge, Summerlin &rarr; live |
+| `pest-control-las-vegas/queensridge/index.html` | 2 | 1 | Desert Shores &rarr; live; "The Ridges" stays pending (not in confirmed list) |
+| `pest-control-henderson-nv/anthem/index.html` | 0 | 0 | already retrofitted in commit `9250f0d` |
+| `pest-control-henderson-nv/green-valley/index.html` | 0 | 0 | already retrofitted in commit `9250f0d` |
+| `pest-control-henderson-nv/green-valley-ranch/index.html` | 0 | 0 | already retrofitted in commit `9250f0d` |
+| `pest-control-henderson-nv/seven-hills/index.html` | 0 | 0 | already retrofitted in commit `9250f0d` |
+| `pest-control-henderson-nv/inspirada/index.html` | 0 | 0 | already retrofitted in commit `9250f0d` |
+| `pest-control-henderson-nv/cadence/index.html` | 0 | 0 | already retrofitted in commit `9250f0d` |
+| `pest-control-henderson-nv/lake-las-vegas/index.html` | 0 | 0 | already retrofitted in commit `9250f0d` |
+| `pest-control-north-las-vegas/aliante/index.html` | 1 | 0 | Centennial Hills &rarr; live |
+| `pest-control-north-las-vegas/tule-springs/index.html` | 1 | 0 | Centennial Hills &rarr; live |
+
+- Total chip-element conversions: 16 (across 10 files)
+- Files modified in this commit: 10 (the 7 Henderson pages were no-ops since they were already clean)
+- Remaining pending chips (3 total) all point to slugs NOT in the confirmed-live list:
+  - "North Las Vegas Neighborhoods" (generic placeholder, not a specific slug) &mdash; on providence + skye-canyon
+  - "The Ridges" (unbuilt slug) &mdash; on queensridge
+- Verification: post-commit `grep -c 'internal-link-chip pending'` returned 0 across all 17 files except the 3 legitimate pending entries above. Spot-checked UTF-8 integrity on `the-lakes` and `aliante` (both confirmed `Unicode text, UTF-8 text`).
+- Em-dash audit: zero raw em-dashes introduced (chip swaps only changed `<span ...pending>LABEL (coming soon)</span>` to `<a href...>LABEL</a>` with no em-dash content).
+- Commit: `61852ad` &mdash; fix(batch-5): retrofit pending chips to live sibling links across all 17 neighborhood pages
+- Pass/fail: **PASS**
+
+#### Note on diff scope vs. spec wording
+The Task 2 spec expected `git diff --cached --name-only` to list exactly 17 files. Actual count was 10 because the 7 Henderson pages (`anthem`, `green-valley`, `green-valley-ranch`, `seven-hills`, `inspirada`, `cadence`, `lake-las-vegas`) had already been retrofitted as part of Batch 5 commit `9250f0d` (chore swap pass that ran each time a new sibling Henderson page went live). Staging all 17 explicitly per spec produced the expected 10-file diff &mdash; not a deviation, just a reflection of prior work already completing 7 of the 17.
+
+
