@@ -293,6 +293,9 @@ Build the same priority services across Tier 2 locations before expanding to eve
 
 These should be built before the rest of Tier 3 because they have high homeowner concentration and strong community identity.
 
+> Note 2026-05-22: All areas in Phase 10 are confirmed on the client's 55-area priority list.
+> Pages marked LIVE are confirmed built and accessible. Remaining pages build next.
+
 ### Summerlin / Northwest Priority
 
 | Priority | Page | URL Slug |
@@ -322,6 +325,27 @@ These should be built before the rest of Tier 3 because they have high homeowner
 | 77 | Pest Control Lake Las Vegas | `/pest-control-henderson-nv/lake-las-vegas/` |
 | 78 | Pest Control MacDonald Ranch | `/pest-control-henderson-nv/macdonald-ranch/` |
 | 79 | Pest Control MacDonald Highlands | `/pest-control-henderson-nv/macdonald-highlands/` |
+
+## Phase 10.5: Client-Confirmed High-Priority Neighborhood Hubs
+
+> Added 2026-05-22. Business owner supplied a confirmed 55-area target list.
+> These areas were previously in Phase 16 (Remaining Tier 3) but are now
+> elevated because the client has explicitly confirmed them as priority targets.
+> Build these before Phase 12 (Remaining Pest Pillars) when possible.
+
+### Las Vegas — Southwest & West Priority (client-confirmed)
+
+| Page | URL Slug | Notes |
+|---|---|---|
+| Pest Control Southern Highlands | `/pest-control-las-vegas/southern-highlands/` | client-confirmed priority |
+| Pest Control Mountain's Edge | `/pest-control-las-vegas/mountains-edge/` | client-confirmed priority |
+| Pest Control Rhodes Ranch | `/pest-control-las-vegas/rhodes-ranch/` | client-confirmed priority |
+| Pest Control Spanish Trails | `/pest-control-las-vegas/spanish-trails/` | client-confirmed priority |
+| Pest Control Peccole Ranch | `/pest-control-las-vegas/peccole-ranch/` | client-confirmed priority |
+| Pest Control Painted Desert | `/pest-control-las-vegas/painted-desert/` | client-confirmed priority |
+| Pest Control Lone Mountain | `/pest-control-las-vegas/lone-mountain/` | client-confirmed priority |
+| Pest Control Sun City Summerlin | `/pest-control-las-vegas/sun-city-summerlin/` | client-confirmed priority |
+| Pest Control Silverado Ranch | `/pest-control-henderson-nv/silverado-ranch/` | client-confirmed priority; Henderson |
 
 ## Phase 11: High-Value Tier 3 Service + Location Matrix
 
@@ -458,36 +482,92 @@ These posts should be published after the parent service, pest, and location pag
 
 ## Phase 16: Remaining Tier 3 Location Hubs
 
-Build the remaining Tier 3 location pages in batches after the high-value Tier 3 communities are complete.
+Build in sub-batches 16-A through 16-E after Phase 10.5. All areas in 16-A through 16-D
+are client-confirmed priority (2026-05-22). 16-E contains the original non-client-confirmed
+Las Vegas central/east entries carried forward from the original Phase 16.
 
-### Las Vegas / Southwest Communities
+### Phase 16-A: Las Vegas — Summerlin Villages & NW Adjacency (client-confirmed)
+
+| Page | URL Slug | Notes |
+|---|---|---|
+| Pest Control The Crossings | `/pest-control-las-vegas/the-crossings/` | Summerlin village; also listed as The Crossing |
+| Pest Control The Gardens | `/pest-control-las-vegas/the-gardens/` | Summerlin village; 410-acre community near Town Center |
+| Pest Control The Vistas | `/pest-control-las-vegas/the-vistas/` | Summerlin West village; 815 acres west of 215 |
+| Pest Control Silverstone Ranch | `/pest-control-las-vegas/silverstone-ranch/` | NW Las Vegas / Centennial Hills area; ~1,526 homes |
+| Pest Control Sonoma Hills | `/pest-control-las-vegas/sonoma-hills/` | Sonoma Hills in The Arbors, Summerlin North, ZIP 89144 |
+| Pest Control Arbors | `/pest-control-las-vegas/arbors/` | The Arbors, Summerlin North; NEW — not previously in build list |
+| Pest Control Siena | `/pest-control-las-vegas/siena/` | Summerlin adjacency; NEW — not previously in build list |
+| Pest Control Ladera | `/pest-control-las-vegas/ladera/` | Summerlin adj.; NEW — not previously in build list |
+| Pest Control Country Club Hills | `/pest-control-las-vegas/country-club-hills/` | NW Las Vegas; NEW — not previously in build list |
+| Pest Control The Hills | `/pest-control-las-vegas/the-hills/` | Las Vegas; NEW — not previously in build list; confirm sub-area |
+| Pest Control Tournament Hills | `/pest-control-las-vegas/tournament-hills/` | client-confirmed priority |
+| Pest Control Willow Bend | `/pest-control-las-vegas/willow-bend/` | client-confirmed priority |
+| Pest Control Willows | `/pest-control-las-vegas/willows/` | client-confirmed priority |
+| Pest Control Reverence | `/pest-control-las-vegas/reverence/` | client-confirmed priority |
+| Pest Control Paseos | `/pest-control-las-vegas/paseos/` | client-confirmed priority |
+| Pest Control Red Rock | `/pest-control-las-vegas/red-rock/` | client-confirmed priority |
+| Pest Control The Ridges | `/pest-control-las-vegas/the-ridges/` | previously Phase 10; client-confirmed |
+| Pest Control Canyon Gate | `/pest-control-las-vegas/canyon-gate/` | client-confirmed priority |
+
+### Phase 16-B: Henderson Neighborhoods (client-confirmed)
+
+| Page | URL Slug | Notes |
+|---|---|---|
+| Pest Control Madeira | `/pest-control-henderson-nv/madeira/` | NEW — not previously in build list |
+| Pest Control Solera | `/pest-control-henderson-nv/solera/` | NEW — not previously in build list |
+| Pest Control Trilogy | `/pest-control-henderson-nv/trilogy/` | NEW — not previously in build list; active adult community |
+| Pest Control Santa Barbara | `/pest-control-henderson-nv/santa-barbara/` | NEW — not previously in build list |
+| Pest Control Senna Townhomes | `/pest-control-north-las-vegas/senna-townhomes/` | NEW; North Las Vegas; resolved from "Senna Dev" — see note |
+| Pest Control Paradise Hills | `/pest-control-henderson-nv/paradise-hills/` | client-confirmed priority |
+| Pest Control Horizon Ridge | `/pest-control-henderson-nv/horizon-ridge/` | client-confirmed priority |
+
+> Note on Senna Townhomes: Client's list said "Senna Dev." Research (2026-05-22) identifies
+> this as Senna Townhomes, a North Las Vegas community. URL assigned to North Las Vegas
+> parent. If the client meant the Desert Senna / Desert Mesa KB Home development instead,
+> update the slug to `/pest-control-north-las-vegas/desert-mesa/` before building.
+
+### Phase 16-C: Pending One Decision — Racquet Club (consolidate vs standalone)
+
+> Racquet Club (correct spelling) is a sub-community within Desert Shores, which is
+> already LIVE at `/pest-control-las-vegas/desert-shores/`. Building a standalone page
+> risks thin content. Recommended default: add Racquet Club as an internal mention
+> and chip on the Desert Shores page — no standalone URL needed.
+> If the client wants a standalone page, use `/pest-control-las-vegas/racquet-club/`.
+> Do NOT build this page until the consolidation vs. standalone decision is confirmed.
+
+| Page | Proposed URL | Decision Required |
+|---|---|---|
+| Pest Control Racquet Club | `/pest-control-las-vegas/racquet-club/` | Confirm: standalone page OR mention on /desert-shores/ |
+
+### Phase 16-D: Confirm-Then-Build (parent city / details outstanding)
+
+> Do not build until confirmed.
+
+| Area | Proposed URL | What to Confirm |
+|---|---|---|
+| Sunset Mesa | `/pest-control-henderson-nv/sunset-mesa/` | Confirm Henderson vs SE Las Vegas parent city |
+| Stallion Mountain | `/pest-control-las-vegas/stallion-mountain/` | client-confirmed; confirm it is LV not Henderson |
+| Los Prados | `/pest-control-las-vegas/los-prados/` | client-confirmed |
+
+### Phase 16-E: Las Vegas — Central and East (existing, non-client-confirmed)
+
+> These pages were in the original Phase 16 and remain in scope at lower priority
+> than 16-A through 16-D.
 
 | Page | URL Slug |
 |---|---|
-| Pest Control Mountain's Edge | `/pest-control-las-vegas/mountains-edge/` |
-| Pest Control Southern Highlands | `/pest-control-las-vegas/southern-highlands/` |
-| Pest Control Rhodes Ranch | `/pest-control-las-vegas/rhodes-ranch/` |
-| Pest Control Nevada Trails | `/pest-control-las-vegas/nevada-trails/` |
-| Pest Control Spanish Trails | `/pest-control-las-vegas/spanish-trails/` |
-| Pest Control Canyon Gate | `/pest-control-las-vegas/canyon-gate/` |
-
-### Las Vegas / Central and East Communities
-
-| Page | URL Slug |
-|---|---|
-| Pest Control Stallion Mountain | `/pest-control-las-vegas/stallion-mountain/` |
 | Pest Control East Las Vegas | `/pest-control-las-vegas/east-las-vegas/` |
 | Pest Control Downtown Las Vegas | `/pest-control-las-vegas/downtown/` |
 | Pest Control Twin Lakes | `/pest-control-las-vegas/twin-lakes/` |
 | Pest Control Charleston Preservation | `/pest-control-las-vegas/charleston-preservation/` |
 | Pest Control West Las Vegas | `/pest-control-las-vegas/west-las-vegas/` |
 | Pest Control Rancho | `/pest-control-las-vegas/rancho/` |
-| Pest Control Los Prados | `/pest-control-las-vegas/los-prados/` |
 | Pest Control Coral Bay | `/pest-control-las-vegas/coral-bay/` |
 | Pest Control Elkhorn | `/pest-control-las-vegas/elkhorn/` |
 | Pest Control Sun City | `/pest-control-las-vegas/sun-city/` |
 | Pest Control Bracken | `/pest-control-las-vegas/bracken/` |
 | Pest Control The Pueblo | `/pest-control-las-vegas/the-pueblo/` |
+| Pest Control Nevada Trails | `/pest-control-las-vegas/nevada-trails/` |
 
 ### North Las Vegas Communities
 
