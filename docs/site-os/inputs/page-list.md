@@ -155,19 +155,19 @@ Source: Implementation log audit — all LIVE entries verified against disk/comm
 
 ---
 
-## Location Pages — PLANNED (Phase 10.5 — client-confirmed priority, build next)
+## Location Pages — LIVE (Phase 10.5 — client-confirmed priority, 9-of-9 built 2026-05-26)
 
 | Route | Type | Status |
 |-------|------|--------|
-| /pest-control-las-vegas/southern-highlands/ | Neighborhood | PLANNED |
-| /pest-control-las-vegas/mountains-edge/ | Neighborhood | PLANNED |
-| /pest-control-las-vegas/rhodes-ranch/ | Neighborhood | PLANNED |
-| /pest-control-las-vegas/spanish-trails/ | Neighborhood | PLANNED |
-| /pest-control-las-vegas/peccole-ranch/ | Neighborhood | PLANNED |
-| /pest-control-las-vegas/painted-desert/ | Neighborhood | PLANNED |
-| /pest-control-las-vegas/lone-mountain/ | Neighborhood | PLANNED |
-| /pest-control-las-vegas/sun-city-summerlin/ | Neighborhood | PLANNED |
-| /pest-control-henderson-nv/silverado-ranch/ | Neighborhood | PLANNED |
+| /pest-control-las-vegas/southern-highlands/ | Neighborhood | LIVE |
+| /pest-control-las-vegas/mountains-edge/ | Neighborhood | LIVE |
+| /pest-control-las-vegas/rhodes-ranch/ | Neighborhood | LIVE |
+| /pest-control-las-vegas/spanish-trails/ | Neighborhood | LIVE |
+| /pest-control-las-vegas/peccole-ranch/ | Neighborhood | LIVE |
+| /pest-control-las-vegas/painted-desert/ | Neighborhood | LIVE |
+| /pest-control-las-vegas/lone-mountain/ | Neighborhood | LIVE |
+| /pest-control-las-vegas/sun-city-summerlin/ | Neighborhood | LIVE |
+| /pest-control-henderson-nv/silverado-ranch/ | Neighborhood | LIVE |
 
 ## Location Pages — PLANNED (Phase 16-A — Las Vegas Summerlin villages & NW adjacency)
 

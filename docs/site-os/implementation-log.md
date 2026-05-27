@@ -1565,3 +1565,74 @@ Neither original wording implied a PCI founding year; both described neighborhoo
 Initial verification grep for `"@type":"Question"` (no space after colon) returned 0, suggesting a schema/visible mismatch. The schema actually uses `"@type": "Question"` (with space) &mdash; verified by node JSON.parse spot-check showing FAQPage mainEntity contains exactly 3 valid Question entries. Both whitespace conventions are valid JSON; the takeaway is to use `"@type": *"Question"` (with optional whitespace) when grepping schema across builds whose formatting may vary.
 
 
+
+---
+
+## Batch 10.5 &mdash; Client-Priority Neighborhood Pages (2026-05-26)
+
+### Scope
+9 Level-3 Core SEO/AEO neighborhood pages built per the client-confirmed Phase 10.5 priority list.
+
+### Pages built (9 of 9)
+| # | Route | Commit | Lines |
+|---|---|---|---|
+| 1 | /pest-control-las-vegas/southern-highlands/ | `fff1df4` | 941 |
+| 2 | /pest-control-las-vegas/mountains-edge/ | `adb883d` | 1019 |
+| 3 | /pest-control-las-vegas/rhodes-ranch/ | `a7ed6f9` | 946 |
+| 4 | /pest-control-las-vegas/spanish-trails/ | `3c62e5d` | 945 |
+| 5 | /pest-control-las-vegas/peccole-ranch/ | `64b6b5b` | 947 |
+| 6 | /pest-control-las-vegas/painted-desert/ | `dcb3e2d` | 947 |
+| 7 | /pest-control-las-vegas/lone-mountain/ | `91d8f03` | 948 |
+| 8 | /pest-control-las-vegas/sun-city-summerlin/ | `d2e1381` | 950 |
+| 9 | /pest-control-henderson-nv/silverado-ranch/ | `e3ac021` | 946 |
+
+### Common page structure
+- 10 sections: Hero / Trust Bar / Neighborhood Intro / Local Pest Threats / Services / Why PCI / 4-Step Process / Internal Links / FAQ / Final CTA
+- 3 JSON-LD blocks per page (LocalBusiness / BreadcrumbList / FAQPage) &mdash; pages 2&ndash;9 use 3 separate `<script>` tags; page 1 (southern-highlands) uses a single `<script>` with `@graph` (pre-pattern artifact, Schema.org-valid either way)
+- 7 FAQs per page with visible HTML matching FAQPage schema word-for-word
+- LocalBusiness `reviewCount`: `"30"` (Google only) on every page
+- 3-position BreadcrumbList: Home &rarr; Las Vegas/Henderson Pest Control &rarr; Neighborhood
+- Henderson exception: Page 9 (silverado-ranch) uses Henderson as position 2 and `Henderson, NV` in the H1
+
+### Em-dash encoding (per memory `feedback_jsonld_unicode_escape.md`)
+- Visible HTML body em-dashes: `&mdash;` entity
+- JSON-LD strings: literal `—` 6-byte escape sequences via `__EMDASH__` placeholder + Node post-fix workaround
+- Sitewide post-build verification: 0 raw em-dash bytes (U+2014), 0 `&#8212;` entities across all 9 pages
+
+### Restaurant/food-service ban (per memory `project_restaurant_food_ban.md`)
+- Silverado Ranch spec body referenced "restaurants" in Section 03 intro and FAQ Q3
+- Standing owner ban overrides ad-hoc spec wording
+- All 3 references replaced with "retail and service businesses with higher-moisture commercial activity"
+- FAQ visible-HTML/schema parity preserved through paired edits
+- Final restaurant/SNHD/HACCP/cafe/diner/commercial-kitchen/food-service count across all 9 pages: 0
+
+### Sibling-verbatim CSS deviation
+- Pages 2&ndash;9 removed two unused CSS selectors (`.nav a[aria-current="page"]` and `.footer-col a[aria-current="page"]`) to satisfy Phase D gate "aria-current=\"page\" count = 0"
+- Page 1 (southern-highlands) retains those selectors (pre-pattern)
+- Documented intentional difference: gate strictness > literal CSS verbatim
+
+### Special-audience tuning
+- Page 8 (sun-city-summerlin) is a 55+ active adult community. Lead messaging is the Health Conscious Service Program, pet-safe, low-impact, low-odor IPM. 21+ HCSP mentions, 21+ pet-safe mentions, 17 low-impact mentions on the page. Zero alarmist words (dangerous/deadly/infested/nightmare/swarm/terrifying/horror) per spec.
+
+### No-fake-data compliance
+- No founding year, employee count, job counts, customer names, reviews, or product names invented on any of the 9 pages
+- No 4-digit years on any page (spec references to "late 1980s and 1990s" in peccole-ranch were rephrased to "closing decades of the twentieth century" / "decades ago")
+- No "established" word in any of the 9 pages
+- No fabricated Tier 2 area hubs (Spanish Trails, Peccole Ranch, Painted Desert, Lone Mountain, Sun City Summerlin, Silverado Ranch all link only to their confirmed parent hubs)
+
+### Phase D gate results
+- Pages 2&ndash;9: all gates returned PASS (gate counts varied 30&ndash;35 per page; 100% PASS)
+- Page 1 (southern-highlands): built before Phase D table was per-page-codified &mdash; structurally identical to template, gates conceptually pass except 3 known sibling-pattern deltas (1 ld+json script, priceRange `$$`, 2 unused CSS selectors)
+
+### Post-batch activation (this entry's commit session)
+- sitemap/index.html &mdash; deactivated coming-soon class on Southern Highlands + Mountain&#39;s Edge; added 6 new Las Vegas neighborhood entries; added Silverado Ranch under Henderson Neighborhoods
+- service-areas/index.html &mdash; added 8 new Las Vegas neighborhood chips; added Silverado Ranch chip under Henderson
+- pest-control-las-vegas/index.html &mdash; added 6 new neighborhood area-chips (Southern Highlands and Mountain&#39;s Edge were already chipped) plus Silverado Ranch
+- pest-control-henderson-nv/index.html &mdash; added Silverado Ranch internal-link-chip
+- docs/site-os/inputs/page-list.md &mdash; flipped 9 PLANNED entries to LIVE under Phase 10.5
+
+### Open TODOs carried forward
+- 9 OG image assets pending: `/assets/images/og-{slug}-pest-control.jpg` for each page
+- Form endpoint integration sitewide (`TODO-LAUNCH-BLOCKER` marker on every page hero form)
+
+### Pass/fail: **PASS (9 of 9)**
