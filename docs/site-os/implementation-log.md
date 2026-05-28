@@ -1798,3 +1798,65 @@ Spec defaulted to `/assets/{icons,logo,images}/` but the owner-provided asset bu
 - Contact webhook (`8ns2c…`): untouched (still unwired site-wide)
 - Site-wide verification: old URL count 0, new URL count 54, contact URL count 0
 - Commit: `061ab79` fix(forms): update estimate webhook URL to new GHL trigger endpoint
+
+---
+
+### 2026-05-28 &mdash; Form Cleanup: Three Deferred Items Resolved
+
+All three follow-up items from the original form-wiring entry are now closed.
+
+#### Task 1 — `/contact/` contact form built and wired
+- Added `.contact-form-card` block inside the existing right-column `<aside>`, sitting below the contact-info card. Existing phone/email/address info preserved unchanged.
+- Form fields: `first_name`, `last_name` (split row), `phone`, `email`, `message` (textarea). All required except message.
+- Added inline CSS for `.contact-form-card`, `.contact-form-title`, `.form-group`, `.form-group input/textarea`, `.form-row`, `.form-submit`, `.sr-only` (none existed in the file previously).
+- Wired to CONTACT webhook (`8ns2c…`); handler appended to the existing inline `<script>`.
+- Node test: `CONTACT: 200 PASS`.
+
+#### Task 2 — 10 deferred forms wired to ESTIMATE webhook
+All 10 audited files were Class A (had a form + submit + phone, no webhook):
+
+| File | Forms | Treatment |
+|---|---|---|
+| `index.html` | 1 | Add `id="estimate-form"`; insert email; drop action/method; append handler |
+| `pest-control-las-vegas/` | 1 | Split combined `name="name"`; insert email; drop action; add id; append handler |
+| `ant-exterminator-las-vegas/` | 2 (`hero-form`, `final-form`) | Split both forms; insert email after each phone; drop action; append handler |
+| `emergency-pest-control-las-vegas/` | 1 (`emergency-form`) | Split; insert email; drop action; append handler |
+| `pest-control-las-vegas/eco-friendly/` | 4 (`hero-form`, `mid-form`, `safety-form`, `final-form`) | Split all four; insert email after each phone; drop action; append handler |
+| `pest-control-las-vegas/apartments/` | 5 (`hero-form`, `mid-form`, `landlord-form`, `apt-landlord-form`, `final-form`) | Same treatment |
+| `commercial-pest-control-las-vegas/` (hub) | 4 (no ids) | Add `id="estimate-form"` to the first form; split + insert email across all four; drop action; append handler |
+| `commercial-pest-control-las-vegas/pest-impact-on-business/` | 2 (`hero-form`, `cta-form`) | Same treatment |
+| `commercial-pest-control-las-vegas/landlord-pest-control-responsibilities/` | 2 (`hero-form`, `final-form`) | Same treatment |
+| `about/` | 1 | Add id; split; insert email; drop action; append handler |
+
+- Handler is identical across all 10 files; the inline `<script>` calls `wireForm()` for every form id seen in the audit (`estimate-form`, `cta-form`, `hero-form`, `final-form`, `mid-form`, `safety-form`, `emergency-form`, `emerg-form`, `landlord-form`, `apt-landlord-form`). Each call is idempotent &mdash; silently no-ops if the id is not on the page.
+- Service-field normalization chain extended to cover non-canonical select names found on these pages: `service || pest || issue || service-type || pm-service-type || hoa-service-type || hotel-service-type || industry || size || property_type || ant_type || type || urgency`.
+- No Class B (already wired) and no Class C (no form) results &mdash; the audit was clean.
+
+#### Task 3 — Group B field shape updated (6 commercial/plans pages)
+For all 6 outlier files (`property-managers`, `hoa`, `hotels`, `offices`, `retail`, `plans-and-pricing`):
+- Combined `name="name"` input replaced with split `first_name` + `last_name` row using spec-specified id prefixes: `pm` / `hoa` / `htl` / `ofc` / `ret` / `pp`
+- `name="address"` input removed entirely
+- `name="notes"` textarea renamed to `name="message"` (id, name attr, label text)
+- Existing handler already normalizes `message || notes` so no handler edits needed
+
+#### Site-wide verification
+- CONTACT webhook (`8ns2c…`) occurrences across `*.html`: 1 file (`contact/` only) &check;
+- ESTIMATE webhook (`vVSN…`) occurrences across `*.html`: 64 files (54 existing + 10 newly wired) &check;
+- Group B: `name="name"` count 0, `name="address"` count 0 across all 6 files &check;
+- Integrity audit across all 17 modified files: JSON-LD / `<meta>` / `<link>` / external `<script src=>` counts all unchanged &check;
+
+#### Test submissions
+- Test A (CONTACT webhook): `Status: 200 PASS` &check; &mdash; test contact `Test Contact / 7025550197`
+- Test B (ESTIMATE webhook with split-name commercial payload): `Status: 200 PASS` &check; &mdash; test contact `Test Commercial / 7025550196`
+- Owner: verify field mapping in GHL and delete both test contacts after confirming
+
+#### Commit
+- `3785a35` feat(forms): contact form + CONTACT webhook; Group B split name; wire deferred forms
+
+#### Form deferred items from 2026-05-28: **CLEARED**
+
+#### Open TODOs (carried forward)
+- 9 OG image assets pending for the Phase 10.5 neighborhood pages
+- `og-default.jpg` site-wide fallback OG image
+- `android-chrome-512x512.png` (canonical-name PWA icon &mdash; current asset is `favicon-512.png`)
+- Header markup repair for the 26 Phase 10.5 neighborhood pages (missing `<header>` element)
