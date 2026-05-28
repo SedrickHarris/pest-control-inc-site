@@ -728,19 +728,16 @@ Financial Loss, Reputation Damage<br>
     <aside class="hero-card" aria-label="Free commercial pest assessment form">
       <h2 class="hero-card-title">Free Commercial Pest Assessment</h2>
       <p class="hero-card-sub"><strong>Property inspections are unannounced</strong> — protect your business before the next one. We respond in 30 minutes.</p>
-      <form id="hero-form" action="/free-estimate/" method="post" novalidate data-form="hero">
+      <form id="hero-form" novalidate data-form="hero">
         <div class="form-group">
           <label for="h-business" class="sr-only">Business Name</label>
           <input id="h-business" type="text" name="business" placeholder="Business Name *" required autocomplete="organization">
         </div>
-        <div class="form-group">
-          <label for="h-name" class="sr-only">Your Name / Role</label>
-          <input id="h-name" type="text" name="name" placeholder="Your Name / Role *" required autocomplete="name">
-        </div>
+        <div class="form-row"><div class="form-group"><label for="h-fn" class="sr-only">First Name</label><input id="h-fn" type="text" name="first_name" placeholder="First Name *" required autocomplete="given-name"></div><div class="form-group"><label for="h-ln" class="sr-only">Last Name</label><input id="h-ln" type="text" name="last_name" placeholder="Last Name *" required autocomplete="family-name"></div></div>
         <div class="form-group">
           <label for="h-phone" class="sr-only">Phone Number</label>
           <input id="h-phone" type="tel" name="phone" placeholder="Phone Number *" required autocomplete="tel" inputmode="tel">
-        </div>
+        </div><div class="form-group"><label for="h-em" class="sr-only">Email Address</label><input type="email" id="h-em" name="email" placeholder="Email Address *" required autocomplete="email"></div>
         <div class="form-group">
           <label for="h-type" class="sr-only">Business Type</label>
           <select id="h-type" name="business_type">
@@ -1489,19 +1486,16 @@ Financial Loss, Reputation Damage<br>
       <span class="offer-badge">First Service Free*</span>
       <h2 class="final-form-title">Get Your Free Business Assessment</h2>
       <p class="final-form-sub">Service documentation · 30-min response · No obligation</p>
-      <form id="cta-form" action="/free-estimate/" method="post" novalidate data-form="cta">
+      <form id="cta-form" novalidate data-form="cta">
         <div class="form-group">
           <label for="c-business" class="sr-only">Business Name</label>
           <input id="c-business" type="text" name="business" placeholder="Business Name *" required autocomplete="organization">
         </div>
-        <div class="form-group">
-          <label for="c-name" class="sr-only">Your Name / Role</label>
-          <input id="c-name" type="text" name="name" placeholder="Your Name / Role *" required autocomplete="name">
-        </div>
+        <div class="form-row"><div class="form-group"><label for="c-fn" class="sr-only">First Name</label><input id="c-fn" type="text" name="first_name" placeholder="First Name *" required autocomplete="given-name"></div><div class="form-group"><label for="c-ln" class="sr-only">Last Name</label><input id="c-ln" type="text" name="last_name" placeholder="Last Name *" required autocomplete="family-name"></div></div>
         <div class="form-group">
           <label for="c-phone" class="sr-only">Phone Number</label>
           <input id="c-phone" type="tel" name="phone" placeholder="Phone Number *" required autocomplete="tel" inputmode="tel">
-        </div>
+        </div><div class="form-group"><label for="c-em" class="sr-only">Email Address</label><input type="email" id="c-em" name="email" placeholder="Email Address *" required autocomplete="email"></div>
         <div class="form-group">
           <label for="c-type" class="sr-only">Business Type</label>
           <select id="c-type" name="business_type">
@@ -1631,6 +1625,86 @@ Financial Loss, Reputation Damage<br>
 <script>
   var yrEl = document.getElementById('yr');
   if (yrEl) yrEl.textContent = new Date().getFullYear();
+// ── GHL Free Estimate Handler ─────────────────────────────
+(function () {
+  var GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/XmTsrsLJDMVSiADHUA3q/webhook-trigger/vVSN5hk5lBEUPOtOakzy';
+
+  function getValue(form, names) {
+    for (var i = 0; i < names.length; i++) {
+      var n = names[i];
+      var radios = form.querySelectorAll('[name="' + n + '"][type="radio"]');
+      if (radios.length) {
+        for (var j = 0; j < radios.length; j++) {
+          if (radios[j].checked) return radios[j].value;
+        }
+        continue;
+      }
+      var el = form.querySelector('[name="' + n + '"]');
+      if (el && el.value) return el.value;
+    }
+    return '';
+  }
+
+  function wireForm(id) {
+    var form = document.getElementById(id);
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = form.querySelector('[type="submit"]');
+      var orig = btn.textContent;
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+      var data = {
+        first_name: getValue(form, ['first_name']),
+        last_name:  getValue(form, ['last_name']),
+        phone:      getValue(form, ['phone']),
+        email:      getValue(form, ['email']),
+        service:    getValue(form, ['service', 'pest', 'issue',
+                                    'service-type', 'pm-service-type',
+                                    'hoa-service-type', 'hotel-service-type',
+                                    'industry', 'size',
+                                    'property_type', 'ant_type', 'type', 'urgency']),
+        message:    getValue(form, ['message', 'notes']),
+        source_url:  window.location.href,
+        source_page: document.title
+      };
+      fetch(GHL_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+        .then(function (res) {
+          if (res.ok) { window.location.href = '/thank-you/'; }
+          else { throw new Error('HTTP ' + res.status); }
+        })
+        .catch(function () {
+          btn.textContent = orig;
+          btn.disabled = false;
+          var err = form.querySelector('.form-error');
+          if (!err) {
+            err = document.createElement('p');
+            err.className = 'form-error';
+            err.style.cssText = 'color:#c0392b;font-size:13px;margin-top:8px;text-align:center;';
+            form.appendChild(err);
+          }
+          err.textContent = 'Something went wrong. Please call (702) 228-4394 or try again.';
+        });
+    });
+  }
+
+  wireForm('estimate-form');
+  wireForm('cta-form');
+  wireForm('hero-form');
+  wireForm('final-form');
+  wireForm('mid-form');
+  wireForm('safety-form');
+  wireForm('emergency-form');
+  wireForm('emerg-form');
+  wireForm('landlord-form');
+  wireForm('apt-landlord-form');
+})();
+// ── End GHL Free Estimate Handler ─────────────────────────
+
 </script>
 
 </main>

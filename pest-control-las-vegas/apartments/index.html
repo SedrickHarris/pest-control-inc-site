@@ -909,15 +909,12 @@ section{padding:78px 0}
     <aside class="hero-card" aria-label="Free apartment pest control estimate quick form">
       <h2 class="hero-card-title">Get Your Free Apartment Pest Estimate</h2>
       <p class="hero-card-sub">For tenants, landlords &amp; property managers. <strong>30 minutes or less.</strong></p>
-      <form id="hero-form" action="/free-estimate/" method="post" novalidate>
-        <div class="form-group">
-          <label for="hero-name" class="sr-only">Your Name</label>
-          <input id="hero-name" type="text" name="name" placeholder="Your Name *" required autocomplete="name">
-        </div>
+      <form id="hero-form" novalidate>
+        <div class="form-row"><div class="form-group"><label for="hero-fn" class="sr-only">First Name</label><input id="hero-fn" type="text" name="first_name" placeholder="First Name *" required autocomplete="given-name"></div><div class="form-group"><label for="hero-ln" class="sr-only">Last Name</label><input id="hero-ln" type="text" name="last_name" placeholder="Last Name *" required autocomplete="family-name"></div></div>
         <div class="form-group">
           <label for="hero-phone" class="sr-only">Phone Number</label>
           <input id="hero-phone" type="tel" name="phone" placeholder="Phone Number *" required autocomplete="tel" inputmode="tel">
-        </div>
+        </div><div class="form-group"><label for="hero-em" class="sr-only">Email Address</label><input type="email" id="hero-em" name="email" placeholder="Email Address *" required autocomplete="email"></div>
         <div class="form-group">
           <label for="hero-persona" class="sr-only">I am a...</label>
           <select id="hero-persona" name="persona">
@@ -1357,9 +1354,9 @@ section{padding:78px 0}
       <span class="section-eyebrow" style="justify-content:center">Landlord Pest Control Estimate · Per-Unit Pricing · No Hidden Fees</span>
       <h2 class="section-title" style="text-align:center;font-size:clamp(26px,3vw,38px);">Get Your Free Landlord Pest Control Estimate</h2>
       <div class="lead-form-test"><span class="stars">★★★★★</span> "Clear quote the next day. PCI handles all 6 of my rental properties — consistent, affordable, properly documented." — Las Vegas landlord</div>
-      <form id="landlord-form" action="/free-estimate/" method="post" novalidate>
-        <div class="form-group"><label for="ll-name" class="sr-only">Contact Name</label><input id="ll-name" type="text" name="name" placeholder="Contact Name *" required autocomplete="name"></div>
-        <div class="form-group"><label for="ll-phone" class="sr-only">Phone Number</label><input id="ll-phone" type="tel" name="phone" placeholder="Phone Number *" required autocomplete="tel" inputmode="tel"></div>
+      <form id="landlord-form" novalidate>
+        <div class="form-row"><div class="form-group"><label for="ll-fn" class="sr-only">First Name</label><input id="ll-fn" type="text" name="first_name" placeholder="First Name *" required autocomplete="given-name"></div><div class="form-group"><label for="ll-ln" class="sr-only">Last Name</label><input id="ll-ln" type="text" name="last_name" placeholder="Last Name *" required autocomplete="family-name"></div></div>
+        <div class="form-group"><label for="ll-phone" class="sr-only">Phone Number</label><input id="ll-phone" type="tel" name="phone" placeholder="Phone Number *" required autocomplete="tel" inputmode="tel"></div><div class="form-group"><label for="ll-em" class="sr-only">Email Address</label><input type="email" id="ll-em" name="email" placeholder="Email Address *" required autocomplete="email"></div>
         <div class="form-group">
           <label for="ll-property" class="sr-only">Property Type</label>
           <select id="ll-property" name="property_type">
@@ -1671,9 +1668,9 @@ section{padding:78px 0}
       <span class="section-eyebrow" style="justify-content:center">Free Apartment Pest Estimate · No Obligation · 30-Minute Callback</span>
       <h2 class="section-title" style="text-align:center;font-size:clamp(26px,3vw,38px);">Get Your Free Apartment Pest Estimate</h2>
       <div class="lead-form-test"><span class="stars">★★★★★</span> "Got a same-week inspection and a clear written quote for all 8 of my units. Switched from another company immediately." — Las Vegas landlord</div>
-      <form id="mid-form" action="/free-estimate/" method="post" novalidate>
-        <div class="form-group"><label for="mid-name" class="sr-only">Your Name</label><input id="mid-name" type="text" name="name" placeholder="Your Name *" required autocomplete="name"></div>
-        <div class="form-group"><label for="mid-phone" class="sr-only">Phone Number</label><input id="mid-phone" type="tel" name="phone" placeholder="Phone Number *" required autocomplete="tel" inputmode="tel"></div>
+      <form id="mid-form" novalidate>
+        <div class="form-row"><div class="form-group"><label for="mid-fn" class="sr-only">First Name</label><input id="mid-fn" type="text" name="first_name" placeholder="First Name *" required autocomplete="given-name"></div><div class="form-group"><label for="mid-ln" class="sr-only">Last Name</label><input id="mid-ln" type="text" name="last_name" placeholder="Last Name *" required autocomplete="family-name"></div></div>
+        <div class="form-group"><label for="mid-phone" class="sr-only">Phone Number</label><input id="mid-phone" type="tel" name="phone" placeholder="Phone Number *" required autocomplete="tel" inputmode="tel"></div><div class="form-group"><label for="mid-em" class="sr-only">Email Address</label><input type="email" id="mid-em" name="email" placeholder="Email Address *" required autocomplete="email"></div>
         <div class="form-group">
           <label for="mid-persona" class="sr-only">I am a...</label>
           <select id="mid-persona" name="persona">
@@ -2064,9 +2061,9 @@ section{padding:78px 0}
       <p class="final-cta-body">Three generations of Las Vegas family service. Licensed technicians who understand Nevada habitability law. NPMA-affiliated. Health Conscious Service Program — tenant safe, pet safe, eco-friendly. A money-back guarantee on every service. And a 30-minute callback promise during business hours. Whether you're a renter with an active cockroach problem, a landlord maintaining habitability compliance, or a property manager running a 200-unit complex — <strong>Pest Control Inc</strong> has a program for your situation. Schedule your free apartment pest estimate today. Written quote. No hidden fees. No obligation.</p>
       <div class="final-form-wrap">
         <h3>Get My Free Apartment Estimate</h3>
-        <form id="final-form" action="/free-estimate/" method="post" novalidate>
-          <div class="form-group"><label for="fin-name" class="sr-only">Your Name</label><input id="fin-name" type="text" name="name" placeholder="Your Name *" required autocomplete="name"></div>
-          <div class="form-group"><label for="fin-phone" class="sr-only">Phone Number</label><input id="fin-phone" type="tel" name="phone" placeholder="Phone Number *" required autocomplete="tel" inputmode="tel"></div>
+        <form id="final-form" novalidate>
+          <div class="form-row"><div class="form-group"><label for="fin-fn" class="sr-only">First Name</label><input id="fin-fn" type="text" name="first_name" placeholder="First Name *" required autocomplete="given-name"></div><div class="form-group"><label for="fin-ln" class="sr-only">Last Name</label><input id="fin-ln" type="text" name="last_name" placeholder="Last Name *" required autocomplete="family-name"></div></div>
+          <div class="form-group"><label for="fin-phone" class="sr-only">Phone Number</label><input id="fin-phone" type="tel" name="phone" placeholder="Phone Number *" required autocomplete="tel" inputmode="tel"></div><div class="form-group"><label for="fin-em" class="sr-only">Email Address</label><input type="email" id="fin-em" name="email" placeholder="Email Address *" required autocomplete="email"></div>
           <div class="form-group">
             <label for="fin-persona" class="sr-only">I am a...</label>
             <select id="fin-persona" name="persona">
@@ -2594,6 +2591,86 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
   ps.textContent = '@keyframes phonePulse{0%,100%{opacity:1}50%{opacity:.7}}.top-bar-phone{animation:phonePulse 3s ease-in-out infinite}';
   document.head.appendChild(ps);
 })();
+// ── GHL Free Estimate Handler ─────────────────────────────
+(function () {
+  var GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/XmTsrsLJDMVSiADHUA3q/webhook-trigger/vVSN5hk5lBEUPOtOakzy';
+
+  function getValue(form, names) {
+    for (var i = 0; i < names.length; i++) {
+      var n = names[i];
+      var radios = form.querySelectorAll('[name="' + n + '"][type="radio"]');
+      if (radios.length) {
+        for (var j = 0; j < radios.length; j++) {
+          if (radios[j].checked) return radios[j].value;
+        }
+        continue;
+      }
+      var el = form.querySelector('[name="' + n + '"]');
+      if (el && el.value) return el.value;
+    }
+    return '';
+  }
+
+  function wireForm(id) {
+    var form = document.getElementById(id);
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = form.querySelector('[type="submit"]');
+      var orig = btn.textContent;
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+      var data = {
+        first_name: getValue(form, ['first_name']),
+        last_name:  getValue(form, ['last_name']),
+        phone:      getValue(form, ['phone']),
+        email:      getValue(form, ['email']),
+        service:    getValue(form, ['service', 'pest', 'issue',
+                                    'service-type', 'pm-service-type',
+                                    'hoa-service-type', 'hotel-service-type',
+                                    'industry', 'size',
+                                    'property_type', 'ant_type', 'type', 'urgency']),
+        message:    getValue(form, ['message', 'notes']),
+        source_url:  window.location.href,
+        source_page: document.title
+      };
+      fetch(GHL_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+        .then(function (res) {
+          if (res.ok) { window.location.href = '/thank-you/'; }
+          else { throw new Error('HTTP ' + res.status); }
+        })
+        .catch(function () {
+          btn.textContent = orig;
+          btn.disabled = false;
+          var err = form.querySelector('.form-error');
+          if (!err) {
+            err = document.createElement('p');
+            err.className = 'form-error';
+            err.style.cssText = 'color:#c0392b;font-size:13px;margin-top:8px;text-align:center;';
+            form.appendChild(err);
+          }
+          err.textContent = 'Something went wrong. Please call (702) 228-4394 or try again.';
+        });
+    });
+  }
+
+  wireForm('estimate-form');
+  wireForm('cta-form');
+  wireForm('hero-form');
+  wireForm('final-form');
+  wireForm('mid-form');
+  wireForm('safety-form');
+  wireForm('emergency-form');
+  wireForm('emerg-form');
+  wireForm('landlord-form');
+  wireForm('apt-landlord-form');
+})();
+// ── End GHL Free Estimate Handler ─────────────────────────
+
 </script>
 
 <!-- ReputationHub review widget — deferred -->

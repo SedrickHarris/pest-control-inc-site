@@ -856,19 +856,16 @@ section{padding:78px 0}
     <aside class="hero-card" aria-label="Free commercial pest inspection quick form">
       <h2 class="hero-card-title">Get Your Free Commercial Pest Inspection</h2>
       <p class="hero-card-sub">No hidden fees. No obligation. We respond in <strong>30 minutes or less.</strong></p>
-      <form action="/free-estimate/" method="post" novalidate data-form="hero">
+      <form id="estimate-form" novalidate data-form="hero">
         <div class="form-group">
           <label for="hero-business" class="sr-only">Business Name</label>
           <input id="hero-business" type="text" name="business" placeholder="Business Name *" required autocomplete="organization">
         </div>
-        <div class="form-group">
-          <label for="hero-name" class="sr-only">Your Name</label>
-          <input id="hero-name" type="text" name="name" placeholder="Your Name *" required autocomplete="name">
-        </div>
+        <div class="form-row"><div class="form-group"><label for="hero-fn" class="sr-only">First Name</label><input id="hero-fn" type="text" name="first_name" placeholder="First Name *" required autocomplete="given-name"></div><div class="form-group"><label for="hero-ln" class="sr-only">Last Name</label><input id="hero-ln" type="text" name="last_name" placeholder="Last Name *" required autocomplete="family-name"></div></div>
         <div class="form-group">
           <label for="hero-phone" class="sr-only">Phone Number</label>
           <input id="hero-phone" type="tel" name="phone" placeholder="Phone Number *" required autocomplete="tel" inputmode="tel">
-        </div>
+        </div><div class="form-group"><label for="hero-em" class="sr-only">Email Address</label><input type="email" id="hero-em" name="email" placeholder="Email Address *" required autocomplete="email"></div>
         <div class="form-group">
           <label for="hero-industry" class="sr-only">Industry</label>
           <select id="hero-industry" name="industry">
@@ -1116,10 +1113,10 @@ section{padding:78px 0}
       <span class="section-eyebrow" style="justify-content:center">Get Your Free Commercial Inspection · No Obligation</span>
       <h2 class="section-title" style="text-align:center">Schedule Your Free Commercial Pest Inspection</h2>
       <div class="lead-form-test"><span class="stars">★★★★★</span> "PCI inspected our property within 24 hours and gave us a clear, fair quote. Switched from a national franchise — never going back." — Las Vegas property manager</div>
-      <form action="/free-estimate/" method="post" novalidate data-form="lead1">
+      <form novalidate data-form="lead1">
         <div class="form-group"><label for="lf1-business" class="sr-only">Business Name</label><input id="lf1-business" type="text" name="business" placeholder="Business Name *" required autocomplete="organization"></div>
-        <div class="form-group"><label for="lf1-name" class="sr-only">Your Name</label><input id="lf1-name" type="text" name="name" placeholder="Your Name *" required autocomplete="name"></div>
-        <div class="form-group"><label for="lf1-phone" class="sr-only">Phone Number</label><input id="lf1-phone" type="tel" name="phone" placeholder="Phone Number *" required autocomplete="tel" inputmode="tel"></div>
+        <div class="form-row"><div class="form-group"><label for="lf1-fn" class="sr-only">First Name</label><input id="lf1-fn" type="text" name="first_name" placeholder="First Name *" required autocomplete="given-name"></div><div class="form-group"><label for="lf1-ln" class="sr-only">Last Name</label><input id="lf1-ln" type="text" name="last_name" placeholder="Last Name *" required autocomplete="family-name"></div></div>
+        <div class="form-group"><label for="lf1-phone" class="sr-only">Phone Number</label><input id="lf1-phone" type="tel" name="phone" placeholder="Phone Number *" required autocomplete="tel" inputmode="tel"></div><div class="form-group"><label for="lf1-em" class="sr-only">Email Address</label><input type="email" id="lf1-em" name="email" placeholder="Email Address *" required autocomplete="email"></div>
         <div class="form-group">
           <label for="lf1-industry" class="sr-only">Industry</label>
           <select id="lf1-industry" name="industry">
@@ -1373,10 +1370,10 @@ section{padding:78px 0}
       <span class="section-eyebrow" style="justify-content:center">Request Custom Commercial Quote · Transparent Pricing · No Hidden Fees</span>
       <h2 class="section-title" style="text-align:center">Request Your Custom Commercial Pest Control Quote</h2>
       <div class="lead-form-test"><span class="stars">★★★★★</span> "Got our quote the next day — clear line items, no upsells. PCI quoted 18% less than our previous vendor for better service." — Las Vegas warehouse operations director</div>
-      <form action="/free-estimate/" method="post" novalidate data-form="lead2">
+      <form novalidate data-form="lead2">
         <div class="form-group"><label for="lf2-business" class="sr-only">Business Name</label><input id="lf2-business" type="text" name="business" placeholder="Business Name *" required autocomplete="organization"></div>
-        <div class="form-group"><label for="lf2-name" class="sr-only">Your Name</label><input id="lf2-name" type="text" name="name" placeholder="Your Name *" required autocomplete="name"></div>
-        <div class="form-group"><label for="lf2-phone" class="sr-only">Phone Number</label><input id="lf2-phone" type="tel" name="phone" placeholder="Phone Number *" required autocomplete="tel" inputmode="tel"></div>
+        <div class="form-row"><div class="form-group"><label for="lf2-fn" class="sr-only">First Name</label><input id="lf2-fn" type="text" name="first_name" placeholder="First Name *" required autocomplete="given-name"></div><div class="form-group"><label for="lf2-ln" class="sr-only">Last Name</label><input id="lf2-ln" type="text" name="last_name" placeholder="Last Name *" required autocomplete="family-name"></div></div>
+        <div class="form-group"><label for="lf2-phone" class="sr-only">Phone Number</label><input id="lf2-phone" type="tel" name="phone" placeholder="Phone Number *" required autocomplete="tel" inputmode="tel"></div><div class="form-group"><label for="lf2-em" class="sr-only">Email Address</label><input type="email" id="lf2-em" name="email" placeholder="Email Address *" required autocomplete="email"></div>
         <div class="form-group">
           <label for="lf2-industry" class="sr-only">Industry</label>
           <select id="lf2-industry" name="industry">
@@ -1727,10 +1724,10 @@ section{padding:78px 0}
     </div>
     <aside class="final-cta-form" aria-label="Final commercial inspection form">
       <h3>Get My Free Commercial Inspection</h3>
-      <form action="/free-estimate/" method="post" novalidate data-form="lead3">
+      <form novalidate data-form="lead3">
         <div class="form-group"><label for="lf3-business" class="sr-only">Business Name</label><input id="lf3-business" type="text" name="business" placeholder="Business Name *" required autocomplete="organization"></div>
-        <div class="form-group"><label for="lf3-name" class="sr-only">Contact Name</label><input id="lf3-name" type="text" name="name" placeholder="Contact Name *" required autocomplete="name"></div>
-        <div class="form-group"><label for="lf3-phone" class="sr-only">Phone Number</label><input id="lf3-phone" type="tel" name="phone" placeholder="Phone Number *" required autocomplete="tel" inputmode="tel"></div>
+        <div class="form-row"><div class="form-group"><label for="lf3-fn" class="sr-only">First Name</label><input id="lf3-fn" type="text" name="first_name" placeholder="First Name *" required autocomplete="given-name"></div><div class="form-group"><label for="lf3-ln" class="sr-only">Last Name</label><input id="lf3-ln" type="text" name="last_name" placeholder="Last Name *" required autocomplete="family-name"></div></div>
+        <div class="form-group"><label for="lf3-phone" class="sr-only">Phone Number</label><input id="lf3-phone" type="tel" name="phone" placeholder="Phone Number *" required autocomplete="tel" inputmode="tel"></div><div class="form-group"><label for="lf3-em" class="sr-only">Email Address</label><input type="email" id="lf3-em" name="email" placeholder="Email Address *" required autocomplete="email"></div>
         <div class="form-group">
           <label for="lf3-industry" class="sr-only">Industry</label>
           <select id="lf3-industry" name="industry">
@@ -2265,6 +2262,86 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   ps.textContent = '@keyframes phonePulse{0%,100%{opacity:1}50%{opacity:.7}}.top-bar-phone{animation:phonePulse 3s ease-in-out infinite}';
   document.head.appendChild(ps);
 })();
+// ── GHL Free Estimate Handler ─────────────────────────────
+(function () {
+  var GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/XmTsrsLJDMVSiADHUA3q/webhook-trigger/vVSN5hk5lBEUPOtOakzy';
+
+  function getValue(form, names) {
+    for (var i = 0; i < names.length; i++) {
+      var n = names[i];
+      var radios = form.querySelectorAll('[name="' + n + '"][type="radio"]');
+      if (radios.length) {
+        for (var j = 0; j < radios.length; j++) {
+          if (radios[j].checked) return radios[j].value;
+        }
+        continue;
+      }
+      var el = form.querySelector('[name="' + n + '"]');
+      if (el && el.value) return el.value;
+    }
+    return '';
+  }
+
+  function wireForm(id) {
+    var form = document.getElementById(id);
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = form.querySelector('[type="submit"]');
+      var orig = btn.textContent;
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+      var data = {
+        first_name: getValue(form, ['first_name']),
+        last_name:  getValue(form, ['last_name']),
+        phone:      getValue(form, ['phone']),
+        email:      getValue(form, ['email']),
+        service:    getValue(form, ['service', 'pest', 'issue',
+                                    'service-type', 'pm-service-type',
+                                    'hoa-service-type', 'hotel-service-type',
+                                    'industry', 'size',
+                                    'property_type', 'ant_type', 'type', 'urgency']),
+        message:    getValue(form, ['message', 'notes']),
+        source_url:  window.location.href,
+        source_page: document.title
+      };
+      fetch(GHL_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+        .then(function (res) {
+          if (res.ok) { window.location.href = '/thank-you/'; }
+          else { throw new Error('HTTP ' + res.status); }
+        })
+        .catch(function () {
+          btn.textContent = orig;
+          btn.disabled = false;
+          var err = form.querySelector('.form-error');
+          if (!err) {
+            err = document.createElement('p');
+            err.className = 'form-error';
+            err.style.cssText = 'color:#c0392b;font-size:13px;margin-top:8px;text-align:center;';
+            form.appendChild(err);
+          }
+          err.textContent = 'Something went wrong. Please call (702) 228-4394 or try again.';
+        });
+    });
+  }
+
+  wireForm('estimate-form');
+  wireForm('cta-form');
+  wireForm('hero-form');
+  wireForm('final-form');
+  wireForm('mid-form');
+  wireForm('safety-form');
+  wireForm('emergency-form');
+  wireForm('emerg-form');
+  wireForm('landlord-form');
+  wireForm('apt-landlord-form');
+})();
+// ── End GHL Free Estimate Handler ─────────────────────────
+
 </script>
 
 <!-- ReputationHub review widget — deferred, non-blocking -->

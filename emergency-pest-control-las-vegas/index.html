@@ -1409,15 +1409,12 @@ section{padding:78px 0}
     <h2 class="section-title" style="text-align:center;">Request Emergency Callback — We'll Call You Back</h2>
     <p style="text-align:center;font-size:15px;color:var(--gray-dark);max-width:780px;margin:14px auto 28px;line-height:1.7;">Prefer to call? <a href="tel:+17022284394" style="color:var(--orange);font-weight:700;">📞 (702) 228-4394</a> — Active accounts: 24/7. New callers: same-day during business hours.</p>
     <div style="max-width:680px;margin:0 auto;background:var(--pure);border-radius:14px;padding:36px 36px;border-left:5px solid var(--orange);box-shadow:0 8px 28px rgba(29,36,48,.08);">
-      <form id="emergency-form" action="/free-estimate/" method="post" novalidate>
-        <div class="form-group">
-          <label for="emerg-name" class="sr-only">Your Name</label>
-          <input id="emerg-name" type="text" name="name" placeholder="Your Name *" required autocomplete="name">
-        </div>
+      <form id="emergency-form" novalidate>
+        <div class="form-row"><div class="form-group"><label for="emerg-fn" class="sr-only">First Name</label><input id="emerg-fn" type="text" name="first_name" placeholder="First Name *" required autocomplete="given-name"></div><div class="form-group"><label for="emerg-ln" class="sr-only">Last Name</label><input id="emerg-ln" type="text" name="last_name" placeholder="Last Name *" required autocomplete="family-name"></div></div>
         <div class="form-group">
           <label for="emerg-phone" class="sr-only">Phone Number</label>
           <input id="emerg-phone" type="tel" name="phone" placeholder="Phone Number * — We'll call this number ASAP" required autocomplete="tel" inputmode="tel">
-        </div>
+        </div><div class="form-group"><label for="emerg-em" class="sr-only">Email Address</label><input type="email" id="emerg-em" name="email" placeholder="Email Address *" required autocomplete="email"></div>
         <div class="form-group">
           <label for="emerg-type" class="sr-only">Emergency type</label>
           <select id="emerg-type" name="type">
@@ -2104,6 +2101,86 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
     if (target) { e.preventDefault(); window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 90, behavior: 'smooth' }); }
   });
 });
+// ── GHL Free Estimate Handler ─────────────────────────────
+(function () {
+  var GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/XmTsrsLJDMVSiADHUA3q/webhook-trigger/vVSN5hk5lBEUPOtOakzy';
+
+  function getValue(form, names) {
+    for (var i = 0; i < names.length; i++) {
+      var n = names[i];
+      var radios = form.querySelectorAll('[name="' + n + '"][type="radio"]');
+      if (radios.length) {
+        for (var j = 0; j < radios.length; j++) {
+          if (radios[j].checked) return radios[j].value;
+        }
+        continue;
+      }
+      var el = form.querySelector('[name="' + n + '"]');
+      if (el && el.value) return el.value;
+    }
+    return '';
+  }
+
+  function wireForm(id) {
+    var form = document.getElementById(id);
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = form.querySelector('[type="submit"]');
+      var orig = btn.textContent;
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+      var data = {
+        first_name: getValue(form, ['first_name']),
+        last_name:  getValue(form, ['last_name']),
+        phone:      getValue(form, ['phone']),
+        email:      getValue(form, ['email']),
+        service:    getValue(form, ['service', 'pest', 'issue',
+                                    'service-type', 'pm-service-type',
+                                    'hoa-service-type', 'hotel-service-type',
+                                    'industry', 'size',
+                                    'property_type', 'ant_type', 'type', 'urgency']),
+        message:    getValue(form, ['message', 'notes']),
+        source_url:  window.location.href,
+        source_page: document.title
+      };
+      fetch(GHL_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+        .then(function (res) {
+          if (res.ok) { window.location.href = '/thank-you/'; }
+          else { throw new Error('HTTP ' + res.status); }
+        })
+        .catch(function () {
+          btn.textContent = orig;
+          btn.disabled = false;
+          var err = form.querySelector('.form-error');
+          if (!err) {
+            err = document.createElement('p');
+            err.className = 'form-error';
+            err.style.cssText = 'color:#c0392b;font-size:13px;margin-top:8px;text-align:center;';
+            form.appendChild(err);
+          }
+          err.textContent = 'Something went wrong. Please call (702) 228-4394 or try again.';
+        });
+    });
+  }
+
+  wireForm('estimate-form');
+  wireForm('cta-form');
+  wireForm('hero-form');
+  wireForm('final-form');
+  wireForm('mid-form');
+  wireForm('safety-form');
+  wireForm('emergency-form');
+  wireForm('emerg-form');
+  wireForm('landlord-form');
+  wireForm('apt-landlord-form');
+})();
+// ── End GHL Free Estimate Handler ─────────────────────────
+
 </script>
 
 <!-- ReputationHub review widget — deferred -->

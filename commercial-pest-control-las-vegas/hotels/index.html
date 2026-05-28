@@ -486,9 +486,15 @@ section{padding:78px 0}
         <a href="tel:+17022284394" class="btn-secondary">&#128222; (702) 228-4394</a>
       </div>
       <form id="estimate-form" class="form-placeholder" novalidate aria-label="Hotel pest control estimate request">
-        <div class="form-group">
-          <label for="hot-name" class="sr-only">Your Name</label>
-          <input id="hot-name" type="text" name="name" placeholder="Your Name *" required autocomplete="name">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="htl-fn" class="sr-only">First Name</label>
+            <input id="htl-fn" type="text" name="first_name" placeholder="First Name *" required autocomplete="given-name">
+          </div>
+          <div class="form-group">
+            <label for="htl-ln" class="sr-only">Last Name</label>
+            <input id="htl-ln" type="text" name="last_name" placeholder="Last Name *" required autocomplete="family-name">
+          </div>
         </div>
         <div class="form-row">
           <div class="form-group">
@@ -499,10 +505,6 @@ section{padding:78px 0}
             <label for="em" class="sr-only">Email Address</label>
             <input id="em" type="email" name="email" placeholder="Email Address *" required autocomplete="email">
           </div>
-        </div>
-        <div class="form-group">
-          <label for="hot-address" class="sr-only">Property Address</label>
-          <input id="hot-address" type="text" name="address" placeholder="Property Address (city, ZIP)" autocomplete="street-address">
         </div>
         <p class="form-placeholder-title">Service type:</p>
         <div class="placeholder-radios" role="radiogroup" aria-label="Hotel service type">
@@ -524,8 +526,8 @@ section{padding:78px 0}
           </label>
         </div>
         <div class="form-group">
-          <label for="hot-notes" class="sr-only">Additional notes</label>
-          <textarea id="hot-notes" name="notes" placeholder="Tell us more (optional)"></textarea>
+          <label for="hot-msg" class="sr-only">Message</label>
+          <textarea id="hot-msg" name="message" placeholder="Tell us more (optional)"></textarea>
         </div>
         <button type="submit" class="form-submit">Request Free Estimate &rarr;</button>
       </form>

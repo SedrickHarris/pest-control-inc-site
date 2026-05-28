@@ -229,6 +229,20 @@ a{color:inherit;text-decoration:none}
 .contact-emergency{margin-top:12px;background:rgba(232,122,31,.08);border:1px solid rgba(232,122,31,.2);border-radius:var(--radius-sm);padding:10px 14px;font-family:var(--font-body);font-size:13px;color:var(--orange-dark);line-height:1.5}
 .contact-emergency strong{font-weight:700}
 
+/* CONTACT FORM */
+.contact-form-card{background:var(--pure);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-hero-form);margin-top:20px}
+.contact-form-title{font-family:var(--font-display);font-size:22px;font-weight:400;color:var(--navy);margin-bottom:18px}
+.form-group{margin-bottom:12px}
+.form-group input,.form-group textarea{width:100%;font-family:var(--font-body);font-size:14px;color:var(--navy);background:var(--white);border:1px solid var(--gray);border-radius:var(--radius-sm);padding:11px 14px}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--gray-mid);opacity:1}
+.form-group input:focus,.form-group textarea:focus{outline:2px solid var(--blue);outline-offset:1px;border-color:var(--blue)}
+.form-group textarea{resize:vertical;min-height:96px;font-family:var(--font-body)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-submit{width:100%;background:var(--orange);color:#fff;font-family:var(--font-ui);font-size:15px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:14px 28px;border-radius:var(--radius-pill);border:none;cursor:pointer;margin-top:8px;transition:background .2s}
+.form-submit:hover{background:var(--orange-dark)}
+.form-submit:disabled{background:var(--gray-mid);cursor:not-allowed;opacity:.6}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
 /* TRUST BAR */
 .trust-bar{background:var(--blue);padding:14px 0}
 .trust-bar-inner{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;padding:0 var(--container-pad)}
@@ -456,6 +470,35 @@ a{color:inherit;text-decoration:none}
             </div>
           </div>
 
+        </div>
+
+        <div class="contact-form-card">
+          <h2 class="contact-form-title">Send Us a Message</h2>
+          <form id="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cnt-fn" class="sr-only">First Name</label>
+                <input type="text" id="cnt-fn" name="first_name" placeholder="First Name *" required autocomplete="given-name">
+              </div>
+              <div class="form-group">
+                <label for="cnt-ln" class="sr-only">Last Name</label>
+                <input type="text" id="cnt-ln" name="last_name" placeholder="Last Name *" required autocomplete="family-name">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="cnt-ph" class="sr-only">Phone Number</label>
+              <input type="tel" id="cnt-ph" name="phone" placeholder="Phone Number *" required autocomplete="tel">
+            </div>
+            <div class="form-group">
+              <label for="cnt-em" class="sr-only">Email Address</label>
+              <input type="email" id="cnt-em" name="email" placeholder="Email Address *" required autocomplete="email">
+            </div>
+            <div class="form-group">
+              <label for="cnt-msg" class="sr-only">Message</label>
+              <textarea id="cnt-msg" name="message" placeholder="How can we help? (optional)" rows="4"></textarea>
+            </div>
+            <button type="submit" class="form-submit">Send Message</button>
+          </form>
         </div>
       </aside>
 
@@ -807,6 +850,56 @@ if ('IntersectionObserver' in window) {
 } else {
   animEls.forEach(function(el) { el.classList.add('anim-visible'); });
 }
+
+// ── GHL Contact Handler ────────────────────────────────────
+(function () {
+  var GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/XmTsrsLJDMVSiADHUA3q/webhook-trigger/8ns2ctW7q3Z8cSaevdVQ';
+
+  function wireForm(id) {
+    var form = document.getElementById(id);
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = form.querySelector('[type="submit"]');
+      var orig = btn.textContent;
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+      var data = {
+        first_name: (form.querySelector('[name="first_name"]') || {}).value || '',
+        last_name:  (form.querySelector('[name="last_name"]')  || {}).value || '',
+        phone:      (form.querySelector('[name="phone"]')      || {}).value || '',
+        email:      (form.querySelector('[name="email"]')      || {}).value || '',
+        message:    (form.querySelector('[name="message"]')    || {}).value || '',
+        source_url:  window.location.href,
+        source_page: document.title
+      };
+      fetch(GHL_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+        .then(function (res) {
+          if (res.ok) { window.location.href = '/thank-you/'; }
+          else { throw new Error('HTTP ' + res.status); }
+        })
+        .catch(function () {
+          btn.textContent = orig;
+          btn.disabled = false;
+          var err = form.querySelector('.form-error');
+          if (!err) {
+            err = document.createElement('p');
+            err.className = 'form-error';
+            err.style.cssText = 'color:#c0392b;font-size:13px;margin-top:8px;text-align:center;';
+            form.appendChild(err);
+          }
+          err.textContent = 'Something went wrong. Please call (702) 228-4394 or try again.';
+        });
+    });
+  }
+
+  wireForm('contact-form');
+})();
+// ── End GHL Contact Handler ────────────────────────────────
 </script>
 <script src="https://reputationhub.site/reputation/assets/review-widget.js" defer></script>
 </body>
