@@ -1860,3 +1860,50 @@ For all 6 outlier files (`property-managers`, `hoa`, `hotels`, `offices`, `retai
 - `og-default.jpg` site-wide fallback OG image
 - `android-chrome-512x512.png` (canonical-name PWA icon &mdash; current asset is `favicon-512.png`)
 - Header markup repair for the 26 Phase 10.5 neighborhood pages (missing `<header>` element)
+
+---
+
+### 2026-05-28 &mdash; Trust Bar Standardization
+
+Site-wide swap of every trust bar to match the emergency page design, which the owner approved as the canonical version.
+
+- Source of truth: `emergency-pest-control-las-vegas/index.html` (unmodified by this pass)
+- Scope: 65 HTML pages updated to match emergency page trust bar
+- Pages intentionally excluded (no trust bar by design): `thank-you/`, `privacy-policy/`, `terms-of-use/`, `sitemap/`, `404.html`
+- Pages already matching the canonical version (CSS and/or HTML untouched on this pass; just verified): `commercial-pest-control-las-vegas/property-managers/index.html`, several files where the CSS was already canonical
+
+#### Canonical trust bar (8 items, copy verbatim from emergency)
+1. ⚡ Same-Day Service &mdash; New Callers
+2. 📞 24/7 Line &mdash; Active Accounts
+3. ⭐ 5.0 Stars (gold) &mdash; Google Rated
+4. 🛡️ Licensed #4632 &mdash; Nevada Certified
+5. 🐾 Pet & Kid Safe &mdash; Health Conscious
+6. 🔄 Money-Back &mdash; Guarantee
+7. 👨‍👩‍👧‍👦 3-Generation Family &mdash; Locally Owned
+8. 📋 Documented &mdash; Every Visit
+
+#### Wrapper variants handled
+The trust bar wrapper element varied across the site before this pass: `<section>` (61 files), `<aside>` (2 files: `ant-exterminator-las-vegas/`, `commercial-pest-control-las-vegas/landlord-pest-control-responsibilities/`), and `<div>` (2 files: `index.html`, `commercial-pest-control-las-vegas/pest-impact-on-business/`). All wrappers replaced with the canonical `<section class="trust-bar" aria-label="Trust credentials">`.
+
+#### CSS swapped
+The main `.trust-*` rule cluster (8 rules: `.trust-bar`, `.trust-bar-inner`, `.trust-item`, `.trust-item:last-child`, `.trust-icon`, `.trust-value`, `.trust-value .gold`, `.trust-label`) was replaced verbatim from emergency. Previous variants found:
+- Variant A (most pages): 7-rule column-flex pattern with `.trust-stars` instead of `.trust-value .gold` &mdash; replaced
+- Variant B (commercial sub-pages): already-canonical 8-rule pattern matching emergency &mdash; no change needed
+- Homepage variant: 9-rule pattern with extra `.trust-value .orange` rule &mdash; replaced (canonical uses only `.gold`; HTML swap removed the `.orange` references)
+
+#### Mobile `@media` rules: intentionally left in place
+The mobile rules vary widely across files and live inside per-file `@media` blocks that would require structural CSS edits to safely transform. Left as-is. The canonical main rules use `flex-wrap` and inline padding tuned for the desktop layout, and the existing per-file mobile rules continue to handle small-screen layout overrides. Visual mobile parity with emergency is not exact but functionally acceptable.
+
+#### Verification
+- Trust-item count across all 71 trust-bar files: each has exactly 8 trust-item divs (matches emergency) &check;
+- Site-wide grep: every `trust-bar`-containing file now uses `<section class="trust-bar"` wrapper (zero `<aside>` or `<div>` wrappers remaining for trust-bar) &check;
+- Integrity audit across all 65 modified files: JSON-LD / `<meta>` / `<link>` / external `<script src=>` counts all unchanged &check;
+
+#### Commit
+- `a32dcc1` feat(trust-bar): standardize emergency page trust bar design site-wide
+
+#### Open TODOs (unchanged)
+- 9 OG image assets for Phase 10.5 neighborhoods
+- `og-default.jpg` site-wide fallback OG image
+- `android-chrome-512x512.png` canonical-name PWA icon
+- Header markup repair for the 26 Phase 10.5 neighborhood pages
