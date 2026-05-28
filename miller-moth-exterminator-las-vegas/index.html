@@ -1172,6 +1172,7 @@ function toggleFaq(btn) {
 function openMobileNav() {
   var btn = document.getElementById('hamburger-btn');
   var overlay = document.getElementById('mobile-nav');
+  if (!btn || !overlay) return;
   btn.classList.add('open');
   btn.setAttribute('aria-expanded','true');
   overlay.classList.add('open');
@@ -1181,16 +1182,19 @@ function openMobileNav() {
 function closeMobileNav() {
   var btn = document.getElementById('hamburger-btn');
   var overlay = document.getElementById('mobile-nav');
+  if (!btn || !overlay) return;
   btn.classList.remove('open');
   btn.setAttribute('aria-expanded','false');
   overlay.classList.remove('open');
   overlay.setAttribute('aria-hidden','true');
   document.body.style.overflow = '';
 }
-document.getElementById('hamburger-btn').addEventListener('click', function() {
+var _hb = document.getElementById('hamburger-btn');
+if (_hb) _hb.addEventListener('click', function() {
   this.classList.contains('open') ? closeMobileNav() : openMobileNav();
 });
-document.getElementById('mobile-nav').addEventListener('click', function(e) {
+var _mn = document.getElementById('mobile-nav');
+if (_mn) _mn.addEventListener('click', function(e) {
   if (e.target === this) closeMobileNav();
 });
 document.addEventListener('keydown', function(e) {
