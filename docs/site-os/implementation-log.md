@@ -1921,3 +1921,32 @@ The mobile rules vary widely across files and live inside per-file `@media` bloc
 - Alt text: "Licensed Pest Control Inc technician treating a Las Vegas home &mdash; drug tested, background checked, Nevada certified"
 - Loading: `loading="lazy"` (below the fold)
 - Commit: `b245a99` feat(homepage): wire technician image into Why PCI section &mdash; owner approved AI image
+
+---
+
+### 2026-05-28 &mdash; anim-ready Reveal Halt &mdash; Fix A applied, Fix B stopped
+
+11 content-bug pages had every `.anim-ready` card rendering permanently at `opacity:0` because the page's inline `<script>` called `document.getElementById('hamburger-btn').addEventListener` and `document.getElementById('mobile-nav').addEventListener` unguarded but had no matching markup. `getElementById` returned `null`, `.addEventListener` threw, the whole script halted before the `IntersectionObserver` reveal code ran. Side effects: hero copy hidden (form looked mispositioned) and the mobile hamburger menu was dead.
+
+#### Fix A applied to all 11 pages
+- `openMobileNav()` / `closeMobileNav()` each got an `if (!btn || !overlay) return;` early-return after the var declarations
+- The hamburger-btn and mobile-nav `addEventListener` calls were converted to `var _x = …; if (_x) _x.addEventListener(…)`
+- Per the diagnosis, this change alone restores all hidden content; the IntersectionObserver now runs to completion
+- Script-format variants handled: 10 multi-line + 1 compact (`bed-bug`)
+- Verification: zero remaining unguarded `getElementById('hamburger-btn'|'mobile-nav').addEventListener` references; JSON-LD / `<meta>` / `<link>` / external `<script src>` counts unchanged; `anim-ready` class reference counts unchanged on all 11
+
+#### Fix B (restore the missing `<header>` + mobile-nav markup) STOPPED per spec STOP conditions
+- All 11 lack `<header>` entirely; 2 of 11 (`bird-removal`, `bee-removal`) also lack opening `<body>` and `<main>` tags
+- Inserting the canonical reference markup would violate the integrity-check rule that body-section word count must be UNCHANGED &mdash; the inserted nav links, CTA text, phone, and aria labels are new body content even though every piece of it already exists elsewhere on the same page (in trust bar, footer, or forms)
+- Reference top-bar text ("24/7 Rodent Emergency&hellip;") is pest-specific; the 11 pages do not contain that phrase or an obvious page-local substitute. Cross-page generic ("24/7 Pest Emergency") would be cross-page borrowing rather than spec-compliant "already present elsewhere on the same page"
+- Recommendation in the QA note: combine Fix B with the existing "Header markup repair for the 26 Phase 10.5 neighborhood pages" TODO as one header-restoration sweep, since the 11 here overlap with that scope (or are an extension of it)
+
+#### Pages affected (11)
+`bird-removal-las-vegas`, `bee-removal-las-vegas`, `bed-bug-exterminator-las-vegas`, `hornet-exterminator-las-vegas`, `wasp-exterminator-las-vegas`, `miller-moth-exterminator-las-vegas`, `earwig-exterminator-las-vegas`, `crane-fly-exterminator-las-vegas`, `false-chinch-bug-exterminator-las-vegas`, `pest-control-north-las-vegas`, `pest-control-boulder-city-nv`
+
+#### QA note
+[`docs/site-os/qa/2026-05-28-anim-reveal-halt-fix.md`](qa/2026-05-28-anim-reveal-halt-fix.md) &mdash; diagnosis confirmation table, sample diff, verification matrix, Fix B stop reasoning, and follow-up list (missing `<h1>` on all 11; latent risk on the other 19 anim-ready pages).
+
+#### Commit
+- `016d8e0` fix(reveal): null-guard mobile-nav handlers so anim-ready content renders (11 pages)
+- Push: pending owner approval per spec
