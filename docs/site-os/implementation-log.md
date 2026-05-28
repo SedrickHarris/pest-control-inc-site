@@ -1907,3 +1907,17 @@ The mobile rules vary widely across files and live inside per-file `@media` bloc
 - `og-default.jpg` site-wide fallback OG image
 - `android-chrome-512x512.png` canonical-name PWA icon
 - Header markup repair for the 26 Phase 10.5 neighborhood pages
+
+---
+
+### 2026-05-28 &mdash; Homepage: Technician Image Added
+
+- Section: Why Las Vegas Trusts Pest Control Inc (`.why-section`)
+- File: `index.html`
+- Image: `images/technician/pest-control-technician-foundation-treatment-las-vegas-home-pest-control-inc.webp` (1448&times;1086, WebP, 4:3)
+- Source: Owner-approved AI-generated image
+- Placeholder replaced: the `<div class="why-img-placeholder">[ Photo: Licensed Technician&hellip; ]</div>` element was swapped for an `<img>` tag with class `why-technician-img`
+- CSS: added new `.why-technician-img` rule next to the existing `.why-img-placeholder` rule (placeholder rule left in place per spec &mdash; other pages may still reference it)
+- Alt text: "Licensed Pest Control Inc technician treating a Las Vegas home &mdash; drug tested, background checked, Nevada certified"
+- Loading: `loading="lazy"` (below the fold)
+- Commit: `b245a99` feat(homepage): wire technician image into Why PCI section &mdash; owner approved AI image
