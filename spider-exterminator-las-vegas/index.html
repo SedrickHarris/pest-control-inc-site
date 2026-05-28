@@ -228,15 +228,17 @@ a{color:inherit;text-decoration:none}
 .form-card{background:var(--pure);border-radius:var(--radius-lg);padding:32px 28px;box-shadow:var(--shadow-hero-form)}
 .form-card-title{font-family:var(--font-display);font-size:24px;font-weight:400;color:var(--navy);margin-bottom:6px}
 .form-card-sub{font-family:var(--font-body);font-size:14px;color:var(--gray-dark);margin-bottom:20px;line-height:1.55}
-.form-placeholder-notice{background:var(--blue-light);border:1px solid rgba(47,94,163,.25);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:18px}
-.form-placeholder-notice p{font-family:var(--font-body);font-size:13px;line-height:1.6;color:var(--blue-dark)}
-.form-placeholder-notice a{color:var(--blue);font-weight:700}
 .form-group{margin-bottom:12px}
 .form-group label{display:block;font-family:var(--font-ui);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-dark);margin-bottom:6px}
-.form-group input,.form-group select,.form-group textarea{width:100%;font-family:var(--font-body);font-size:14px;color:var(--gray-mid);background:var(--white);border:1px solid var(--gray);border-radius:var(--radius-sm);padding:11px 14px;cursor:not-allowed;opacity:.7}
+.form-group input,.form-group select,.form-group textarea{width:100%;font-family:var(--font-body);font-size:14px;color:var(--navy);background:var(--white);border:1px solid var(--gray);border-radius:var(--radius-sm);padding:11px 14px}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--gray-mid);opacity:1}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:2px solid var(--blue);outline-offset:1px;border-color:var(--blue)}
 .form-group textarea{resize:none;height:72px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.form-submit-placeholder{width:100%;background:var(--gray-mid);color:#fff;font-family:var(--font-ui);font-size:15px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:14px 28px;border-radius:var(--radius-pill);border:none;cursor:not-allowed;margin-top:8px;opacity:.6}
+.form-submit{width:100%;background:var(--orange);color:#fff;font-family:var(--font-ui);font-size:15px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:14px 28px;border-radius:var(--radius-pill);border:none;cursor:pointer;margin-top:8px;transition:background .2s}
+.form-submit:hover{background:var(--orange-dark)}
+.form-submit:disabled{background:var(--gray-mid);cursor:not-allowed;opacity:.6}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .form-card-alt{margin-top:14px;padding-top:14px;border-top:1px solid var(--gray);text-align:center}
 .form-card-alt p{font-family:var(--font-body);font-size:13px;color:var(--gray-dark);margin-bottom:8px}
 .form-card-alt a.call-link{display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:#fff;font-family:var(--font-ui);font-size:16px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:12px 24px;border-radius:var(--radius-pill);transition:background .2s}
@@ -444,59 +446,32 @@ a{color:inherit;text-decoration:none}
 </div>
 <main id="main-content">
 
-<!-- SECTION 01 HERO -->
-<section class="hero">
-  <div class="container">
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="/">Home</a><span aria-hidden="true">/</span>
-      <a href="/pest-control-las-vegas/">Pest Control Las Vegas</a><span aria-hidden="true">/</span>
-      <span>Spider Exterminator</span>
-    </nav>
-    <div class="hero-inner">
-      <div>
-        <span class="hero-eyebrow">Las Vegas Valley &amp; Clark County, NV &middot; License #4632 &middot; 3-Generation Family Company</span>
-        <h1>Spider Exterminator <em>Las Vegas</em></h1>
-        <p class="hero-sub">Pest Control Inc controls black widows and other Las Vegas spiders using the Health Conscious Service Program &mdash; an exterior-first IPM approach that targets both the spiders and the insect food sources that attract them. 3-generation family-owned, License #4632, money-back guarantee.</p>
-        <div class="hero-ctas">
-          <a href="tel:+17022284394" class="btn-primary">&#128222; (702) 228-4394</a>
-          <a href="/free-estimate/" class="btn-outline-light">Free Estimate &#8594;</a>
-        </div>
-        <div class="hero-trust" role="list" aria-label="Trust signals">
-          <span class="hero-trust-item" role="listitem">&#11088; 5.0 Stars &middot; Google</span>
-          <span class="hero-trust-item" role="listitem">&#128737; License #4632</span>
-          <span class="hero-trust-item" role="listitem">&#128260; Money-Back Guarantee</span>
-          <span class="hero-trust-item" role="listitem">&#128106; 3-Generation Family-Owned</span>
-          <span class="hero-trust-item" role="listitem">&#9889; 24/7 Black Widow Emergency</span>
-        </div>
-      </div>
-      <!-- TODO-LAUNCH-BLOCKER: Replace disabled form with live endpoint before production launch. -->
       <aside aria-label="Request a free spider inspection">
         <div class="form-card">
           <h2 class="form-card-title">Free Spider Inspection</h2>
           <p class="form-card-sub">We call back in 30 minutes or less during business hours.</p>
-          <div class="form-placeholder-notice" role="note">
-            <p><strong>Online form coming soon.</strong> Call or email now:</p>
-            <p style="margin-top:8px;"><strong>&#128222; <a href="tel:+17022284394">(702) 228-4394</a></strong> &middot; <a href="mailto:info@pestcontrolinc.net">info@pestcontrolinc.net</a></p>
-            <p style="margin-top:6px;font-size:12px;color:var(--gray-dark);">30 minutes or less &mdash; business hours &middot; 24/7 emergency line available</p>
-          </div>
-          <form id="spider-form" onsubmit="return false;" novalidate aria-label="Spider inspection request (not yet active)">
+          <form id="estimate-form" novalidate aria-label="Spider inspection request">
             <div class="form-row">
               <div class="form-group">
                 <label for="sp-name">Your Name</label>
-                <input id="sp-name" type="text" name="name" placeholder="Your Name" disabled aria-disabled="true" autocomplete="off">
+                <input id="sp-name" type="text" name="name" placeholder="Your Name" autocomplete="off">
               </div>
               <div class="form-group">
                 <label for="sp-phone">Phone Number</label>
-                <input id="sp-phone" type="tel" name="phone" placeholder="(702) 000-0000" disabled aria-disabled="true" autocomplete="off">
+                <input id="sp-phone" type="tel" name="phone" placeholder="(702) 000-0000" autocomplete="off">
               </div>
             </div>
             <div class="form-group">
+              <label for="em" class="sr-only">Email Address</label>
+              <input id="em" type="email" name="email" placeholder="Email Address *" required autocomplete="email">
+            </div>
+            <div class="form-group">
               <label for="sp-address">Property Address</label>
-              <input id="sp-address" type="text" name="address" placeholder="Las Vegas, NV" disabled aria-disabled="true" autocomplete="off">
+              <input id="sp-address" type="text" name="address" placeholder="Las Vegas, NV" autocomplete="off">
             </div>
             <div class="form-group">
               <label for="sp-issue">Spider Issue</label>
-              <select id="sp-issue" name="issue" disabled aria-disabled="true">
+              <select id="sp-issue" name="issue">
                 <option value="">What are you dealing with?</option>
                 <option>Black widow found on property</option>
                 <option>Spider bite occurred &mdash; need ID</option>
@@ -508,9 +483,9 @@ a{color:inherit;text-decoration:none}
             </div>
             <div class="form-group">
               <label for="sp-notes">Additional Notes</label>
-              <textarea id="sp-notes" name="notes" placeholder="Where sighted, how many, any pets or children in the area (optional)" disabled aria-disabled="true"></textarea>
+              <textarea id="sp-notes" name="notes" placeholder="Where sighted, how many, any pets or children in the area (optional)"></textarea>
             </div>
-            <button type="button" class="form-submit-placeholder" disabled aria-disabled="true">Request Free Spider Inspection</button>
+            <button type="submit" class="form-submit">Request Free Spider Inspection</button>
           </form>
           <div class="form-card-alt">
             <p>Found a black widow? Don&rsquo;t handle it.</p>
@@ -959,6 +934,79 @@ document.getElementById('mobile-nav').addEventListener('click',function(e){if(e.
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobileNav();});
 var animEls=document.querySelectorAll('.anim-ready');
 if('IntersectionObserver'in window){var obs=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){var delay=parseInt(entry.target.dataset.animDelay)||0;setTimeout(function(){entry.target.classList.add('anim-visible');},delay);obs.unobserve(entry.target);}});},{threshold:0.12});animEls.forEach(function(el){obs.observe(el);});}else{animEls.forEach(function(el){el.classList.add('anim-visible');});}
+// ── GHL Form Handler ──────────────────────────────────────
+(function () {
+  var GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/XmTsrsLJDMVSiADHUA3q/webhook-trigger/8ns2ctW7q3Z8cSaevdVQ';
+
+  function getValue(form, names) {
+    for (var i = 0; i < names.length; i++) {
+      var name = names[i];
+      var radios = form.querySelectorAll('[name="' + name + '"][type="radio"]');
+      if (radios.length) {
+        for (var j = 0; j < radios.length; j++) {
+          if (radios[j].checked) return radios[j].value;
+        }
+        continue;
+      }
+      var el = form.querySelector('[name="' + name + '"]');
+      if (el && el.value) return el.value;
+    }
+    return '';
+  }
+
+  function wireForm(formId) {
+    var form = document.getElementById(formId);
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = form.querySelector('[type="submit"]');
+      var originalText = btn.textContent;
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+      var data = {
+        first_name:  getValue(form, ['first_name']),
+        last_name:   getValue(form, ['last_name']),
+        name:        getValue(form, ['name']),
+        phone:       getValue(form, ['phone']),
+        email:       getValue(form, ['email']),
+        service:     getValue(form, ['service', 'pest', 'issue', 'service-type', 'pm-service-type']),
+        message:     getValue(form, ['message', 'notes']),
+        source_url:  window.location.href,
+        source_page: document.title
+      };
+      fetch(GHL_WEBHOOK, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(data)
+      })
+        .then(function (res) {
+          if (res.ok) {
+            window.location.href = '/thank-you/';
+          } else {
+            throw new Error('HTTP ' + res.status);
+          }
+        })
+        .catch(function () {
+          btn.textContent = originalText;
+          btn.disabled = false;
+          var err = form.querySelector('.form-error');
+          if (!err) {
+            err = document.createElement('p');
+            err.className = 'form-error';
+            err.style.cssText = 'color:#c0392b;font-size:13px;margin-top:8px;text-align:center;';
+            form.appendChild(err);
+          }
+          err.textContent = 'Something went wrong. Please call (702) 228-4394 or try again.';
+        });
+    });
+  }
+
+  wireForm('estimate-form');
+  wireForm('contact-form');
+  wireForm('cta-form');
+})();
+// ── End GHL Form Handler ───────────────────────────────────
+
 </script>
 <script src="https://reputationhub.site/reputation/assets/review-widget.js" defer></script>
 </body>

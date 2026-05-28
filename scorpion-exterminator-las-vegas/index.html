@@ -261,15 +261,17 @@ a{color:inherit;text-decoration:none}
 .form-card{background:var(--pure);border-radius:var(--radius-lg);padding:32px 28px;box-shadow:var(--shadow-hero-form)}
 .form-card-title{font-family:var(--font-display);font-size:24px;font-weight:400;color:var(--navy);margin-bottom:6px}
 .form-card-sub{font-family:var(--font-body);font-size:14px;color:var(--gray-dark);margin-bottom:20px;line-height:1.55}
-.form-placeholder-notice{background:var(--blue-light);border:1px solid rgba(47,94,163,.25);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:18px}
-.form-placeholder-notice p{font-family:var(--font-body);font-size:13px;line-height:1.6;color:var(--blue-dark)}
-.form-placeholder-notice a{color:var(--blue);font-weight:700}
 .form-group{margin-bottom:12px}
 .form-group label{display:block;font-family:var(--font-ui);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-dark);margin-bottom:6px}
-.form-group input,.form-group select,.form-group textarea{width:100%;font-family:var(--font-body);font-size:14px;color:var(--gray-mid);background:var(--white);border:1px solid var(--gray);border-radius:var(--radius-sm);padding:11px 14px;cursor:not-allowed;opacity:.7}
+.form-group input,.form-group select,.form-group textarea{width:100%;font-family:var(--font-body);font-size:14px;color:var(--navy);background:var(--white);border:1px solid var(--gray);border-radius:var(--radius-sm);padding:11px 14px}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--gray-mid);opacity:1}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:2px solid var(--blue);outline-offset:1px;border-color:var(--blue)}
 .form-group textarea{resize:none;height:72px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.form-submit-placeholder{width:100%;background:var(--gray-mid);color:#fff;font-family:var(--font-ui);font-size:15px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:14px 28px;border-radius:var(--radius-pill);border:none;cursor:not-allowed;margin-top:8px;opacity:.6}
+.form-submit{width:100%;background:var(--orange);color:#fff;font-family:var(--font-ui);font-size:15px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:14px 28px;border-radius:var(--radius-pill);border:none;cursor:pointer;margin-top:8px;transition:background .2s}
+.form-submit:hover{background:var(--orange-dark)}
+.form-submit:disabled{background:var(--gray-mid);cursor:not-allowed;opacity:.6}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .form-card-alt{margin-top:14px;padding-top:14px;border-top:1px solid var(--gray);text-align:center}
 .form-card-alt p{font-family:var(--font-body);font-size:13px;color:var(--gray-dark);margin-bottom:8px}
 .form-card-alt a.call-link{display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:#fff;font-family:var(--font-ui);font-size:16px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:12px 24px;border-radius:var(--radius-pill);transition:background .2s}
@@ -550,35 +552,33 @@ a{color:inherit;text-decoration:none}
         </div>
       </div>
 
-      <!-- RIGHT: FORM PLACEHOLDER
-           TODO-LAUNCH-BLOCKER: Replace disabled form with live endpoint before production launch. -->
+      <!-- RIGHT: FORM -->
       <aside aria-label="Request a free scorpion inspection">
         <div class="form-card">
           <h2 class="form-card-title">Free Scorpion Inspection</h2>
           <p class="form-card-sub">We call back in 30 minutes or less during business hours.</p>
-          <div class="form-placeholder-notice" role="note">
-            <p><strong>Online form coming soon.</strong> Call or email to request your free inspection now:</p>
-            <p style="margin-top:8px;"><strong>&#128222; <a href="tel:+17022284394">(702) 228-4394</a></strong> &middot; <a href="mailto:info@pestcontrolinc.net">info@pestcontrolinc.net</a></p>
-            <p style="margin-top:6px;font-size:12px;color:var(--gray-dark);">30 minutes or less &mdash; business hours &middot; 24/7 emergency line available</p>
-          </div>
-          <form id="scorpion-form" onsubmit="return false;" novalidate aria-label="Scorpion inspection request (not yet active)">
+          <form id="estimate-form" novalidate aria-label="Scorpion inspection request">
             <div class="form-row">
               <div class="form-group">
                 <label for="sc-name">Your Name</label>
-                <input id="sc-name" type="text" name="name" placeholder="Your Name" disabled aria-disabled="true" autocomplete="off">
+                <input id="sc-name" type="text" name="name" placeholder="Your Name" autocomplete="off">
               </div>
               <div class="form-group">
                 <label for="sc-phone">Phone Number</label>
-                <input id="sc-phone" type="tel" name="phone" placeholder="(702) 000-0000" disabled aria-disabled="true" autocomplete="off">
+                <input id="sc-phone" type="tel" name="phone" placeholder="(702) 000-0000" autocomplete="off">
               </div>
             </div>
             <div class="form-group">
+              <label for="em" class="sr-only">Email Address</label>
+              <input id="em" type="email" name="email" placeholder="Email Address *" required autocomplete="email">
+            </div>
+            <div class="form-group">
               <label for="sc-address">Property Address</label>
-              <input id="sc-address" type="text" name="address" placeholder="Las Vegas, NV" disabled aria-disabled="true" autocomplete="off">
+              <input id="sc-address" type="text" name="address" placeholder="Las Vegas, NV" autocomplete="off">
             </div>
             <div class="form-group">
               <label for="sc-issue">Scorpion Issue</label>
-              <select id="sc-issue" name="issue" disabled aria-disabled="true">
+              <select id="sc-issue" name="issue">
                 <option value="">What are you dealing with?</option>
                 <option>Found scorpion inside the home</option>
                 <option>Found scorpion in yard or garage</option>
@@ -589,9 +589,9 @@ a{color:inherit;text-decoration:none}
             </div>
             <div class="form-group">
               <label for="sc-notes">Additional Notes</label>
-              <textarea id="sc-notes" name="notes" placeholder="Location of sighting, type of home, any previous treatment (optional)" disabled aria-disabled="true"></textarea>
+              <textarea id="sc-notes" name="notes" placeholder="Location of sighting, type of home, any previous treatment (optional)"></textarea>
             </div>
-            <button type="button" class="form-submit-placeholder" disabled aria-disabled="true">Request Free Scorpion Inspection</button>
+            <button type="submit" class="form-submit">Request Free Scorpion Inspection</button>
           </form>
           <div class="form-card-alt">
             <p>Emergency? Call us right now:</p>
@@ -1329,6 +1329,79 @@ if ('IntersectionObserver' in window) {
 } else {
   animEls.forEach(function(el) { el.classList.add('anim-visible'); });
 }
+
+// ── GHL Form Handler ──────────────────────────────────────
+(function () {
+  var GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/XmTsrsLJDMVSiADHUA3q/webhook-trigger/8ns2ctW7q3Z8cSaevdVQ';
+
+  function getValue(form, names) {
+    for (var i = 0; i < names.length; i++) {
+      var name = names[i];
+      var radios = form.querySelectorAll('[name="' + name + '"][type="radio"]');
+      if (radios.length) {
+        for (var j = 0; j < radios.length; j++) {
+          if (radios[j].checked) return radios[j].value;
+        }
+        continue;
+      }
+      var el = form.querySelector('[name="' + name + '"]');
+      if (el && el.value) return el.value;
+    }
+    return '';
+  }
+
+  function wireForm(formId) {
+    var form = document.getElementById(formId);
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = form.querySelector('[type="submit"]');
+      var originalText = btn.textContent;
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+      var data = {
+        first_name:  getValue(form, ['first_name']),
+        last_name:   getValue(form, ['last_name']),
+        name:        getValue(form, ['name']),
+        phone:       getValue(form, ['phone']),
+        email:       getValue(form, ['email']),
+        service:     getValue(form, ['service', 'pest', 'issue', 'service-type', 'pm-service-type']),
+        message:     getValue(form, ['message', 'notes']),
+        source_url:  window.location.href,
+        source_page: document.title
+      };
+      fetch(GHL_WEBHOOK, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(data)
+      })
+        .then(function (res) {
+          if (res.ok) {
+            window.location.href = '/thank-you/';
+          } else {
+            throw new Error('HTTP ' + res.status);
+          }
+        })
+        .catch(function () {
+          btn.textContent = originalText;
+          btn.disabled = false;
+          var err = form.querySelector('.form-error');
+          if (!err) {
+            err = document.createElement('p');
+            err.className = 'form-error';
+            err.style.cssText = 'color:#c0392b;font-size:13px;margin-top:8px;text-align:center;';
+            form.appendChild(err);
+          }
+          err.textContent = 'Something went wrong. Please call (702) 228-4394 or try again.';
+        });
+    });
+  }
+
+  wireForm('estimate-form');
+  wireForm('contact-form');
+  wireForm('cta-form');
+})();
+// ── End GHL Form Handler ───────────────────────────────────
 </script>
 <script src="https://reputationhub.site/reputation/assets/review-widget.js" defer></script>
 </body>

@@ -263,14 +263,24 @@ section{padding:78px 0}
 .dark-section{background:var(--navy)}
 
 /* Form placeholder (hero) */
-.form-placeholder{background:rgba(255,255,255,.05);border:1px dashed rgba(255,255,255,.25);border-radius:14px;padding:26px 24px;max-width:620px;opacity:.85;position:relative}
-.form-placeholder::after{content:'NOT YET ACTIVE';position:absolute;top:14px;right:14px;background:rgba(232,122,31,.18);color:#FFB570;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:999px;border:1px solid rgba(232,122,31,.35)}
-.form-placeholder-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.88);margin-bottom:18px;line-height:1.4;max-width:80%}
-.placeholder-radios{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-bottom:18px}
-.placeholder-radio{display:flex;align-items:center;gap:9px;padding:10px 12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:8px;cursor:not-allowed;opacity:.85}
-.placeholder-radio input{cursor:not-allowed;accent-color:var(--blue)}
-.placeholder-radio span{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;letter-spacing:.03em;color:rgba(255,255,255,.7)}
-.placeholder-submit{display:block;width:100%;background:rgba(232,122,31,.4);color:rgba(255,255,255,.7);font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:14px;border-radius:999px;border:none;cursor:not-allowed;text-align:center;opacity:.85}
+.form-placeholder{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:24px;max-width:620px;position:relative}
+.form-placeholder-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.7);margin:6px 0 12px;line-height:1.4}
+.form-group{margin-bottom:12px}
+.form-group input,.form-group textarea{width:100%;font-family:'Barlow Condensed',sans-serif;font-size:15px;color:#fff;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:12px 14px}
+.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,.5);opacity:1}
+.form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--orange);background:rgba(255,255,255,.12)}
+.form-group textarea{resize:none;height:64px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form-row .form-group{margin-bottom:12px}
+.placeholder-radios{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-bottom:16px}
+.placeholder-radio{display:flex;align-items:center;gap:9px;padding:10px 12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:8px;cursor:pointer;transition:background .2s,border-color .2s}
+.placeholder-radio:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.25)}
+.placeholder-radio input{cursor:pointer;accent-color:var(--orange)}
+.placeholder-radio span{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;letter-spacing:.03em;color:rgba(255,255,255,.85)}
+.form-submit{display:block;width:100%;background:var(--orange);color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:14px;border-radius:999px;border:none;cursor:pointer;text-align:center;transition:background .2s;margin-top:6px}
+.form-submit:hover{background:var(--orange-dark)}
+.form-submit:disabled{background:rgba(232,122,31,.4);color:rgba(255,255,255,.7);cursor:not-allowed}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
 /* Trust bar */
 .trust-bar{background:var(--blue);padding:14px 0}
@@ -469,28 +479,49 @@ section{padding:78px 0}
         <a href="/free-estimate/" class="btn-primary">Get Free Estimate &rarr;</a>
         <a href="tel:+17022284394" class="btn-secondary">&#128222; (702) 228-4394</a>
       </div>
-      <!-- TODO-LAUNCH-BLOCKER: wire form endpoint before production deploy -->
-      <form id="hero-estimate-form" class="form-placeholder" onsubmit="return false;" novalidate aria-label="Retail pest control estimate request (not yet active)">
-        <p class="form-placeholder-title">Request a free retail pest control estimate &mdash; select your service type:</p>
+      <form id="estimate-form" class="form-placeholder" novalidate aria-label="Retail pest control estimate request">
+        <div class="form-group">
+          <label for="ret-name" class="sr-only">Your Name</label>
+          <input id="ret-name" type="text" name="name" placeholder="Your Name *" required autocomplete="name">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ret-phone" class="sr-only">Phone Number</label>
+            <input id="ret-phone" type="tel" name="phone" placeholder="Phone Number *" required autocomplete="tel">
+          </div>
+          <div class="form-group">
+            <label for="em" class="sr-only">Email Address</label>
+            <input id="em" type="email" name="email" placeholder="Email Address *" required autocomplete="email">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="ret-address" class="sr-only">Property Address</label>
+          <input id="ret-address" type="text" name="address" placeholder="Property Address (city, ZIP)" autocomplete="street-address">
+        </div>
+        <p class="form-placeholder-title">Service type:</p>
         <div class="placeholder-radios" role="radiogroup" aria-label="Retail service type">
           <label class="placeholder-radio">
-            <input type="radio" name="retail-service-type" value="ongoing" disabled aria-disabled="true">
+            <input type="radio" name="service-type" value="ongoing">
             <span>Ongoing Service Contract</span>
           </label>
           <label class="placeholder-radio">
-            <input type="radio" name="retail-service-type" value="one-time" disabled aria-disabled="true">
+            <input type="radio" name="service-type" value="one-time">
             <span>One-Time Treatment</span>
           </label>
           <label class="placeholder-radio">
-            <input type="radio" name="retail-service-type" value="emergency" disabled aria-disabled="true">
+            <input type="radio" name="service-type" value="emergency">
             <span>Emergency Service</span>
           </label>
           <label class="placeholder-radio">
-            <input type="radio" name="retail-service-type" value="assessment" disabled aria-disabled="true">
+            <input type="radio" name="service-type" value="assessment">
             <span>Free Property Assessment</span>
           </label>
         </div>
-        <button type="submit" class="placeholder-submit" disabled aria-disabled="true">Request Free Estimate &rarr;</button>
+        <div class="form-group">
+          <label for="ret-notes" class="sr-only">Additional notes</label>
+          <textarea id="ret-notes" name="notes" placeholder="Tell us more (optional)"></textarea>
+        </div>
+        <button type="submit" class="form-submit">Request Free Estimate &rarr;</button>
       </form>
     </div>
   </div>
@@ -885,6 +916,79 @@ document.getElementById('mobile-nav').addEventListener('click', function(e) {
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeMobileNav();
 });
+// ── GHL Form Handler ──────────────────────────────────────
+(function () {
+  var GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/XmTsrsLJDMVSiADHUA3q/webhook-trigger/8ns2ctW7q3Z8cSaevdVQ';
+
+  function getValue(form, names) {
+    for (var i = 0; i < names.length; i++) {
+      var name = names[i];
+      var radios = form.querySelectorAll('[name="' + name + '"][type="radio"]');
+      if (radios.length) {
+        for (var j = 0; j < radios.length; j++) {
+          if (radios[j].checked) return radios[j].value;
+        }
+        continue;
+      }
+      var el = form.querySelector('[name="' + name + '"]');
+      if (el && el.value) return el.value;
+    }
+    return '';
+  }
+
+  function wireForm(formId) {
+    var form = document.getElementById(formId);
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = form.querySelector('[type="submit"]');
+      var originalText = btn.textContent;
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+      var data = {
+        first_name:  getValue(form, ['first_name']),
+        last_name:   getValue(form, ['last_name']),
+        name:        getValue(form, ['name']),
+        phone:       getValue(form, ['phone']),
+        email:       getValue(form, ['email']),
+        service:     getValue(form, ['service', 'pest', 'issue', 'service-type', 'pm-service-type']),
+        message:     getValue(form, ['message', 'notes']),
+        source_url:  window.location.href,
+        source_page: document.title
+      };
+      fetch(GHL_WEBHOOK, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(data)
+      })
+        .then(function (res) {
+          if (res.ok) {
+            window.location.href = '/thank-you/';
+          } else {
+            throw new Error('HTTP ' + res.status);
+          }
+        })
+        .catch(function () {
+          btn.textContent = originalText;
+          btn.disabled = false;
+          var err = form.querySelector('.form-error');
+          if (!err) {
+            err = document.createElement('p');
+            err.className = 'form-error';
+            err.style.cssText = 'color:#c0392b;font-size:13px;margin-top:8px;text-align:center;';
+            form.appendChild(err);
+          }
+          err.textContent = 'Something went wrong. Please call (702) 228-4394 or try again.';
+        });
+    });
+  }
+
+  wireForm('estimate-form');
+  wireForm('contact-form');
+  wireForm('cta-form');
+})();
+// ── End GHL Form Handler ───────────────────────────────────
+
 </script>
 
 </body>
