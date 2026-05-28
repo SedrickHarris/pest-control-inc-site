@@ -1786,3 +1786,15 @@ Spec defaulted to `/assets/{icons,logo,images}/` but the owner-provided asset bu
 - Header markup repair for the 26 Phase 10.5 neighborhood pages
 - `/contact/` form build (carried from form-wiring entry)
 - 10 unwired form pages (carried from form-wiring entry)
+
+---
+
+### 2026-05-28 &mdash; Estimate Webhook URL Updated
+
+- Scope: all 54 HTML files containing the previous estimate webhook trigger
+- Old trigger: `RLbGa…` (deprecated, replaced)
+- New trigger: `vVSN…` (confirmed by owner 2026-05-28)
+- Node test against new URL: `Status: 200 PASS`
+- Contact webhook (`8ns2c…`): untouched (still unwired site-wide)
+- Site-wide verification: old URL count 0, new URL count 54, contact URL count 0
+- Commit: `061ab79` fix(forms): update estimate webhook URL to new GHL trigger endpoint
