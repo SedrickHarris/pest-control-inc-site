@@ -262,12 +262,13 @@ a{color:inherit;text-decoration:none}
 
 /* TRUST BAR */
 .trust-bar{background:var(--blue);padding:14px 0}
-.trust-bar-inner{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;padding:0 var(--container-pad)}
-.trust-item{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 24px;border-right:1px solid rgba(255,255,255,.15)}
+.trust-bar-inner{display:flex;align-items:center;justify-content:center;flex-wrap:nowrap;gap:0}
+.trust-item{display:flex;align-items:center;gap:7px;padding:6px 11px;border-right:1px solid rgba(255,255,255,.15);flex-shrink:0}
 .trust-item:last-child{border-right:none}
-.trust-value{font-family:var(--font-ui);font-size:13px;font-weight:800;letter-spacing:.04em;color:#fff}
-.trust-label{font-family:var(--font-ui);font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.65)}
-.trust-stars{color:#FFD580}
+.trust-icon{font-size:17px;flex-shrink:0}
+.trust-value{font-family:'Barlow Condensed',sans-serif;font-size:12.5px;font-weight:800;letter-spacing:.03em;color:#fff;line-height:1.15;white-space:nowrap}
+.trust-value .gold{color:#FFD580}
+.trust-label{font-size:10px;color:rgba(255,255,255,.65);line-height:1.2;text-transform:uppercase;letter-spacing:.04em;font-family:'Barlow Condensed',sans-serif;font-weight:600;white-space:nowrap}
 
 /* AEO */
 .aeo-section{background:var(--pure);padding:64px 0}
@@ -519,28 +520,16 @@ a{color:inherit;text-decoration:none}
 <!-- =====================================================
      SECTION 02 &mdash; TRUST BAR
      ===================================================== -->
-<section class="trust-bar" aria-label="Trust signals">
-  <div class="trust-bar-inner" role="list">
-    <div class="trust-item" role="listitem">
-      <span class="trust-value trust-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-      <span class="trust-label">Google &middot; 5.0 &middot; 30 Reviews</span>
-    </div>
-    <div class="trust-item" role="listitem">
-      <span class="trust-value">License #4632</span>
-      <span class="trust-label">Nevada Dept. of Agriculture</span>
-    </div>
-    <div class="trust-item" role="listitem">
-      <span class="trust-value">&#128260; Money-Back</span>
-      <span class="trust-label">Guarantee on Every Service</span>
-    </div>
-    <div class="trust-item" role="listitem">
-      <span class="trust-value">Free Pest ID</span>
-      <span class="trust-label">Species Confirmation Included</span>
-    </div>
-    <div class="trust-item" role="listitem">
-      <span class="trust-value">&#127807; Health Conscious</span>
-      <span class="trust-label">Service Program &middot; Family Safe</span>
-    </div>
+<section class="trust-bar" aria-label="Trust credentials">
+  <div class="container trust-bar-inner">
+    <div class="trust-item"><span class="trust-icon">⚡</span><div><div class="trust-value">Same-Day Service</div><div class="trust-label">New Callers</div></div></div>
+    <div class="trust-item"><span class="trust-icon">📞</span><div><div class="trust-value">24/7 Line</div><div class="trust-label">Active Accounts</div></div></div>
+    <div class="trust-item"><span class="trust-icon">⭐</span><div><div class="trust-value"><span class="gold">5.0 Stars</span></div><div class="trust-label">Google Rated</div></div></div>
+    <div class="trust-item"><span class="trust-icon">🛡️</span><div><div class="trust-value">Licensed #4632</div><div class="trust-label">Nevada Certified</div></div></div>
+    <div class="trust-item"><span class="trust-icon">🐾</span><div><div class="trust-value">Pet &amp; Kid Safe</div><div class="trust-label">Health Conscious</div></div></div>
+    <div class="trust-item"><span class="trust-icon">🔄</span><div><div class="trust-value">Money-Back</div><div class="trust-label">Guarantee</div></div></div>
+    <div class="trust-item"><span class="trust-icon">👨‍👩‍👧‍👦</span><div><div class="trust-value">3-Generation Family</div><div class="trust-label">Locally Owned</div></div></div>
+    <div class="trust-item"><span class="trust-icon">📋</span><div><div class="trust-value">Documented</div><div class="trust-label">Every Visit</div></div></div>
   </div>
 </section>
 
