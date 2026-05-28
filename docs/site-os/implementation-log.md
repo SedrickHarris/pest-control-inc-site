@@ -1686,3 +1686,41 @@ Initial verification grep for `"@type":"Question"` (no space after colon) return
 
 #### Remaining open TODOs (carried from prior entry)
 - 9 OG image assets still pending: `/assets/images/og-{slug}-pest-control.jpg` for the Phase 10.5 neighborhood pages
+
+---
+
+### 2026-05-28 &mdash; Form Wiring Follow-up: Webhook URL Correction + Deferrals
+
+Owner course-correction to a two-webhook architecture (ESTIMATE + CONTACT). The initial 09a4c70 commit shipped with what's now designated the CONTACT webhook on all 54 forms. This entry records the URL correction applied before push, plus three deferrals approved by owner for follow-up passes.
+
+#### URL correction
+- Replaced GHL webhook URL on all 54 wired files: the old ID (now designated as the CONTACT webhook, reserved for `/contact/`) &rarr; the new ESTIMATE webhook ID
+- Single-token global replacement; no other code changes
+- URLs not logged here per security practice; both confirmed by owner 2026-05-28
+
+#### Verification (re-run)
+- Old webhook URL occurrences across `*.html`: 0
+- New webhook URL occurrences across `*.html`: 54 (one per file)
+- `leadconnectorhq` total references: 54 (unchanged)
+- `TODO-LAUNCH-BLOCKER`: 0 (unchanged)
+- ` disabled aria-disabled="true"`: 0 (unchanged)
+- `name="email"`: 54 (unchanged)
+- Integrity audit not re-run (no structural edits beyond the URL token; pre-push `git diff` shows only the URL line per file)
+
+#### Deferrals approved by owner (do not block this push)
+1. `/contact/index.html` form build &mdash; deferred to a separate pass. Current state: page exists but contains no `<form>` element (phone/email/address info only). Wiring the page as the new spec instructs would require designing and building a new contact form, which is out of scope for this commit. The CONTACT webhook stays reserved for that future form.
+2. 10 additional pages have forms that were never `TODO-LAUNCH-BLOCKER`-marked and remain unwired: `index.html`, `pest-control-las-vegas/index.html`, `ant-exterminator-las-vegas/`, `emergency-pest-control-las-vegas/`, `pest-control-las-vegas/{eco-friendly,apartments}/`, `commercial-pest-control-las-vegas/{index,pest-impact-on-business,landlord-pest-control-responsibilities}/`, `about/index.html`. Existing behavior: form `action="/free-estimate/"` posts redirect users to the wired form on `/free-estimate/`. Scoped to a follow-up pass after the post-push browser test on the currently-wired forms confirms the GHL pipeline works end-to-end.
+3. Group B (6 outliers) field-shape variance from the latest spec: committed state uses single `name` input + `address` input + `notes` textarea. Latest spec calls for `first_name` + `last_name` split with no address or notes. Accepted as-shipped per owner; can be normalized to the latest spec shape in a later cleanup if needed.
+
+#### Handler design note (carried)
+The handler retains the field-name normalization chain (`service || pest || issue || service-type || pm-service-type` &rarr; `service`; `message || notes` &rarr; `message`). The latest spec reads `name="service"` literally, but renaming HTML input names across 53+ files is unnecessary churn when the normalization helper covers the same ground with one small piece of handler logic.
+
+#### Test submission (carried)
+The single Node test against the old (CONTACT) URL returned `Status: 200 OK`. A fresh Node test against the corrected ESTIMATE webhook should be run after push as part of the browser-test step (spec Step 4 Test A); owner-handled.
+
+#### Commits
+- `09a4c70` feat(forms): add email field, wire GHL webhook, clear launch blocker site-wide
+- `7549641` docs(site-os): log GHL form wiring batch (2026-05-28)
+- This entry's commit: webhook URL correction (54 files) + this log update, bundled
+
+#### Launch blocker status: **CLEARED** (54 of 54 originally-blocked forms wired and pointed at the correct ESTIMATE webhook)
