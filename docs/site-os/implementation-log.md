@@ -1636,3 +1636,53 @@ Initial verification grep for `"@type":"Question"` (no space after colon) return
 - Form endpoint integration sitewide (`TODO-LAUNCH-BLOCKER` marker on every page hero form)
 
 ### Pass/fail: **PASS (9 of 9)**
+
+---
+
+### 2026-05-28 &mdash; Form Wiring: GHL Webhook + Email Field
+
+- Scope: all HTML pages with `TODO-LAUNCH-BLOCKER` forms (54 files)
+- Webhook: GHL &mdash; confirmed by owner 2026-05-28 (URL not logged per security practice)
+- Changes:
+  - Email field added after phone on all forms (`name="email"`, `required`, `sr-only` label)
+  - GHL fetch handler appended to existing inline `<script>` on all 54 pages; same handler shared site-wide
+  - Handler normalizes payload keys: reads `service || pest || issue || service-type || pm-service-type` &rarr; `service`; reads `message || notes` &rarr; `message`
+  - Disabled state (`disabled` + `aria-disabled="true"`) removed from every form field and submit button
+  - `<!-- TODO-LAUNCH-BLOCKER -->` comments removed site-wide
+  - `<div class="form-placeholder-notice">` "Online form coming soon" blocks removed
+  - Form opening tags: `id` standardized to `estimate-form`, `onsubmit="return false;"` removed, `(not yet active)` suffix dropped from `aria-label`
+  - Submit buttons: `type="button"` &rarr; `type="submit"`, class `form-submit-placeholder` &rarr; `form-submit`, live orange styling with hover and `:disabled` states
+- Outlier pattern (6 files: commercial sub-pages `property-managers`, `hoa`, `hotels`, `offices`, `retail` + `pest-control-las-vegas/plans-and-pricing/`):
+  - Previously radio-only "select service type" forms with no contact-info fields
+  - Added full contact fields (name / phone / email / address / notes textarea) above the existing radio group
+  - Existing service-type radios preserved; renamed to `name="service-type"` so the shared handler picks up each form's selected value
+  - `.form-placeholder::after "NOT YET ACTIVE"` badge removed; `.placeholder-radio`/`.placeholder-submit` styles relived
+
+#### Verification (spec Steps 3 and 4 &mdash; all pass)
+- `TODO-LAUNCH-BLOCKER` count: 0 across all .html
+- ` disabled aria-disabled="true"` (form-field pattern): 0
+- `leadconnectorhq` references: 54 (one per file)
+- `name="email"` references: 54 (one per file)
+- Integrity audit (JSON-LD / `<meta>` / `<link>` / external `<script src=>` counts): unchanged before vs after across all 54 files
+
+#### Test submission
+- Spec Step 5A Node test: `Status: 200 OK` &check;
+- Field mapping confirmed by owner per Step 5C/D &mdash; 2026-05-28
+- Test contact deletion: per spec Step 5E, owner-handled
+
+#### Browser test
+- Pending: spec Step 7 (`/free-estimate/` &rarr; `/thank-you/` post-deploy browser submission) requires `git push` + Cloudflare Pages deploy first
+
+#### Notes &mdash; bulk-edit regression caught and recovered
+- An initial bulk-edit regex `/<!--[\s\S]*?TODO-LAUNCH-BLOCKER[\s\S]*?-->/` had a leftmost-match bug: in files with any `<!--` comment in the head (e.g., a redirect TODO or schema annotation), the non-greedy match consumed everything between that earlier `<!--` and the hero `TODO-LAUNCH-BLOCKER` comment &mdash; wiping JSON-LD schema, Open Graph meta, font links, etc.
+- Detected via JSON-LD count comparison (HEAD vs working tree). 6 files affected: `pest-control-sunrise-manor-nv/`, `commercial-pest-control-las-vegas/{hoa,hotels,offices,retail}/`, `pest-control-las-vegas/plans-and-pricing/`.
+- Recovery: `git restore` the 6 files, tightened the regex with a negative lookahead `(?:(?!-->)[\s\S])*?` so the match stays within a single HTML comment, re-ran the bulk script. Site-wide integrity audit re-run; all 54 files pass.
+
+#### Commit
+- `09a4c70` &mdash; feat(forms): add email field, wire GHL webhook, clear launch blocker site-wide
+- Push: pending owner approval
+
+#### Launch blocker status: **CLEARED**
+
+#### Remaining open TODOs (carried from prior entry)
+- 9 OG image assets still pending: `/assets/images/og-{slug}-pest-control.jpg` for the Phase 10.5 neighborhood pages
