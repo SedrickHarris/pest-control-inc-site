@@ -1724,3 +1724,65 @@ The single Node test against the old (CONTACT) URL returned `Status: 200 OK`. A 
 - This entry's commit: webhook URL correction (54 files) + this log update, bundled
 
 #### Launch blocker status: **CLEARED** (54 of 54 originally-blocked forms wired and pointed at the correct ESTIMATE webhook)
+
+---
+
+### 2026-05-28 &mdash; Logo + Favicon Assets Added
+
+Owner uploaded the PCI logo + favicon bundle to the repo. This entry covers the asset commit and the site-wide markup updates that swap the placeholder boxes for real `<img>` tags and add the favicon `<link>` block in `<head>`.
+
+#### Asset files committed (under `images/logos/`)
+- `pest-control-inc-logo.png` (1536&times;1024) and `.webp` &mdash; white background
+- `pest-control-inc-logo-transparent-background.png` (1080&times;720) and `.webp` &mdash; used as the live header/footer logo (navy header context)
+- `favicons/favicon.ico`, `favicon-16x16.png`, `favicon-32x32.png`, `favicon-512.png` &mdash; lettermark variants
+- `favicons/favicon-full.ico` + `favicon-full-16/32/192/512.png` &mdash; full-logo variants
+- `favicons/apple-touch-icon.png`, `android-chrome-192x192.png`
+- `favicons/site.webmanifest` &mdash; updated with `name`, `short_name`, corrected icon paths
+- `favicons/README.txt` &mdash; vendor-provided context for the favicon package
+
+#### Site-wide HTML changes (76 files)
+- Inserted standard favicon `<link>` block in `<head>` after the canonical link:
+  - `<link rel="icon" type="image/x-icon" href="/images/logos/favicons/favicon.ico">`
+  - `<link rel="icon" type="image/png" sizes="32x32" href=".../favicon-32x32.png">`
+  - `<link rel="icon" type="image/png" sizes="16x16" href=".../favicon-16x16.png">`
+  - `<link rel="apple-touch-icon" sizes="180x180" href=".../apple-touch-icon.png">`
+  - `<link rel="manifest" href="/images/logos/favicons/site.webmanifest">`
+- Replaced `.logo-placeholder` CSS rule with `.logo` + `.logo img` rules:
+  - `.logo{display:inline-flex;align-items:center;flex-shrink:0}`
+  - `.logo img{display:block;height:56px;width:auto;max-width:160px}`
+- Replaced placeholder markup with real `<a class="logo"><img></a>`:
+  - Standard anchor pattern (50 files): `<a href="/" class="logo-placeholder" aria-label="Pest Control Inc &mdash; Home">PCI Logo</a>` &rarr; live anchor + img tag
+  - Phase 10.5 footer-div pattern (26 neighborhood pages): `<div class="logo-placeholder" style="...">PCI</div>` &rarr; live anchor + img tag
+- `index.html`: unwrapped a malformed nested `<a class="logo"><a class="logo-placeholder">PCI Logo</a></a>` pattern before the bulk script ran
+
+#### `site.webmanifest` updates
+- Added `"name":"Pest Control Inc"` and `"short_name":"PCI"`
+- Fixed icon `src` paths from site-root (`/android-chrome-192x192.png`, `/favicon-512.png`) to actual asset locations under `/images/logos/favicons/`
+- Preserved owner's `theme_color` (#003A8C) and `background_color` (#ffffff)
+
+#### Path note
+Spec defaulted to `/assets/{icons,logo,images}/` but the owner-provided asset bundle landed under `/images/logos/`. All HTML references and the manifest use the actual paths as-is per spec ("If the new files are in a different location, ... use them exactly as-is. Do not move files without confirming the move is safe.").
+
+#### Verification (spec Step 7)
+- `class="logo-placeholder"` references across `*.html`: 0 ✓
+- `PCI Logo` text references across `*.html`: 0 ✓
+- `pest-control-inc-logo-transparent-background.png` references: 87 across 76 files (some files have both header and footer logos)
+- `favicons/favicon.ico` references: 76 (one per HTML file) ✓
+- Integrity audit: JSON-LD / `<meta>` / `<script src=>` counts unchanged; `<link>` count = original + 5 (the new favicon links only)
+
+#### Issues noted (deferred to follow-up passes, not commit blockers)
+1. **26 Phase 10.5 neighborhood pages are missing their `<header>` element entirely.** The `.header` and `.header-inner` CSS rules are defined but no `<header class="header">` markup exists between `<body>` and the first `<aside>`. These pages currently render with no top bar, no nav, and no header logo &mdash; only the footer logo. This is a structural defect from the Phase 10.5 generator and needs a separate fix pass.
+2. **Missing assets called out in the spec but not in the bundle:**
+   - `og-default.jpg` (1200&times;630 fallback Open Graph image) &mdash; not in the bundle; some pages still reference `https://pestcontrolinc.net/assets/images/og-default.jpg` which 404s
+   - `android-chrome-512x512.png` &mdash; bundle has `favicon-512.png` (named differently); manifest points at `favicon-512.png` and that works, but PWA tooling that expects the canonical filename will need an alias
+3. **`.footer-logo-placeholder` CSS rule is orphan** (defined in standard-pattern files; no markup uses it). Left in place; can be cleaned up in a follow-up.
+
+#### Commit
+- `269e0f0` feat(assets): add logo + favicon set, replace placeholder markup site-wide
+
+#### Open TODOs (carried forward)
+- 9 OG image assets pending for the Phase 10.5 neighborhood pages: `/assets/images/og-{slug}-pest-control.jpg`
+- `og-default.jpg` site-wide fallback OG image
+- Header markup repair for the 26 Phase 10.5 neighborhood pages
+- `/contact/` form build (carried from form-wiring entry)
+- 10 unwired form pages (carried from form-wiring entry)
