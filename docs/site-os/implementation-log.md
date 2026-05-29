@@ -2067,3 +2067,44 @@ Zero output.
 
 #### Next step
 Content sweep on the 76 customer-facing HTML pages. The original scan counted ~3,400 em dashes and ~479 en dashes site-wide. With the build sources now clean, the content sweep on the built HTML will hold. The runnable gate grep is the verification mechanism.
+
+---
+
+### 2026-05-28: Em and En Dash Content Sweep, All 76 Pages
+
+Executes the content sweep anticipated at the end of the source-scrub entry. Replaces every em or en dash in customer-facing content with the contextually correct punctuation. HTML comments are exempt per spec; not touched.
+
+#### Counts (audit script, before/after)
+| Bucket | HEAD | After |
+|---|---|---|
+| visible text | 3,052 | 0 |
+| attribute values (alt, aria-label, title, meta description, og/twitter description) | 262 | 0 |
+| JSON-LD string values | 554 | 0 |
+| HTML comments (exempt) | 571 | 571 (preserved) |
+| Total non-exempt | 3,868 | 0 |
+
+#### Substitution rules applied (spec rules in order)
+1. Range (numbers, times, day names, month names on both sides): dash → " to ". This is the explicit authorized word-level change in the spec.
+2. Parenthetical pair (" — content — " with short content): both dashes → commas.
+3. Single dash with surrounding spaces (default): → comma.
+4. Bare em/en between word characters (real compound modifier): → hyphen.
+5. Cleanup: collapse double spaces, drop pre-comma space, collapse double-comma.
+
+#### Verification
+- Site-wide non-comment dashes: 0 (multi-line-aware Node check).
+- The line-based gate grep in `pass-fail-page-quality-gates.md` returns 336 false-positive hits, all on the middle line of multi-line `<!-- SECTION XX &mdash; … -->` section-header comments where `<!--` is on the previous line. Recommend updating the gate doc to use a multi-line-aware tool. Out of scope for this commit.
+- `<meta>`, `<link>`, JSON-LD block, external `<script src>`, `<h1>`, `<h2>`, `<h3>` counts: unchanged on all 76 pages.
+- Every JSON-LD block parses with `JSON.parse()`.
+- 45 pages have zero word-count delta. 31 pages have a positive delta that matches their range-substitution count exactly (each " to " insertion is one word). No other word-level change.
+- Comment-bucket dash counts: identical HEAD vs current on every page. No comment was edited.
+- Spot-check on the 5 highest-density pages (eco-friendly, emergency, apartments, commercial, about): 15 before/after pairs in the QA note. No comma splices, no broken ranges, all JSON-LD valid.
+
+#### QA note
+[`docs/site-os/qa/2026-05-28-em-en-dash-content-sweep.md`](qa/2026-05-28-em-en-dash-content-sweep.md): full baseline table, per-bucket counts, substitution rules, verification matrix, 15 spot-check pairs, and the recommended follow-up on the line-based gate grep.
+
+#### Commit
+- `2ba7cf8` style(content): replace em/en dashes with correct punctuation across all customer-facing content (76 pages)
+- Push: pending owner approval
+
+#### Follow-up
+Update the runnable gate grep in `docs/site-os/pass-fail-page-quality-gates.md` to a multi-line-aware tool (or note that the line-based grep is a quick non-strict signal and the strict gate is a script). Low priority; the rule and the sweep are in place.
