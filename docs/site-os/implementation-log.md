@@ -1996,3 +1996,44 @@ Hero-sub copy on each page was condensed from that page's existing AEO intro par
 - **Batch C** &mdash; 26 Phase 10.5 neighborhood pages (same pattern; this overlaps with the prior "Header markup repair for the 26 Phase 10.5 neighborhood pages" TODO)
 - **Quick win** &mdash; 4 h1-only pages (`cockroach`, `rodent`, `spider`, `termite` per the original audit). Worth double-checking `rodent` since it was also used as the secondary canonical reference in this batch
 - **Consistency pass** &mdash; reconcile `<h2 class="form-card-title">` (canonical) vs `<p class="form-card-title">` (this batch). Recommend the demotion across the site, but defer to owner
+
+---
+
+### 2026-05-28 &mdash; Quick Win: `<h1>` + Hero on 4 Service Pages
+
+Closes the quick-win item flagged at the bottom of the Batch A entry. Step 0 found that all 4 of these pages (`cockroach`, `rodent`, `spider`, `termite`) had the same orphaned-hero pattern Batch A just fixed on the 9 species pages &mdash; the spec's premise that they "already have a hero section" was incorrect for the actual on-disk state. Surfaced via AskUserQuestion; owner approved running Batch A's treatment on them.
+
+Unlike the Batch A species pages (which were missing `<body>` on 2 of 9), these 4 already had `<body>`, top-bar, `<header>`, mobile-nav, and `<main>`. Only the hero block + form-card-title demotion were applied.
+
+#### Per page
+- Hero `<section class="hero">` inserted between `<main id="main-content">` and the existing form-card `<aside>` &mdash; container, breadcrumb (Home / Pest Control Las Vegas / per-page), `hero-inner`, LEFT column with hero-eyebrow + `<h1>` + hero-sub + hero-ctas + hero-trust; existing `<aside>` becomes the RIGHT column in place
+- `<h2 class="form-card-title">` &rarr; `<p class="form-card-title">`
+
+#### `<h1>` values
+| File | h1 |
+|---|---|
+| cockroach-exterminator-las-vegas | Cockroach Exterminator *Las Vegas* |
+| rodent-exterminator-las-vegas | Rodent Exterminator *Las Vegas* |
+| spider-exterminator-las-vegas | Spider Exterminator *Las Vegas* |
+| termite-exterminator-las-vegas | Termite Exterminator *Las Vegas* |
+
+Each h1 derived from the page's own `<title>` (primary keyword + geo, front-loaded, &le; 60 chars). Hero-sub copy condensed from each page's existing AEO intro paragraph and the standard entity phrases.
+
+#### Verification
+- All 4: 1 `<h1>` (first heading in document), 1 `<section class="hero">`, 0 `<h2 class="form-card-title">`, 1 `<p class="form-card-title">`
+- Heading outline clean: h1 first, 9&ndash;11 content `<h2>`s, child `<h3>`s, no skipped levels
+- Integrity: JSON-LD / `<meta>` / `<link>` / external `<script src>` counts unchanged on all 4; below-hero content byte-identical to HEAD
+
+Closes the contradiction noted in the Batch A entry: `rodent` was the secondary canonical reference there while being itself h1-less. Resolved.
+
+#### QA note
+[`docs/site-os/qa/2026-05-28-h1-quickwin-4-pages.md`](qa/2026-05-28-h1-quickwin-4-pages.md) &mdash; Step 0 table, spec-vs-on-disk discrepancy reasoning, per-page h1 and verification matrix.
+
+#### Commit
+- `10254ae` fix(seo): add missing h1 + demote form-card-title on 4 service pages
+- Push: pending owner approval
+
+#### Remaining batches (unchanged from Batch A entry)
+- **Batch B** &mdash; 5 city hubs
+- **Batch C** &mdash; 26 Phase 10.5 neighborhood pages
+- **Consistency pass** &mdash; form-card-title tag site-wide
