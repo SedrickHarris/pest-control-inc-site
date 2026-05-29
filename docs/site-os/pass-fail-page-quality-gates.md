@@ -105,16 +105,37 @@ Forbidden marks (literal or HTML-entity form):
 
 HTML comments (`<!-- ... -->`) are exempt because they never render. Any other hit is a fail.
 
-Run from the repo root. Zero output = pass:
+### Detection (comment-aware, multi-line safe)
+
+**Do not use a naive line-based `grep -v '<!--'`.** Section-header comments in this repo span multiple lines, so a per-line filter cannot tell that a dash on the middle line belongs to a comment. A naive grep returns hundreds of false-positive hits on a clean repo and will be ignored.
+
+The strict gate strips every `<!-- ... -->` block first (multi-line aware), then detects em or en dashes in the remainder. Run from the repo root. Zero output and exit code 0 = pass:
 
 ```
-grep -rnE '—|&mdash;|&#8212;|&#x2014;|–|&ndash;|&#8211;|&#x2013;' --include="*.html" . | grep -v '<!--'
+node -e "const fs=require('fs');const path=require('path');function walk(d,o=[]){for(const e of fs.readdirSync(d,{withFileTypes:true})){if(e.name.startsWith('.')||e.name==='node_modules'||e.name.startsWith('_'))continue;const f=path.join(d,e.name);if(e.isDirectory())walk(f,o);else if(e.name.endsWith('.html'))o.push(f);}return o;}let t=0;for(const f of walk(process.cwd())){const s=fs.readFileSync(f,'utf8').replace(/<!--[\s\S]*?-->/g,'');const n=(s.match(/[—–]|&mdash;|&ndash;|&#8212;|&#8211;|&#x2013;|&#x2014;/g)||[]).length;if(n)console.log(f,n);t+=n;}console.log('TOTAL:',t);process.exit(t?1:0);"
 ```
 
-To find hits in a single page during development:
+Portable Python equivalent (use on machines that have Python 3 available; same semantics):
 
 ```
-grep -nE '—|&mdash;|&#8212;|&#x2014;|–|&ndash;|&#8211;|&#x2013;' <path/to/page>.html | grep -v '<!--'
+python3 -c "import re,glob,sys
+t=0
+for f in glob.glob('**/*.html',recursive=True):
+    s=open(f,encoding='utf-8',errors='replace').read()
+    s=re.sub(r'<!--.*?-->','',s,flags=re.S)
+    n=sum(s.count(x) for x in ['—','–','&mdash;','&ndash;','&#8212;','&#8211;'])+len(re.findall(r'&#x201[34];',s,re.I))
+    t+=n
+    if n: print(f,n)
+print('TOTAL:',t)
+sys.exit(1 if t else 0)"
+```
+
+Either command returns `TOTAL: 0` and exit code 0 on a passing repo.
+
+### Per-page quick check during development
+
+```
+node -e "const s=require('fs').readFileSync(process.argv[1],'utf8').replace(/<!--[\s\S]*?-->/g,'');const m=s.match(/[—–]|&mdash;|&ndash;|&#8212;|&#8211;|&#x2013;|&#x2014;/g)||[];console.log(m.length);process.exit(m.length?1:0);" <path/to/page>.html
 ```
 
 Replacement guidance: see `docs/site-os/inputs/pci-brand-style-reference.md` Punctuation: No Long Dashes section. Short form: comma, colon, period, or parentheses for breaks and asides; the word `to` for ranges (times, dates, scores, page counts); never substitute a hyphen unless the result is a real compound modifier.
