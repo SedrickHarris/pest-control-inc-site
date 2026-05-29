@@ -1950,3 +1950,49 @@ The mobile rules vary widely across files and live inside per-file `@media` bloc
 #### Commit
 - `016d8e0` fix(reveal): null-guard mobile-nav handlers so anim-ready content renders (11 pages)
 - Push: pending owner approval per spec
+
+---
+
+### 2026-05-28 &mdash; Batch A: Top-of-Page Reconstruction on 9 Species Pages
+
+Resumes the Fix B work that was stopped under the earlier anim-ready reveal-halt entry. The 9 species pages dumped the lead form directly after `</head>` with no `<header>`, no `<main>`, and no `<h1>` &mdash; broken document structure and dead site nav. This batch restores the canonical top-of-page scaffold and the page's first heading.
+
+#### What was added per page
+- `<body>` open tag on the 2 pages missing it (`bird-removal`, `bee-removal`)
+- skip-link, top-bar (page-specific emergency text), `<header class="header">` with logo + hamburger + desktop nav, and the `#mobile-nav` overlay &mdash; copied verbatim from `scorpion-exterminator-las-vegas/index.html`
+- `<main id="main-content">` opener (pairs with the pre-existing orphan `</main>` immediately before `<footer>`)
+- New hero `<section class="hero">` as first content in `<main>`: container, breadcrumb (Home / Pest Control Las Vegas / per-page), `hero-inner` two-column grid, LEFT column with hero-eyebrow, `<h1>`, `<p class="hero-sub" id="<pest>-speakable">`, hero-ctas, hero-trust; RIGHT column is the existing form-card aside reframed in place &mdash; not moved or duplicated
+- Form-card UI label demoted: `<h2 class="form-card-title">Free X Inspection</h2>` &rarr; `<p class="form-card-title">Free X Inspection</p>` to keep a clean single-h1 outline. Canonical pages still use `<h2>` here; reconciliation logged as a follow-up consistency pass.
+
+#### Per-page `<h1>` values
+| File | h1 |
+|---|---|
+| bird-removal-las-vegas | Bird & Pigeon Removal *Las Vegas* |
+| bee-removal-las-vegas | Bee Removal *Las Vegas* |
+| bed-bug-exterminator-las-vegas | Bed Bug Exterminator *Las Vegas* |
+| hornet-exterminator-las-vegas | Hornet Exterminator *Las Vegas* |
+| wasp-exterminator-las-vegas | Wasp Exterminator *Las Vegas* |
+| miller-moth-exterminator-las-vegas | Miller Moth Exterminator *Las Vegas* |
+| earwig-exterminator-las-vegas | Earwig Exterminator *Las Vegas* |
+| crane-fly-exterminator-las-vegas | Crane Fly Exterminator *Las Vegas* |
+| false-chinch-bug-exterminator-las-vegas | False Chinch Bug Control *Las Vegas* |
+
+Hero-sub copy on each page was condensed from that page's existing AEO intro paragraph and the standard entity phrases (Health Conscious Service Program, 3-generation family-owned, License #4632, money-back guarantee, 30-minute callback). HCSP appeared 2&ndash;11 times on each page before the edit; no new claims or invented stats were added.
+
+#### Verification
+- All 9: 1 `<header>`, 1 `<main id="main-content">`, 1 `</main>`, 1 `<h1>`, 1 `id="estimate-form"`, 0 `<h2 class="form-card-title">`, 1 `<p class="form-card-title">`, `<body>` present
+- Heading outline: h1 first; 9 `<h2 class="section-title">`s; child `<h3>`s; no skipped levels
+- Integrity: JSON-LD / `<meta>` / `<link>` / external `<script src>` counts unchanged on all 9; below-hero content byte-identical to HEAD (CRLF normalized for the compare)
+
+#### QA note
+[`docs/site-os/qa/2026-05-28-species-header-hero-reconstruction.md`](qa/2026-05-28-species-header-hero-reconstruction.md) &mdash; Step 0 signature table, per-page values, structural matrix, heading outline matrix, integrity matrix, sample diff, and the form-card-title canonical-drift note.
+
+#### Commit
+- `849636f` feat(structure): restore header/main/hero + h1 on 9 species pages (SEO heading pass)
+- Push: pending owner approval
+
+#### Remaining batches (open follow-ups)
+- **Batch B** &mdash; 5 city hubs (same pattern; `pest-control-north-las-vegas` and `pest-control-boulder-city-nv` already have the handler guards from `016d8e0`)
+- **Batch C** &mdash; 26 Phase 10.5 neighborhood pages (same pattern; this overlaps with the prior "Header markup repair for the 26 Phase 10.5 neighborhood pages" TODO)
+- **Quick win** &mdash; 4 h1-only pages (`cockroach`, `rodent`, `spider`, `termite` per the original audit). Worth double-checking `rodent` since it was also used as the secondary canonical reference in this batch
+- **Consistency pass** &mdash; reconcile `<h2 class="form-card-title">` (canonical) vs `<p class="form-card-title">` (this batch). Recommend the demotion across the site, but defer to owner
