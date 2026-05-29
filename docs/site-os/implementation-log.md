@@ -2190,3 +2190,71 @@ The blog is a deferred batch (no `/blog/` index, no article pages, no featured i
 
 #### Next step
 Batch B: 5 city hubs header/main/hero reconstruction (unchanged from the prior entry).
+
+---
+
+### 2026-05-28: /about/ + /eco-friendly/ Real Images Wired
+
+Replaces the four image placeholders on the `/about/` and `/eco-friendly/` pages with real responsive `<img>` elements. Commits the four WebP assets, removes the now-dead placeholder CSS, and updates the image backlog.
+
+#### Files committed
+
+- `images/about/three-generation-family-pest-control-las-vegas.webp` (1448 × 1086, 99 KB)
+- `images/about/licensed-pest-control-technician-las-vegas.webp` (1086 × 1448, 81 KB)
+- `images/ipm-diagrams/ipm-four-pillars-health-conscious-pest-control-las-vegas.webp` (1672 × 941, 191 KB)
+- `images/ipm-diagrams/ipm-targeted-vs-broadcast-cabinet-treatment-las-vegas.webp` (1672 × 941, 71 KB)
+
+#### Wiring (4 slots)
+
+| Page | Slot | Source | Approach |
+|---|---|---|---|
+| `about/index.html` | `.story-img-placeholder` (family, 4:3) | `three-generation-family-pest-control-las-vegas.webp` | `<img>` with explicit width/height, lazy/async, border-radius preserved (18px), inline `width:100%;height:auto;display:block` for responsive scale |
+| `about/index.html` | `.team-img-placeholder` (technician, 3:4) | `licensed-pest-control-technician-las-vegas.webp` | same recipe; 18px radius |
+| `pest-control-las-vegas/eco-friendly/index.html` | first `.diagram-placeholder` (targeted-vs-broadcast) | `ipm-targeted-vs-broadcast-cabinet-treatment-las-vegas.webp` | same recipe; 12px radius; 24px vertical margin preserved |
+| `pest-control-las-vegas/eco-friendly/index.html` | second `.diagram-placeholder` (four-pillars) | `ipm-four-pillars-health-conscious-pest-control-las-vegas.webp` | same recipe; 12px radius; 30px vertical margin preserved |
+
+All four `alt` values reuse the placeholder's existing `aria-label` verbatim — no new claims introduced (no-fake-data).
+
+#### Dead CSS removed
+
+- `.story-img-placeholder` (about/index.html)
+- `.team-img-placeholder` (about/index.html)
+- `.diagram-placeholder` + `.diagram-placeholder span` (eco-friendly/index.html)
+
+Each class was grepped site-wide before removal: only the owning page (now without placeholders) and 2–3 documentation references remained, so the CSS rules were dead in the rendered site.
+
+#### Mapping resolution note
+
+The two IPM diagram files arrived with one bearing a generic AI-export filename, so initial mapping required owner clarification. Resolution involved iterative renames by owner and assistant; owner confirmed mid-session that `ipm-targeted-vs-broadcast-cabinet-treatment-las-vega.webp` (typo) = the targeted-vs-broadcast diagram, and the four-pillars file ended up correctly identified by name. Assistant fixed the `las-vega` → `las-vegas` typo to match the directory convention before committing.
+
+#### Verification
+
+| Gate | Result |
+|---|---|
+| Placeholder classes / `data-img=` on the 2 pages | 0 remaining |
+| 4 `<img>` src paths exist on disk | 4/4 |
+| Each new `<img>` has non-empty `alt` + explicit `width` + `height` | 4/4 |
+| Other `<img>` tags on the 2 pages unchanged (logo only) | unchanged |
+| JSON-LD on both pages parses | 15/15 |
+| Customer-facing em/en dashes (comment-aware detector) | 0 |
+| Site-wide placeholder scan (non-comment) | 0 (homepage blog Featured Image strings correctly live inside the `TODO(blog)` comment from `8791a0e`, so they do not count) |
+
+#### Image hygiene
+
+All four files under 200 KB; none exceeds the 400 KB flag. Two files are about 2.4–3× their likely desktop display width, which is at the edge of useful DPR scaling but acceptable for WebP at these byte sizes; no optimization recommended now.
+
+#### QA note
+[`docs/site-os/qa/2026-05-28-about-ecofriendly-image-wiring.md`](qa/2026-05-28-about-ecofriendly-image-wiring.md): inventory table, mapping signals, per-slot before/after markup, dead-CSS audit, image hygiene matrix, verification.
+
+#### Commit
+- `feat(media): wire real /about/ photos + /eco-friendly/ IPM diagrams, remove placeholders` (4 image assets + 2 HTML files + QA note + this log entry)
+- Push: pending owner approval
+
+#### Updated image backlog
+
+- DONE: `/about/` story + team, `/eco-friendly/` targeted-vs-broadcast + four-pillars (this commit)
+- DEFERRED: 3 homepage blog featured images (1200 × 675) — travel with the blog batch
+- OUTSTANDING: real `og:image` assets on ~72 pages; PWA / favicon / manifest icon set
+
+#### Next step
+Batch B: 5 city hubs header/main/hero reconstruction (unchanged).
