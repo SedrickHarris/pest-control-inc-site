@@ -2146,3 +2146,47 @@ Files touched: `about/`, `ant-exterminator-las-vegas/`, `bed-bug-exterminator-la
 
 #### Next step
 Batch B: 5 city hubs header/main/hero reconstruction (the standing next batch per the prior implementation-log notes).
+
+---
+
+### 2026-05-28: Temporary Blog Neutralization
+
+The blog is a deferred batch (no `/blog/` index, no article pages, no featured images). Every customer-facing `/blog/` link in the live site resolved to the custom 404, which was hurting crawl quality and internal-link integrity. This commit hides every such link behind HTML comments + TODO restore markers; nothing is deleted. Reversible in one sweep when the blog ships.
+
+#### Step 0 inventory
+
+- `/blog/` directory and the 3 named article paths: all absent.
+- Homepage section: `<section class="blog-section">…</section>` at `index.html` lines 901–940. No nested `<!--`, `-->`, or `--` sequences inside, so a plain comment wrap was safe. The 3 `Article` schema.org *microdata* entries are inside the section; no `<script type="application/ld+json">` block is — that block sits at line 387, well above.
+- Footer link `<li><a href="/blog/">Pest Control Blog</a></li>` exists on **20 pages**, not the ~76 the prompt expected. Pattern identical across all 20.
+- Spec-extension finding: a `<div class="seasonal-blog-links">` block on `pest-control-las-vegas/index.html` (lines 1060–1063) holds two more `<a>` links to non-existent articles. The verification gate ("zero non-commented `href="/blog"` site-wide") requires this be neutralized too. Surfaced and handled.
+
+#### Changes (20 files)
+
+| Region | Files | Method |
+|---|---|---|
+| Homepage `<section class="blog-section">` | `index.html` (1) | TODO(blog) marker + HTML-comment wrap around the full 40-line section, byte-for-byte preserved |
+| Footer `<li><a href="/blog/">Pest Control Blog</a></li>` | 20 pages (homepage, about hub + 3 about-sub, ant, commercial hub + 7 commercial-sub, emergency, LV hub + 3 LV-sub, service-areas) | TODO(blog) marker + commented original `<li>` on same indent; surrounding footer items untouched |
+| LV hub `<div class="seasonal-blog-links">` in-content block | `pest-control-las-vegas/index.html` (1) | TODO(blog) marker + HTML-comment wrap |
+
+#### Verification
+
+| Gate | Result |
+|---|---|
+| Live `href="/blog"` (outside comments), site-wide | 0 |
+| Homepage `class="blog-section"` in non-comment DOM | absent (faq-section above and emergency-banner below intact and adjacent) |
+| Homepage `<!--` / `-->` balance | 24 / 24 |
+| JSON-LD blocks site-wide | 171/171 still parse |
+| Customer-facing em/en dashes (comment-aware detector) | 0 |
+
+#### QA note
+[`docs/site-os/qa/2026-05-28-blog-neutralize.md`](qa/2026-05-28-blog-neutralize.md): Step 0 table, the 20-file footer list, per-region patterns applied, verification matrix, and step-by-step restore instructions for when the blog ships.
+
+#### Commit
+- `chore(content): temporarily hide deferred blog section + footer link to remove 404 links` (20 files + QA note + this log entry)
+- Push: pending owner approval
+
+#### Deferred work registered
+**Blog build batch** (future, no firm date): build the 3 articles (`why-scorpions-worse-after-rain`, `common-las-vegas-pests-summer`, `how-to-keep-pests-out-of-home-las-vegas`), build the `/blog/` index page, produce the 3 featured images (1200×675, JPEG/WebP, Google Discover-eligible). The image placeholders move with this batch — they're preserved inside the homepage comment and need real assets at restore time. Use `grep -rn "TODO(blog):" --include="*.html"` to find every restoration site in one sweep.
+
+#### Next step
+Batch B: 5 city hubs header/main/hero reconstruction (unchanged from the prior entry).
