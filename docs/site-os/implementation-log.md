@@ -2108,3 +2108,41 @@ Executes the content sweep anticipated at the end of the source-scrub entry. Rep
 
 #### Follow-up
 Update the runnable gate grep in `docs/site-os/pass-fail-page-quality-gates.md` to a multi-line-aware tool (or note that the line-based grep is a quick non-strict signal and the strict gate is a script). Low priority; the rule and the sweep are in place.
+
+---
+
+### 2026-05-28: Long-Dash Gate Made Comment-Aware + Comma Splice Remediation
+
+Closes the two follow-ups from the dash content sweep: (1) replaces the broken line-based no-long-dash gate with a comment-aware multi-line-safe detector, and (2) fixes the genuine comma splices the dash sweep introduced. Two clean commits.
+
+#### Part 1: standards (gate detector)
+
+`docs/site-os/pass-fail-page-quality-gates.md` now ships a Node detector (primary, no extra dependencies) and a Python 3 equivalent (portable) that both strip every `<!-- ... -->` block first using `[\s\S]*?` so multi-line section-header comments are treated as comments, then scan the remainder for the seven forbidden marks (literal em/en plus the four HTML entity forms each). Both commands return `TOTAL: 0` and exit code 0 on this repo. A per-page dev quick-check is included for one-file runs during builds. The doc explicitly warns against the naive line-based `grep -v '<!--'` that produced 336 false-positive hits on the previous sweep, so the failure mode is documented in-place.
+
+#### Part 2: content (comma splices, punctuation-only)
+
+A Node detector (kept as a temp script, removed after use) extracted 142 `, (pronoun|demonstrative) (verb)` candidates from visible text, attribute values, and JSON-LD string fields across all 76 pages. Each candidate was classified by hand: 52 were true splices, 89 were correct (subordinate-clause openers, intro phrases, appositives, list items, `However,`), 1 was flagged for manual review and not touched (a list followed by `, that require ...` in landlord-pest-control-responsibilities). The 52 true splices were fixed across 22 files by promoting the comma to a period and capitalizing the next word, which is the only word-level change the spec permits. No word was added, removed, reordered, or reworded. No em/en dash was reintroduced. Where the same splice appeared in both visible HTML and a JSON-LD `description` field on the same page, the single fix handled both.
+
+Files touched: `about/`, `ant-exterminator-las-vegas/`, `bed-bug-exterminator-las-vegas/`, `bee-removal-las-vegas/`, `commercial-pest-control-las-vegas/` (hub + hotels + landlord + impact subpages), `crane-fly-exterminator-las-vegas/`, `emergency-pest-control-las-vegas/`, `false-chinch-bug-exterminator-las-vegas/`, `index.html` (homepage), `miller-moth-exterminator-las-vegas/`, `pest-control-las-vegas/` (hub + apartments + eco-friendly + southern-highlands), `pest-control-north-las-vegas/tule-springs/`, `reviews/`, `rodent-exterminator-las-vegas/`, `scorpion-exterminator-las-vegas/`, `termite-exterminator-las-vegas/`, `wasp-exterminator-las-vegas/`.
+
+#### Verification
+
+| Check | Result |
+|---|---|
+| Comment-aware gate detector (`TOTAL: 0`, exit 0) | passes |
+| Customer-facing em/en dashes site-wide | 0 (no regression) |
+| Comment-bucket dash count site-wide | 571 (unchanged, preserved) |
+| Visible word count per page vs HEAD-of-task | unchanged on every page (capitalization does not change word boundaries) |
+| `<meta>` / `<link>` / JSON-LD blocks / external `<script src>` / `<h1>` / `<h2>` / `<h3>` counts | unchanged on every page |
+| Every JSON-LD block parses with `JSON.parse()` | 171/171 pass |
+
+#### QA note
+[`docs/site-os/qa/2026-05-28-gate-fix-and-splice-remediation.md`](qa/2026-05-28-gate-fix-and-splice-remediation.md): Phase A re-entry, gate before/after with run output, every splice fixed with full before/after sentence pairs, the one manual-review candidate, verification matrix.
+
+#### Commits
+- `chore(standards): replace no-long-dash gate with comment-aware detection` (gate doc only)
+- `fix(content): correct comma splices introduced by the dash sweep (punctuation-only)` (22 HTML files + QA note + this log entry)
+- Push: pending owner approval
+
+#### Next step
+Batch B: 5 city hubs header/main/hero reconstruction (the standing next batch per the prior implementation-log notes).
