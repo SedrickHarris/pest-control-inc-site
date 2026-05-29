@@ -2037,3 +2037,33 @@ Closes the contradiction noted in the Batch A entry: `rodent` was the secondary 
 - **Batch B** &mdash; 5 city hubs
 - **Batch C** &mdash; 26 Phase 10.5 neighborhood pages
 - **Consistency pass** &mdash; form-card-title tag site-wide
+
+---
+
+### 2026-05-28: No Long Dash Rule + Build Source Scrub
+
+Codified a hard rule against em/en dashes in customer-facing content and scrubbed the build sources so future generations stop teaching the dash back into the site. No HTML page was modified.
+
+#### Standards updates (2 files)
+- `docs/site-os/inputs/pci-brand-style-reference.md`: new top-level section "PUNCTUATION: NO LONG DASHES (HARD RULE)". States the rule, lists forbidden marks (em dash, en dash, plus all HTML entity forms) as labeled negative examples, names the five customer-facing contexts (visible text, alt / aria-label / title / meta description / og:description / twitter:description, JSON-LD strings), gives replacement guidance (comma, colon, period, parentheses for breaks; "to" for ranges; no hyphen substitution unless a real compound modifier), and includes a runnable grep.
+- `docs/site-os/pass-fail-page-quality-gates.md`: new section "Long-Dash FAIL Condition (em + en)". Explicit FAIL condition spanning the same five contexts, the runnable site-wide grep, and a single-file dev grep. The existing Copy Cleanup Gate was left intact.
+
+#### Build source scrub (18 files)
+All files under `docs/site-os/prompts/` and `docs/site-os/reference/` that contained any em or en dash were scrubbed. Substitutions: `: ` in headings and table cells; `, ` in prose; the word "to" for ranges; HTML entities normalized first. Total scrubbed: 174 em + 7 en. Zero dashes remain in scope. Spot-check confirmed instruction meaning preserved on titles, table cells, and prose breaks.
+
+#### Verification
+```
+find docs/site-os/prompts docs/site-os/reference -type f \( -name "*.md" -o -name "*.txt" \) \
+  | xargs grep -lnE '—|&mdash;|&#8212;|&#x2014;|–|&ndash;|&#8211;|&#x2013;'
+```
+Zero output.
+
+#### QA note
+[`docs/site-os/qa/2026-05-28-no-long-dash-source-scrub.md`](qa/2026-05-28-no-long-dash-source-scrub.md): Step 0 table, per-file before/after counts, retained negative examples list (none in scrub scope), and verification.
+
+#### Commit
+- `77fcef3` chore(standards): add no-long-dash rule + scrub em/en dashes from build prompts & templates
+- Push: pending owner approval
+
+#### Next step
+Content sweep on the 76 customer-facing HTML pages. The original scan counted ~3,400 em dashes and ~479 en dashes site-wide. With the build sources now clean, the content sweep on the built HTML will hold. The runnable gate grep is the verification mechanism.
