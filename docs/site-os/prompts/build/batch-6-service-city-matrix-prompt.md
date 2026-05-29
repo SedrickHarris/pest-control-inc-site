@@ -1,4 +1,4 @@
-# Batch 6 — Service + City Matrix Pages
+# Batch 6: Service + City Matrix Pages
 # Pest Control Inc · Las Vegas, NV
 
 ## Purpose
@@ -16,7 +16,7 @@ services with the highest-value locations.
 /{service-slug}-{location-slug}/
 Example: /scorpion-exterminator-henderson-nv/
 
-## Tier 1 Matrix — Priority Services × Priority Locations
+## Tier 1 Matrix: Priority Services × Priority Locations
 
 Priority services: Scorpion, Ant, Cockroach, Rodent, Termite, Spider,
 Bed Bug, Emergency, Residential, Commercial
@@ -45,7 +45,7 @@ Priority locations: Henderson NV, North Las Vegas, Boulder City NV
 - FAQPage
 - BreadcrumbList
 
-## Publishing Rule — No Thin Pages
+## Publishing Rule: No Thin Pages
 Do not publish without:
 - Unique H1, meta title, meta description
 - Unique local intro paragraph

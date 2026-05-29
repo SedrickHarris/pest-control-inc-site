@@ -1,4 +1,4 @@
-# Content Gap Fix Prompt — Pest Control Inc
+# Content Gap Fix Prompt: Pest Control Inc
 
 ## Source
 This prompt lives in Site OS Master.

@@ -767,6 +767,49 @@ Use these exact strings (confirmed from style guide — entity phrase box not fu
 
 ---
 
+## PUNCTUATION: NO LONG DASHES (HARD RULE)
+
+Customer-facing content on Pest Control Inc pages must never contain em dashes or en dashes.
+
+### Forbidden characters (negative examples, do not emit)
+
+| Mark | Literal | HTML entities |
+|---|---|---|
+| em dash | `—` | `&mdash;`, `&#8212;`, `&#x2014;` |
+| en dash | `–` | `&ndash;`, `&#8211;`, `&#x2013;` |
+
+### Where the rule applies
+
+The rule applies to every customer-facing context:
+
+- Visible text inside any element (paragraphs, headings, lists, buttons, captions)
+- Attribute values: `alt`, `aria-label`, `title`, `meta name="description"`, `meta name="twitter:description"`, `meta property="og:description"`
+- JSON-LD `@graph` values (any string field a search engine or social platform reads)
+
+### Replacement guidance
+
+When you remove a long dash, pick the contextually correct mark instead:
+
+- For a break or aside in a sentence, use a comma, colon, period, or parentheses. Read the sentence aloud, the correct mark is usually obvious.
+- For a numeric range (times, dates, scores, page counts), use the word **to**. Examples: "Mon to Fri", "8:00am to 4:00pm", "1 to 3 treatments".
+- Never substitute a hyphen for a removed long dash unless the result is a genuine compound modifier (a real adjective phrase like "long-term", "drug-tested"). A hyphen in place of an em dash usually reads as a typo.
+
+### Dev exemption
+
+HTML comments that never reach the user (build-tool comments, section markers, TODOs) are exempt because they are not customer-facing. Even so, prefer hyphens or words in comments for grep consistency, so a single grep can catch leaks.
+
+### How to check before commit
+
+Run from the repo root:
+
+```
+grep -rnE '—|&mdash;|&#8212;|&#x2014;|–|&ndash;|&#8211;|&#x2013;' --include="*.html" . | grep -v '<!--'
+```
+
+Zero output is the pass condition. See `docs/site-os/pass-fail-page-quality-gates.md` for the enforceable gate that ties this rule to the quality-gate run.
+
+---
+
 ## PAGES BUILT — STATUS (as of April 2026)
 
 > Note: Status column reflects April 2026 state. See docs/site-os/inputs/page-list.md for current build status.

@@ -90,6 +90,35 @@ grep " -- " out/*.html                    # built-HTML double hyphen check
 
 Em dashes inside developer-only source comments (CSS comments, JSDoc, inline JS comments) are not customer-facing and are explicitly allowed.
 
+## Long-Dash FAIL Condition (em + en)
+
+**FAIL:** Page contains an em dash or en dash in any customer-facing context. This includes:
+
+- Visible text inside any element (paragraphs, headings, lists, buttons, captions)
+- Attribute values: `alt`, `aria-label`, `title`, `meta name="description"`, `meta name="twitter:description"`, `meta property="og:description"`
+- JSON-LD `@graph` values (any string field a search engine or social platform reads)
+
+Forbidden marks (literal or HTML-entity form):
+
+- em dash: `—`, `&mdash;`, `&#8212;`, `&#x2014;`
+- en dash: `–`, `&ndash;`, `&#8211;`, `&#x2013;`
+
+HTML comments (`<!-- ... -->`) are exempt because they never render. Any other hit is a fail.
+
+Run from the repo root. Zero output = pass:
+
+```
+grep -rnE '—|&mdash;|&#8212;|&#x2014;|–|&ndash;|&#8211;|&#x2013;' --include="*.html" . | grep -v '<!--'
+```
+
+To find hits in a single page during development:
+
+```
+grep -nE '—|&mdash;|&#8212;|&#x2014;|–|&ndash;|&#8211;|&#x2013;' <path/to/page>.html | grep -v '<!--'
+```
+
+Replacement guidance: see `docs/site-os/inputs/pci-brand-style-reference.md` Punctuation: No Long Dashes section. Short form: comma, colon, period, or parentheses for breaks and asides; the word `to` for ranges (times, dates, scores, page counts); never substitute a hyphen unless the result is a real compound modifier.
+
 ## Schema Quality Gate
 
 - [ ] `FAQPage` JSON-LD `mainEntity` array generated from the same source as visible FAQ

@@ -1,4 +1,4 @@
-# SEO/AEO Content Standards — Pest Control Inc
+# SEO/AEO Content Standards: Pest Control Inc
 
 ## Source
 Per docs/site-os/prompt-router-and-ai-depth-standard.md

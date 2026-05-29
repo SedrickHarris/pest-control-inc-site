@@ -1,4 +1,4 @@
-# Pre-Commit QA Prompt — Pest Control Inc
+# Pre-Commit QA Prompt: Pest Control Inc
 
 ## Source
 This prompt lives in Site OS Master.

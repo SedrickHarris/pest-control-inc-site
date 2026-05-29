@@ -1,4 +1,4 @@
-# Batch 2 — Core Brand & Conversion Pages
+# Batch 2: Core Brand & Conversion Pages
 # Pest Control Inc · Las Vegas, NV
 
 ## Purpose
@@ -17,17 +17,17 @@ soft-404ing despite being linked in the nav and footer.
 
 | Priority | Page | Route | Type |
 |----------|------|-------|------|
-| 1 | Free Estimate | /free-estimate/ | Conversion — Level 4 |
-| 2 | Contact | /contact/ | Conversion — Level 4 |
-| 3 | Thank You | /thank-you/ | Utility — Level 1 |
-| 4 | Reviews | /reviews/ | Trust — Level 3 |
-| 5 | Specials & Coupons | /specials/ | Offer — Level 3 |
-| 6 | Privacy Policy | /privacy-policy/ | Legal — Level 1 |
-| 7 | Terms of Use | /terms-of-use/ | Legal — Level 1 |
-| 8 | HTML Sitemap | /sitemap/ | Utility — Level 1 |
-| 9 | 404 Error Page | /404.html | Utility — Level 1 |
-| 10 | Health Conscious Program | /about/health-conscious-service-program/ | About — Level 3 |
-| 11 | Guarantee | /about/guarantee/ | Trust — Level 3 |
+| 1 | Free Estimate | /free-estimate/ | Conversion: Level 4 |
+| 2 | Contact | /contact/ | Conversion: Level 4 |
+| 3 | Thank You | /thank-you/ | Utility: Level 1 |
+| 4 | Reviews | /reviews/ | Trust: Level 3 |
+| 5 | Specials & Coupons | /specials/ | Offer: Level 3 |
+| 6 | Privacy Policy | /privacy-policy/ | Legal: Level 1 |
+| 7 | Terms of Use | /terms-of-use/ | Legal: Level 1 |
+| 8 | HTML Sitemap | /sitemap/ | Utility: Level 1 |
+| 9 | 404 Error Page | /404.html | Utility: Level 1 |
+| 10 | Health Conscious Program | /about/health-conscious-service-program/ | About: Level 3 |
+| 11 | Guarantee | /about/guarantee/ | Trust: Level 3 |
 
 ## Business Constants
 - Phone: (702) 228-4394
@@ -41,7 +41,7 @@ soft-404ing despite being linked in the nav and footer.
 - Follow service-business-conversion-layout.md for /free-estimate/ and /contact/
 - All pages must match the brand color, typography, and component system
   defined in pci-brand-style-reference.md
-- Phone format: (702) 228-4394 on all pages — no exceptions
+- Phone format: (702) 228-4394 on all pages, no exceptions
 - No fake reviews, ratings, or trust signals
 
 ## No-Fake-Data Rules

@@ -1,4 +1,4 @@
-# SEO/AEO Content Generation Prompt — Pest Control Inc
+# SEO/AEO Content Generation Prompt: Pest Control Inc
 
 ## Source
 This prompt lives in Site OS Master.

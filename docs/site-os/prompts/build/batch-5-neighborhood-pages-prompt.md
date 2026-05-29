@@ -1,4 +1,4 @@
-# Batch 5 — Neighborhood Location Pages
+# Batch 5: Neighborhood Location Pages
 # Pest Control Inc · Las Vegas, NV
 
 ## Purpose

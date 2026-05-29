@@ -1,4 +1,4 @@
-# SEO/AEO QA Prompt — Pest Control Inc
+# SEO/AEO QA Prompt: Pest Control Inc
 
 ## Source
 This prompt lives in Site OS Master.

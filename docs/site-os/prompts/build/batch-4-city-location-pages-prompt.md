@@ -1,4 +1,4 @@
-# Batch 4 — City & Tier 2 Location Pages
+# Batch 4: City & Tier 2 Location Pages
 # Pest Control Inc · Las Vegas, NV
 
 ## Purpose
@@ -45,8 +45,8 @@ authority pages for neighborhood and service+location matrix pages.
 
 ## No-Fake-Data Rules
 - Do not invent neighborhood-specific pest statistics
-- Do not claim PCI has an office in every city — they operate from Las Vegas
-- Service area coverage is all of Clark County NV — confirmed
+- Do not claim PCI has an office in every city, they operate from Las Vegas
+- Service area coverage is all of Clark County NV, confirmed
 
 ## Business Constants
 - Phone: (702) 228-4394

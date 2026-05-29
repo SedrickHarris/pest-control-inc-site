@@ -1,4 +1,4 @@
-# Service Business Design Standards — Pest Control Inc
+# Service Business Design Standards: Pest Control Inc
 
 ## Two-Column Conversion Layout
 See: docs/site-os/service-business-conversion-layout.md

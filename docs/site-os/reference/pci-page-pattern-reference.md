@@ -1,7 +1,7 @@
-# Pest Control Inc — Page Pattern Reference
+# Pest Control Inc: Page Pattern Reference
 
 Source: Pattern audit of all 17 existing HTML files in this repo
-Primary reference: `pest-control-las-vegas/index.html` (residential hub — service page patterns)
+Primary reference: `pest-control-las-vegas/index.html` (residential hub, service page patterns)
 Secondary reference: `about/index.html` (trust/narrative section patterns)
 Cross-file variations verified via targeted greps
 Last audited: 2026-05-18
@@ -11,13 +11,13 @@ HEAD at audit: `171fb57`
 
 ## A. Document Structure
 
-### DOCTYPE and `<html>` tag — uniform across all 17 files
+### DOCTYPE and `<html>` tag: uniform across all 17 files
 ```html
 <!DOCTYPE html>
 <html lang="en">
 ```
 
-### `<head>` order — uniform pattern
+### `<head>` order: uniform pattern
 1. `<meta charset="UTF-8">`
 2. `<meta name="viewport" content="width=device-width, initial-scale=1.0">`
 3. `<title>`
@@ -29,11 +29,11 @@ HEAD at audit: `171fb57`
 9. Twitter card tags (`twitter:card`, `twitter:title`, `twitter:description`, `twitter:image`)
 10. Font preconnects (`fonts.googleapis.com`, `fonts.gstatic.com`)
 11. Optional `<link rel="preload" as="image">` for hero image
-12. Google Fonts stylesheet (single combined link — homepage uses two separate links, see Anomalies)
-13. JSON-LD `<script type="application/ld+json">` blocks (3–7 per page)
+12. Google Fonts stylesheet (single combined link, homepage uses two separate links, see Anomalies)
+13. JSON-LD `<script type="application/ld+json">` blocks (3 to 7 per page)
 14. Inline `<style>` block
 
-### `<body>` opening — uniform pattern
+### `<body>` opening: uniform pattern
 ```html
 <body>
 <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -48,9 +48,9 @@ HEAD at audit: `171fb57`
 <div id="mobile-nav" class="mobile-nav-overlay" aria-hidden="true">...</div>
 
 <main id="main-content">
-  <!-- SECTION 01 — HERO -->
-  <!-- SECTION 02 — TRUST BAR -->
-  <!-- SECTION 03 — ... -->
+  <!-- SECTION 01, HERO -->
+  <!-- SECTION 02, TRUST BAR -->
+  <!-- SECTION 03, ... -->
   ...
 </main>
 
@@ -65,7 +65,7 @@ HEAD at audit: `171fb57`
 </html>
 ```
 
-### Skip link — present on all 17 files
+### Skip link: present on all 17 files
 ```html
 <a href="#main-content" class="skip-link">Skip to main content</a>
 ```
@@ -78,7 +78,7 @@ First child of `<body>`. CSS class `.skip-link` is also present in every `<style
 ### Where CSS lives
 - **100% inline** in a single `<style>` block in `<head>`. No external CSS files referenced via `<link rel="stylesheet">` other than Google Fonts.
 
-### CSS variables (declared in `:root` — uniform across all files)
+### CSS variables (declared in `:root`: uniform across all files)
 ```css
 :root{
   --blue:        #2F5EA3;
@@ -105,7 +105,7 @@ Some pages additionally declare `--font-display`, `--font-ui`, `--font-body` fon
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
 ```
-**Exception:** `index.html` (homepage) uses two separate `<link>` tags for the two font families (lines 24, 25). Cosmetic — both work.
+**Exception:** `index.html` (homepage) uses two separate `<link>` tags for the two font families (lines 24, 25). Cosmetic, both work.
 
 ### External CSS files
 None linked. All CSS is inline per file.
@@ -117,15 +117,15 @@ None linked. All CSS is inline per file.
 ### Exact HTML structure (uniform)
 ```html
 <div class="top-bar">
-  <span class="top-bar-text">24/7 Pest Emergency — Las Vegas &amp; Clark County, NV</span>
+  <span class="top-bar-text">24/7 Pest Emergency, Las Vegas &amp; Clark County, NV</span>
   <a href="tel:+17022284394" class="top-bar-phone">📞 (702) 228-4394</a>
   <a href="/specials/" class="top-bar-badge">Free First Service →</a>
 </div>
 ```
 
 ### Text content per page type (post-site-audit standardization)
-- **Standard pages (13 of 17):** `24/7 Pest Emergency — Las Vegas & Clark County, NV`
-- **Emergency page, plans-and-pricing, apartments, eco-friendly:** `Mon–Fri 8am–4pm · Sat 8am–2pm · Emergency 24/7 — Las Vegas & Clark County, NV`
+- **Standard pages (13 of 17):** `24/7 Pest Emergency, Las Vegas & Clark County, NV`
+- **Emergency page, plans-and-pricing, apartments, eco-friendly:** `Mon to Fri 8am to 4pm · Sat 8am to 2pm · Emergency 24/7, Las Vegas & Clark County, NV`
 
 ### CSS
 ```css
@@ -140,7 +140,7 @@ None linked. All CSS is inline per file.
 ```html
 <header class="header">
   <div class="container header-inner">
-    <a href="/" class="logo-placeholder" aria-label="Pest Control Inc — Home">PCI Logo</a>
+    <a href="/" class="logo-placeholder" aria-label="Pest Control Inc, Home">PCI Logo</a>
     <button id="hamburger-btn" class="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav">
       <span class="ham-line"></span>
       <span class="ham-line"></span>
@@ -160,9 +160,9 @@ None linked. All CSS is inline per file.
 
 The current page link gets `aria-current="page"`.
 
-### Logo markup — uniform (after Issue 5 normalization in the site-audit batch)
+### Logo markup: uniform (after Issue 5 normalization in the site-audit batch)
 ```html
-<a href="/" class="logo-placeholder" aria-label="Pest Control Inc — Home">PCI Logo</a>
+<a href="/" class="logo-placeholder" aria-label="Pest Control Inc, Home">PCI Logo</a>
 ```
 All 17 files now use this pattern.
 
@@ -170,7 +170,7 @@ All 17 files now use this pattern.
 ```html
 <a href="/free-estimate/" class="nav-cta">Free Estimate</a>
 ```
-Some service pages append a query param to the href (`?type=ant`, `?type=commercial`, etc.) — link text is always `Free Estimate`.
+Some service pages append a query param to the href (`?type=ant`, `?type=commercial`, etc.), link text is always `Free Estimate`.
 
 ### Mobile menu overlay
 ```html
@@ -194,7 +194,7 @@ Some service pages append a query param to the href (`?type=ant`, `?type=commerc
 
 ## E. Hero Section
 
-### Two-column hero (content + form card) — canonical hub pattern
+### Two-column hero (content + form card): canonical hub pattern
 ```html
 <section class="hero">
   <div class="container hero-inner">
@@ -258,10 +258,10 @@ Hero uses `background:var(--navy)` plus two radial-gradient `::before` and `::af
 
 ### Hero CTA variants
 - **Hub / service pages (primary pattern):** include the `<div class="hero-ctas">` button cluster (3 buttons) between `.hero-intro` and `.hero-trust`.
-- **About / trust pages:** omit the button cluster — the form aside provides the conversion path.
+- **About / trust pages:** omit the button cluster, the form aside provides the conversion path.
 
 ### Form
-Inline form in hero, posts to `/free-estimate/`. No client-side validation (`novalidate`). No form handler endpoint configured — this is a known launch blocker.
+Inline form in hero, posts to `/free-estimate/`. No client-side validation (`novalidate`). No form handler endpoint configured, this is a known launch blocker.
 
 ---
 
@@ -329,11 +329,11 @@ On navy/dark sections: `color:rgba(168,196,232,.9)` + matching `::before` backgr
 }
 ```
 
-### Generic card patterns (variants — all share core structure)
-- `.fact-card` — 4-col grid, top blue accent bar (`::before`), emoji icon, h3, p
-- `.credential-card` — 2-col grid, left blue accent bar (`border-left:4px solid var(--blue)`), icon + body
-- `.guarantee-card` — 3-col grid, top blue accent bar, centered icon, h3, p
-- `.step-card` — Process step card with numbered circle, h4, p
+### Generic card patterns (variants: all share core structure)
+- `.fact-card`, 4-col grid, top blue accent bar (`::before`), emoji icon, h3, p
+- `.credential-card`, 2-col grid, left blue accent bar (`border-left:4px solid var(--blue)`), icon + body
+- `.guarantee-card`, 3-col grid, top blue accent bar, centered icon, h3, p
+- `.step-card`, Process step card with numbered circle, h4, p
 
 All cards use:
 ```css
@@ -345,21 +345,21 @@ transition:transform .2s, box-shadow .2s;
 Hover: `transform:translateY(-3px); box-shadow:0 12px 36px rgba(29,36,48,.1)`
 
 ### Grid patterns
-- `.fact-grid` — `repeat(4,1fr)` → `repeat(2,1fr)` ≤1024px → `1fr` ≤768px
-- `.cred-grid` — `repeat(2,1fr)` → `1fr` ≤1024px
-- `.guar-grid` — `repeat(3,1fr)` → `1fr` ≤1024px
-- `.ipm-steps` — `repeat(4,1fr)` → `repeat(2,1fr)` ≤1024px → `1fr` ≤768px
+- `.fact-grid`, `repeat(4,1fr)` → `repeat(2,1fr)` ≤1024px → `1fr` ≤768px
+- `.cred-grid`, `repeat(2,1fr)` → `1fr` ≤1024px
+- `.guar-grid`, `repeat(3,1fr)` → `1fr` ≤1024px
+- `.ipm-steps`, `repeat(4,1fr)` → `repeat(2,1fr)` ≤1024px → `1fr` ≤768px
 
 ### Last-reviewed
-On all 17 pages, `<p class="last-reviewed">Last reviewed: May 18, 2026 · Updated as needed</p>` placed as first child of section 03's `.container`, before the eyebrow. CSS is `position:absolute;top:24px;right:24px` (desktop) — visually a top-right corner stamp.
+On all 17 pages, `<p class="last-reviewed">Last reviewed: May 18, 2026 · Updated as needed</p>` placed as first child of section 03's `.container`, before the eyebrow. CSS is `position:absolute;top:24px;right:24px` (desktop), visually a top-right corner stamp.
 
 ---
 
-### Service-page section patterns (from residential hub — `pest-control-las-vegas/index.html`)
+### Service-page section patterns (from residential hub: `pest-control-las-vegas/index.html`)
 
 These section types appear on service hub pages and should be replicated for new service, hub, location, and species pillar pages.
 
-#### Property type grid — for hub pages that fan out into property-type sub-pages
+#### Property type grid: for hub pages that fan out into property-type sub-pages
 ```html
 <section class="intro-section">
   <div class="container">
@@ -384,9 +384,9 @@ These section types appear on service hub pages and should be replicated for new
   </div>
 </section>
 ```
-Grid: `.property-grid` displays 4 cards (`.property-card`) — single-family, apartments, condos, HOA on the residential hub. Adapt for other hub types.
+Grid: `.property-grid` displays 4 cards (`.property-card`), single-family, apartments, condos, HOA on the residential hub. Adapt for other hub types.
 
-#### Zone coverage grid — for whole-property service explanation
+#### Zone coverage grid: for whole-property service explanation
 ```html
 <section class="zone-section">
   <div class="container">
@@ -411,7 +411,7 @@ Grid: `.property-grid` displays 4 cards (`.property-card`) — single-family, ap
 ```
 Used on hub to show "every zone of your home" treatment coverage. Hub has 12 zones (kitchen, bathroom, attic, garage, backyard, foundation, perimeter, windows/doors, roofline, kids' rooms, sheds, basement). Responsive: `repeat(3,1fr)` → `repeat(2,1fr)` → `1fr`.
 
-#### Pests-on-this-page grid — common species at a glance with threat badges (dark section)
+#### Pests-on-this-page grid: common species at a glance with threat badges (dark section)
 ```html
 <section class="pests-section dark-section">
   <div class="container">
@@ -436,7 +436,7 @@ Used on hub to show "every zone of your home" treatment coverage. Hub has 12 zon
 ```
 Navy background (`dark-section` modifier on `.section-eyebrow` and `.section-title`). Each card has a head row with pest icon + threat-level badge. Internal link to species page at bottom.
 
-#### IPM pillars grid — Health Conscious Service Program detail
+#### IPM pillars grid: Health Conscious Service Program detail
 ```html
 <section class="ipm-section">
   <div class="container">
@@ -446,7 +446,7 @@ Navy background (`dark-section` modifier on `.section-eyebrow` and `.section-tit
     <div class="ipm-pillars">
       <article class="ipm-pillar">
         <div class="ipm-pillar-icon" aria-hidden="true">🐾</div>
-        <h3>[Pillar Name — Pet Safe, Family Safe, Eco-Friendly, IPM, etc.]</h3>
+        <h3>[Pillar Name, Pet Safe, Family Safe, Eco-Friendly, IPM, etc.]</h3>
         <p>[Pillar description]</p>
       </article>
       <!-- ...4 ipm-pillar articles... -->
@@ -462,7 +462,7 @@ Navy background (`dark-section` modifier on `.section-eyebrow` and `.section-tit
 
 These appear on About/Trust pages and should be used for the About cluster. They can also be borrowed individually onto service pages where narrative context strengthens the page.
 
-#### Story section — narrative with pull-quote aside
+#### Story section: narrative with pull-quote aside
 ```html
 <section class="story-section">
   <div class="container">
@@ -478,7 +478,7 @@ These appear on About/Trust pages and should be used for the About cluster. They
         <div class="story-img-placeholder" role="img" aria-label="[Alt text]">[Placeholder text]<br>(4:3 aspect ratio)</div>
         <div class="pull-quote">
           <p>"[Quote text]"</p>
-          <cite>— Pest Control Inc · Las Vegas, NV</cite>
+          <cite>,  Pest Control Inc · Las Vegas, NV</cite>
         </div>
       </aside>
     </div>
@@ -487,7 +487,7 @@ These appear on About/Trust pages and should be used for the About cluster. They
 ```
 Tan-light background. 2-col grid collapsing to 1-col ≤1024px.
 
-#### Who-we-are fact grid — 4 fact cards
+#### Who-we-are fact grid: 4 fact cards
 ```html
 <section class="who-section">
   <div class="container">
@@ -537,7 +537,7 @@ Tan-light background. 2-col grid collapsing to 1-col ≤1024px.
 ```
 Aside is sticky on desktop. `.standards-list` items use blue checkmark circles (`::before` content `'✓'`).
 
-#### IPM 4-step process — numbered circles with connector line
+#### IPM 4-step process: numbered circles with connector line
 ```html
 <section class="ipm-section">
   <div class="container">
@@ -551,7 +551,7 @@ Aside is sticky on desktop. `.standards-list` items use blue checkmark circles (
           <h4>Inspect</h4>
           <p>[Description]</p>
         </div>
-        <!-- ...4 step-card divs total — last gets .step-num.last (tan color)... -->
+        <!-- ...4 step-card divs total, last gets .step-num.last (tan color)... -->
       </div>
       <div class="callout">
         <h4>[Callout Title]</h4>
@@ -563,7 +563,7 @@ Aside is sticky on desktop. `.standards-list` items use blue checkmark circles (
 ```
 Navy `.ipm-section`. `.ipm-steps::before` draws a horizontal gradient connector line behind the numbered circles. Last step uses tan color to mark completion.
 
-#### Credentials cards — 2-col with blue left border + icon
+#### Credentials cards: 2-col with blue left border + icon
 ```html
 <section class="cred-section">
   <div class="container">
@@ -631,7 +631,7 @@ Tan-light background. Chips are pill-shaped (`border-radius:999px`). `.tier1` ch
 
 #### Offer reminder strip (used inside final-cta)
 ```html
-<p class="offer-reminder">🎟️ <span><strong>New residential customers</strong> — first service FREE with a 12-month annual agreement. Excludes pigeons, bed bugs, bees, and rodents. · <a href="/specials/">See offer details →</a></span></p>
+<p class="offer-reminder">🎟️ <span><strong>New residential customers</strong>, first service FREE with a 12-month annual agreement. Excludes pigeons, bed bugs, bees, and rodents. · <a href="/specials/">See offer details →</a></span></p>
 ```
 Orange-tinted background, soft border. Appears below the final CTA buttons.
 
@@ -698,7 +698,7 @@ function toggleFaq(btn) {
 ```
 Accordion is single-select (opening one closes others). Arrow toggles `+` ↔ `−`.
 
-### FAQPage JSON-LD — present on all 17 files
+### FAQPage JSON-LD: present on all 17 files
 Example (about page, 15 Q&As):
 ```json
 {
@@ -711,7 +711,7 @@ Example (about page, 15 Q&As):
       "name": "What is Pest Control Inc?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Pest Control Inc — also known as PCI — is a 3-generation family-owned and operated pest control company..."
+        "text": "Pest Control Inc, also known as PCI, is a 3-generation family-owned and operated pest control company..."
       }
     }
   ]
@@ -759,7 +759,7 @@ Example (about page, 15 Q&As):
         src="https://reputationhub.site/reputation/widgets/review_widget/XmTsrsLJDMVSiADHUA3q"
         frameborder="0" scrolling="no"
         style="min-width:100%;width:100%;min-height:400px;"
-        title="Pest Control Inc customer reviews — Las Vegas, NV"
+        title="Pest Control Inc customer reviews, Las Vegas, NV"
         loading="lazy">
       </iframe>
     </div>
@@ -772,8 +772,8 @@ Example (about page, 15 Q&As):
 ```
 
 ### Two ReputationHub integration patterns observed
-- **Iframe pattern (3 files):** `pest-control-las-vegas/`, `commercial-pest-control-las-vegas/`, `about/` — uses `<iframe class="lc_reviews_widget" src="...">` directly
-- **Div pattern (10 files):** `<div class="reputationhub-widget" data-widget-id="XmTsrsLJDMVSiADHUA3q">` — relies on the script to inject the iframe
+- **Iframe pattern (3 files):** `pest-control-las-vegas/`, `commercial-pest-control-las-vegas/`, `about/`, uses `<iframe class="lc_reviews_widget" src="...">` directly
+- **Div pattern (10 files):** `<div class="reputationhub-widget" data-widget-id="XmTsrsLJDMVSiADHUA3q">`, relies on the script to inject the iframe
 
 Both patterns include this script at end of body:
 ```html
@@ -794,7 +794,7 @@ Both patterns include this script at end of body:
       <a href="/free-estimate/" class="btn-primary">Get Your Free Estimate →</a>
       <a href="tel:+17022284394" class="btn-secondary">📞 Call (702) 228-4394</a>
     </div>
-    <p class="offer-reminder">🎟️ <span><strong>New residential customers</strong> — first service FREE with a 12-month annual agreement. Excludes pigeons, bed bugs, bees, and rodents. · <a href="/specials/">See offer details →</a></span></p>
+    <p class="offer-reminder">🎟️ <span><strong>New residential customers</strong>, first service FREE with a 12-month annual agreement. Excludes pigeons, bed bugs, bees, and rodents. · <a href="/specials/">See offer details →</a></span></p>
   </div>
 </section>
 ```
@@ -820,7 +820,7 @@ Navy background, radial gradient overlay. Centered content. Final offer-reminder
           </p>
           <p><a href="tel:+17022284394" class="footer-phone" itemprop="telephone">(702) 228-4394</a></p>
           <p><a href="mailto:info@pestcontrolinc.net" itemprop="email">info@pestcontrolinc.net</a></p>
-          <p>Mon–Fri 8am–4pm · Sat 8am–2pm<br>Sun Closed · Emergency: 24/7</p>
+          <p>Mon to Fri 8am to 4pm · Sat 8am to 2pm<br>Sun Closed · Emergency: 24/7</p>
           <p class="footer-license">NV License #4632 · NPMA Member · 3-Generation Family-Owned</p>
         </div>
       </div>
@@ -879,12 +879,12 @@ Fixed bottom on mobile only (`display:none` desktop; `display:flex` ≤768px). N
 - `WebPage` / `AboutPage` / `Service` / `ContactPage` (varies by page intent)
 - `Organization` (about, mission)
 - `HowTo` (homepage, about, several service pages)
-- `Offer` (most pages — Free First Service)
+- `Offer` (most pages, Free First Service)
 - `AggregateRating` (embedded in LocalBusiness)
 - `SpeakableSpecification` (most pages)
 - `OpeningHoursSpecification`, `PostalAddress`, `EducationalOccupationalCredential` (embedded)
 
-### LocalBusiness — canonical version
+### LocalBusiness: canonical version
 ```json
 {
   "@context": "https://schema.org",
@@ -944,7 +944,7 @@ Fixed bottom on mobile only (`display:none` desktop; `display:flex` ≤768px). N
 }
 ```
 
-### BreadcrumbList — canonical version
+### BreadcrumbList: canonical version
 ```json
 {
   "@type": "BreadcrumbList",
@@ -956,8 +956,8 @@ Fixed bottom on mobile only (`display:none` desktop; `display:flex` ≤768px). N
 ```
 On nested pages (e.g., commercial sub-pages), position 3 is added for the parent hub.
 
-### FAQPage — canonical structure
-See section H above. About page has 15 Q&As; other pages have 5–15 depending on intent.
+### FAQPage: canonical structure
+See section H above. About page has 15 Q&As; other pages have 5 to 15 depending on intent.
 
 ---
 
@@ -968,10 +968,10 @@ Inline `<script>` block placed immediately after `<footer>` and `<div class="mob
 
 ### What inline JS does (uniform across all 17 files)
 1. Dynamic copyright year: `document.getElementById('yr').textContent = new Date().getFullYear();`
-2. **FAQ accordion** — `toggleFaq(btn)` (see section H for full code)
-3. **Mobile nav** — `openMobileNav()`, `closeMobileNav()`, hamburger click listener, ESC key listener, click-outside-to-close listener
-4. **Scroll animations** — IntersectionObserver applied to selected cards (`.fact-card`, `.credential-card`, `.guarantee-card`, `.step-card`, `.faq-item`, `.platform-score`, `.area-chip`, `.trust-item`, `.team-stat` — varies per page). Adds `.anim-ready` class initially, then `.anim-visible` on intersection. Stagger delay via `data-anim-delay`.
-5. **Phone pulse animation** — keyframe animation injected via `createElement('style')` to make `.top-bar-phone` opacity-pulse
+2. **FAQ accordion**, `toggleFaq(btn)` (see section H for full code)
+3. **Mobile nav**, `openMobileNav()`, `closeMobileNav()`, hamburger click listener, ESC key listener, click-outside-to-close listener
+4. **Scroll animations**, IntersectionObserver applied to selected cards (`.fact-card`, `.credential-card`, `.guarantee-card`, `.step-card`, `.faq-item`, `.platform-score`, `.area-chip`, `.trust-item`, `.team-stat`, varies per page). Adds `.anim-ready` class initially, then `.anim-visible` on intersection. Stagger delay via `data-anim-delay`.
+5. **Phone pulse animation**, keyframe animation injected via `createElement('style')` to make `.top-bar-phone` opacity-pulse
 
 ### Mobile nav functions (uniform)
 ```javascript
@@ -1017,7 +1017,7 @@ document.addEventListener('keydown', function(e) {
 - Always under 60 characters where possible.
 
 ### Meta description
-- 140–160 characters
+- 140 to 160 characters
 - Always contains the phone `(702) 228-4394`
 - Usually contains `License #4632` and a key entity phrase (`3-generation family-owned`, `NPMA member`, `eco-friendly IPM`)
 
@@ -1036,16 +1036,16 @@ document.addEventListener('keydown', function(e) {
 
 ---
 
-## Step 3 — Recommended Reference Pages
+## Step 3: Recommended Reference Pages
 
 ### Primary reference: `pest-control-las-vegas/index.html` (residential hub)
 
 Why:
 - **Most representative of high-value page templates** new operators will be building. Site OS Master's Phase 2 (parent authority pages), Phase 3 (city hubs), Phase 5 (species pillars), Phase 7 (service+city matrix) all map to "hub or service page" patterns this file demonstrates.
 - **Service pages are the dominant page type in the build.** New developers building species pages, location pages, and matrix pages will pattern-match against a service page more naturally than an about page.
-- **Demonstrates the canonical 3-button hero CTA cluster** (primary / secondary / outline) plus the form aside — a fuller hero pattern than about/index.html's form-only hero.
+- **Demonstrates the canonical 3-button hero CTA cluster** (primary / secondary / outline) plus the form aside, a fuller hero pattern than about/index.html's form-only hero.
 - **Demonstrates four hub-specific grid patterns** (property-grid, zone-grid, pests-grid with threat badges, ipm-pillars) that don't exist on about/index.html.
-- **Standardized top bar, logo, mobile CTA, last-reviewed, skip link** — all current after the site-audit batch.
+- **Standardized top bar, logo, mobile CTA, last-reviewed, skip link**, all current after the site-audit batch.
 
 Use as the structural template when scaffolding any new service, hub, city, or species pillar page.
 
@@ -1063,46 +1063,46 @@ The About cluster (`/about/`, `/about/mission/`, `/about/health-conscious-servic
 
 ---
 
-## Step 4 — Anomalies and Deviations
+## Step 4: Anomalies and Deviations
 
-### 1. `index.html` (homepage) — multiple minor deviations
-- **Two Google Fonts link tags** (lines 24, 25) — splits Barlow Condensed + Barlow from DM Serif Display. All other 16 files use one combined link. *Cosmetic; no functional difference.*
-- **Different OG image naming** (`og-homepage.jpg`) — all others use descriptive slugs. *Minor; correct it for new pages.*
+### 1. `index.html` (homepage): multiple minor deviations
+- **Two Google Fonts link tags** (lines 24, 25), splits Barlow Condensed + Barlow from DM Serif Display. All other 16 files use one combined link. *Cosmetic; no functional difference.*
+- **Different OG image naming** (`og-homepage.jpg`), all others use descriptive slugs. *Minor; correct it for new pages.*
 - **Fewer JSON-LD blocks** (3 inline blocks vs 7 on about/index.html). The homepage is heavier on inline schema fragments. *Acceptable variation.*
-- **`section-eyebrow` is a `<div>`, not a `<span>`** in section 03 — and section 03's eyebrow is nested inside `.services-intro > div` rather than being a direct child of `.container`. *Section structure is unique to homepage.*
+- **`section-eyebrow` is a `<div>`, not a `<span>`** in section 03, and section 03's eyebrow is nested inside `.services-intro > div` rather than being a direct child of `.container`. *Section structure is unique to homepage.*
 - **Recommendation:** for new pages, follow the residential hub, not homepage.
 
-### 2. `ant-exterminator-las-vegas/index.html`, `commercial-*/landlord-pest-control-responsibilities/index.html` — CSS variable naming
+### 2. `ant-exterminator-las-vegas/index.html`, `commercial-*/landlord-pest-control-responsibilities/index.html`: CSS variable naming
 - Use `font-family:var(--font-ui)` and `var(--font-body)` style variables instead of literal `'Barlow Condensed',sans-serif` strings.
 - *Functionally identical, but readers grepping for font names won't find them.* No need to change retroactively; consider standardizing for new pages.
 
-### 3. ReputationHub widget — two integration patterns coexist
+### 3. ReputationHub widget: two integration patterns coexist
 - **Iframe direct pattern** (3 files): `about/`, `pest-control-las-vegas/`, `commercial-pest-control-las-vegas/`
 - **Div+script pattern** (10 files): all others using `<div class="reputationhub-widget" data-widget-id="...">`
 - **Script-only pattern** (2 files: emergency, apartments): just the script tag at end of body with no container element near the reviews section
 - *All three render the same widget visually. The iframe pattern is more explicit and recommended for new pages.*
 
-### 4. `commercial-*/pest-impact-on-business/`, `commercial-*/hoa/` — section 03 comment style
+### 4. `commercial-*/pest-impact-on-business/`, `commercial-*/hoa/`: section 03 comment style
 - Use `<!-- ============================================================ -->` separator comments around `<!-- SECTION 03 ... -->`.
 - Other commercial sub-pages use a simpler single-line comment.
-- *Cosmetic — no behavioral impact. Don't propagate; use single-line comments on new pages.*
+- *Cosmetic, no behavioral impact. Don't propagate; use single-line comments on new pages.*
 
-### 5. `commercial-*/hoa/`, `commercial-*/retail/`, `commercial-*/pest-impact-on-business/` — formerly used legacy Pattern B logo
+### 5. `commercial-*/hoa/`, `commercial-*/retail/`, `commercial-*/pest-impact-on-business/`: formerly used legacy Pattern B logo
 - These three previously used a nested `<a><div class="logo-placeholder">PCI LOGO</div></a>` markup. They were normalized to Pattern A (single anchor with class) during the site-audit batch.
 - **Current state: all 17 files now match.** No further action needed.
 
-### 6. `apartments/index.html` — formerly used `<span class="last-reviewed">`
+### 6. `apartments/index.html`: formerly used `<span class="last-reviewed">`
 - Now normalized to `<p class="last-reviewed">` matching other pages. Current state matches.
 
-### 7. Top bar text — all 17 now match approved variants
-- 13 files: `24/7 Pest Emergency — Las Vegas & Clark County, NV`
-- 4 files: `Mon–Fri 8am–4pm · Sat 8am–2pm · Emergency 24/7 — Las Vegas & Clark County, NV` (emergency, plans-and-pricing, apartments, eco-friendly)
+### 7. Top bar text: all 17 now match approved variants
+- 13 files: `24/7 Pest Emergency, Las Vegas & Clark County, NV`
+- 4 files: `Mon to Fri 8am to 4pm · Sat 8am to 2pm · Emergency 24/7, Las Vegas & Clark County, NV` (emergency, plans-and-pricing, apartments, eco-friendly)
 - All license-tagline variants were removed during the site-audit batch.
 
-### 8. Mobile nav CTA — all 17 now say `Free Estimate →`
+### 8. Mobile nav CTA: all 17 now say `Free Estimate →`
 - Service-specific labels ("Free Ant Inspection →", "Free Commercial Inspection →", etc.) were flattened during the site-audit batch.
 
-### 9. Phone format — uniform across all files
+### 9. Phone format: uniform across all files
 - Display text: `(702) 228-4394` (94 instances replaced from bare hyphenated in the phone batch)
 - `tel:` href: `tel:+17022284394` everywhere
 - One exception (intentional, not PCI's number): `tel:+17024864480` for Nevada Housing Division in `apartments/index.html`
@@ -1113,10 +1113,10 @@ The About cluster (`/about/`, `/about/mission/`, `/about/health-conscious-servic
 
 These are not "anomalies in the pattern" but launch-blockers / open items already on record:
 
-- **No `/404.html`** — soft-404 catch-all serves homepage for any unmatched URL (tracked in `docs/site-os/qa/2026-05-18-soft-404-catch-all.md`).
-- **No form handler endpoint** — hero forms post to `/free-estimate/` with no backend. The `/free-estimate/` page itself is not built.
-- **Image placeholders** — many pages use `[PCI Family Photo Placeholder]` style placeholder divs where real photography should go.
-- **GBP phone mismatch** — Google Business Profile shows `702-905-1355`, must be corrected to `702-228-4394` (in pre-launch checklist).
+- **No `/404.html`**, soft-404 catch-all serves homepage for any unmatched URL (tracked in `docs/site-os/qa/2026-05-18-soft-404-catch-all.md`).
+- **No form handler endpoint**, hero forms post to `/free-estimate/` with no backend. The `/free-estimate/` page itself is not built.
+- **Image placeholders**, many pages use `[PCI Family Photo Placeholder]` style placeholder divs where real photography should go.
+- **GBP phone mismatch**, Google Business Profile shows `702-905-1355`, must be corrected to `702-228-4394` (in pre-launch checklist).
 
 ---
 

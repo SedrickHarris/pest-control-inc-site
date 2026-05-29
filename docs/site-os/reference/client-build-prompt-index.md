@@ -1,4 +1,4 @@
-# Pest Control Inc — Client Build Prompt Index
+# Pest Control Inc: Client Build Prompt Index
 
 ## When to use which prompt
 

@@ -1,4 +1,4 @@
-# SERP Analysis Prompt — Pest Control Inc
+# SERP Analysis Prompt: Pest Control Inc
 
 ## Source
 This prompt lives in Site OS Master.

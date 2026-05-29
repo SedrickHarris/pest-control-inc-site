@@ -1,4 +1,4 @@
-# Content Update Prompt — Pest Control Inc
+# Content Update Prompt: Pest Control Inc
 
 ## Source
 This prompt lives in Site OS Master.
