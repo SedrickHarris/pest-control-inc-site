@@ -2258,3 +2258,55 @@ All four files under 200 KB; none exceeds the 400 KB flag. Two files are about 2
 
 #### Next step
 Batch B: 5 city hubs header/main/hero reconstruction (unchanged).
+
+---
+
+### 2026-05-28: Batch B — 5 City Hubs Header / Main / Hero Reconstruction
+
+Closes Batch B. The 5 remaining city-hub pages had the orphaned-hero pattern Batch A treated on species pages: no `<header>`, no `<main>`, no `<h1>`, no `<section class="hero">` — the form-card was dumped as the first element after the skip-link and the first heading was an `<h2>`. This commit adds the full canonical top-of-page block (top-bar → header → mobile-nav → main → hero) verbatim from `pest-control-henderson-nv/index.html`, writes a per-city h1, hero eyebrow, hero-intro, CTAs, and 5 trust signals, moves the existing form-card into the hero-inner right column without duplication, and demotes the form-card UI label from `<h2>` to `<p>` to clean the heading outline.
+
+#### Pages (5)
+
+`pest-control-north-las-vegas/`, `pest-control-boulder-city-nv/`, `pest-control-enterprise-nv/`, `pest-control-paradise-nv/`, `pest-control-spring-valley-nv/`.
+
+#### Pre-existing orphan tags discovered
+
+Each page already had the *closing* halves of the missing scaffold: three orphan closes (`</div></div></section>`) right after the form-card aside, and one orphan `</main>` just before `<footer>`. The transformation injected only opening tags + the LEFT-column hero content; every orphan now binds to a real open. No existing closing tag was added, moved, or rebalanced.
+
+#### Per-page hero copy
+
+Every noun, pest, neighborhood, and entity phrase in each hero-intro is already present in the same page's below-hero content. No new claims introduced. h1 format: "Pest Control in **<City>, NV**" — matches henderson's pattern (em-wrapped geo) and aligns with each page's `<title>`. Hero eyebrow per city: `<City> · Clark County, NV · License #4632`. Hero-sub identical across all 5 pages: `3-Generation Family-Owned · Licensed · Money-Back Guarantee`. CTAs + 5 trust signals identical to henderson — no review-count inflation.
+
+#### Breadcrumb parent
+
+Followed henderson's pattern: `Home / Las Vegas Pest Control / Pest Control <City> NV` (parent is `/pest-control-las-vegas/`, not `/service-areas/`).
+
+#### Form-card UI label demotion
+
+`<h2 class="form-card-title">Free <City> Inspection</h2>` → `<p class="form-card-title">Free <City> Inspection</p>` on each page. Same class, same text, same styling. Removes a UI label from the heading outline so the page outline starts cleanly with the new h1. Matches what Batch A did on the species pages.
+
+#### Verification
+
+| Gate | Result |
+|---|---|
+| Exactly one `<header>`, one `<main id="main-content">` (open + close balanced), one `<h1>` per page | 5/5 PASS |
+| First heading in document order = h1 | 5/5 PASS |
+| Exactly one `class="form-card"` per page (no duplicate; form moved cleanly) | 5/5 PASS |
+| Zero `<h2 class="form-card-title">`; one `<p class="form-card-title">` per page | 5/5 PASS |
+| `<form id="estimate-form">` preserved on every page (JS handler binding intact) | 5/5 PASS |
+| `<meta>` / `<link>` / external `<script src>` / JSON-LD-block counts vs HEAD | unchanged on every page (16 / 10 / 1 / 1) |
+| Below-hero region byte-identical vs HEAD (LF-normalized) | 5/5 PASS |
+| JSON-LD on target pages parses | 5/5 |
+| Comment-aware no-long-dash gate, site-wide | TOTAL: 0, exit 0 |
+
+Pre-existing heading-skip h2 → h4 in the footer/below-hero region appears on these 5 pages just as it does on henderson; out of scope for Batch B and unchanged here.
+
+#### QA note
+[`docs/site-os/qa/2026-05-28-city-hub-header-hero-reconstruction.md`](qa/2026-05-28-city-hub-header-hero-reconstruction.md): Step 0 inventory (incl. hero-presence check on henderson), per-page h1 + hero-intro full text, orphan-tag discovery, integrity matrix, verification gates.
+
+#### Commit
+- `feat(structure): restore header/main/hero + h1 on 5 city-hub pages (SEO heading pass)` (5 HTML files + QA note + this log entry)
+- Push: pending owner approval
+
+#### Next step
+Batch C: 26 neighborhood pages (Level 3). Reference pattern lives in `pest-control-las-vegas/apartments/index.html` and `pest-control-las-vegas/eco-friendly/index.html`; the most recently-retrofitted neighborhood example is `pest-control-las-vegas/southern-highlands/index.html` (commit `00328d4`). Neighborhood breadcrumb pattern: `Home / <City Hub> / <Neighborhood>` — and the 5 city hubs corrected in this Batch B commit are now valid parents for those breadcrumbs.

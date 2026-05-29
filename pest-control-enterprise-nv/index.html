@@ -377,9 +377,82 @@ a{color:inherit;text-decoration:none}
 <body>
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
+<!-- TOP BAR -->
+<div class="top-bar">
+  <span class="top-bar-text">24/7 Pest Emergency, Enterprise &amp; Clark County, NV</span>
+  <a href="tel:+17022284394" class="top-bar-phone">&#128222; (702) 228-4394</a>
+  <a href="/specials/" class="top-bar-badge">Free First Service &#8594;</a>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container header-inner">
+    <a href="/" class="logo" aria-label="Pest Control Inc, Home"><img src="/images/logos/pest-control-inc-logo-transparent-background.png" alt="Pest Control Inc" width="84" height="56" loading="eager" fetchpriority="high"></a>
+    <button id="hamburger-btn" class="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span>
+    </button>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="/pest-control-las-vegas/" aria-current="page">Residential</a>
+      <a href="/commercial-pest-control-las-vegas/">Commercial</a>
+      <a href="/emergency-pest-control-las-vegas/">Emergency</a>
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/free-estimate/" class="nav-cta">Free Estimate</a>
+    </nav>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div id="mobile-nav" class="mobile-nav-overlay" aria-hidden="true" aria-label="Mobile navigation">
+  <div class="mobile-nav-inner">
+    <button class="mobile-nav-close" onclick="closeMobileNav()" aria-label="Close navigation menu">&#x2715;</button>
+    <nav class="mobile-nav-links" aria-label="Mobile navigation">
+      <a href="/pest-control-las-vegas/" aria-current="page" onclick="closeMobileNav()">Residential</a>
+      <a href="/commercial-pest-control-las-vegas/" onclick="closeMobileNav()">Commercial</a>
+      <a href="/emergency-pest-control-las-vegas/" onclick="closeMobileNav()">Emergency</a>
+      <a href="/about/" onclick="closeMobileNav()">About</a>
+      <a href="/contact/" onclick="closeMobileNav()">Contact</a>
+    </nav>
+    <a href="/free-estimate/" class="mobile-nav-cta">Free Estimate &#8594;</a>
+    <a href="tel:+17022284394" class="mobile-nav-phone">&#128222; (702) 228-4394</a>
+  </div>
+</div>
+
+<main id="main-content">
+
+<!-- =====================================================
+     SECTION 01 &mdash; HERO
+     ===================================================== -->
+<section class="hero">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a><span aria-hidden="true">/</span>
+      <a href="/pest-control-las-vegas/">Las Vegas Pest Control</a><span aria-hidden="true">/</span>
+      <span>Pest Control Enterprise NV</span>
+    </nav>
+    <div class="hero-inner">
+
+      <div>
+        <span class="hero-eyebrow">Enterprise &middot; Clark County, NV &middot; License #4632</span>
+        <h1>Pest Control in <em>Enterprise, NV</em></h1>
+        <p class="hero-sub">3-Generation Family-Owned &middot; Licensed &middot; Money-Back Guarantee</p>
+        <p class="hero-intro">Enterprise's rapid residential growth and active year-round construction displace established scorpions, subterranean termites, and rodents into newly built homes, alongside steady German cockroach, Argentine ant, black widow, and roof rat pressure across the area. Pest Control Inc serves all of Enterprise with the Health Conscious Service Program, backed by a money-back guarantee.</p>
+        <div class="hero-ctas">
+          <a href="tel:+17022284394" class="btn-primary">&#128222; (702) 228-4394</a>
+          <a href="/free-estimate/" class="btn-outline-light">Get Free Estimate &#8594;</a>
+        </div>
+        <div class="hero-trust" role="list" aria-label="Trust signals">
+          <span class="hero-trust-item" role="listitem">&#10003; 3-Generation Family-Owned</span>
+          <span class="hero-trust-item" role="listitem">&#10003; Money-Back Guarantee</span>
+          <span class="hero-trust-item" role="listitem">&#10003; 30-Min Callback</span>
+          <span class="hero-trust-item" role="listitem">&#10003; Licensed NV #4632</span>
+          <span class="hero-trust-item" role="listitem">&#10003; 24/7 Emergency</span>
+        </div>
+      </div>
+
       <aside aria-label="Request a free pest inspection in Enterprise">
         <div class="form-card">
-          <h2 class="form-card-title">Free Enterprise Inspection</h2>
+          <p class="form-card-title">Free Enterprise Inspection</p>
           <p class="form-card-sub">We call back in 30 minutes or less during business hours.</p>
           <form id="estimate-form" novalidate aria-label="Enterprise inspection request">
             <div class="form-row">
