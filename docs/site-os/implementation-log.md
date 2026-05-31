@@ -2310,3 +2310,16 @@ Pre-existing heading-skip h2 → h4 in the footer/below-hero region appears on t
 
 #### Next step
 Batch C: 26 neighborhood pages (Level 3). Reference pattern lives in `pest-control-las-vegas/apartments/index.html` and `pest-control-las-vegas/eco-friendly/index.html`; the most recently-retrofitted neighborhood example is `pest-control-las-vegas/southern-highlands/index.html` (commit `00328d4`). Neighborhood breadcrumb pattern: `Home / <City Hub> / <Neighborhood>` — and the 5 city hubs corrected in this Batch B commit are now valid parents for those breadcrumbs.
+
+---
+
+### 2026-05-31 — sitemap.xml added to repo root
+
+- File: `sitemap.xml`
+- Type: XML sitemap for GSC/Bing Webmaster submission
+- Total URLs: 74
+- Excluded: /404.html, /thank-you/, /blog/ (deferred), springtail-exterminator (CONSOLIDATED), all PLANNED pages
+- Data discrepancy: `page-list.md` marks `/pest-control-henderson-nv/macdonald-highlands/` and `/pest-control-henderson-nv/macdonald-ranch/` as LIVE, but neither exists on disk. Excluded from sitemap per owner decision (a sitemap must only list URLs that resolve). page-list.md status should be corrected to PLANNED.
+- Commit: f56860f — feat(seo): add sitemap.xml to repo root for GSC submission
+- Submit URL: https://www.pestcontrolinc.net/sitemap.xml
+- GSC submission: pending production domain migration to Cloudflare Pages
