@@ -2344,3 +2344,15 @@ Batch C: 26 neighborhood pages (Level 3). Reference pattern lives in `pest-contr
 - form_submit trigger: use GTM Form Submission trigger with **Form ID matches RegEx `-form$`** (NOT an explicit ID list). Site audit (2026-05-31) found 9 distinct form IDs, all ending in `-form`: estimate-form (58), hero-form (5), final-form (4), mid-form (2), cta-form, contact-form, safety-form (/pest-control-las-vegas/eco-friendly/), landlord-form (/pest-control-las-vegas/apartments/), emergency-form (/emergency-pest-control-las-vegas/). The RegEx covers all 9 and future-proofs new `-form`-suffixed forms. An explicit 6-ID list would have missed safety-form, landlord-form, and emergency-form.
 - Mark conversions in GA4
 - Link GA4 to GSC
+
+---
+
+### 2026-05-31 — Header Repair: 26 Phase 10.5 Neighborhood Pages
+
+- Defect: `<header>` element missing on all 26 Phase 10.5 neighborhood pages — they rendered with no top bar, no nav, and no logo.
+- Fix: inserted the canonical top-bar + header + mobile-nav block immediately after the skip link on each page.
+- Canonical source: the `pest-control-henderson-nv/index.html` header block (restored in commit 51496cc), extracted at runtime for byte-fidelity. NOTE: the task named `pest-control-las-vegas/southern-highlands/index.html` as the reference, but that file was itself missing its header; and the task guide block pointed the logo at `/images/pest-control-inc-logo-transparent-background.png` (which does not exist on disk), corrected here to the real `/images/logos/pest-control-inc-logo-transparent-background.png` (377,331 bytes) used elsewhere on these pages.
+- Script: `scripts/repair-neighborhood-headers.js` (idempotent — skips files already containing `<header`; EOL-aware, CRLF preserved).
+- Files modified: 26
+- Verification: site-wide `grep -rL '<header'` returns zero; each page has exactly one `<header>`, one skip-link element, one top-bar, one mobile-nav. Rigorous proof: reversing the exact insertion on every file reproduces HEAD byte-for-byte (26/26), confirming a pure insertion with zero collateral (meta/link/script/JSON-LD counts unchanged). Inserted nav confirmed compatible with each page's existing event-listener JS (#hamburger-btn / #mobile-nav / .mobile-nav-close).
+- Commit: e73b61a — fix(structure): restore missing header/nav on 26 Phase 10.5 neighborhood pages
