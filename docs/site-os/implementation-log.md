@@ -2323,3 +2323,23 @@ Batch C: 26 neighborhood pages (Level 3). Reference pattern lives in `pest-contr
 - Commit: f56860f — feat(seo): add sitemap.xml to repo root for GSC submission
 - Submit URL: https://www.pestcontrolinc.net/sitemap.xml
 - GSC submission: pending production domain migration to Cloudflare Pages
+
+---
+
+### 2026-05-31 — GTM Snippet Added Site-Wide
+
+- GTM Container ID: GTM-KS5B6T8S
+- Scope: all HTML pages
+- Head snippet: inserted immediately after `<meta charset="UTF-8">` on every page (as high in `<head>` as possible, before viewport meta)
+- Body noscript: inserted immediately after `<body>` open tag, before the skip link, on every page
+- Script: `scripts/add-gtm.js` (idempotent — skips files already containing GTM-KS5B6T8S; EOL-aware so CRLF files stay CRLF)
+- Files modified: 76
+- Commit: e1473a2 — feat(analytics): add GTM-KS5B6T8S snippet to all HTML pages site-wide
+- Verification: 76/76 HTML files contain GTM ID; 0 missing; index.html has 2 googletagmanager refs (head script + body noscript), head ref confirmed before `</head>`; GTM insertion added 0 long dashes (no-long-dash gate baseline unchanged at 341 pre-existing dev-comment `&mdash;` matches, all comment-exempt).
+
+#### Next steps (require owner action)
+
+- Configure GA4 Configuration tag inside GTM (needs G-XXXXXXXXXX Measurement ID from owner)
+- Configure event tags: phone_click (tel:+17022284394), form_submit (estimate-form, contact-form, cta-form, hero-form, final-form, mid-form), thank_you_page_view (/thank-you/)
+- Mark conversions in GA4
+- Link GA4 to GSC
