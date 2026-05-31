@@ -2340,6 +2340,7 @@ Batch C: 26 neighborhood pages (Level 3). Reference pattern lives in `pest-contr
 #### Next steps (require owner action)
 
 - Configure GA4 Configuration tag inside GTM (needs G-XXXXXXXXXX Measurement ID from owner)
-- Configure event tags: phone_click (tel:+17022284394), form_submit (estimate-form, contact-form, cta-form, hero-form, final-form, mid-form), thank_you_page_view (/thank-you/)
+- Configure event tags: phone_click (tel:+17022284394); form_submit; thank_you_page_view (/thank-you/)
+- form_submit trigger: use GTM Form Submission trigger with **Form ID matches RegEx `-form$`** (NOT an explicit ID list). Site audit (2026-05-31) found 9 distinct form IDs, all ending in `-form`: estimate-form (58), hero-form (5), final-form (4), mid-form (2), cta-form, contact-form, safety-form (/pest-control-las-vegas/eco-friendly/), landlord-form (/pest-control-las-vegas/apartments/), emergency-form (/emergency-pest-control-las-vegas/). The RegEx covers all 9 and future-proofs new `-form`-suffixed forms. An explicit 6-ID list would have missed safety-form, landlord-form, and emergency-form.
 - Mark conversions in GA4
 - Link GA4 to GSC
