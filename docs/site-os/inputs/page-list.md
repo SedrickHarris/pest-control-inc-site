@@ -143,8 +143,8 @@ Source: Implementation log audit — all LIVE entries verified against disk/comm
 | /pest-control-henderson-nv/inspirada/ | Neighborhood | LIVE |
 | /pest-control-henderson-nv/cadence/ | Neighborhood | LIVE |
 | /pest-control-henderson-nv/lake-las-vegas/ | Neighborhood | LIVE |
-| /pest-control-henderson-nv/macdonald-ranch/ | Neighborhood | LIVE |
-| /pest-control-henderson-nv/macdonald-highlands/ | Neighborhood | LIVE |
+| /pest-control-henderson-nv/macdonald-ranch/ | Neighborhood | PLANNED — listed LIVE in error; dir missing on disk (corrected 2026-05-31) |
+| /pest-control-henderson-nv/macdonald-highlands/ | Neighborhood | PLANNED — listed LIVE in error; dir missing on disk (corrected 2026-05-31) |
 
 ## Location Pages — North Las Vegas Neighborhood Pages (Batch 5 — all LIVE)
 
