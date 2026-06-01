@@ -2372,3 +2372,13 @@ Batch C: 26 neighborhood pages (Level 3). Reference pattern lives in `pest-contr
 - Commit: 9383663 — feat(seo): update all og:image references to og-default.webp fallback site-wide
 - Out of scope (left untouched, flagged for follow-up): `pest-control-las-vegas/index.html` still has a JSON-LD `image` field and a hero `<link rel="preload">` pointing at `/images/residential-pest-control-las-vegas.jpg`, which is also missing on disk. Not an og:image/twitter:image tag, so outside this task.
 - Note: individual per-page OG images are a future enhancement.
+
+---
+
+### 2026-05-31 — Follow-up: residential-hub broken image references resolved
+
+- Resolves the out-of-scope items flagged in the OG fallback entry above.
+- `pest-control-las-vegas/index.html`: JSON-LD `image` swapped from the missing `residential-pest-control-las-vegas.jpg` to `https://pestcontrolinc.net/assets/images/og-default.webp`.
+- Removed the stale `<link rel="preload" as="image">` for the same missing file — this page's hero is a CSS gradient and renders no image, so the preload had nothing valid to point at (swapping it would have caused a "preloaded but not used" warning). Per owner decision.
+- Verified: 0 remaining refs to the missing file; all 7 JSON-LD blocks on the page still parse.
+- Commit: e950179 — fix(seo): point residential-hub JSON-LD image to og-default.webp, remove stale hero preload
