@@ -2382,3 +2382,16 @@ Batch C: 26 neighborhood pages (Level 3). Reference pattern lives in `pest-contr
 - Removed the stale `<link rel="preload" as="image">` for the same missing file — this page's hero is a CSS gradient and renders no image, so the preload had nothing valid to point at (swapping it would have caused a "preloaded but not used" warning). Per owner decision.
 - Verified: 0 remaining refs to the missing file; all 7 JSON-LD blocks on the page still parse.
 - Commit: e950179 — fix(seo): point residential-hub JSON-LD image to og-default.webp, remove stale hero preload
+
+---
+
+### 2026-05-31 — JSON-LD Organization logo repointed to real asset (16 pages)
+
+- Audit finding: JSON-LD `logo` (Organization/LocalBusiness) referenced `https://pestcontrolinc.net/images/pci-logo.png` on 16 pages — missing on disk (the `/images/` root is a dead placeholder dir; real assets live in `/images/logos/`).
+- Fix: repointed `logo.url` to the real asset `https://pestcontrolinc.net/images/logos/pest-control-inc-logo-transparent-background.png` (369 KB, on disk) and removed the stale `"width":300,"height":130` (they described the old, nonexistent asset).
+- Handled both JSON-LD formats present: 5 inline logo objects + 11 multi-line. `pci-logo.png` appeared exclusively in `logo` objects, so the transform was scoped safely.
+- Script: `scripts/fix-jsonld-logo.js`.
+- Files modified: 16
+- Verification: 0 `pci-logo.png` refs remain; 0 width/height left in any logo object; all 16 files' JSON-LD blocks still parse.
+- Commit: ac5ef0d — fix(seo): repoint JSON-LD Organization logo to real asset, drop stale dimensions (16 pages)
+- Held per owner decision: all OTHER missing JSON-LD images (e.g. `about-pci-las-vegas-team.jpg` ×11, page heroes, and the emergency/eco-friendly `ImageObject` how-to/diagram `contentUrl`s) are left as-is until real assets are produced. See the audit summary for the full list.
