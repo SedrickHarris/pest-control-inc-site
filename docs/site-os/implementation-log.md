@@ -2356,3 +2356,19 @@ Batch C: 26 neighborhood pages (Level 3). Reference pattern lives in `pest-contr
 - Files modified: 26
 - Verification: site-wide `grep -rL '<header'` returns zero; each page has exactly one `<header>`, one skip-link element, one top-bar, one mobile-nav. Rigorous proof: reversing the exact insertion on every file reproduces HEAD byte-for-byte (26/26), confirming a pure insertion with zero collateral (meta/link/script/JSON-LD counts unchanged). Inserted nav confirmed compatible with each page's existing event-listener JS (#hamburger-btn / #mobile-nav / .mobile-nav-close).
 - Commit: e73b61a — fix(structure): restore missing header/nav on 26 Phase 10.5 neighborhood pages
+
+---
+
+### 2026-05-31 — OG Image Fallback: og-default.webp applied site-wide
+
+- Scope: all 76 HTML pages
+- og:image and twitter:image content updated to `https://pestcontrolinc.net/assets/images/og-default.webp`
+- og:image:alt standardized site-wide to `Pest Control Inc · Licensed Pest Control &amp; Exterminator Services, Las Vegas, NV`
+- Why a fallback was warranted: all 72 distinct page-specific OG images previously referenced (e.g. `og-scorpion-exterminator-las-vegas.jpg`) were MISSING on disk (0/72 present) — every page had a broken social-share image. Pointing them at the one asset that exists fixes broken → working.
+- Separator: used a middot (·) rather than the originally-specified em-dash, per owner decision, to keep the no-long-dash gate green and match the site's existing `·` separator convention. Verified: 0 new em/en dashes introduced.
+- Asset: committed the previously-untracked `assets/images/og-default.webp` (22 KB) in the same commit so the new references resolve in production.
+- Script: `scripts/update-og-images.js` (idempotent — skips files already on og-default.webp; in-line attribute edits only, so CRLF preserved).
+- Files modified: 76
+- Commit: 9383663 — feat(seo): update all og:image references to og-default.webp fallback site-wide
+- Out of scope (left untouched, flagged for follow-up): `pest-control-las-vegas/index.html` still has a JSON-LD `image` field and a hero `<link rel="preload">` pointing at `/images/residential-pest-control-las-vegas.jpg`, which is also missing on disk. Not an og:image/twitter:image tag, so outside this task.
+- Note: individual per-page OG images are a future enhancement.
