@@ -1,0 +1,40 @@
+name: IndexNow URL Submission
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Submit URLs to IndexNow
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+        run: |
+          URLS=$(grep -oP '(?<=<loc>)[^<]+' sitemap.xml | python3 -c "
+          import sys, json
+          urls = [u.strip() for u in sys.stdin if u.strip()]
+          print(json.dumps(urls))
+          ")
+
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d "{
+              \"host\": \"www.pestcontrolinc.net\",
+              \"key\": \"${INDEXNOW_KEY}\",
+              \"keyLocation\": \"https://www.pestcontrolinc.net/${INDEXNOW_KEY}.txt\",
+              \"urlList\": ${URLS}
+            }")
+
+          echo "IndexNow response: $RESPONSE"
+          if [ "$RESPONSE" = "200" ] || [ "$RESPONSE" = "202" ]; then
+            echo "Submission accepted."
+          else
+            echo "Unexpected response: $RESPONSE"
+            exit 1
+          fi
