@@ -2395,3 +2395,36 @@ Batch C: 26 neighborhood pages (Level 3). Reference pattern lives in `pest-contr
 - Verification: 0 `pci-logo.png` refs remain; 0 width/height left in any logo object; all 16 files' JSON-LD blocks still parse.
 - Commit: ac5ef0d — fix(seo): repoint JSON-LD Organization logo to real asset, drop stale dimensions (16 pages)
 - Held per owner decision: all OTHER missing JSON-LD images (e.g. `about-pci-las-vegas-team.jpg` ×11, page heroes, and the emergency/eco-friendly `ImageObject` how-to/diagram `contentUrl`s) are left as-is until real assets are produced. See the audit summary for the full list.
+
+---
+
+### 2026-06-09 — New utility page: /pay-invoice/ (PayPal) + site-wide footer/sitemap wiring
+
+- Task: build `pay-invoice/index.html`, a noindex utility page letting existing customers pay an invoice via a hosted PayPal link, and wire it into every page's footer and the HTML sitemap.
+- New file: `pay-invoice/index.html` — static HTML, site-standard top-bar/header/mobile-nav/footer/mobile-cta copied byte-faithfully from the `privacy-policy/index.html` reference, plus page-specific pay hero, payment card (How-to-Pay steps + PayPal CTA + contact strip), and a 4-item FAQ accordion. Inline `<style>`/`<script>` only; no framework.
+- PayPal link: `https://www.paypal.com/ncp/payment/TFNTLN5JLW5GQ` (hosted checkout, opens in new tab, `rel="noopener noreferrer"`). No API, no dynamic lookup, no invented account numbers/amounts.
+- Footer wiring: `scripts/add-pay-invoice-footer-link.js` (idempotent, EOL-preserving, UTF-8 no-BOM) added a `Pay Invoice` link to the footer Company column of all 76 existing pages. The site has **two footer Company structures**: 30 "legal-style" pages carry Privacy/Terms/Sitemap `<li>`s in the Company column (Pay Invoice inserted **before Privacy Policy**, per spec), the other 46 do not (Pay Invoice inserted as the **last Company `<li>`**). Adaptive placement because a single uniform anchor does not exist — only 51/77 pages have a `/reviews/` link, but 77/77 have `<h4>Company</h4>`.
+- Sitemap: `sitemap/index.html` received Pay Invoice in **two** spots — the body "Legal & Utility" group (before Privacy Policy) and its own footer Company column. (Deviation from the prompt's "described Main Pages entry": placed it as a bare link in the Legal & Utility group to match the sitemap's uniform bare-link convention and avoid the no-long-dash gate.)
+- Files created: 2 (`pay-invoice/index.html`, `scripts/add-pay-invoice-footer-link.js`). Files modified: 76 page HTML + `sitemap/index.html` (sitemap counted in the 76) → 76 existing HTML pages touched.
+- Deliberate spec deviations (flagged for owner):
+  1. **Minimal head, no GTM**: followed the prompt's explicit head exactly (charset/viewport/title/description/robots/canonical@line-9/hreflang/fonts only). Every other site page carries the GTM container; this page intentionally omits it. If the owner wants analytics on the payment page, add the standard GTM head+noscript block.
+  2. **No favicon links / no LeadConnector chat widget**: omitted to honor the minimal-head/minimal-body spec and the line-9 canonical gate. Both are present site-wide elsewhere; can be added if desired.
+  3. Em-dash in the prompt's title/card-sub normalized to comma/middot to keep the no-long-dash gate green (consistent with prior owner decisions).
+- Verification table (all PASS):
+  | Check | Expected | Result |
+  |---|---|---|
+  | `pay-invoice/index.html` exists | yes | yes |
+  | `noindex, nofollow` meta | present | 1 |
+  | canonical at line 9 | present | line 9 |
+  | PayPal href `TFNTLN5JLW5GQ` | 1 | 1 |
+  | `target="_blank"` + `rel="noopener noreferrer"` on PayPal link | yes | 1 / 1 |
+  | visible `(702) 228-4394` | >=2 | 8 |
+  | `tel:+17022284394` | >=2 | 8 |
+  | JSON-LD blocks | 0 | 0 |
+  | `id=yr` / `id=hamburger-btn` / `id=mobile-nav` / `id=main-content` | 1 each | 1 each |
+  | founding year / named individuals | 0 | 0 |
+  | `href="/pay-invoice/"` site-wide | 77 files | 77 |
+  | sitemap `/pay-invoice/` | >=1 | 2 (body + footer) |
+  | non-comment long-dash gate (site-wide) | 0 | 0 |
+  | pay-invoice tag balance | balanced | balanced |
+- Commit: 92d7625 (clean) — feat(pay-invoice): add /pay-invoice/ utility page with PayPal link + footer/sitemap wiring
