@@ -2432,4 +2432,14 @@ Batch C: 26 neighborhood pages (Level 3). Reference pattern lives in `pest-contr
 #### Follow-up (same day) — GTM container added to /pay-invoice/
 
 - Per owner decision, reverted deviation #1 (minimal head, no GTM): added the site-standard Google Tag Manager container `GTM-KS5B6T8S` so the payment page matches the rest of the site (76/76 → 77/77 pages now carry GTM). Head `<script>` inserted after `<meta charset>`; `<noscript>` iframe inserted immediately after `<body>`. Block is byte-identical to the `privacy-policy/index.html` reference. Canonical/noindex unaffected; long-dash gate still 0.
-- Commit: GTM_COMMIT (follow-up) — feat(pay-invoice): add GTM container to match site-wide analytics
+- Commit: dd02244 (follow-up) — feat(pay-invoice): add GTM container to match site-wide analytics
+
+#### Follow-up (same day) — Footer "Pay Invoice" link upgraded to orange pill button
+
+- Owner decision: footer Pay Invoice link becomes a styled `.footer-pay-btn` orange pill (permitted `--orange` use: direct customer payment action; reads urgently against the `#0F1520` footer and won't clash with the blue column headings).
+- `scripts/style-pay-invoice-footer-button.js` (idempotent, EOL-preserving, UTF-8 no-BOM): injected the `.footer-pay-btn` + `:hover` CSS before each file's `</style>`, and converted the footer Company-column Pay Invoice text link into `<a class="footer-pay-btn">&#128179; Pay Invoice</a>` on all 77 pages. Emoji uses the `&#128179;` entity (site convention), color is `var(--orange)`/`var(--orange-dark)` (no hardcoded hex).
+- Scoped to the footer Company `<ul>` only: the sitemap's BODY pay-invoice link (in the "Legal & Utility" group) intentionally stays a plain text link — so `sitemap/index.html` has 1 button (footer) + 1 plain link (body).
+- `aria-current="page"` preserved on the pay-invoice page's own footer button.
+- Adaptive placement from the prior task is unchanged (button sits before Privacy Policy on the 30 legal-style footers, last in the Company column on the other 46).
+- Verification (all PASS): `class="footer-pay-btn"` link = 77 files (1 each, 0 with >1); `.footer-pay-btn{` CSS rule = 77 files (each on its own line, 0 fused); button background = `var(--orange)` only; `&#128179; Pay Invoice` text = 77 files; sitemap = 1 button + 1 plain body link; long-dash gate = 0; tag balance OK.
+- Commit: BTN_COMMIT (follow-up) — feat(pay-invoice): style footer Pay Invoice link as orange pill button site-wide
