@@ -2428,3 +2428,8 @@ Batch C: 26 neighborhood pages (Level 3). Reference pattern lives in `pest-contr
   | non-comment long-dash gate (site-wide) | 0 | 0 |
   | pay-invoice tag balance | balanced | balanced |
 - Commit: 92d7625 (clean) — feat(pay-invoice): add /pay-invoice/ utility page with PayPal link + footer/sitemap wiring
+
+#### Follow-up (same day) — GTM container added to /pay-invoice/
+
+- Per owner decision, reverted deviation #1 (minimal head, no GTM): added the site-standard Google Tag Manager container `GTM-KS5B6T8S` so the payment page matches the rest of the site (76/76 → 77/77 pages now carry GTM). Head `<script>` inserted after `<meta charset>`; `<noscript>` iframe inserted immediately after `<body>`. Block is byte-identical to the `privacy-policy/index.html` reference. Canonical/noindex unaffected; long-dash gate still 0.
+- Commit: GTM_COMMIT (follow-up) — feat(pay-invoice): add GTM container to match site-wide analytics
