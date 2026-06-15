@@ -2463,3 +2463,25 @@ Batch C: 26 neighborhood pages (Level 3). Reference pattern lives in `pest-contr
 - `docs/site-os/implementation-log.md` — this entry.
 
 **Pricing-rule compliance:** zero dollar amounts and zero per-unit pricing phrases (`/month`, `/visit`, `per month`, `per visit`) introduced in any edited card. The pre-existing dollar amounts on eco-friendly/ant/apartments/commercial pages were out of scope and left as-is.
+
+---
+
+### 2026-06-15 — Service plan follow-up — broader "quarterly" copy + reviews sweep
+
+**Trigger:** after the core plan-card swap above, owner asked to "run the broader pass on generic copy and reviews." Two in-session owner decisions scoped it: (1) **leave the eco-friendly and main commercial pages entirely untouched** (their standalone "Quarterly" programs + the commercial JS pricing calculator are a separate offering decision); (2) **rewrite customer review/testimonial text** quarterly → bi-monthly.
+
+**Method:** 6 parallel sub-agents over disjoint file groups, each with a shared rule set; results verified site-wide afterward. **80 edits across 26 HTML files.** JSON-LD ↔ visible-HTML twins kept in sync on every change; no dollar amounts or per-unit pricing introduced; no raw em-dash bytes (U+2014) added; 87 JSON-LD blocks across all changed files re-parse with 0 failures.
+
+**What changed (generic copy + reviews only — no plan cards):**
+- Frequency prose everywhere: "monthly or quarterly" → "monthly or bi-monthly", "quarterly or monthly" → "bi-monthly or monthly", etc. — across `index.html`, `pest-control-las-vegas/index.html`, `plans-and-pricing/index.html` (FAQ/meta), the 5 city hubs (boulder-city, sunrise-manor, north-las-vegas, spring-valley, enterprise), the 4 pest-species pages (cockroach, spider, scorpion, miller-moth), `emergency-pest-control-las-vegas/`, `about/`, and `landlord-pest-control-responsibilities/`.
+- 9 neighborhood pages: "Quarterly and bi-monthly … plans" → "Monthly and bi-monthly … plans"; "quarterly or bi-monthly schedule" → "monthly or bi-monthly schedule".
+- `ant-exterminator-las-vegas/`: "quarterly perimeter program/service" → "bi-monthly …", incl. the H3/HowToStep name and 2 reviews.
+- `apartments/`: prose, FAQ, and per-visit pricing-table label "Quarterly recurring" → "Bi-Monthly recurring" (per-visit `$85/visit` / `$65/unit/visit` figures unchanged — per-visit price is not cadence-bound).
+- Reviews/testimonials rewritten to bi-monthly (ant page, per owner approval).
+- NUMERIC FIX: where the old quarterly sentence claimed "four targeted applications" / "four times per year", corrected to "six" / "every other month" (bi-monthly = 6 visits/year) — 4 instances on the LV hub FAQ pairs.
+
+**Intentionally LEFT with "quarterly" (documented residuals, not misses):**
+- `pest-control-las-vegas/eco-friendly/index.html` (38) and `commercial-pest-control-las-vegas/index.html` (18) — owner chose to leave both pages whole (standalone Quarterly programs + commercial JS calculator).
+- `ant-exterminator-las-vegas/index.html` (3): the cadence-bound pricing lines "$80 to $120/quarter" / "per quarter" (JSON-LD L178 + visible L1316/L1317) — cannot convert to bi-monthly without a real per-period price; **flagged to owner** for a bi-monthly price before converting.
+- `docs/site-os/inputs/pci-launch-readiness-site-build-list.md` (1): "Quarterly content audits" — an internal ops cadence, not a pest-service frequency.
+- This log's historical entries (prior builds) — not rewritten.
