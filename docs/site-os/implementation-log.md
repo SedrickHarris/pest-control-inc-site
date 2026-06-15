@@ -2586,3 +2586,13 @@ Batch C: 26 neighborhood pages (Level 3). Reference pattern lives in `pest-contr
 **Verification (runtime):** both files `grep -ic quarterly` = **0**; eco `$[0-9]` = 0, commercial `$[0-9]` = 1 (intentional "$50,000+"); no `isQuarterly` remains; inline JS compiles 0 errors on both; JSON-LD 8/8 blocks parse on both; no raw em-dash added. Logic test: office/HOA now resolve to the bi-monthly recommendation (no Quarterly branch reachable). Headless Chrome: eco plan cards render Monthly → Bi-Monthly(featured) → One-Time with 0 console errors; commercial quiz/router panels render bi-monthly recommendations with 0 console errors.
 
 **Standing rule going forward:** site-wide service plan lineup is **Monthly · Bi-Monthly · One-Time** only — do not reintroduce "Quarterly" on any page.
+
+---
+
+### 2026-06-15 — Eco-friendly: clear leftover "Annual maintenance" table note
+
+**Context:** the prior commit (d465fcf) already rebuilt the eco plan grid to exactly three cards (Monthly · Bi-Monthly featured · One-Time) — the old "Annual Maintenance" card was converted to One-Time then, so there was **no fourth card** and no Annual Maintenance schema Offer. The only residual reference was a price-table **note cell**.
+
+**Change (`pest-control-las-vegas/eco-friendly/index.html`, 1 line):** the Bi-monthly residential pricing-table row's Notes cell "Annual maintenance" → "Every other month, 6 visits per year".
+
+**Verification:** plan-card count = 3 (Monthly → Bi-Monthly featured → One-Time); `grep -i "annual maintenance"` = 0; `grep -i quarterly` = 0; `$[0-9]` = 0; JSON-LD 8/8 blocks parse.
