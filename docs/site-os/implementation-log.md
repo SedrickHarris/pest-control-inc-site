@@ -2514,3 +2514,20 @@ Batch C: 26 neighborhood pages (Level 3). Reference pattern lives in `pest-contr
 - `commercial-pest-control-las-vegas/landlord-pest-control-responsibilities/index.html` (2): illustrative legal example ("$2,400/month rental", "$2,000–$15,000" claim).
 - `commercial-pest-control-las-vegas/index.html` (1): illustrative "$50,000+ in lost bookings" hotel-review impact figure.
 - Still outstanding (separate from pricing): eco-friendly + main commercial pages retain "quarterly" wording per the earlier owner decision.
+
+---
+
+### 2026-06-15 — Commercial frequency-recommender: cost estimator → service recommendation tool
+
+**Trigger:** after pricing removal, the commercial page's 5-question recommender (`#recommender` / `#frequency-quiz`) showed a flat "Estimated Annual Investment: Priced by property, free estimate" for every input — confusing as a cost estimator. Owner reframed it as a service-frequency recommendation tool (no pricing).
+
+**Changes (all in `commercial-pest-control-las-vegas/index.html`):**
+- Result-panel row label "Estimated Annual Investment" → "Service Recommendation" (kept `#quiz-investment` span id).
+- Replaced the dead `computeAnnualInvestment(freq,size)` (returned the flat string for all 25 combos) with `computeRecommendation(freq)` returning a frequency-specific sentence: Weekly / Bi-weekly / Monthly / Bi-monthly / Quarterly each get distinct copy ending in "Request a free estimate." Size no longer affects output (collected as context only), per spec.
+- `renderQuizOutput()` now calls `computeRecommendation`; result CTA text → "Get Free Estimate →" (was "Get Custom Quote for X Program"); static CTA label → "Get Free Estimate &rarr;" (href `/free-estimate/?type=commercial` unchanged).
+- Section intro promise "estimated annual investment range" → "a service plan overview" (kept copy honest; within the recommender section).
+- Em-dashes in the owner's spec strings rendered as commas (site zero-raw-em-dash rule; `textContent` won't decode entities).
+
+**Verification (runtime):** inline JS compiles (0 syntax errors); `computeRecommendation` executed across all 9 industry paths + 5 canonical freqs → correct distinct strings, no throws (hotel/retail/school→Monthly, office-no-audit/HOA→Quarterly, warehouse→Bi-monthly, healthcare→Bi-weekly). Headless Chrome drive of the quiz (warehouse → Bi-Monthly) → panel renders "Service Recommendation: Bi-monthly service…" with "Get Free Estimate →" CTA, 0 console errors. `computeAnnualInvestment` fully removed; only the intentional "$50,000+" illustrative figure remains on the page.
+
+**Left as-is (flagged):** the separate sibling **Industry Router** widget (`#industry-router`, Section 04A) still renders "Estimated investment: Priced by property, free estimate" in its output. Out of scope for this prompt ("no other sections changed"); recommended as a follow-up to apply the same reframe.

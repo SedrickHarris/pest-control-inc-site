@@ -1301,7 +1301,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="container">
     <span class="section-eyebrow">Frequency Recommender · 60 Seconds · No Email Required</span>
     <h2 class="section-title">How Often Does Your Business Actually Need Pest Control?</h2>
-    <p class="section-desc">There is no one-size-fits-all answer. The right commercial pest control frequency depends on your industry, current pest pressure, regulatory environment, hours of operation, and audit requirements. This 5-question recommender from Pest Control Inc takes 60 seconds and provides a frequency recommendation, estimated annual investment range, and the compliance frameworks most relevant to your operation. Answers reflect three generations of Las Vegas commercial pest control experience, not generic industry templates.</p>
+    <p class="section-desc">There is no one-size-fits-all answer. The right commercial pest control frequency depends on your industry, current pest pressure, regulatory environment, hours of operation, and audit requirements. This 5-question recommender from Pest Control Inc takes 60 seconds and provides a frequency recommendation, a service plan overview, and the compliance frameworks most relevant to your operation. Answers reflect three generations of Las Vegas commercial pest control experience, not generic industry templates.</p>
     <div class="quiz-card" id="frequency-quiz">
       <div class="quiz-step active" data-qstep="1">
         <div class="quiz-progress"><span id="quiz-step-label">Question 1 of 5</span><div class="quiz-progress-bars"><div class="quiz-progress-bar"></div><div class="quiz-progress-bar"></div><div class="quiz-progress-bar"></div><div class="quiz-progress-bar"></div><div class="quiz-progress-bar"></div></div></div>
@@ -1361,11 +1361,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="quiz-output" id="quiz-output" aria-live="polite">
         <h4 id="quiz-output-headline">Recommended Frequency: <span id="quiz-freq"></span></h4>
         <div class="quiz-output-row"><strong>Why</strong><span id="quiz-why"></span></div>
-        <div class="quiz-output-row"><strong>Estimated Annual Investment</strong><span id="quiz-investment"></span></div>
+        <div class="quiz-output-row"><strong>Service Recommendation</strong><span id="quiz-investment"></span></div>
         <div class="quiz-output-row"><strong>Key Compliance Frameworks</strong><span id="quiz-compliance"></span></div>
         <div class="quiz-output-row"><strong>What Your Program Includes</strong><span id="quiz-includes"></span></div>
         <div class="router-output-cta">
-          <a href="/free-estimate/?type=commercial" class="btn-primary" id="quiz-cta">Get Custom Quote</a>
+          <a href="/free-estimate/?type=commercial" class="btn-primary" id="quiz-cta">Get Free Estimate &rarr;</a>
           <a href="/free-estimate/?type=commercial" class="btn-secondary">Schedule Free Inspection</a>
           <a href="tel:+17022284394" class="btn-blue-pill">Call (702) 228-4394</a>
         </div>
@@ -2032,35 +2032,17 @@ function computeFrequency() {
   return 'Monthly';
 }
 
-function computeAnnualInvestment(freq, size) {
+function computeRecommendation(freq) {
   const isWeekly = /Weekly/i.test(freq) && !/Bi-Weekly/i.test(freq);
   const isBiWeekly = /Bi-Weekly/i.test(freq);
-  const isMonthly = /Monthly/i.test(freq) && !/Bi-Monthly/i.test(freq);
   const isBiMonthly = /Bi-Monthly/i.test(freq);
   const isQuarterly = /Quarterly/i.test(freq);
 
-  if (size === 'under-2500') {
-    if (isQuarterly) return 'Priced by property, free estimate';
-    if (isMonthly) return 'Priced by property, free estimate';
-    if (isBiWeekly) return 'Priced by property, free estimate';
-    if (isWeekly) return 'Priced by property, free estimate';
-    return 'Priced by property, free estimate';
-  }
-  if (size === '2500-10000') {
-    if (isQuarterly) return 'Priced by property, free estimate';
-    if (isMonthly) return 'Priced by property, free estimate';
-    if (isBiWeekly) return 'Priced by property, free estimate';
-    if (isWeekly) return 'Priced by property, free estimate';
-    return 'Priced by property, free estimate';
-  }
-  if (size === '10000-50000') {
-    if (isQuarterly) return 'Priced by property, free estimate';
-    if (isMonthly) return 'Priced by property, free estimate';
-    if (isBiWeekly) return 'Priced by property, free estimate';
-    if (isWeekly) return 'Priced by property, free estimate';
-    return 'Priced by property, free estimate';
-  }
-  return 'Priced by property, free estimate';
+  if (isWeekly) return 'Weekly service, recommended for high-traffic commercial properties, food service, and hospitality. Request a free estimate for property-specific pricing.';
+  if (isBiWeekly) return 'Bi-weekly service, recommended for retail, offices, and mid-traffic commercial properties. Request a free estimate for property-specific pricing.';
+  if (isBiMonthly) return 'Bi-monthly service, every-other-month protection for lower-traffic or lower-pressure commercial properties. Request a free estimate.';
+  if (isQuarterly) return 'Quarterly service, seasonal treatments targeting Las Vegas pest cycles. Request a free estimate.';
+  return 'Monthly service, our most common commercial plan. Year-round exterior barrier protection with interior treatment as needed. Request a free estimate.';
 }
 
 function computeCompliance(s) {
@@ -2074,18 +2056,18 @@ function computeCompliance(s) {
 
 function renderQuizOutput() {
   const freq = computeFrequency();
-  const investment = computeAnnualInvestment(freq, quizState.size);
+  const recommendation = computeRecommendation(freq);
   const compliance = computeCompliance(quizState);
   const indLabel = industryLabels[quizState.industry] || 'business';
 
   document.getElementById('quiz-freq').textContent = freq;
   document.getElementById('quiz-why').textContent =
     'Your ' + indLabel.toLowerCase() + ' in Las Vegas needs ' + freq.toLowerCase() + ' service based on industry pest pressure, audit requirements, and operating environment. This frequency reflects three generations of Pest Control Inc experience with ' + indLabel.toLowerCase() + ' operations.';
-  document.getElementById('quiz-investment').textContent = investment;
+  document.getElementById('quiz-investment').textContent = recommendation;
   document.getElementById('quiz-compliance').textContent = compliance;
   document.getElementById('quiz-includes').textContent =
     'Inspection cadence aligned with ' + freq.toLowerCase() + ' visits · Monitoring devices appropriate to industry · Audit-ready documentation every visit · Emergency response tier for active accounts';
-  document.getElementById('quiz-cta').textContent = 'Get Custom Quote for ' + freq.split(' ')[0] + ' Program';
+  document.getElementById('quiz-cta').textContent = 'Get Free Estimate →';
   document.querySelectorAll('#frequency-quiz .quiz-step').forEach(s => s.classList.remove('active'));
   document.getElementById('quiz-output').classList.add('visible');
   if (typeof gtag === 'function') gtag('event','frequency_quiz_completed',{frequency:freq,industry:quizState.industry,size:quizState.size});
