@@ -170,7 +170,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     {"@type":"Question","name":"What is integrated pest management?","acceptedAnswer":{"@type":"Answer","text":"Integrated pest management (IPM) is structured pest control combining inspection, exclusion, monitoring, sanitation, and targeted low-impact treatment. IPM begins with inspection, identifies the conditions creating pest pressure, addresses those conditions through exclusion and sanitation, monitors continuously, and treats only when warranted. IPM is the foundation of every modern commercial program."}},
     {"@type":"Question","name":"How do businesses prevent pests?","acceptedAnswer":{"@type":"Answer","text":"Businesses prevent pests through structured IPM, sealing entry points, addressing sanitation, monitoring, staff training, and recurring professional service. Prevention combines pest proofing (sealing entry points, structural repair), strict sanitation (waste management, grease control), staff training, regular inspections, and a recurring commercial pest control program. Prevention is always cheaper, more effective, and easier to document than reactive treatment."}},
     {"@type":"Question","name":"How do I keep pests out of a business?","acceptedAnswer":{"@type":"Answer","text":"Keep pests out through pest proofing, sanitation, staff training, regular inspections, and a recurring commercial pest control program. Pest Control Inc builds all four layers into every commercial program, sealing entry points, addressing sanitation gaps, training your staff on pest reporting, and providing recurring inspection and treatment with documentation every visit."}},
-    {"@type":"Question","name":"How much does commercial pest control cost in Las Vegas?","acceptedAnswer":{"@type":"Answer","text":"Commercial pest control cost in Las Vegas typically ranges from $75-$300+ per visit depending on facility size, pest pressure, and frequency. Pest Control Inc publishes transparent commercial pest pricing with no hidden fees, and every prospect receives a free commercial pest inspection and custom written quote before signing. Annual investment ranges from $300-$50,000+ depending on operation scale."}},
+    {"@type":"Question","name":"How much does commercial pest control cost in Las Vegas?","acceptedAnswer":{"@type":"Answer","text":"Commercial pest control in Las Vegas is priced by property, free estimate, depending on facility size, pest pressure, and frequency. Pest Control Inc publishes transparent commercial pest pricing with no hidden fees, and every prospect receives a free commercial pest inspection and custom written quote before signing. Annual investment is priced by property, free estimate, depending on operation scale."}},
     {"@type":"Question","name":"How much does commercial pest control cost?","acceptedAnswer":{"@type":"Answer","text":"Commercial pest control cost depends on facility square footage, pest pressure, service frequency, and property management requirements. Get an accurate price by scheduling a free commercial pest inspection with Pest Control Inc, quotes are written, transparent, and no-obligation. We size price to actual operation, never to arbitrary tier categories."}},
     {"@type":"Question","name":"Does Pest Control Inc offer free commercial inspections?","acceptedAnswer":{"@type":"Answer","text":"Yes, Pest Control Inc offers free commercial pest inspections to every Las Vegas Valley business with a custom written quote. The inspection includes a full facility walk-through, pest risk assessment, IPM recommendations, documentation review, and a custom program quote, all delivered in writing with no obligation. Call (702) 228-4394 to schedule."}},
     {"@type":"Question","name":"Do offices need pest control?","acceptedAnswer":{"@type":"Answer","text":"Yes, offices need pest control for tenant satisfaction, lease compliance, and prevention of rodent infrastructure damage. Pest Control Inc offers discreet office pest control after hours and weekends so tenants and clients never see service. Common office pests in Las Vegas include ants, spiders, occasional rodents, and seasonal scorpions."}},
@@ -1605,7 +1605,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
           <div class="faq-item" data-category="methodology"><button class="faq-q" aria-expanded="false">How do I keep pests out of a business?<span class="faq-q-arrow" aria-hidden="true">+</span></button><div class="faq-answer"><div class="faq-answer-inner"><em>Keep pests out through pest proofing, sanitation, staff training, regular inspections, and a recurring commercial pest control program.</em>Pest Control Inc builds all four layers into every commercial program, sealing entry points, addressing sanitation gaps, training your staff on pest reporting, and providing recurring inspection and treatment with documentation every visit.</div></div></div>
 
-          <div class="faq-item" data-category="pricing"><button class="faq-q" aria-expanded="false">How much does commercial pest control cost in Las Vegas?<span class="faq-q-arrow" aria-hidden="true">+</span></button><div class="faq-answer"><div class="faq-answer-inner"><em>Commercial pest control cost in Las Vegas typically ranges from $75-$300+ per visit depending on facility size, pest pressure, and frequency.</em>Pest Control Inc publishes transparent commercial pest pricing with no hidden fees, and every prospect receives a free commercial pest inspection and custom written quote before signing. Annual investment ranges from $300-$50,000+ depending on operation scale.</div></div></div>
+          <div class="faq-item" data-category="pricing"><button class="faq-q" aria-expanded="false">How much does commercial pest control cost in Las Vegas?<span class="faq-q-arrow" aria-hidden="true">+</span></button><div class="faq-answer"><div class="faq-answer-inner"><em>Commercial pest control in Las Vegas is priced by property, free estimate, depending on facility size, pest pressure, and frequency.</em>Pest Control Inc publishes transparent commercial pest pricing with no hidden fees, and every prospect receives a free commercial pest inspection and custom written quote before signing. Annual investment is priced by property, free estimate, depending on operation scale.</div></div></div>
 
           <div class="faq-item" data-category="pricing"><button class="faq-q" aria-expanded="false">How much does commercial pest control cost?<span class="faq-q-arrow" aria-hidden="true">+</span></button><div class="faq-answer"><div class="faq-answer-inner"><em>Commercial pest control cost depends on facility square footage, pest pressure, service frequency, and industry compliance requirements.</em>Get an accurate price by scheduling a free commercial pest inspection with Pest Control Inc, quotes are written, transparent, and no-obligation. We size price to actual operation, never to arbitrary tier categories.</div></div></div>
 
@@ -1942,10 +1942,10 @@ const routerMatrix = {
   institutional: {freq:'Monthly or Quarterly', compliance:'Budget-aligned', pests:'ants, rodents, occasional pests'}
 };
 const sizeRanges = {
-  'under-2500':'$75 to $125/visit',
-  '2500-10000':'$125 to $200/visit',
-  '10000-50000':'$200 to $450/visit',
-  '50000-plus':'$450 to $1,200+/visit (custom programs)'
+  'under-2500':'Priced by property, free estimate',
+  '2500-10000':'Priced by property, free estimate',
+  '10000-50000':'Priced by property, free estimate',
+  '50000-plus':'Priced by property, free estimate'
 };
 const industryLabels = {
   hotel:'Hotel',office:'Office',retail:'Retail',warehouse:'Warehouse',
@@ -2040,27 +2040,27 @@ function computeAnnualInvestment(freq, size) {
   const isQuarterly = /Quarterly/i.test(freq);
 
   if (size === 'under-2500') {
-    if (isQuarterly) return '$300 to $800/year';
-    if (isMonthly) return '$900 to $1,800/year';
-    if (isBiWeekly) return '$1,800 to $3,600/year';
-    if (isWeekly) return '$3,600 to $7,200/year';
-    return '$600 to $1,500/year';
+    if (isQuarterly) return 'Priced by property, free estimate';
+    if (isMonthly) return 'Priced by property, free estimate';
+    if (isBiWeekly) return 'Priced by property, free estimate';
+    if (isWeekly) return 'Priced by property, free estimate';
+    return 'Priced by property, free estimate';
   }
   if (size === '2500-10000') {
-    if (isQuarterly) return '$600 to $1,400/year';
-    if (isMonthly) return '$1,800 to $4,800/year';
-    if (isBiWeekly) return '$3,600 to $8,400/year';
-    if (isWeekly) return '$5,200 to $12,000/year';
-    return '$1,800 to $4,800/year';
+    if (isQuarterly) return 'Priced by property, free estimate';
+    if (isMonthly) return 'Priced by property, free estimate';
+    if (isBiWeekly) return 'Priced by property, free estimate';
+    if (isWeekly) return 'Priced by property, free estimate';
+    return 'Priced by property, free estimate';
   }
   if (size === '10000-50000') {
-    if (isQuarterly) return '$1,200 to $3,200/year';
-    if (isMonthly) return '$3,600 to $8,400/year';
-    if (isBiWeekly) return '$7,200 to $14,400/year';
-    if (isWeekly) return '$10,000 to $20,000/year';
-    return '$3,600 to $10,000/year';
+    if (isQuarterly) return 'Priced by property, free estimate';
+    if (isMonthly) return 'Priced by property, free estimate';
+    if (isBiWeekly) return 'Priced by property, free estimate';
+    if (isWeekly) return 'Priced by property, free estimate';
+    return 'Priced by property, free estimate';
   }
-  return '$10,000 to $50,000+/year (custom program)';
+  return 'Priced by property, free estimate';
 }
 
 function computeCompliance(s) {

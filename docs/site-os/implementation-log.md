@@ -2485,3 +2485,32 @@ Batch C: 26 neighborhood pages (Level 3). Reference pattern lives in `pest-contr
 - `ant-exterminator-las-vegas/index.html` (3): the cadence-bound pricing lines "$80 to $120/quarter" / "per quarter" (JSON-LD L178 + visible L1316/L1317) — cannot convert to bi-monthly without a real per-period price; **flagged to owner** for a bi-monthly price before converting.
 - `docs/site-os/inputs/pci-launch-readiness-site-build-list.md` (1): "Quarterly content audits" — an internal ops cadence, not a pest-service frequency.
 - This log's historical entries (prior builds) — not rewritten.
+
+---
+
+### 2026-06-15 — Site-wide dollar-pricing removal (PCI service prices only)
+
+**Trigger:** owner flagged that `ant-exterminator-las-vegas/` still carried `$80–$120/quarter` pricing (violating the site-wide no-dollar-amounts rule), then broadened the request to a **site-wide** audit and removal of all PCI service pricing.
+
+**Two owner decisions scoped it:** (1) remove ONLY Pest Control Inc's own SERVICE prices — KEEP factual/illustrative dollar figures (legal fines, third-party business-impact "incident cost" ROI statistics, illustrative rent/claim examples); (2) the commercial JS price calculator keeps its UI/recommendation logic but every dollar output now returns "Priced by property, free estimate".
+
+**Method:** audit grep first (129 candidate lines / 14 files), then 7 parallel sub-agents (one per file with PCI pricing) + direct edits. Replacement patterns: standalone price cell → "Free estimate"; price+frequency / "Starting from $X" → "Priced by property, free estimate"; pricing-table row → dollar cell only; schema `priceSpecification` / numeric `"price"` (non-zero) → removed (kept `"price":"0"` free offers); visible "$0" free items → "Free".
+
+**Files changed (8):**
+- `ant-exterminator-las-vegas/index.html` — FAQ cost summary + body + JSON-LD twin de-priced (also cleared the 3 residual "quarterly" pricing refs from the prior pass → ant page now 0 quarterly).
+- `pest-control-las-vegas/apartments/index.html` — plan-price labels, pricing table, FAQ (JSON-LD+visible), JS card bodies, 4 Offer `priceSpecification` objects removed.
+- `pest-control-las-vegas/eco-friendly/index.html` — plan prices, pricing table (kept "Quarterly residential" label, removed its price cell), FAQ, speakable, 3 Offer `priceSpecification` + 3 numeric `"price"` removed. Quarterly wording deliberately untouched.
+- `emergency-pest-control-las-vegas/index.html` — pricing table, FAQ (JSON-LD+visible), speakable, 4 Offer `priceSpecification` + 4 numeric `"price"` removed (free bed-bug-inspection `"price":"0"` kept).
+- `commercial-pest-control-las-vegas/index.html` — JS calculator: size→price map (4) + `computeAnnualInvestment` returns (16 dollar strings) → "Priced by property, free estimate"; FAQ pricing (JSON-LD+visible) de-priced. (One agent over-removed the illustrative "$50,000+ in lost bookings" hotel-review figure; restored it.)
+- `commercial-pest-control-las-vegas/pest-impact-on-business/index.html` — removed ONLY the PCI prevention price "$800 to $3,600/year" (prose + table). KEPT all incident-cost/ROI figures.
+- `commercial-pest-control-las-vegas/landlord-pest-control-responsibilities/index.html` — removed ONLY "$80 to $150 per unit per month". KEPT the illustrative "$2,400/month" rent and "$2,000–$15,000" claim figures.
+- `specials/index.html` — free-offer display "$0" → "FREE".
+
+**Verification:** JSON-LD valid across all 8 changed files (57 blocks, 0 failures). No raw em-dash bytes added. `"price":"0"` free offers intact site-wide. No non-zero numeric schema prices remain.
+
+**Intentionally KEPT (documented residuals — the literal `grep $[0-9]=0` check does NOT pass by design):**
+- `bird-removal-las-vegas/index.html` (4): the City of Las Vegas "$1,000 fine" for feeding pigeons — a legal/regulatory fact, not a price.
+- `commercial-pest-control-las-vegas/pest-impact-on-business/index.html` (21): business-impact incident-cost / ROI statistics (e.g. "Typical Incident Cost: $5,000–$250,000+", "$5,000/day").
+- `commercial-pest-control-las-vegas/landlord-pest-control-responsibilities/index.html` (2): illustrative legal example ("$2,400/month rental", "$2,000–$15,000" claim).
+- `commercial-pest-control-las-vegas/index.html` (1): illustrative "$50,000+ in lost bookings" hotel-review impact figure.
+- Still outstanding (separate from pricing): eco-friendly + main commercial pages retain "quarterly" wording per the earlier owner decision.
