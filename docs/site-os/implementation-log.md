@@ -2547,3 +2547,17 @@ Batch C: 26 neighborhood pages (Level 3). Reference pattern lives in `pest-contr
 **FLAGGED — headline vs recommendation mismatch (owner decision needed):** the router headline still uses the legacy `routerMatrix[industry].freq` while the new Service Recommendation uses the owner's table. For two industries these now disagree: **hotel** headline "Monthly + bed bug program" vs recommendation "Weekly or bi-weekly"; **office** headline "Quarterly or Monthly" vs recommendation "Monthly or bi-monthly". The other industries are roughly consistent. Editing the headline was outside this prompt's scope (output line only). Recommend a follow-up to align `routerMatrix` freq with the recommendation table (or drop the headline freq).
 
 **Left as-is (out of scope):** Section 04A intro `.section-desc` still promises "typical pricing range" (now inaccurate) — outside the "widget output area" boundary set by this prompt; recommend a one-phrase follow-up edit.
+
+---
+
+### 2026-06-15 — Commercial router: headline/recommendation alignment + intro copy
+
+**Trigger:** resolves the two items flagged in the entry above.
+
+**Changes (`commercial-pest-control-las-vegas/index.html`, 3 surgical edits):**
+- `routerMatrix.hotel.freq`: "Monthly + bed bug program" → "Weekly or bi-weekly" (now matches the hotel Service Recommendation).
+- `routerMatrix.office.freq`: "Quarterly or Monthly" → "Monthly or bi-monthly" (now matches the office Service Recommendation).
+- Section 04A intro `.section-desc`: removed "typical pricing range," from the list ("...key compliance frameworks, typical pricing range, and the most common pests" → "...key compliance frameworks, and the most common pests"). No other copy in the paragraph changed.
+- `.compliance`, `.pests`, and all other `routerMatrix` industries left untouched.
+
+**Verification (runtime):** diff is exactly the 3 intended lines; inline JS compiles (0 syntax errors); "typical pricing range" = 0 occurrences; dollar tokens still 1 (the intentional "$50,000+"). Headless Chrome drive (industry=hotel) → headline "Your recommended program: Weekly or bi-weekly" now agrees with "Service Recommendation: Weekly or bi-weekly service recommended…"; 0 console errors. Both previously-flagged contradictions resolved.
