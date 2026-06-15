@@ -2561,3 +2561,28 @@ Batch C: 26 neighborhood pages (Level 3). Reference pattern lives in `pest-contr
 - `.compliance`, `.pests`, and all other `routerMatrix` industries left untouched.
 
 **Verification (runtime):** diff is exactly the 3 intended lines; inline JS compiles (0 syntax errors); "typical pricing range" = 0 occurrences; dollar tokens still 1 (the intentional "$50,000+"). Headless Chrome drive (industry=hotel) → headline "Your recommended program: Weekly or bi-weekly" now agrees with "Service Recommendation: Weekly or bi-weekly service recommended…"; 0 console errors. Both previously-flagged contradictions resolved.
+
+---
+
+### 2026-06-15 — BUSINESS DECISION: Quarterly retired site-wide (eco + commercial)
+
+**Owner decision (this reverses the earlier "leave eco/commercial quarterly" carve-out):** Quarterly is no longer an offered service anywhere. Every page now offers only **Monthly · Bi-Monthly · One-Time**. This closes out the last two pages still carrying quarterly (`eco-friendly` and the main `commercial` page).
+
+**`pest-control-las-vegas/eco-friendly/index.html` (38 → 0 quarterly):**
+- Plan cards: replaced the 3-card grid (was Monthly / Quarterly-featured / Annual-Maintenance-bi-monthly) with **Monthly → Bi-Monthly (featured, "Most Popular") → One-Time**. NOTE: the old third card "Annual Maintenance Plan" (which was itself bi-monthly, 6 visits/yr) was converted to the **One-Time** card, since its bi-monthly concept now lives in the featured center card. All card CTAs → `/free-estimate/` "Get Free Estimate".
+- Pricing table: removed the "Quarterly residential" row (the existing "Bi-monthly residential" row remains).
+- Schema: added `"Bi-Monthly Eco-Friendly Pest Control Plan"` Offer.
+- Plans-section intro rewritten: "Quarterly is the standard… four visits per year" → "Bi-monthly is the standard… six visits per year"; added a one-time mention.
+- Copy sweep: all FAQ (JSON-LD + visible twins), HowToSteps, reviews (incl. testimonial quotes), prose, zip-code table, and JS card data quarterly → bi-monthly, with the numeric fix "four/4 visits per year" → "six/6 visits per year" and "2–3 quarterly cycles" → "2–3 bi-monthly cycles".
+
+**`commercial-pest-control-las-vegas/index.html` (17 → 0 quarterly):**
+- Removed the `"Quarterly Commercial Service"` schema Offer.
+- `computeFrequency()`: office-no-audit `'Quarterly'` → `'Bi-Monthly'`; HOA `'Quarterly Community-Wide'` → `'Bi-Monthly Community-Wide'`.
+- `computeRecommendation()`: removed the `isQuarterly` variable and its return branch (no freq now produces "Quarterly").
+- `routerMatrix`: HOA freq `'Quarterly community-wide'` → `'Monthly or bi-monthly'`; institutional `'Monthly or Quarterly'` → `'Monthly or Bi-Monthly'`. `routerRecommendations` HOA/property-management `'Monthly or quarterly'` → `'Monthly or bi-monthly'`.
+- HowTo blocks (hotel bed-bug audits, HOA scorpion cycles) + their visible twins, the frequency-menu prose, and the office-IPM FAQ (JSON-LD + visible twin): quarterly → bi-monthly; removed the "Quarterly commercial pest service for lower-pressure office and retail" sentence; "bi-monthly with quarterly deep inspections" → "periodic deep inspections".
+- (Note: the quiz has no literal "frequency selector" chip list — frequency is computed; the selector-removal in the spec was satisfied by the computeFrequency/computeRecommendation edits.)
+
+**Verification (runtime):** both files `grep -ic quarterly` = **0**; eco `$[0-9]` = 0, commercial `$[0-9]` = 1 (intentional "$50,000+"); no `isQuarterly` remains; inline JS compiles 0 errors on both; JSON-LD 8/8 blocks parse on both; no raw em-dash added. Logic test: office/HOA now resolve to the bi-monthly recommendation (no Quarterly branch reachable). Headless Chrome: eco plan cards render Monthly → Bi-Monthly(featured) → One-Time with 0 console errors; commercial quiz/router panels render bi-monthly recommendations with 0 console errors.
+
+**Standing rule going forward:** site-wide service plan lineup is **Monthly · Bi-Monthly · One-Time** only — do not reintroduce "Quarterly" on any page.
