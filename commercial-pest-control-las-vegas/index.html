@@ -1110,7 +1110,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h4 id="router-headline">Your recommended program</h4>
         <p id="router-body"></p>
         <div class="router-output-cta">
-          <a href="/free-estimate/?type=commercial" class="btn-primary" id="router-cta">Schedule Free Inspection →</a>
+          <a href="/free-estimate/?type=commercial" class="btn-primary" id="router-cta">Get Free Estimate &rarr;</a>
           <a href="tel:+17022284394" class="btn-blue-pill">Call (702) 228-4394</a>
         </div>
         <button type="button" class="router-reset" onclick="resetRouter()">← Start over</button>
@@ -1941,6 +1941,17 @@ const routerMatrix = {
   school: {freq:'Monthly with child-safe IPM', compliance:'State licensing', pests:'ants, spiders, occasional rodents'},
   institutional: {freq:'Monthly or Quarterly', compliance:'Budget-aligned', pests:'ants, rodents, occasional pests'}
 };
+const routerRecommendations = {
+  hotel: 'Weekly or bi-weekly service recommended. High-traffic food handling environments require the highest protection frequency.',
+  office: 'Monthly or bi-monthly service recommended. Standard commercial protection for low-to-mid traffic office environments.',
+  retail: 'Monthly service recommended. Year-round exterior barrier with interior treatment as needed.',
+  warehouse: 'Bi-monthly or monthly service recommended. Varies by inventory type and adjacency to desert landscape.',
+  'property-management': 'Monthly or quarterly service recommended. Common area and perimeter protection for residential communities.',
+  hoa: 'Monthly or quarterly service recommended. Common area and perimeter protection for residential communities.',
+  healthcare: 'Bi-weekly service recommended. Healthcare facilities require strict pest-free compliance and frequent monitoring.',
+  school: 'Monthly service recommended. Schedule-aligned treatments during low-occupancy periods.',
+  _default: 'Service frequency depends on industry, property size, and pest pressure. Request a free estimate for a property-specific recommendation.'
+};
 const sizeRanges = {
   'under-2500':'Priced by property, free estimate',
   '2500-10000':'Priced by property, free estimate',
@@ -1968,17 +1979,17 @@ function showRouterStep(n) {
 }
 function renderRouterOutput() {
   const m = routerMatrix[routerState.industry];
-  const range = sizeRanges[routerState.size] || 'custom';
+  const rec = routerRecommendations[routerState.industry] || routerRecommendations._default;
   const indLabel = industryLabels[routerState.industry] || 'business';
   const sizeLabel = sizeLabels[routerState.size] || 'your size';
   const out = document.getElementById('router-output');
   document.getElementById('router-headline').textContent = 'Your recommended program: ' + m.freq;
   document.getElementById('router-body').innerHTML =
     'For your <strong>' + indLabel + '</strong> in Las Vegas at <strong>' + sizeLabel + '</strong>, we typically recommend our <strong>' + m.freq + '</strong> commercial program. ' +
-    'Estimated investment: <strong>' + range + '</strong>. ' +
+    'Service Recommendation: <strong>' + rec + '</strong> ' +
     'Key compliance frameworks: <strong>' + m.compliance + '</strong>. ' +
     'Most common pests in your industry: <strong>' + m.pests + '</strong>.';
-  document.getElementById('router-cta').textContent = 'Schedule Free ' + indLabel + ' Inspection →';
+  document.getElementById('router-cta').textContent = 'Get Free Estimate →';
   out.classList.add('visible');
   document.querySelectorAll('#industry-router .router-step').forEach(s => s.classList.remove('active'));
   if (typeof gtag === 'function') gtag('event','industry_router_completed',{industry:routerState.industry,size:routerState.size,situation:routerState.situation});

@@ -2531,3 +2531,19 @@ Batch C: 26 neighborhood pages (Level 3). Reference pattern lives in `pest-contr
 **Verification (runtime):** inline JS compiles (0 syntax errors); `computeRecommendation` executed across all 9 industry paths + 5 canonical freqs → correct distinct strings, no throws (hotel/retail/school→Monthly, office-no-audit/HOA→Quarterly, warehouse→Bi-monthly, healthcare→Bi-weekly). Headless Chrome drive of the quiz (warehouse → Bi-Monthly) → panel renders "Service Recommendation: Bi-monthly service…" with "Get Free Estimate →" CTA, 0 console errors. `computeAnnualInvestment` fully removed; only the intentional "$50,000+" illustrative figure remains on the page.
 
 **Left as-is (flagged):** the separate sibling **Industry Router** widget (`#industry-router`, Section 04A) still renders "Estimated investment: Priced by property, free estimate" in its output. Out of scope for this prompt ("no other sections changed"); recommended as a follow-up to apply the same reframe.
+
+---
+
+### 2026-06-15 — Commercial Industry Router (Section 04A): cost line → service recommendation
+
+**Trigger:** follow-up to the recommender fix above — applied the same reframe to the sibling Industry Router widget (`#industry-router`), which still showed "Estimated investment: Priced by property, free estimate" in its `#router-body` output.
+
+**Changes (all in `commercial-pest-control-las-vegas/index.html`, scoped to the router widget):**
+- Added `routerRecommendations` map (by industry) with the owner's industry-specific strings (hotel→weekly/bi-weekly, healthcare→bi-weekly, retail→monthly, office→monthly/bi-monthly, warehouse→bi-monthly/monthly, property-management+hoa→monthly/quarterly, school→monthly, institutional/unmatched→default "Request a free estimate" string).
+- `renderRouterOutput()`: replaced the `Estimated investment: <strong>range</strong>.` sentence with `Service Recommendation: <strong>rec</strong>` (industry-mapped); removed the now-unused `range`/`sizeRanges` lookup line. Result CTA text → "Get Free Estimate →" (was dynamic "Schedule Free <industry> Inspection →"); static `#router-cta` label → "Get Free Estimate &rarr;" (href `/free-estimate/?type=commercial` unchanged).
+
+**Verification (runtime):** inline JS compiles (0 syntax errors). `routerRecommendations` resolved for all 9 industries → 8 distinct strings (property-mgmt & HOA intentionally share), institutional → default, no "$" in any string. Headless Chrome drive (industry=hotel) → panel renders "Service Recommendation: Weekly or bi-weekly service recommended…" with "Get Free Estimate →" CTA, 0 console errors. Dollar tokens on page remain 1 (the intentional "$50,000+" figure); no raw em-dash added.
+
+**FLAGGED — headline vs recommendation mismatch (owner decision needed):** the router headline still uses the legacy `routerMatrix[industry].freq` while the new Service Recommendation uses the owner's table. For two industries these now disagree: **hotel** headline "Monthly + bed bug program" vs recommendation "Weekly or bi-weekly"; **office** headline "Quarterly or Monthly" vs recommendation "Monthly or bi-monthly". The other industries are roughly consistent. Editing the headline was outside this prompt's scope (output line only). Recommend a follow-up to align `routerMatrix` freq with the recommendation table (or drop the headline freq).
+
+**Left as-is (out of scope):** Section 04A intro `.section-desc` still promises "typical pricing range" (now inaccurate) — outside the "widget output area" boundary set by this prompt; recommend a one-phrase follow-up edit.
