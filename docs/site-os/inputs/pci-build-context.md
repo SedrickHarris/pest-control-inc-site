@@ -67,9 +67,9 @@ Coverage: All of Clark County, NV / Las Vegas Valley
 - Eco-friendly, family safe, pet safe
 
 ## Service Plans
+- Monthly protection plan (12-month agreement)
+- Bi-Monthly protection plan (every other month — 6 visits per year — most popular)
 - One-time treatment (free estimate, no contract)
-- Monthly protection plan (12-month agreement — most popular)
-- Quarterly protection plan (4 seasonal treatments)
 
 ## New Customer Offer
 - Free first service with 12-month annual agreement

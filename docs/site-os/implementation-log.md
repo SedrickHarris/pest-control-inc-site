@@ -2443,3 +2443,23 @@ Batch C: 26 neighborhood pages (Level 3). Reference pattern lives in `pest-contr
 - Adaptive placement from the prior task is unchanged (button sits before Privacy Policy on the 30 legal-style footers, last in the Company column on the other 46).
 - Verification (all PASS): `class="footer-pay-btn"` link = 77 files (1 each, 0 with >1); `.footer-pay-btn{` CSS rule = 77 files (each on its own line, 0 fused); button background = `var(--orange)` only; `&#128179; Pay Invoice` text = 77 files; sitemap = 1 button + 1 plain body link; long-dash gate = 0; tag balance OK.
 - Commit: BTN_COMMIT (follow-up) — feat(pay-invoice): style footer Pay Invoice link as orange pill button site-wide
+
+---
+
+### 2026-06-15 — Service plan cards updated — Quarterly removed, Bi-Monthly added
+
+**Note on placement:** appended at the bottom to preserve this log's established oldest-to-newest chronological order (the source prompt said "at the top"; chronological convention was followed instead).
+
+**Scope decision (owner-confirmed in session):** "Core plan system only." The word "quarterly" appears ~160x across 31 files in many contexts (generic frequency copy, customer reviews, the commercial JS pricing calculator, and the standalone eco-friendly/commercial quarterly programs). Per owner direction, only the **residential plan-card system + named-plan schema Offers + Site OS docs** were changed. Generic "monthly or quarterly" frequency copy, reviews, the commercial calculator, and the separate eco/commercial offerings were intentionally left untouched. This intentionally does **not** drive the site-wide `quarterly` grep to zero.
+
+**New plan order (every edited card instance):** Monthly (left) → Bi-Monthly (center, featured / "Most Popular") → One-Time (right). The featured/badge state was moved from Monthly to Bi-Monthly.
+
+**Files changed:**
+- `index.html` — §07 Service Plans `.plans-grid` rebuilt: removed the Quarterly Protection Plan card; added the Bi-Monthly Protection Plan card (icon 🗓️, "Every-other-month service visits (6 per year)", "Money-back guarantee included"); reordered to Monthly → Bi-Monthly → One-Time; moved `featured` + `plan-badge` "Most Popular" to the Bi-Monthly card; Monthly icon 📅, One-Time icon 🎯. No other section touched.
+- `pest-control-las-vegas/index.html` — §07 `.plans-grid` reordered Monthly → Bi-Monthly → One-Time, `featured`/badge moved to Bi-Monthly; Quarterly Residential card → "Bi-Monthly Residential Pest Control Plan" (icon 🌿→🗓️, "4 seasonal treatments per year" → "Every-other-month service visits (6 per year)", other features preserved); section H2 "Monthly, Quarterly & One-Time" → "Monthly, Bi-Monthly & One-Time"; schema Offer "Quarterly Home Pest Control Plan" → "Bi-Monthly Home Pest Control Plan" with rewritten description. Meta-description/FAQ "monthly or quarterly" frequency prose left as generic copy per scope.
+- `pest-control-las-vegas/plans-and-pricing/index.html` — §03 Service Frequency Options cards reordered Monthly → Bi-Monthly → One-Time; "Quarterly Service" card → "Bi-Monthly Service" ("four times per year" → "every other month, 6 visits per year. Ideal for ongoing prevention with a lighter visit schedule"); hero form radio "Quarterly Plan" (`value="quarterly"`) → "Bi-Monthly Plan" (`value="bi-monthly"`). FAQ + "What Affects Pricing" prose mentions of "quarterly" left as generic copy per scope. No dollar amounts or per-unit pricing phrases introduced; zero raw em-dash bytes added.
+- `docs/site-os/inputs/pci-build-context.md` — Service Plans list: removed "Quarterly protection plan", added "Bi-Monthly protection plan (every other month — 6 visits per year — most popular)", reordered to Monthly → Bi-Monthly → One-Time; "most popular" descriptor moved from Monthly to the now-featured Bi-Monthly.
+- `docs/site-os/reference/pci-page-pattern-reference.md` — no plan-card example block present; no change required.
+- `docs/site-os/implementation-log.md` — this entry.
+
+**Pricing-rule compliance:** zero dollar amounts and zero per-unit pricing phrases (`/month`, `/visit`, `per month`, `per visit`) introduced in any edited card. The pre-existing dollar amounts on eco-friendly/ant/apartments/commercial pages were out of scope and left as-is.
