@@ -15,3 +15,8 @@ dist/
 # Local Claude settings
 .claude/
 .claude/settings.local.json
+
+# Google reviews pipeline secrets / staging
+credentials.json
+scripts/tokens.json
+data/google-reviews.staged.json

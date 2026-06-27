@@ -1,0 +1,14 @@
+{
+  "name": "pest-control-inc-site",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "fetch-reviews": "node scripts/fetch-reviews.js",
+    "curate-reviews": "node scripts/curate-reviews.js",
+    "inject-reviews": "node scripts/inject-reviews.js"
+  },
+  "dependencies": {
+    "googleapis": "^144.0.0",
+    "google-auth-library": "^9.0.0"
+  }
+}
