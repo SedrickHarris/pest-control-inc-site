@@ -2,13 +2,16 @@
 /**
  * inject-reviews.js
  *
- * Reads data/google-reviews.json and injects rendered review cards into
- * reviews/index.html at the <!-- REVIEWS_INJECT --> placeholder.
+ * Reads data/google-reviews.json and injects rendered review cards into the
+ * carousel of every target page at the <!-- REVIEWS_INJECT --> placeholder:
+ *   - reviews/index.html
+ *   - index.html (homepage)
  *
  * Only reviews that are verified, cleared to publish, and have non-empty text
  * are rendered. The injection region is bracketed by <!-- REVIEWS_INJECT -->
- * and <!-- /REVIEWS_INJECT --> so this script is idempotent: re-running
- * replaces the previously injected block rather than appending to it.
+ * and <!-- /REVIEWS_INJECT --> (plus a duplicate carousel clone set bracketed
+ * by <!-- CAROUSEL_CLONE_START/END -->) so this script is idempotent:
+ * re-running replaces the previously injected blocks rather than appending.
  *
  * Dependencies: Node built-ins only (fs, path).
  *
@@ -22,10 +25,18 @@ const path = require('path');
 
 const PROJECT_ROOT = path.join(__dirname, '..');
 const DATA_PATH = path.join(PROJECT_ROOT, 'data', 'google-reviews.json');
-const HTML_PATH = path.join(PROJECT_ROOT, 'reviews', 'index.html');
+
+// Pages that host the review carousel. Each must contain the placeholder
+// markers. { label } is used for the console summary line.
+const TARGETS = [
+  { file: path.join(PROJECT_ROOT, 'reviews', 'index.html'), label: 'reviews/index.html' },
+  { file: path.join(PROJECT_ROOT, 'index.html'), label: 'index.html' },
+];
 
 const START = '<!-- REVIEWS_INJECT -->';
 const END = '<!-- /REVIEWS_INJECT -->';
+const CLONE_START = '<!-- CAROUSEL_CLONE_START -->';
+const CLONE_END = '<!-- CAROUSEL_CLONE_END -->';
 
 function escapeHtml(value) {
   return String(value)
@@ -87,29 +98,46 @@ function main() {
   // 3. Build the cards HTML.
   const cardsHtml = publishable.map(renderCard).join('\n');
 
-  // 4. Read the page.
-  let html = fs.readFileSync(HTML_PATH, 'utf8');
+  // 4. Inject into every target page.
+  for (const target of TARGETS) {
+    injectInto(target, cardsHtml, publishable.length);
+  }
+}
+
+/**
+ * Inject the cards (and their clone set) into one target page, then report.
+ */
+function injectInto(target, cardsHtml, count) {
+  let html = fs.readFileSync(target.file, 'utf8');
 
   const replacement = `${START}\n${cardsHtml}\n      ${END}`;
   const blockRe = new RegExp(
     escapeRegExp(START) + '[\\s\\S]*?' + escapeRegExp(END)
   );
 
-  // 5/6. Replace the bracketed block (idempotent) or the bare placeholder.
+  // Replace the bracketed block (idempotent) or the bare placeholder.
   if (blockRe.test(html)) {
     html = html.replace(blockRe, replacement);
   } else if (html.includes(START)) {
     html = html.replace(START, replacement);
   } else {
     throw new Error(
-      `Placeholder ${START} not found in reviews/index.html — cannot inject.`
+      `Placeholder ${START} not found in ${target.label} — cannot inject.`
     );
   }
 
-  fs.writeFileSync(HTML_PATH, html, 'utf8');
+  // Carousel clone: keep an identical second set in sync so the CSS marquee
+  // loops seamlessly. Replace everything between the clone markers.
+  if (html.includes(CLONE_START) && html.includes(CLONE_END)) {
+    const cloneReplacement = `${CLONE_START}\n${cardsHtml}\n      ${CLONE_END}`;
+    const cloneRe = new RegExp(
+      escapeRegExp(CLONE_START) + '[\\s\\S]*?' + escapeRegExp(CLONE_END)
+    );
+    html = html.replace(cloneRe, cloneReplacement);
+  }
 
-  // 7. Report.
-  console.log(`Injected ${publishable.length} reviews into reviews/index.html`);
+  fs.writeFileSync(target.file, html, 'utf8');
+  console.log(`Injected ${count} reviews into ${target.label}`);
 }
 
 try {

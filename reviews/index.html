@@ -171,6 +171,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   --white:#F5F7FA;--pure:#ffffff;
   --gray:#D9E0E6;--gray-mid:#B0BBC6;--gray-dark:#6B7280;
   --tan:#946B42;--tan-light:#F5EEE6;
+  --dark:#1D2430;--light-gray:#ECEFF3;
   --font-display:'DM Serif Display',Georgia,serif;
   --font-ui:'Barlow Condensed',Arial,sans-serif;
   --font-body:'Barlow',Arial,sans-serif;
@@ -281,15 +282,61 @@ img{max-width:100%;display:block}
 .platform-card-link{display:inline-block;margin-top:14px;font-family:var(--font-ui);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);border:1px solid var(--blue);padding:6px 16px;border-radius:var(--radius-pill);transition:background .2s,color .2s}
 .platform-card-link:hover{background:var(--blue);color:#fff}
 
-/* REVIEWS GRID (cards injected by scripts/inject-reviews.js) */
-.reviews-grid-section{background:var(--pure);padding:64px 0}
-.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
-.reviews-grid > article{background:var(--white);border:1px solid var(--gray);border-radius:var(--radius-md);padding:24px 22px;box-shadow:var(--shadow-card);display:flex;flex-direction:column;gap:12px;transition:box-shadow .25s,transform .25s}
-.reviews-grid > article:hover{box-shadow:var(--shadow-card-hover);transform:translateY(-3px)}
-.reviews-grid .review-stars{color:#FFB100;font-size:18px;letter-spacing:2px;line-height:1}
-.reviews-grid .review-text{font-family:var(--font-body);font-size:15px;line-height:1.65;color:var(--navy);flex:1 1 auto}
-.reviews-grid .review-attr{font-family:var(--font-ui);font-size:14px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--navy)}
-.reviews-grid .review-attr span{display:block;font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--gray-dark);margin-top:3px;text-transform:none}
+/* REVIEWS CAROUSEL (cards injected by scripts/inject-reviews.js) */
+.reviews-carousel-outer {
+  overflow: hidden;
+  width: 100%;
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+.reviews-carousel-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 80s linear infinite;
+}
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.review-card {
+  flex: 0 0 320px;
+  margin-right: 20px;
+  background: var(--white);
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.review-stars {
+  color: #F5A623;
+  font-size: 16px;
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+}
+.review-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--dark);
+  margin-bottom: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.review-attr {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--dark);
+  font-family: 'Barlow Condensed', sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.review-attr span {
+  font-weight: 400;
+  color: #888;
+  text-transform: none;
+  letter-spacing: 0;
+}
 
 /* LEAVE A REVIEW CTA */
 .leave-section{background:var(--blue-light);padding:64px 0}
@@ -345,14 +392,12 @@ img{max-width:100%;display:block}
 
 @media(max-width:1024px){
   .platform-grid{grid-template-columns:repeat(2,1fr)}
-  .reviews-grid{grid-template-columns:repeat(2,1fr)}
   .footer-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:768px){
   .nav{display:none}
   .hamburger{display:flex}
   .platform-grid{grid-template-columns:repeat(2,1fr)}
-  .reviews-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr}
   .mobile-cta{display:flex}
   body{padding-bottom:68px}
@@ -494,13 +539,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- SECTION 04 &mdash; REVIEWS GRID -->
-<section class="reviews-grid-section">
+<!-- SECTION 04 &mdash; REVIEWS CAROUSEL -->
+<section class="section-reviews" style="padding:80px 0;background:var(--light-gray);">
   <div class="container">
-    <span class="section-eyebrow">Real Customers &middot; Verified Google Reviews</span>
-    <h2 class="section-title">Verified Customer Reviews</h2>
-    <p class="section-desc">Every review below comes from our verified Google Business Profile and has been manually confirmed. No fabricated testimonials, ever.</p>
-    <div class="reviews-grid">
+    <div style="text-align:center;margin-bottom:40px;">
+      <span class="section-eyebrow">Verified Customer Reviews</span>
+      <h2 class="section-title">What Las Vegas Customers Say<br><span>About Pest Control Inc</span></h2>
+    </div>
+  </div>
+  <div class="reviews-carousel-outer">
+    <div class="reviews-carousel-track">
       <!-- REVIEWS_INJECT -->
       <article class="review-card" itemscope itemtype="https://schema.org/Review">
         <div class="review-stars">★★★★★</div>
@@ -628,6 +676,133 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="review-attr" itemprop="author">Brian A. <span>&middot; Google &middot; Las Vegas</span></div>
       </article>
       <!-- /REVIEWS_INJECT -->
+      <!-- CAROUSEL_CLONE_START -->
+      <article class="review-card" itemscope itemtype="https://schema.org/Review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text" itemprop="reviewBody">"The best in town! Knowledgeable, professional, timely, and the pricing is reasonable. PCI is always there when I need them!"</p>
+        <div class="review-attr" itemprop="author">Will L. <span>&middot; Google &middot; Las Vegas</span></div>
+      </article>
+      <article class="review-card" itemscope itemtype="https://schema.org/Review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text" itemprop="reviewBody">"Reliable,Reliable,Reliable! They give me notice when my day of spraying is up. They come when they say they will."</p>
+        <div class="review-attr" itemprop="author">AtVegas <span>&middot; Google &middot; Las Vegas</span></div>
+      </article>
+      <article class="review-card" itemscope itemtype="https://schema.org/Review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text" itemprop="reviewBody">"Been with this company for over 10 years. Gives great service and employees are very friendly."</p>
+        <div class="review-attr" itemprop="author">Marie S. <span>&middot; Google &middot; Las Vegas</span></div>
+      </article>
+      <article class="review-card" itemscope itemtype="https://schema.org/Review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text" itemprop="reviewBody">"Something was biting the heck out of me. I had scratched my arms and legs so much they bled."</p>
+        <div class="review-attr" itemprop="author">Shannon S. <span>&middot; Google &middot; Las Vegas</span></div>
+      </article>
+      <article class="review-card" itemscope itemtype="https://schema.org/Review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text" itemprop="reviewBody">"Angela was very professional, made sure she left no foot prints in the house, was informative about what to do to reduce scorpians in the house. We're very pleased with her services."</p>
+        <div class="review-attr" itemprop="author">Mlu S. <span>&middot; Google &middot; Las Vegas</span></div>
+      </article>
+      <article class="review-card" itemscope itemtype="https://schema.org/Review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text" itemprop="reviewBody">"It was recommended to me by a close neighbor (a customer of PCI for nearly 20 years) to consider switching my current pest control provider."</p>
+        <div class="review-attr" itemprop="author">Solomon S. <span>&middot; Google &middot; Las Vegas</span></div>
+      </article>
+      <article class="review-card" itemscope itemtype="https://schema.org/Review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text" itemprop="reviewBody">"Great professional, courteous and friendly service from Angela. She always reminds us of our appointment a day ahead. Definitely a trusted company to have for your home service."</p>
+        <div class="review-attr" itemprop="author">Linda M. <span>&middot; Google &middot; Las Vegas</span></div>
+      </article>
+      <article class="review-card" itemscope itemtype="https://schema.org/Review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text" itemprop="reviewBody">"The general manager (Jim) is a very pleasant guy. His prices are affordable and he is flexible with scheduling appointments. If you have a pest problem call this place. He does a very good job."</p>
+        <div class="review-attr" itemprop="author">Jessica D. <span>&middot; Google &middot; Las Vegas</span></div>
+      </article>
+      <article class="review-card" itemscope itemtype="https://schema.org/Review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text" itemprop="reviewBody">"Mike with Pest Control Inc., comes out to my house each month and sprays my house. He's always professional."</p>
+        <div class="review-attr" itemprop="author">THE MadGiggler <span>&middot; Google &middot; Las Vegas</span></div>
+      </article>
+      <article class="review-card" itemscope itemtype="https://schema.org/Review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text" itemprop="reviewBody">"Affordable and Professional, always willing to do what's best for the customer. I've been using them for 4 months now and have been very pleased."</p>
+        <div class="review-attr" itemprop="author">Floyd D. <span>&middot; Google &middot; Las Vegas</span></div>
+      </article>
+      <article class="review-card" itemscope itemtype="https://schema.org/Review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text" itemprop="reviewBody">"9+ years of great monthly service from this family owned business. Friendly, trustworthy, on time, thorough. Recommend to coworkers and neighbors."</p>
+        <div class="review-attr" itemprop="author">John M. <span>&middot; Google &middot; Las Vegas</span></div>
+      </article>
+      <article class="review-card" itemscope itemtype="https://schema.org/Review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text" itemprop="reviewBody">"The employee you have been sending us has been a real plus to your company. Always friendly, clean, and willing to help. She deserves a real pat on the back and let her know she is doing great."</p>
+        <div class="review-attr" itemprop="author">Michael S. <span>&middot; Google &middot; Las Vegas</span></div>
+      </article>
+      <article class="review-card" itemscope itemtype="https://schema.org/Review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text" itemprop="reviewBody">"I've used many Pest Control Companies over the years but I won't switch now! This company is affordable, reliable."</p>
+        <div class="review-attr" itemprop="author">Melanie M. <span>&middot; Google &middot; Las Vegas</span></div>
+      </article>
+      <article class="review-card" itemscope itemtype="https://schema.org/Review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text" itemprop="reviewBody">"Great service, guarantees work, very happy with PCI!"</p>
+        <div class="review-attr" itemprop="author">joann j. <span>&middot; Google &middot; Las Vegas</span></div>
+      </article>
+      <article class="review-card" itemscope itemtype="https://schema.org/Review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text" itemprop="reviewBody">"Our Tech Angela is awesome. Very thorough and extremely pleasant. Very happy with our service."</p>
+        <div class="review-attr" itemprop="author">Tom R. <span>&middot; Google &middot; Las Vegas</span></div>
+      </article>
+      <article class="review-card" itemscope itemtype="https://schema.org/Review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text" itemprop="reviewBody">"The service person who comes to the house is exceptionally conscientious and very professional."</p>
+        <div class="review-attr" itemprop="author">Patricia P. <span>&middot; Google &middot; Las Vegas</span></div>
+      </article>
+      <article class="review-card" itemscope itemtype="https://schema.org/Review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text" itemprop="reviewBody">"Since 2002, I have tried several pest control companies in town and for the last 6 years it has been PCI for my bug control."</p>
+        <div class="review-attr" itemprop="author">F. Brett P. <span>&middot; Google &middot; Las Vegas</span></div>
+      </article>
+      <article class="review-card" itemscope itemtype="https://schema.org/Review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text" itemprop="reviewBody">"We have been with PCI for many years and rate their quality of service a real 5 star. Our technician, Angela, is always on time, friendly, and very thorough, a true professional. Thanks PCI."</p>
+        <div class="review-attr" itemprop="author">Jim and Marie S. <span>&middot; Google &middot; Las Vegas</span></div>
+      </article>
+      <article class="review-card" itemscope itemtype="https://schema.org/Review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text" itemprop="reviewBody">"Angela is a breath of fresh air. She's incredibly thorough and always brings a smile to our house. You are lucky to have her!"</p>
+        <div class="review-attr" itemprop="author">Bassman <span>&middot; Google &middot; Las Vegas</span></div>
+      </article>
+      <article class="review-card" itemscope itemtype="https://schema.org/Review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text" itemprop="reviewBody">"I've always had great, friendly service. Very knowledgeable and informed on pest control options from monthly insect maintenance to bigger, more strategic pest control jobs. High marks all around."</p>
+        <div class="review-attr" itemprop="author">Allen S. <span>&middot; Google &middot; Las Vegas</span></div>
+      </article>
+      <article class="review-card" itemscope itemtype="https://schema.org/Review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text" itemprop="reviewBody">"Best service in town. John took care of my bee problem immediately!"</p>
+        <div class="review-attr" itemprop="author">Yvonne S. <span>&middot; Google &middot; Las Vegas</span></div>
+      </article>
+      <article class="review-card" itemscope itemtype="https://schema.org/Review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text" itemprop="reviewBody">"Pest Control Inc has been keeping my home pest free for almost ten years. They are professional, reliable and just nice people."</p>
+        <div class="review-attr" itemprop="author">Rick F. <span>&middot; Google &middot; Las Vegas</span></div>
+      </article>
+      <article class="review-card" itemscope itemtype="https://schema.org/Review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text" itemprop="reviewBody">"I have been with PCI for a few months and the original Rep. retired and I've had a different Rep the last few times."</p>
+        <div class="review-attr" itemprop="author">Dee G. <span>&middot; Google &middot; Las Vegas</span></div>
+      </article>
+      <article class="review-card" itemscope itemtype="https://schema.org/Review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text" itemprop="reviewBody">"Pest Control Inc is a great pest control company. I have not seen any bugs since they have been servicing my home."</p>
+        <div class="review-attr" itemprop="author">Dave S. <span>&middot; Google &middot; Las Vegas</span></div>
+      </article>
+      <article class="review-card" itemscope itemtype="https://schema.org/Review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text" itemprop="reviewBody">"John has been doing the pest control for all my homes in Las Vegas for many years now. They are a great bunch to do business with."</p>
+        <div class="review-attr" itemprop="author">Brian A. <span>&middot; Google &middot; Las Vegas</span></div>
+      </article>
+      <!-- CAROUSEL_CLONE_END -->
     </div>
   </div>
 </section>
