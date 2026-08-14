@@ -5,6 +5,12 @@ Severity: High (5 high-traffic city hubs had no `<h1>`, no `<header>`, no `<main
 Status: Complete; one commit prepared; awaiting push approval
 Scope: 5 city-hub pages — north-las-vegas, boulder-city, enterprise, paradise, spring-valley.
 
+> **Partially superseded by `52158c7` (2026-08-13) for 24/7 and offer copy.** The top-bar
+> pattern recorded below (`24/7 Pest Emergency, <City> & Clark County, NV` + `Free First
+> Service` badge) was accurate on 2026-05-28 but is retired. Current canonical strings live in
+> `docs/site-os/reference/pci-page-pattern-reference.md`. Do not copy the top-bar text from
+> this record into new pages. The structural findings below remain valid.
+
 ---
 
 ## Phase A re-entry

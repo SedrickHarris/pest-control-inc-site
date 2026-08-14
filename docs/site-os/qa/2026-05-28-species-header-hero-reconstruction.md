@@ -5,6 +5,12 @@ Severity: High (broken document structure + dead site nav)
 Status: Complete &mdash; all 9 pages reconstructed, verified, committed; awaiting push approval
 Scope: Batch A of the multi-batch top-of-page reconstruction effort. Remaining batches noted at the end.
 
+> **Partially superseded by `52158c7` (2026-08-13) for 24/7 and offer copy.** The top-bar
+> strings recorded below (`24/7 <Pest> Emergency`, `Free First Service`) were accurate on
+> 2026-05-28 but are retired. Current canonical strings live in
+> `docs/site-os/reference/pci-page-pattern-reference.md`. Do not copy the top-bar text from
+> this record into new pages. The structural findings below remain valid.
+
 ---
 
 ## Phase A re-entry summary
