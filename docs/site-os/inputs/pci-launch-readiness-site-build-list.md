@@ -18,6 +18,13 @@ The original architecture organizes the website by page type and SEO cluster. Th
 
 ## Important Architecture Update
 
+> **2026-08-13 update (commit `52158c7`):** 24/7 emergency response was retired by owner
+> decision. "Emergency Pest Control" is no longer an approved service and has been removed
+> from every service list and service+location matrix in this document. The built page at
+> `/emergency-pest-control-las-vegas/` was deleted and 301-redirects to `/free-estimate/`.
+> **Do not build emergency pest control pages for any location.** Same-day service during
+> business hours and the 30-minute callback guarantee remain correct claims.
+
 All approved services and all approved locations will have a dedicated service + location page.
 
 This changes the earlier limited service + location plan into a full matrix.
@@ -102,7 +109,6 @@ These pages should be built before most service + location pages because they be
 | 13 | Multi-Family / HOA Pest Control | `/pest-control-las-vegas/multi-family/` | Multi-unit and HOA search intent |
 | 14 | Eco-Friendly Pest Control | `/pest-control-las-vegas/eco-friendly/` | Family, pet, and safety-based search intent |
 | 15 | Plans & Pricing | `/pest-control-las-vegas/plans-and-pricing/` | Pricing clarity and buyer confidence |
-| 16 | Emergency Pest Control Las Vegas | `/emergency-pest-control-las-vegas/` | Urgent high-intent search traffic |
 
 ### Commercial Service Pages
 
@@ -192,7 +198,6 @@ Build Tier 1 service + location pages first because they combine the highest-val
 - Termite Exterminator
 - Spider Exterminator
 - Bed Bug Exterminator
-- Emergency Pest Control
 - Residential Pest Control
 - Commercial Pest Control
 
@@ -207,7 +212,6 @@ Build Tier 1 service + location pages first because they combine the highest-val
 | Termite Exterminator Las Vegas NV | `/termite-exterminator-las-vegas-nv/` |
 | Spider Exterminator Las Vegas NV | `/spider-exterminator-las-vegas-nv/` |
 | Bed Bug Exterminator Las Vegas NV | `/bed-bug-exterminator-las-vegas-nv/` |
-| Emergency Pest Control Las Vegas NV | `/emergency-pest-control-las-vegas-nv/` |
 | Residential Pest Control Las Vegas NV | `/residential-pest-control-las-vegas-nv/` |
 | Commercial Pest Control Las Vegas NV | `/commercial-pest-control-las-vegas-nv/` |
 
@@ -222,7 +226,6 @@ Build Tier 1 service + location pages first because they combine the highest-val
 | Termite Exterminator Henderson NV | `/termite-exterminator-henderson-nv/` |
 | Spider Exterminator Henderson NV | `/spider-exterminator-henderson-nv/` |
 | Bed Bug Exterminator Henderson NV | `/bed-bug-exterminator-henderson-nv/` |
-| Emergency Pest Control Henderson NV | `/emergency-pest-control-henderson-nv/` |
 | Residential Pest Control Henderson NV | `/residential-pest-control-henderson-nv/` |
 | Commercial Pest Control Henderson NV | `/commercial-pest-control-henderson-nv/` |
 
@@ -237,7 +240,6 @@ Build Tier 1 service + location pages first because they combine the highest-val
 | Termite Exterminator North Las Vegas | `/termite-exterminator-north-las-vegas/` |
 | Spider Exterminator North Las Vegas | `/spider-exterminator-north-las-vegas/` |
 | Bed Bug Exterminator North Las Vegas | `/bed-bug-exterminator-north-las-vegas/` |
-| Emergency Pest Control North Las Vegas | `/emergency-pest-control-north-las-vegas/` |
 | Residential Pest Control North Las Vegas | `/residential-pest-control-north-las-vegas/` |
 | Commercial Pest Control North Las Vegas | `/commercial-pest-control-north-las-vegas/` |
 
@@ -252,7 +254,6 @@ Build Tier 1 service + location pages first because they combine the highest-val
 | Termite Exterminator Boulder City NV | `/termite-exterminator-boulder-city-nv/` |
 | Spider Exterminator Boulder City NV | `/spider-exterminator-boulder-city-nv/` |
 | Bed Bug Exterminator Boulder City NV | `/bed-bug-exterminator-boulder-city-nv/` |
-| Emergency Pest Control Boulder City NV | `/emergency-pest-control-boulder-city-nv/` |
 | Residential Pest Control Boulder City NV | `/residential-pest-control-boulder-city-nv/` |
 | Commercial Pest Control Boulder City NV | `/commercial-pest-control-boulder-city-nv/` |
 
@@ -285,7 +286,6 @@ Build the same priority services across Tier 2 locations before expanding to eve
 | Termite Exterminator Winchester NV | `/termite-exterminator-winchester-nv/` |
 | Spider Exterminator Whitney NV | `/spider-exterminator-whitney-nv/` |
 | Bed Bug Exterminator Summerlin South NV | `/bed-bug-exterminator-summerlin-south-nv/` |
-| Emergency Pest Control Paradise NV | `/emergency-pest-control-paradise-nv/` |
 | Residential Pest Control Spring Valley NV | `/residential-pest-control-spring-valley-nv/` |
 | Commercial Pest Control Enterprise NV | `/commercial-pest-control-enterprise-nv/` |
 
@@ -360,9 +360,8 @@ Use the same priority service order for the first Tier 3 matrix batch.
 5. Termite Exterminator
 6. Spider Exterminator
 7. Bed Bug Exterminator
-8. Emergency Pest Control
-9. Residential Pest Control
-10. Commercial Pest Control
+8. Residential Pest Control
+9. Commercial Pest Control
 
 ### Example Pages
 
@@ -374,7 +373,6 @@ Use the same priority service order for the first Tier 3 matrix batch.
 | Cockroach Exterminator Centennial Hills | `/cockroach-exterminator-centennial-hills/` |
 | Termite Exterminator Lake Las Vegas | `/termite-exterminator-lake-las-vegas/` |
 | Bed Bug Exterminator Inspirada | `/bed-bug-exterminator-inspirada/` |
-| Emergency Pest Control Skye Canyon | `/emergency-pest-control-skye-canyon/` |
 | Commercial Pest Control Green Valley Ranch | `/commercial-pest-control-green-valley-ranch/` |
 
 ## Phase 12: Remaining Pest Pillars
@@ -742,7 +740,6 @@ A service + location page should not go live unless it includes:
 - Sitemap
 - Residential pest control hub
 - Commercial pest control hub
-- Emergency pest control page
 - About and trust pages
 - Tier 1 location hubs
 - Top pest pillar pages
