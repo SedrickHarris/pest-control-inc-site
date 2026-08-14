@@ -2596,3 +2596,90 @@ Batch C: 26 neighborhood pages (Level 3). Reference pattern lives in `pest-contr
 **Change (`pest-control-las-vegas/eco-friendly/index.html`, 1 line):** the Bi-monthly residential pricing-table row's Notes cell "Annual maintenance" → "Every other month, 6 visits per year".
 
 **Verification:** plan-card count = 3 (Monthly → Bi-Monthly featured → One-Time); `grep -i "annual maintenance"` = 0; `grep -i quarterly` = 0; `$[0-9]` = 0; JSON-LD 8/8 blocks parse.
+
+---
+
+### 2026-08-13 - BUSINESS DECISION: 24/7 emergency response retired + offer changed to 50% off first service
+
+**Two owner decisions applied together, plus removal of the page whose entire premise was 24-hour emergency service.**
+
+**Decision 1 - no more 24/7 / 24-hour emergency response claims.** Real hours stand: Mon to Fri 8am to 4pm, Sat 8am to 2pm, closed Sunday. The **same-day service** offering and the **30-minute-or-less callback guarantee** are unaffected and were deliberately left intact everywhere.
+
+**Decision 2 - new-customer offer changed** from "first service free" to **"50% off first service with a signed 12-month annual service agreement."** The 12-month term itself is unchanged.
+
+**Decision 3 - `/emergency-pest-control-las-vegas/` deleted** and 301-redirected to `/free-estimate/`. Every internal link to it was repointed to `/free-estimate/` and relabeled **"Same-Day Service"**.
+
+**Process note (why this entry covers two sessions):** the build pass was interrupted mid-flight, after the copy passes but before the schema/page-removal steps. An independent read-only audit then ran against the dirty tree and catalogued exactly what was missing (F1-F8 below) before anything was committed. The completion pass then closed those gaps. Nothing was committed between the two passes; this entry covers the whole arc.
+
+**Copy passes (76 files):**
+- Link/label: 220 anchors to the emergency page -> `/free-estimate/` labelled "Same-Day Service". Top-bar "24/7 <Pest> Emergency," -> "Licensed <Pest> Control," (69). Offer badge "Free First Service" -> "Save 50% on First Service" (80). Trust badge "24/7 Line / Active Accounts" -> "NPMA Member / Industry Certified" (64). Pillar tagline dropped its trailing " &middot; 24/7 Emergency" (21).
+- Availability phrasing: "24/7 emergency service" -> "same-day service during business hours"; "Emergency line monitored 24/7 for active accounts" -> "Active accounts receive priority scheduling"; "available 24 hours a day, 7 days a week" -> "available during business hours"; hours strings ending "&middot; Emergency: 24/7" -> "Sun Closed".
+- FAQ Q&A rewritten in both JSON-LD and the visible twin (e.g. "Do you offer 24/7 emergency pest control?" -> "Do you offer same-day pest control service?").
+- Offer copy: all "first service free" wording -> "50% off ... with a signed 12-month annual service agreement" (~50 replacements across visible copy, meta descriptions, offer badges and terms).
+- Two hour-specific SLA promises rewritten: hotels "24-hour response" -> "priority response"; apartments "24-hour dispatch" -> "priority dispatch".
+
+**Gaps the audit caught (all closed in the completion pass):**
+- **F1/F3** - page never deleted, no `_redirects` rule, `sitemap.xml` still listed it. -> `git rm -r emergency-pest-control-las-vegas`; added `/emergency-pest-control-las-vegas/ -> /free-estimate/ 301` above the catch-all; removed the `<url>` block (74 -> 73).
+- **F2** - nine neighborhood service-card anchors still pointed at the page (multi-line `<a ... class="service-card">` blocks the single-line anchor regex could not match). -> all nine repointed to `/free-estimate/`.
+- **F4** - seven discount `Offer` blocks still asserted `"price":"0"`, accurate when the offer was free but wrong for a 50%-off offer (no-fake-data policy). -> `price`/`priceCurrency` removed from those seven only, in `index.html`, `about/`, `pest-control-las-vegas/` (x2), `apartments/`, `eco-friendly/`, `specials/`.
+- **F5** - three `Offer` names still read "Free First ..." -> renamed to the "50% Off First ..." equivalents.
+- **F6** - a third "within 24 hours" response promise the SLA pass missed, in a commercial `HowToStep`. -> "for any sighting, within 24 hours" -> "on a priority schedule".
+- **F7** - four instances dropped "service" from the canonical phrase. -> all now "signed 12-month annual service agreement".
+- **F8 - deliberately NOT changed (owner decision):** the `service-type` radio value `emergency` / label "Emergency Service" on the four commercial pages (hoa, hotels, offices, retail) stays exactly as-is. It is a lead-category value, not an availability claim, and changing it risks the CRM service-type mapping.
+
+**Verification:** true-positive 24/7 or 24-hour availability claims = 0; "first service free" language = 0; references to the removed page = 0 across `*.html`/`*.xml`; stale "Free First" offer names = 0; discount offers carrying `"price":"0"` = 0; bare "12-month annual agreement" = 0. JSON-LD 163/163 blocks parse (171 before, minus the deleted page's 8). `sitemap.xml` valid XML, 73 `<url>` entries. Structural integrity (JSON-LD block count, `<meta>`, `<link>`, external `<script src>`, div/a open-close balance) identical to HEAD on all 16 files touched in the completion pass. No new em or en dash in visible copy.
+
+**Genuinely-free offers deliberately left with `"price":"0"`:** Free Commercial Pest Inspection/Assessment, Free Landlord Pest Control Inspection, Free Apartment Pest Control Estimate, Free Eco-Friendly Pest Control Estimate/Inspection, Free Residential Pest Inspection, Free Ant Inspection, Free Pest Control Estimate. Per-file `price:"0"` counts were compared before/after to confirm only the seven discount offers lost the field.
+
+**Deliberately left untouched:** "24 hours" references that are not availability claims - Nevada landlord entry notice (NRS 118A.330), the 24-hour legal clock for pest-notice response, service-record delivery SLAs ("records delivered digitally within 24 hours of every visit"), and quote/inspection turnaround. Same-day service and the 30-minute callback guarantee were preserved throughout.
+
+**Deviation from the build prompt:** the prompt's replacement for the homepage hero-callback line used en dashes ("Mon-Fri 8am-4pm" with en dashes). This repo has zero en dashes in HTML and a standing no-long-dash rule (`docs/site-os/qa/2026-05-28-em-en-dash-content-sweep.md`, `2026-05-28-no-long-dash-source-scrub.md`), so the repo's own convention was used instead: "*Business hours: Mon to Fri 8am to 4pm, Sat 8am to 2pm. Call ...".
+
+**Two further response-time claims found during final validation, since fixed (owner-approved):** both in `pest-control-las-vegas/apartments/index.html`, both PCI dispatch promises rather than legal-notice references, so they belonged to the same family as the hotels/apartments SLA lines already rewritten:
+1. Line ~1339, "Active Infestation Response" card: "24-hour notice dispatch for active tenant complaints." -> "Priority dispatch for active tenant complaints."
+2. Line ~2399, inside the JS-driven property-manager recommender (`'pm|Bed bug incident to manage'`): "Pest Control Inc dispatches within 24 hours." -> "Pest Control Inc provides priority dispatch." This was the JS twin of the static line already rewritten to "priority dispatch" - the static copy had been fixed but the JS-rendered copy had not, so the widget was still rendering the 24-hour promise. The NRS 118A.330 notice-requirement reference later in the same string is untouched; it is a legal citation, not an availability claim.
+
+**Why these two were missed until final validation:** the earlier audit's 24-hour sweep used a fixed-width context grep that required 60 characters before the match, which silently dropped matches occurring near the start of a line - both of these did. The final sweep used a per-line scanner with no such requirement and surfaced 25 hits where the audit had reported 13. Future sweeps should scan per line rather than per fixed-width window.
+
+**Out-of-repo follow-ups flagged to owner:** (a) the Site OS stored Brand Differentiators list still says "24/7 emergency service" - update it so future sessions do not reintroduce the claim; (b) Google Business Profile, Yelp, and Apple Maps may still publish 24/7 hours, which would now contradict the site and break NAP/hours consistency.
+
+---
+
+### 2026-08-13 - CORRECTION to the 24/7-removal entry above: stale FREE offer copy caught by independent audit
+
+**Corrects:** the 2026-08-13 entry "BUSINESS DECISION: 24/7 emergency response retired + offer changed to 50% off first service" (immediately above). That entry is left intact per repo precedent (see the 2026-05-28 form-wiring follow-up, which corrected an earlier entry with a new dated entry rather than a silent edit).
+
+**What that entry got wrong.** Its Verification section claimed `"first service free" language = 0` and `bare "12-month annual agreement" = 0`. Both claims were false:
+- The Gate 4 check used the regex `first service (is )?free|free first service|service free\b`. Every alternative requires **first** and **service** to be adjacent. The live copy on two pages read "first **pest control** service **is** FREE" - three words wedged into the first gap, "is" into the second - so the regex returned zero and the check reported PASS. It was structurally incapable of matching the thing it claimed to verify.
+- The bare-phrase claim conflated two different greps: only the `signed 12-month annual agreement` variant was actually checked. The true bare count was 9, all of which are legitimate plan-feature bullets, but the entry did not distinguish that.
+
+**Consequence:** `index.html` and `pest-control-las-vegas/index.html` shipped in the working tree with an offer callout whose **title** had been rewritten to "Save 50% on First Service" while the **body sentence directly beneath it** still read "your first pest control service is FREE". A self-contradicting offer on the two highest-traffic pages. The regex passes updated the title (it contained the literal "Free First Service") and could not see the body.
+
+**How it was caught (process note).** Not by the session that produced the diff, which had already reported Gate 4 as passing. It was caught by an independent five-finder adversarial audit run before commit, using subagents with no shared context. Four separate agents converged on the same defect, one of them reaching it unprompted while assigned an unrelated phrasing question. The lesson matching the earlier context-window miss in this project: **a green check is only as good as the pattern behind it, and the session that wrote the pattern is the worst judge of it.**
+
+**P0 fixes - regressions introduced by the original pass:**
+- `index.html` (offer-callout-desc): "your <strong>first pest control service is FREE</strong>" -> "your <strong>first pest control service is 50% off</strong>". Title above it already read "Save 50% on First Service"; the two now agree.
+- `pest-control-las-vegas/index.html` (new-customer-callout): same substitution, same rationale.
+- `specials/index.html` offer hero: the large `offer-value` badge still read **FREE** above the label "First Service, New Customers" -> now **50% OFF**. NOTE: this instance was found during the fix pass, not by the audit - it was the single most prominent offer claim on the specials page and no prior check looked at standalone value badges.
+- `specials/index.html` offer-body: "...as you will on every visit that follows, just no charge for the first." -> "...just half off for the first." The first clause of that sentence had been updated to "50% off" while the second clause still promised a full waiver.
+
+**P1 fixes - in-scope stale claims that predated the pass but were its job to remove:**
+- `contact/index.html` `.hours-emergency` block: removed an unqualified round-the-clock promise containing no literal "24", which is why every grep-based sweep missed it. Was: "Pest emergencies do not follow business hours, and neither does Pest Control Inc." / "Call our emergency line any time, any day. A team member will respond." Now: "Pest emergencies do not keep to a schedule, so we hold same-day appointments for urgent situations." / "Call us and a team member will respond during business hours, with priority scheduling for active accounts." The midnight and Sunday-morning examples were also dropped, since both fall outside stated hours. The `<h3>` had already been correctly updated to "Same-Day Pest Control Available"; only the body lagged. Verified isolated to this one file.
+- `bed-bug-exterminator-las-vegas/index.html`: an HTML comment explaining why the Specials link is omitted from that page's footer still called it the "free-first-service offer" -> "50%-off first-service offer". Developer-facing only, not customer copy, but comments steer future sessions.
+
+**P2 fixes - consistency:**
+- `specials/index.html` FAQ (JSON-LD `Answer` and its visible twin): "requires a 12-month annual agreement" -> "requires a signed 12-month annual service agreement", matching the five other instances in the same file. Both sides of the pair updated together.
+
+**Deliberately left alone (verified as correct, not oversights):** the `<li>12-month annual agreement</li>` plan-feature bullets on `index.html` and `pest-control-las-vegas/index.html` (bare noun phrases in a feature list, wrong register for offer-terms prose); the variants in `free-estimate/` and `apartments/` where "signed" is grammatically impossible ("who sign a signed..."); and the JSON-LD `"@id": ".../specials/#offer-free-first"` internal identifier.
+
+**Corrected verification pattern - use this one going forward.** Do not use the adjacency-dependent regex. Use:
+
+    grep -rniE "first [a-z ]{0,20}service is (FREE|free)|no charge for the first" --include="*.html" .
+
+plus a broad proximity sweep for human review:
+
+    grep -rnoiE "(first[^.<]{0,60}service[^.<]{0,60}free|free[^.<]{0,60}first[^.<]{0,60}service)" --include="*.html" .
+
+The second currently returns exactly one hit, `eco-friendly/index.html:244` "Free Inspection + New Customer Save 50% on First Service", which is legitimate: a genuinely free inspection offered alongside the discount.
+
+**Verification after this pass:** corrected offer pattern = 0 hits; proximity sweep = 1 legitimate hit; old adjacency regex = 0; `offer-value` badges = 1, reading "50% OFF"; "any time, any day" / "neither does Pest Control Inc" = 0; true-positive 24-hour claims = 0 of 23 remaining hits (all legal-notice, delivery-SLA or quote-turnaround); references to the removed page = 0; bare "signed 12-month annual agreement" = 0. JSON-LD 163/163 parse. Structural integrity (JSON-LD/meta/link/script-src counts, div and a balance) identical to HEAD on all 5 files touched in this pass. No new em or en dash.
