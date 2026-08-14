@@ -19,7 +19,8 @@ Founded: 3 generations of family service
 Phone: 702-228-4394 ← ONLY number to use. Never any other.
 Email: info@pestcontrolinc.net
 Address: 3642 N Rancho Dr, Suite #102, Las Vegas, NV 89130
-Hours: Mon–Fri 8am–4pm · Sat 8am–2pm · Sun Closed · Emergency: 24/7
+Hours: Mon–Fri 8am–4pm · Sat 8am–2pm · Sun Closed
+(No 24/7 or after-hours emergency tier. Retired 2026-08-13, commit 52158c7.)
 
 ## Domains
 Production: pestcontrolinc.net
@@ -49,7 +50,7 @@ Canonical URL base: https://pestcontrolinc.net
 - Residential pest control (single-family, apartments, condos, multi-family, HOA, eco-friendly)
 - Commercial pest control (offices, retail, hotels, HOA communities, property management, warehouses)
 - Lawn spraying / fertilizing
-- 24/7 emergency pest control
+- Same-day pest control (during business hours)
 
 ## Service Areas
 Tier 1 cities: Las Vegas, Henderson, North Las Vegas, Boulder City
@@ -63,7 +64,7 @@ Coverage: All of Clark County, NV / Las Vegas Valley
 - Health Conscious Service Program (IPM — exterior-first, EPA-registered low-impact baits and gels)
 - money-back guarantee
 - 30 minutes or less callback (business hours)
-- 24/7 emergency service
+- same-day service (business hours; do NOT claim 24/7 or an emergency tier)
 - Eco-friendly, family safe, pet safe
 
 ## Service Plans
@@ -72,7 +73,7 @@ Coverage: All of Clark County, NV / Las Vegas Valley
 - One-time treatment (free estimate, no contract)
 
 ## New Customer Offer
-- Free first service with 12-month annual agreement
+- 50% off first service with a signed 12-month annual service agreement
 - Exclusions: pigeons, bed bugs, bees, rodents
 - New residential customers only
 - Cannot be combined with other offers

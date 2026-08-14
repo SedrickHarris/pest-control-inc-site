@@ -109,7 +109,7 @@ Standalone section, not distributed callouts. Must include:
 - Licensed, insured, drug tested, and background checked technicians
 - Money-back guarantee
 - 30 minutes or less callback (business hours)
-- 24/7 emergency service
+- Same-day service (business hours; do NOT claim 24/7 or an emergency tier)
 
 **Section 6, Competitor differentiation**
 What PCI offers that national chains (Terminix, Orkin) cannot:
@@ -201,7 +201,7 @@ Run all checks. Do not commit on any FAIL.
 - Program: Health Conscious Service Program
 - Guarantee: money-back guarantee
 - Callback: 30 minutes or less (business hours)
-- Emergency: 24/7
+- Availability: same-day during business hours (no 24/7 or emergency tier)
 - Primary CTA: Get Free Estimate → /free-estimate/
 - Secondary CTA: Call (702) 228-4394 → tel:+17022284394
 

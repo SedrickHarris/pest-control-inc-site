@@ -117,15 +117,16 @@ None linked. All CSS is inline per file.
 ### Exact HTML structure (uniform)
 ```html
 <div class="top-bar">
-  <span class="top-bar-text">24/7 Pest Emergency, Las Vegas &amp; Clark County, NV</span>
+  <span class="top-bar-text">Licensed Pest Control, Las Vegas &amp; Clark County, NV</span>
   <a href="tel:+17022284394" class="top-bar-phone">📞 (702) 228-4394</a>
-  <a href="/specials/" class="top-bar-badge">Free First Service →</a>
+  <a href="/specials/" class="top-bar-badge">Save 50% on First Service →</a>
 </div>
 ```
 
 ### Text content per page type (post-site-audit standardization)
-- **Standard pages (13 of 17):** `24/7 Pest Emergency, Las Vegas & Clark County, NV`
-- **Emergency page, plans-and-pricing, apartments, eco-friendly:** `Mon to Fri 8am to 4pm · Sat 8am to 2pm · Emergency 24/7, Las Vegas & Clark County, NV`
+- **Standard pages:** `Licensed Pest Control, Las Vegas & Clark County, NV`
+- **plans-and-pricing, apartments, eco-friendly:** `Mon to Fri 8am to 4pm · Sat 8am to 2pm, Las Vegas & Clark County, NV`
+- (The former emergency page was deleted 2026-08-13 and 301-redirects to `/free-estimate/`.)
 
 ### CSS
 ```css
@@ -149,7 +150,7 @@ None linked. All CSS is inline per file.
     <nav class="nav" aria-label="Main navigation">
       <a href="/pest-control-las-vegas/">Residential</a>
       <a href="/commercial-pest-control-las-vegas/">Commercial</a>
-      <a href="/emergency-pest-control-las-vegas/">Emergency</a>
+      <a href="/free-estimate/">Same-Day Service</a>
       <a href="/about/">About</a>
       <a href="/contact/">Contact</a>
       <a href="/free-estimate/" class="nav-cta">Free Estimate</a>
@@ -180,7 +181,7 @@ Some service pages append a query param to the href (`?type=ant`, `?type=commerc
     <nav class="mobile-nav-links" aria-label="Mobile navigation">
       <a href="/pest-control-las-vegas/" onclick="closeMobileNav()">Residential</a>
       <a href="/commercial-pest-control-las-vegas/" onclick="closeMobileNav()">Commercial</a>
-      <a href="/emergency-pest-control-las-vegas/" onclick="closeMobileNav()">Emergency</a>
+      <a href="/free-estimate/" onclick="closeMobileNav()">Same-Day Service</a>
       <a href="/about/" onclick="closeMobileNav()">About</a>
       <a href="/contact/" onclick="closeMobileNav()">Contact</a>
     </nav>
@@ -247,7 +248,7 @@ Some service pages append a query param to the href (`?type=ant`, `?type=commerc
         </div>
         <button type="submit" class="form-submit">Get My Free Estimate</button>
       </form>
-      <p class="hero-card-foot">*Business hours. Emergency? Call <a href="tel:+17022284394">(702) 228-4394</a> 24/7.</p>
+      <p class="hero-card-foot">*Mon to Fri 8am to 4pm, Sat 8am to 2pm. Call <a href="tel:+17022284394">(702) 228-4394</a>.</p>
     </aside>
   </div>
 </section>
@@ -275,9 +276,9 @@ Inline form in hero, posts to `/free-estimate/`. No client-side validation (`nov
     <div class="trust-item"><span class="trust-icon">🛡️</span><div><div class="trust-value">Licensed #4632</div><div class="trust-label">Nevada Certified</div></div></div>
     <div class="trust-item"><span class="trust-icon">🔍</span><div><div class="trust-value">Background Checked</div><div class="trust-label">Drug Tested Technicians</div></div></div>
     <div class="trust-item"><span class="trust-icon">🐾</span><div><div class="trust-value">Family &amp; Pet Safe</div><div class="trust-label">Eco-Friendly IPM</div></div></div>
-    <div class="trust-item"><span class="trust-icon">⚡</span><div><div class="trust-value">24/7 Emergency</div><div class="trust-label">Same-Day Available</div></div></div>
+    <div class="trust-item"><span class="trust-icon">⚡</span><div><div class="trust-value">Same-Day Service</div><div class="trust-label">New Callers</div></div></div>
     <div class="trust-item"><span class="trust-icon">🔄</span><div><div class="trust-value">Money-Back</div><div class="trust-label">Satisfaction Guaranteed</div></div></div>
-    <div class="trust-item"><span class="trust-icon">🎟️</span><div><div class="trust-value">Free 1st Service</div><div class="trust-label">New Customers w/ Annual Plan</div></div></div>
+    <div class="trust-item"><span class="trust-icon">🎟️</span><div><div class="trust-value">50% Off 1st Service</div><div class="trust-label">New Customers w/ Annual Plan</div></div></div>
   </div>
 </section>
 ```
@@ -631,7 +632,7 @@ Tan-light background. Chips are pill-shaped (`border-radius:999px`). `.tier1` ch
 
 #### Offer reminder strip (used inside final-cta)
 ```html
-<p class="offer-reminder">🎟️ <span><strong>New residential customers</strong>, first service FREE with a 12-month annual agreement. Excludes pigeons, bed bugs, bees, and rodents. · <a href="/specials/">See offer details →</a></span></p>
+<p class="offer-reminder">🎟️ <span><strong>New residential customers</strong>, 50% off your first service with a signed 12-month annual service agreement. Excludes pigeons, bed bugs, bees, and rodents. · <a href="/specials/">See offer details →</a></span></p>
 ```
 Orange-tinted background, soft border. Appears below the final CTA buttons.
 
@@ -794,7 +795,7 @@ Both patterns include this script at end of body:
       <a href="/free-estimate/" class="btn-primary">Get Your Free Estimate →</a>
       <a href="tel:+17022284394" class="btn-secondary">📞 Call (702) 228-4394</a>
     </div>
-    <p class="offer-reminder">🎟️ <span><strong>New residential customers</strong>, first service FREE with a 12-month annual agreement. Excludes pigeons, bed bugs, bees, and rodents. · <a href="/specials/">See offer details →</a></span></p>
+    <p class="offer-reminder">🎟️ <span><strong>New residential customers</strong>, 50% off your first service with a signed 12-month annual service agreement. Excludes pigeons, bed bugs, bees, and rodents. · <a href="/specials/">See offer details →</a></span></p>
   </div>
 </section>
 ```
@@ -820,7 +821,7 @@ Navy background, radial gradient overlay. Centered content. Final offer-reminder
           </p>
           <p><a href="tel:+17022284394" class="footer-phone" itemprop="telephone">(702) 228-4394</a></p>
           <p><a href="mailto:info@pestcontrolinc.net" itemprop="email">info@pestcontrolinc.net</a></p>
-          <p>Mon to Fri 8am to 4pm · Sat 8am to 2pm<br>Sun Closed · Emergency: 24/7</p>
+          <p>Mon to Fri 8am to 4pm · Sat 8am to 2pm<br>Sun Closed</p>
           <p class="footer-license">NV License #4632 · NPMA Member · 3-Generation Family-Owned</p>
         </div>
       </div>
@@ -879,7 +880,7 @@ Fixed bottom on mobile only (`display:none` desktop; `display:flex` ≤768px). N
 - `WebPage` / `AboutPage` / `Service` / `ContactPage` (varies by page intent)
 - `Organization` (about, mission)
 - `HowTo` (homepage, about, several service pages)
-- `Offer` (most pages, Free First Service)
+- `Offer` (most pages, 50% Off First Service)
 - `AggregateRating` (embedded in LocalBusiness)
 - `SpeakableSpecification` (most pages)
 - `OpeningHoursSpecification`, `PostalAddress`, `EducationalOccupationalCredential` (embedded)
@@ -1011,7 +1012,7 @@ document.addEventListener('keydown', function(e) {
 ### Title tag format
 - **Pattern:** `[Page Topic] | [Suffix]`
 - **Examples:**
-  - Homepage: `Pest Control Inc | Las Vegas Pest Control & 24/7 Exterminators`
+  - Homepage: `Pest Control Inc | Las Vegas Pest Control & Same-Day Exterminators`
   - About: `About Pest Control Inc | Las Vegas Family Pest Control`
   - Hub: `[Service] Las Vegas | Pest Control Inc | Licensed #4632`
 - Always under 60 characters where possible.
@@ -1095,8 +1096,8 @@ The About cluster (`/about/`, `/about/mission/`, `/about/health-conscious-servic
 - Now normalized to `<p class="last-reviewed">` matching other pages. Current state matches.
 
 ### 7. Top bar text: all 17 now match approved variants
-- 13 files: `24/7 Pest Emergency, Las Vegas & Clark County, NV`
-- 4 files: `Mon to Fri 8am to 4pm · Sat 8am to 2pm · Emergency 24/7, Las Vegas & Clark County, NV` (emergency, plans-and-pricing, apartments, eco-friendly)
+- Standard pages: `Licensed Pest Control, Las Vegas & Clark County, NV`
+- 3 files: `Mon to Fri 8am to 4pm · Sat 8am to 2pm, Las Vegas & Clark County, NV` (plans-and-pricing, apartments, eco-friendly)
 - All license-tagline variants were removed during the site-audit batch.
 
 ### 8. Mobile nav CTA: all 17 now say `Free Estimate →`

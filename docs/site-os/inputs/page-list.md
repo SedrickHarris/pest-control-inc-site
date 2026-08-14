@@ -1,6 +1,6 @@
 # Pest Control Inc — Page List
 
-Last updated: 2026-05-22
+Last updated: 2026-08-13
 Source: Implementation log audit — all LIVE entries verified against disk/commit records
 
 ## Status Key
@@ -16,6 +16,9 @@ Source: Implementation log audit — all LIVE entries verified against disk/comm
   client priority list added in Action B. Added all confirmed-live location and
   neighborhood pages. Added 55-area PLANNED entries. Corrected pest-identification
   and pest-control-faq status (both are NOT live — confirmed unbuilt per Batch 5.5 Task 5).
+- 2026-08-13: /emergency-pest-control-las-vegas/ moved from Core Pages to Removed / Out of Scope.
+  24/7 emergency response retired by owner decision (commit 52158c7); page deleted and
+  301-redirected to /free-estimate/. Core Pages renumbered 1 to 17. Do not rebuild this route.
 
 ---
 
@@ -26,21 +29,20 @@ Source: Implementation log audit — all LIVE entries verified against disk/comm
 | 1 | / | Homepage | LIVE |
 | 2 | /pest-control-las-vegas/ | Residential hub | LIVE |
 | 3 | /commercial-pest-control-las-vegas/ | Commercial hub | LIVE |
-| 4 | /emergency-pest-control-las-vegas/ | Emergency hub | LIVE |
-| 5 | /free-estimate/ | Conversion / lead gen | LIVE |
-| 6 | /contact/ | Contact | LIVE |
-| 7 | /about/ | About | LIVE |
-| 8 | /about/mission/ | About sub-page | LIVE |
-| 9 | /about/health-conscious-service-program/ | About sub-page | LIVE |
-| 10 | /about/guarantee/ | About sub-page | LIVE |
-| 11 | /reviews/ | Social proof | LIVE |
-| 12 | /specials/ | Offer / conversion | LIVE |
-| 13 | /thank-you/ | Form confirmation | LIVE |
-| 14 | /privacy-policy/ | Legal | LIVE |
-| 15 | /terms-of-use/ | Legal | LIVE |
-| 16 | /sitemap/ | HTML sitemap | LIVE |
-| 17 | /service-areas/ | Service area hub | LIVE |
-| 18 | /404.html | Error page | LIVE |
+| 4 | /free-estimate/ | Conversion / lead gen | LIVE |
+| 5 | /contact/ | Contact | LIVE |
+| 6 | /about/ | About | LIVE |
+| 7 | /about/mission/ | About sub-page | LIVE |
+| 8 | /about/health-conscious-service-program/ | About sub-page | LIVE |
+| 9 | /about/guarantee/ | About sub-page | LIVE |
+| 10 | /reviews/ | Social proof | LIVE |
+| 11 | /specials/ | Offer / conversion | LIVE |
+| 12 | /thank-you/ | Form confirmation | LIVE |
+| 13 | /privacy-policy/ | Legal | LIVE |
+| 14 | /terms-of-use/ | Legal | LIVE |
+| 15 | /sitemap/ | HTML sitemap | LIVE |
+| 16 | /service-areas/ | Service area hub | LIVE |
+| 17 | /404.html | Error page | LIVE |
 
 ## Residential Sub-Pages
 
@@ -230,4 +232,5 @@ Source: Implementation log audit — all LIVE entries verified against disk/comm
 | Route | Status | Reason |
 |-------|--------|--------|
 | /pest-control-mesquite-nv/ | REMOVED | Owner confirmed Mesquite is not a service area (2026-05-19) |
+| /emergency-pest-control-las-vegas/ | REMOVED | 24/7 emergency response retired by owner decision (2026-08-13, commit 52158c7). Page deleted; 301 to /free-estimate/. Do not rebuild. |
 | /springtail-exterminator-las-vegas/ | CONSOLIDATED | Content folded into /false-chinch-bug-exterminator-las-vegas/ |

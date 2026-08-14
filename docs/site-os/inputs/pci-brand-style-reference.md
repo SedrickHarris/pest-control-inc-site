@@ -22,7 +22,7 @@ License:       Nevada Department of Agriculture Pest Control License #4632
 - Mon–Fri: 8:00am–4:00pm
 - Sat: 8:00am–2:00pm
 - Sun: Closed
-- Emergency: 24/7
+- No 24/7 or after-hours emergency tier. Same-day service during business hours only. Retired 2026-08-13, commit 52158c7.
 
 ### Operations
 - Callback promise: 30 minutes or less (business hours)
@@ -42,7 +42,7 @@ License:       Nevada Department of Agriculture Pest Control License #4632
 - EPA-registered low-impact baits and gels
 
 ### Services
-- Residential · Commercial · Emergency 24/7 · Lawn spraying / fertilizing
+- Residential · Commercial · Lawn spraying / fertilizing
 - 16 pest species: Scorpions · Ants · Cockroaches · Rodents · Termites · Spiders · Bed Bugs · Wasps · Bees · Birds/Pigeons · Earwigs · Hornets · Crane Flies · False Chinch Bugs · Miller Moths · Springtails
 
 ### Review Scores (confirmed — use verbatim, do not inflate)
@@ -55,7 +55,7 @@ License:       Nevada Department of Agriculture Pest Control License #4632
 Money-back guarantee on every service
 
 ### New Customer Offer
-- Free first service with 12-month annual agreement
+- 50% off first service with a signed 12-month annual service agreement
 - Exclusions: pigeons, bed bugs, bees, rodents
 - New residential customers only
 - Cannot be combined with other offers
@@ -98,7 +98,7 @@ Money-back guarantee on every service
 **PERMITTED uses of orange (#E87A1F):**
 1. Primary CTA buttons ("Get Free Estimate", "Call Now", form submit)
 2. Phone number text in top bar and hero section only
-3. Promotional/offer badges ("Free First Service", "50% Off")
+3. Promotional/offer badges ("Save 50% on First Service", "50% Off")
 4. New customer offer callout accent borders
 5. Star ratings that appear ON WHITE or LIGHT backgrounds
    (use #FFD580 warm gold instead of orange for stars on blue/navy)
@@ -697,15 +697,17 @@ Before `</body>`:
 }
 ```
 
-### Offer — New Customer Free First Service (consistent)
+### Offer — New Customer 50% Off First Service (consistent)
+
+Do NOT add `price` / `priceCurrency` to this Offer. It is a discount, not a free service, so
+asserting `"price": "0"` would be a fake-data violation. Genuinely-free Offers (free estimate,
+free inspection, free assessment) DO keep `"price": "0"`.
 
 ```json
 {
   "@type": "Offer",
-  "name": "Free First Pest Control Service — New Customers",
-  "description": "New residential customers receive their first pest control service free with a 12-month annual service agreement. Excludes pigeons, bed bugs, bees, and rodents.",
-  "price": "0",
-  "priceCurrency": "USD",
+  "name": "50% Off First Pest Control Service, New Customers",
+  "description": "New residential customers receive 50% off their first pest control service with a signed 12-month annual service agreement. Excludes pigeons, bed bugs, bees, and rodents.",
   "validThrough": "2027-04-21",
   "eligibleCustomerType": "NewCustomer",
   "url": "https://pestcontrolinc.net/specials/"
